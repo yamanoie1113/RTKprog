@@ -15,7 +15,7 @@ class Run(metaclass=ABCMeta):
 #mY=X
 
     def set_param(self,mPID,X,Y):
-        mPID=PID()
+       # mPID=PID()
         #self.X=X()
         #lelf.Y=Y()
         pass

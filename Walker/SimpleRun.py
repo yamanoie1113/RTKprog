@@ -13,7 +13,7 @@ class SimpleRun(Run):
 
         pass
 
-    def set_Param(self.mFoward,mTurn):
+    def set_Param(self,mFoward,mTurn):
 
          self.mFoward=param[0]
          self.mTurn=param[1]
