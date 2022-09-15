@@ -6,6 +6,7 @@ class Run(metaclass=ABCMeta):
     
     def __init__(self,param):
 
+        #リセット
         pass
 
 
@@ -14,9 +15,9 @@ class Run(metaclass=ABCMeta):
 #mY=X
 
     def set_param(self,X,Y):
-        #mPID=new PID()
-        self.X=X
-        self.Y=Y
+        #mPID=PID()
+        #self.X=X
+        #self.Y=Y
         pass
 
     def Run():
