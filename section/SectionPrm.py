@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstructmethod
 
-class SectionPrm(metaclass=ABCMeta ):
+class SectionPrm(metaclass=ABCMeta):
     @abstructmethod
     def __init__(self):
 
