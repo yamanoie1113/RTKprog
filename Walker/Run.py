@@ -4,7 +4,7 @@ class Run(metaclass=ABCMeta):
     @abstractmethod
     
     
-    def __init__(self,param):
+    def __init__():
 
         #リセット
         pass
@@ -14,10 +14,10 @@ class Run(metaclass=ABCMeta):
 #mX=X
 #mY=X
 
-    def set_param(self,X,Y):
-        #mPID=PID()
-        #self.X=X
-        #self.Y=Y
+    def set_param(self,mPID,X,Y):
+        mPID=PID()
+        #self.X=X()
+        #lelf.Y=Y()
         pass
 
     def Run():

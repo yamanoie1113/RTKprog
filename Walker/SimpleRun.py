@@ -13,25 +13,25 @@ class SimpleRun(Run):
 
         pass
 
-    def set_Param(param):
+    def set_Param(self.mFoward,mTurn):
 
-         mFoward=param[0]
-         mTurn=param[1]
+         self.mFoward=param[0]
+         self.mTurn=param[1]
 
          pass
 
 
-    def Run(self,mTurn):
+    def Run(self,frontPWM,rearPWM,turning):
 
-         frontPWM=0
-         rearPWM=0
-         turning=mTurn
+         self.frontPWM=0
+         self.rearPWM=0
+         self.turning=mTurn
 
          pass
         
-    def reset_Param():
+    def reset_Param(self,mset_parm):
 
-        mset_param=MotorMgmt()
+        self.mset_param=MotorMgmt()
         
 
         pass
