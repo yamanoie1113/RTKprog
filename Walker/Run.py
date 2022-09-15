@@ -2,9 +2,8 @@ from abc import ABCMeta,abstractmethod
 
 class Run(metaclass=ABCMeta):
     @abstractmethod
-    
-    
-    def __init__():
+
+    def __init__(self):
 
         #リセット
         pass
@@ -15,7 +14,7 @@ class Run(metaclass=ABCMeta):
 #mY=X
 
     def set_param(self,mPID,X,Y):
-       # mPID=PID()
+        #self.mPID=PID()
         #self.X=X()
         #lelf.Y=Y()
         pass

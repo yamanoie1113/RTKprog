@@ -7,14 +7,14 @@ class SectionMgmt( metaclass=ABCMeta ) :
 
         pass
 
-    def get_Param():
+    def get_Param(self):
 
         pass
 
-    def addSection():
+    def addSection(self):
 
         pass
 
-    def do():
+    def execute(self):
 
         pass

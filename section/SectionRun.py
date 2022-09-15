@@ -2,10 +2,10 @@ class sectionRun:
     def run(self):
 
         pass
-    def walker():
+    def walker(self):
 
         pass
 
-    def judge():
+    def judge(self):
 
         pass
