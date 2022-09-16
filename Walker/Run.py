@@ -19,6 +19,10 @@ class Run(metaclass=ABCMeta):
         #lelf.Y=Y()
         pass
 
+    #def debug():
+
+     #   pass
+
     def Run():
 
         pass

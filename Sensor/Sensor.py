@@ -7,5 +7,5 @@ class Sensor(metaclass=ABCMeta):
     def getValue(self):
         pass
 
-    def update(self):
+    def Update(self):
         pass
