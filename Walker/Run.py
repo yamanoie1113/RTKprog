@@ -13,8 +13,9 @@ class Run(metaclass=ABCMeta):
 #mX=X
 #mY=X
 
-    def set_param(self,mPID,X,Y):
-        #self.mPID=PID()
+    def set_param(self,mPID,mFoward,X,Y):
+        self.mPID=PID()
+
         #self.X=X()
         #lelf.Y=Y()
         pass
@@ -27,3 +28,10 @@ class Run(metaclass=ABCMeta):
 
         pass
     
+
+    def Main():
+
+
+        
+
+        pass

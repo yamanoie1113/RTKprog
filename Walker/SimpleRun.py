@@ -1,3 +1,4 @@
+from inspect import walktree
 from Walker.Run import Run
 
 
@@ -18,8 +19,8 @@ class SimpleRun(Run):
 
     def set_Param(self,mFoward,mTurn):
 
-         self.mFoward=param[0]
-         self.mTurn=param[1]
+         #self.mFoward=param[0]
+         #self.mTurn=param[1]
 
          pass
 
@@ -28,13 +29,13 @@ class SimpleRun(Run):
 
          self.frontPWM=0
          self.rearPWM=0
-         self.turning=mTurn
+         #self.turning=mTurn
 
          pass
         
     def reset_Param(self,mset_parm):
 
-        self.mset_param=MotorMgmt()
+        #self.mset_param=MotorMgmt()
         
 
         pass
