@@ -17,8 +17,10 @@ class SimpleRun(Run):
      run()
      reset_Param()
 
+     if __name__ == "__main__":main()
 
-    def set_Param(param[]):
+
+     def set_Param(param):
 
           mFoward=param[0]
           mTurn=param[1]
