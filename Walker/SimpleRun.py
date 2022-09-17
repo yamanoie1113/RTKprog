@@ -11,12 +11,12 @@ class SimpleRun(Run):
 
 
      def set_Param(param):
-
+          #配列でパラメータを分けている
           mFoward=param[0]
           mTurn=param[1]
 
      
-     def Run(self,frontPWM,rearPWM,advance,turning):
+     def run(self,frontPWM,rearPWM,advance,turning):
 
          self.frontPWM=0
          self.rearPWM=0
