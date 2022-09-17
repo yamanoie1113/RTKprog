@@ -5,33 +5,29 @@ class Run(metaclass=ABCMeta):
 
     def __init__(self):
 
-        #リセット
-        pass
+
+        def main():
+        
+            mrun=Run()
+            set_param()
+            run()
+
+            if __name__ == "__main__":main()
+          
 
 
-#mPID=new PID()
-#mX=X
-#mY=X
+        def set_param(self,mPID,mFoward,X,Y):
 
-    def set_param(self,mPID,mFoward,X,Y):
-        self.mPID=PID()
+            self.mPID=PID()
 
+
+   
         #self.X=X()
         #lelf.Y=Y()
-        pass
+    
 
     #def debug():
 
      #   pass
 
-    def Run():
-
-        pass
-    
-
-    def Main():
-
-
-        
-
-        pass
+        def run():

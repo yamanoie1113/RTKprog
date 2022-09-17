@@ -1,41 +1,44 @@
 from inspect import walktree
+from Sensor.MotorMgmt import WheelMotorMgmt
 from Walker.Run import Run
 
 
 class SimpleRun(Run):
     def __init__():
 
-         frontPWM=0
-         rearPWM=0 
+         mForward=0
+         mTurn=0 
 
-         pass
 
     def main():
-        #set_Param()
-        #Run()
-        #reset_Param()
 
-        pass
-
-    def set_Param(self,mFoward,mTurn):
-
-         #self.mFoward=param[0]
-         #self.mTurn=param[1]
-
-         pass
+     mrun=SimpleRun()
+     set_Param()
+     run()
+     reset_Param()
 
 
-    def Run(self,frontPWM,rearPWM,turning):
+    def set_Param(param[]):
+
+          mFoward=param[0]
+          mTurn=param[1]
+
+     
+    def Run(self,frontPWM,rearPWM,advance,turning):
 
          self.frontPWM=0
          self.rearPWM=0
-         #self.turning=mTurn
+         self.advance=mForward
+         self.turning=mTurn
+         frontPWM=(advance + turning)
+         rearPWM=(advance - turning)
+         mWheelMotorMgmt=WheelMotorMgmt()
 
-         pass
+
+     
         
-    def reset_Param(self,mset_parm):
+    #def reset_Param(param[]):
 
         #self.mset_param=MotorMgmt()
-        
-
-        pass
+        #mForward=param[0]
+        #mTurn=param[1]
