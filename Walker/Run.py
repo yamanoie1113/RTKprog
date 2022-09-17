@@ -16,10 +16,10 @@ class Run(metaclass=ABCMeta):
         
 
 
-        @abstractmethod
+    @abstractmethod
         
-        def run():
-        #走る
+    def run(): 
+                #走る
         
 
             def main():
