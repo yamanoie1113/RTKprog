@@ -4,27 +4,26 @@ from Walker.Run import Run
 
 
 class SimpleRun(Run):
-     def __init__():
+     def __init__(self):
 
-         mForward=0
-         mTurn=0 
+      self.mFoward=0
+      self.mTurn=0
 
-
-     def set_Param(param):
+     def set_Param(self,param):
           #配列でパラメータを分けている
-          mFoward=param[0]
-          mTurn=param[1]
+          self.mFoward=param[0]
+          self.mTurn=param[1]
 
      
-     def run(self,frontPWM,rearPWM,advance,turning):
+     def run(self):
 
          self.frontPWM=0
          self.rearPWM=0
-         self.advance=mForward
-         self.turning=mTurn
-         frontPWM=(self.advance + self.turning)
-         rearPWM=(self.advance - self.turning)
-         mWheelMotorMgmt=WheelMotorMgmt(self.frontPWM,self.rearPWM)
+         self.advance=self.mFoward
+         self.turning=self.mTurn
+         self.frontPWM=(self.advance + self.turning)
+         self.rearPWM=(self.advance - self.turning)
+         self.mWheelMotorMgmt=WheelMotorMgmt(self.frontPWM,self.rearPWM)
 
      def main():
 
