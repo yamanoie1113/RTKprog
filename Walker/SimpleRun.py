@@ -4,20 +4,10 @@ from Walker.Run import Run
 
 
 class SimpleRun(Run):
-    def __init__():
+     def __init__():
 
          mForward=0
          mTurn=0 
-
-
-    def main():
-
-     mrun=SimpleRun()
-     set_Param()
-     run()
-     reset_Param()
-
-     if __name__ == "__main__":main()
 
 
      def set_Param(param):
@@ -26,17 +16,24 @@ class SimpleRun(Run):
           mTurn=param[1]
 
      
-    def Run(self,frontPWM,rearPWM,advance,turning):
+     def Run(self,frontPWM,rearPWM,advance,turning):
 
          self.frontPWM=0
          self.rearPWM=0
          self.advance=mForward
          self.turning=mTurn
-         frontPWM=(advance + turning)
-         rearPWM=(advance - turning)
-         mWheelMotorMgmt=WheelMotorMgmt()
+         frontPWM=(self.advance + self.turning)
+         rearPWM=(self.advance - self.turning)
+         mWheelMotorMgmt=WheelMotorMgmt(self.frontPWM,self.rearPWM)
 
+     def main():
 
+          mrun=SimpleRun()
+          mrun.set_Param()
+          mrun.run()
+     #reset_Param()
+
+     if __name__ == "__main__":main()
      
         
     #def reset_Param(param[]):

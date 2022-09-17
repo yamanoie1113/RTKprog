@@ -3,31 +3,43 @@ from abc import ABCMeta,abstractmethod
 class Run(metaclass=ABCMeta):
     @abstractmethod
 
-    def __init__(self):
+    def __init__(self,mPID):
 
-
-        def main():
+        #PIDの値取得
+        self.mPID=PID()
         
-            mrun=Run()
-            set_param()
-            run()
+
+    #@abstractmethod
+
+    #def set_param():
+        #パラメータ設定
+        
+
+
+        @abstractmethod
+        
+        def run():
+        #走る
+        
+
+            def main():
+
+                mrun=Run()
+                
+                #set_param()
+
+                mrun.run()
 
             if __name__ == "__main__":main()
-          
 
 
-        def set_param(self,mPID,mFoward,X,Y):
 
-            self.mPID=PID()
+        
 
 
-   
-        #self.X=X()
-        #lelf.Y=Y()
+
+
+
+
+
     
-
-    #def debug():
-
-     #   pass
-
-        def run():
