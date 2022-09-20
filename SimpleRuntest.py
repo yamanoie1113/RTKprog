@@ -3,10 +3,10 @@ from Sensor.MotorMgmt import MotorMgmt
 from Walker.Run import Run
 
 
-class SimpleRun(Run):
+class SimpleRuntest(Run):
      def __init__(self):
 
-          self.mForward=0
+          self.mFoward=0
           self.mTurn=0
 
      def set_Param(self,param):
@@ -15,19 +15,19 @@ class SimpleRun(Run):
           self.mTurn=param[1]
 
      
-     def run(self):
+     def run(self,MotorMgmt):
 
-         self.frontPWM=0
-         self.rearPWM=0
-         self.advance=self.mFoward
-         self.turning=self.mTurn
-         self.frontPWM=(self.advance + self.turning)
-         self.rearPWM=(self.advance - self.turning)
-         self.mMotorMgmt=MotorMgmt(self.frontPWM,self.rearPWM)
+          self.frontPWM=0
+          self.rearPWM=0
+          self.advance=self.mFoward
+          self.turning=self.mTurn
+          self.frontPWM=(self.advance + self.turning)
+          self.rearPWM=(self.advance - self.turning)
+          self.mMotorMgmt=MotorMgmt(self.frontPWM,self.rearPWM)
 
      def main():
 
-          mrun=SimpleRun()
+          mrun=SimpleRuntest()
           mrun.set_Param()
           mrun.run()
           mrun.reset_Param()
