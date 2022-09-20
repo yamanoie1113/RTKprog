@@ -1,11 +1,11 @@
-from abc import ABCMeta, abstructmethod
 
-class SectionPrm(metaclass=ABCMeta):
-    @abstructmethod
+class SectionPrm:
+
     def __init__(self):
 
         pass
+    
 
-    def get_param():
+    def get_param(self):
 
         pass

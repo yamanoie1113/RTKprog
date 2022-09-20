@@ -1,18 +1,16 @@
-class sectionRun:
+class SectionRun:
     def run(self):
 
         pass
-    def Req_walker(self,mRun):
+    def request_run(self):
 
     #走法の生成依頼
         self.mRun=Run()
 
-        pass
+        
 
-    def Req_judge(self):
+    def request_judge(self):
 
         #判定の生成依頼
 
-        self.mjudge=judge()
-
-        pass
+        self.mjudge=Judge()

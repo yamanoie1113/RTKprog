@@ -1,45 +1,22 @@
+import sys
 from abc import ABCMeta,abstractmethod
 
 class Run(metaclass=ABCMeta):
     @abstractmethod
-
-    def __init__(self,mPID):
-
-        #PIDの値取得
-        self.mPID=PID()
-        
-
-    #@abstractmethod
-
-    #def set_param():
-        #パラメータ設定
-        
-
+    def __init__(self):
+        pass
 
     @abstractmethod
-        
-    def run(): 
-                #走る
-        
+    def run(self):
+        pass
 
-            def main():
+    @abstractmethod
+    def set_param(self):
+        pass
 
-                mrun=Run()
-                
-                #set_param()
-
-                mrun.run()
-
-            if __name__ == "__main__":main()
+    @abstractmethod
+    def reset_param(self):
+        pass
 
 
 
-        
-
-
-
-
-
-
-
-    
