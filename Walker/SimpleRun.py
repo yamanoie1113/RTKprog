@@ -4,7 +4,7 @@ from Walker.Run import Run
 
 
 class SimpleRun(Run):
-     def __init__(self):
+     def __init__(self,mFoward,mTurn):
 
       self.mFoward=0
       self.mTurn=0
@@ -15,7 +15,7 @@ class SimpleRun(Run):
           self.mTurn=param[1]
 
      
-     def run(self):
+     def run(self,frontPWM,rearPWM,advance,turning,mWheelMotorMgmt):
 
          self.frontPWM=0
          self.rearPWM=0

@@ -9,7 +9,7 @@ class sectionRun:
 
         pass
 
-    def Req_judge(self,mJudge):
+    def Req_judge(self):
 
         #判定の生成依頼
 
