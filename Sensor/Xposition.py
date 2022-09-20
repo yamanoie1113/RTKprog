@@ -1,15 +1,24 @@
-import Sensor
+import GPS2xy
 
-class Xposition(Sensor.Sensor):
-    mXposition: float
+class Xposition():
+    
+    #def __init__(self,mXposition):
+        #self.mXposition = 0
+
+    
+    def main():
+        print(getValue())
 
     def getValue(self):
-        #getval
-        pass
+        self.mXposition = GPS2xy.GPS2x()
+        return self.mXposition
 
     def Update(self):
         pass
+        #print(getValue())
         #self.mXposition = mXposition
 
-#test_code
-print("Xposition")
+
+
+aaa = Xposition()
+print(aaa.getValue())
