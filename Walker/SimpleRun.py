@@ -27,6 +27,8 @@ class SimpleRun(Run):
           self.frontPWM=self.mFoward
           self.rearPWM=self.mTurn
           #param()ではなくて、直接値をぶっこむと多分走る
+          #モータ管理担当の大川君はモーター管理のset_paramに引数を入れて値を受け取れるようにする
+          #↓モーター管理に値を渡している
           self.mMotorMgmt.set_param(self.frontPWM,self.rearPWM)
 
      def reset_Param(self):
