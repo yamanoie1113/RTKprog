@@ -2,21 +2,12 @@ from abc import ABCMeta, abstructmethod
 
 class SectionMgmt( metaclass=ABCMeta ):
     @abstructmethod
+
     def __init__(self):
+        self.mSectionId=0
+        self.mLastId=0
 
-
-        pass
-    @abstructmethod
-    def get_Param(self):
-
+    def __del__(self):
         pass
 
-    @abstructmethod
-    def addSection(self):
-
-        pass
-    
-    @abstructmethod
-    def execute(self):
-
-        pass
+    def 
