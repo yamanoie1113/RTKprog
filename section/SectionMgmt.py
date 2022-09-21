@@ -7,7 +7,15 @@ class SectionMgmt( metaclass=ABCMeta ):
         self.mSectionId=0
         self.mLastId=0
 
+    def execute():
+
+        pass
+
+    def get_param():
+
+        pass
+
     def __del__(self):
         pass
 
-    def 
+

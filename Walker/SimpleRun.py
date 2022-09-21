@@ -22,10 +22,10 @@ class SimpleRun(Run):
      
      def run(self):
           #-100から100までのPWMを設定してMotorMgmtに送る
-          self.frontPWM=0
-          self.rearPWM=0
-          self.frontPWM=self.mFoward
-          self.rearPWM=self.mTurn
+          self.fowerdPWM=0    #サーボモーター
+          self.steeringPWM=0  #ステアリングモーター
+          self.fowardPWM=self.mFoward
+          self.steeringPWM=self.mTurn
           #param()ではなくて、直接値をぶっこむと多分走る
           #モータ管理担当の大川君はモーター管理のset_paramに引数を入れて値を受け取れるようにする
           #↓モーター管理に値を渡している
