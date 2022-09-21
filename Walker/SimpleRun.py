@@ -26,7 +26,7 @@ class SimpleRun(Run):
           self.rearPWM=0
           self.frontPWM=self.mFoward
           self.rearPWM=self.mTurn
-          #直接値をぶっこむと走る
+          #param()ではなくて、直接値をぶっこむと多分走る
           self.mMotorMgmt.set_param(self.frontPWM,self.rearPWM)
 
      def reset_Param(self):
