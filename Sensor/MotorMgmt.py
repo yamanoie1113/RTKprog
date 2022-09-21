@@ -6,8 +6,6 @@ class MotorMgmt:
     def __init__(self):
         
         pi = pigpio.pi()
-        pi.set_mode(17, pigpio.OUTPUT)
-        pi.set_mode(22, pigpio.OUTPUT)
         #PWMパラメータ
         pwm_pin1 = 19 #PWM出力ピンを指定
         pwm_pin2 = 18 #PWM出力ピンを指定
@@ -28,8 +26,6 @@ class MotorMgmt:
 
     def set_param(self):
         pi = pigpio.pi()
-        pi.set_mode(17, pigpio.OUTPUT)
-        pi.set_mode(22, pigpio.OUTPUT)
         #PWMパラメータ
         pwm_pin1 = 19 #PWM出力ピンを指定
         pwm_pin2 = 18 #PWM出力ピンを指定
