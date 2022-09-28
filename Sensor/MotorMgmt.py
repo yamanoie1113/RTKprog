@@ -26,7 +26,7 @@ class MotorMgmt:
 
 
 
-    def set_param(freq):
+    def set_param(freq,self):
         pi = pigpio.pi()
         #PWMパラメータ
         pwm_pin1 = 19 #PWM出力ピンを指定
@@ -45,6 +45,30 @@ class MotorMgmt:
             pi.hardware_PWM(pwm_pin1, pwm, cnv_dutycycle)
             pi.hardware_PWM(pwm_pin2, pwm, cnv_dutycycle)
         #dutyを変更
+
+            self.MAX_F=100
+            self.MAX_T=100
+
+          #限界値設定
+
+            if self.mFoward > self.MAX_F:
+
+               self.mFoward=100
+
+            if self.mForward < -self.MAX_F:
+
+               self.mForward=-100
+
+
+            if self.mTurn > self.MAX_T:
+
+               self.mTurn=100
+
+            if self.mTurn < -self.MAX_T:
+
+               self.mTurn=-100
+
+            return self.mForward,self.mTurn
            
 
         
