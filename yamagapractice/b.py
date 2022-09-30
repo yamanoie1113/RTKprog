@@ -1,7 +1,7 @@
-#from yamagapractice.a import a
+from yamagapractice.a import a
 
 
-class b:
+class b(a):
     def __init__(self):
         self.atai1=4
         self.atai2=0
