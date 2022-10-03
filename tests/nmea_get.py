@@ -2,7 +2,7 @@ import socket
 
 # サーバーIPとポート番号
 IPADDR = "localhost"
-PORT = 5555
+PORT = 2101
 
 # AF_INET：IPv4形式でソケット作成(省略可)
 sock_sv = socket.socket(socket.AF_INET)
@@ -26,8 +26,25 @@ while True:
             nmea_data += tmp
             if tmp==b'\n':
                 break
-        print(nmea_data)
+        
+        if nmea_data==b'GNGGA':
+            list_GGA = nmea_data.split(",")
 
+        print(list_GGA[2])#おそらく緯度を抽出して出力できるはず
+        
+    
+        
+
+"""
+    while True:
+    list_GGA = [line_s for line_s in lines_strip if '$GPGGA' in line_s ]
+    cnt = 0
+    tmp = list_GGA[1].split(',') 
+    print(tmp[2])#緯度を抽出
+    break
+    while cnt > 2:
+        pass
+    """
 
 # クライアントのソケットを閉じる
 sock_sv.close()

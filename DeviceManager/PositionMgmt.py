@@ -18,6 +18,16 @@ class Xposition():
         #print(getValue())
         #self.mXposition = mXposition
 
+class Yposition(Sensor.Sensor):
+    mYposition: float
+
+    def getValue(self):
+        #getval
+        pass
+
+    def Update(self):
+        pass
+        #self.mYposition = mYposition
 
 
 aaa = Xposition()
