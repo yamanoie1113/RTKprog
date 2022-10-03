@@ -14,7 +14,7 @@ class MotorMgmt:
         cycle = c
 
 
-        return freq,cycle
+        return duty,freq,cycle
 
 
 
