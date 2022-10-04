@@ -11,18 +11,19 @@ class MotorMgmt:
 
         duty = a
         freq = b
-        cycle = c
+        if freq == 100:
+            pin = 19
+        else:
+            pin = 18
+        cycle = int((duty * 1000000 / 100))
+
+        return pin,freq,cycle
 
 
-        return duty,freq,cycle
 
-
-
-    def run():
-        duty,freq,cycle = MotorMgmt.set_param()
-        pin1 = 19 #スピード
-        pin2 = 18 #サーボ
+    def run(self):
+        pin,freq,cycle = MotorMgmt.set_param()
 
         while True:
-            pi.hardware_PWM(pin1, freq, cycle)
-            pi.hardware_PWM(pin2, freq, cycle)
+
+            pi.hardware_PWM(pin, freq, cycle)
