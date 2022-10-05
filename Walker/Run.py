@@ -1,6 +1,6 @@
 from inspect import walktree
 from turtle import speed
-from Sensor.MotorMgmt import MotorMgmt
+from Sensors.MotorMgmt import MotorMgmt
 from Walker.SpeedCtl import SpeedCtl
 
 
