@@ -1,5 +1,7 @@
 from abc import ABCMeta,abstractmethod
-from yamagapractice.b import b
+
+#from Walker.Run import main
+#import b
 
 
 class a(metaclass=ABCMeta):
@@ -22,12 +24,12 @@ class a(metaclass=ABCMeta):
         
 
     @abstractmethod
-    def run(self,Fpwm,Tpwm):
+    def run(self,mb):
         
-        self.mb.set_param(Fpwm,Tpwm)
 
-        print(Fpwm,Tpwm)
+        print(self.Fpwm,self.Tpwm)
 
+        mb.set_param(self.Fpwm,self.Tpwm)
 
     @abstractmethod
     def reset_param(self):
@@ -36,10 +38,15 @@ class a(metaclass=ABCMeta):
 
 
 
-    def main(self):
-    #self.mPID=PID(
+    def main():
+        print("a")
         ma=a(0,0)
-        self.mb=b()
+        #mb=b()
         ma.set_Param(50,70)
-        ma.run(self.Fpwm,self.Tpwm)
+        ma.run()
+        #ma.run(mb)
         ma.reset_param()
+
+
+if __name__ =="__main__":
+    main()

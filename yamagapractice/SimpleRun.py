@@ -1,10 +1,11 @@
 from inspect import walktree
 from turtle import speed
 from Sensor.MotorMgmt import MotorMgmt
+from Walker.Run import Run
 from Walker.SpeedCtl import SpeedCtl
 
 
-class Run:
+class SimpleRun(Run):
      def __init__(self):
 
           self.mForward=0 #前進
@@ -29,8 +30,8 @@ class Run:
           self.mForward=0
           self.mTurn=0
 
-     #def set_comondV(self,mTargetSpeed,mTurn):
-          #pass
+     def set_comondV(self,mTargetSpeed,mTurn):
+          pass
 '''
 def main(self):
 

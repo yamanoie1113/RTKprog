@@ -1,7 +1,8 @@
-from yamagapractice.a import a
+
+import a
 
 
-class b(a):
+class b(a.a):
     def __init__(self):
         self.atai1=4
         self.atai2=0
@@ -13,8 +14,20 @@ class b(a):
         self.atai2=5+atai7
         print(self.atai1,self.atai2)
 
-mb=b()
-mb.set_param()
+    def run():
 
-    
+        pass
+
+    def reset_param(self):
+
+        pass
+
+    def main(self):
+        
+        mb=b()
+        mb.set_param(3,4)
+        mb.run()
+        mb.reset_param()
+
+
 

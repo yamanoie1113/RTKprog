@@ -1,7 +1,7 @@
 
 class SectionPrm:
 
-    def __init__(self):
+    def init(self):
 
         pass
     
