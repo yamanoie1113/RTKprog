@@ -1,7 +1,8 @@
 #coding:utf-8
 import socket
 import time
-class nmea_get():
+
+def get():
     # サーバーIPとポート番号
 
     IPADDR = "localhost"
@@ -10,15 +11,12 @@ class nmea_get():
     # AF_INET：IPv4形式でソケット作成(省略可)
     sock_sv = socket.socket(socket.AF_INET)
     # IPアドレスとポート番号でバインド、タプルで指定
-    #sock_sv.connect((IPADDR, PORT))
+    sock_sv.connect((IPADDR, PORT))
     # 接続・受信の無限ループ
 
-    def get(self):
-        while True:
-            sock_sv = socket.socket(socket.AF_INET)
-            # IPアドレスとポート番号でバインド、タプルで指定
-            sock_sv.connect((self.IPADDR, self.PORT))
+    while True:
 
+        while True:
             # ソケットから byte 形式でデータ受信
             data = sock_sv.recv(1)
             #print(data)
@@ -43,17 +41,18 @@ class nmea_get():
                 list_GGA = GGA.split(",")
 
             if list_GGA[2] != '' and list_GGA[4] !='':
+                print(list_GGA[2],list_GGA[4])
                 return list_GGA[2],list_GGA[4]
 
 
-"""        
-    def main():
-        while True:
-            #print("enter1")
-            nmea_get()
+  
+def main():
+    while True:
+        #print("enter1")
+        get()
 
 
-    if __name__ == '__main__':
-        main()
-"""
+if __name__ == '__main__':
+    main()
+
 
