@@ -2,9 +2,11 @@ from abc import ABCMeta, abstractmethod
 
 class Sensor(metaclass=ABCMeta):
     measure_val: float
+    
     @abstractmethod 
-    def getValue(self):
+    def getvalue(self):
         pass
 
-    def Update(self):
+    @abstractmethod
+    def update(self):
         pass

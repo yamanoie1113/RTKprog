@@ -3,27 +3,25 @@ import pyproj
 import nmea_get
 
 class GPS2xy():
-    
-    
     latitude : float
     longitude : float
     
-    nmeaGet = nmea_get()
 
-    def getPosition(self):
-        latitude,longitude = self.  nmeaGet.nmeaget()
+    def getvalue(self):
+        self.latitude,self.longitude = nmea_get.get()
+        print(self.latitude,self.longitude)
         
         """
         latitude = nmea_get.list_GGA[2]
         longitude = nmea_get.list_GGA[4]
         """
 
-    def main():
+    def return_Position(self):
         #緯度 ddmm.mmmmmmm
         #latitude = "3539.3146239"
 
         #緯度のdを抽出
-        latitude_d = latitude[0:2]
+        latitude_d = self.latitude[0:2]
         #print("latitude_d:" + latitude_d)
 
         #緯度のdをfloatに変換
@@ -31,7 +29,7 @@ class GPS2xy():
         #print(latitude_d)
 
         #緯度のmを抽出
-        latitude_m = latitude[2:]
+        latitude_m = self.latitude[2:]
         #print("latitude_m:" + latitude_m)
 
         #緯度のmをfloatに変換
@@ -49,7 +47,7 @@ class GPS2xy():
         #longitude = "13945.6411751"
 
         #経度のdを抽出
-        longitude_d = longitude[0:3]
+        longitude_d = self.longitude[0:3]
         #print("longitude_d:" + longitude_d)
 
         #経度のdをfloatに変換
@@ -57,7 +55,7 @@ class GPS2xy():
         #print(longitude_d)
 
         #経度のmを抽出
-        longitude_m = longitude[3:]
+        longitude_m = self.longitude[3:]
         #print("longitude_m:" + longitude_m)
 
         #経度のmをfloatに変換
@@ -76,6 +74,17 @@ class GPS2xy():
         transformer = pyproj.Transformer.from_crs('EPSG:6668','EPSG:6680',always_xy=True)
         x,y = transformer.transform(longitude,latitude)
 
+        print("x:",end="")
         print(x)
+        print("y:",end="")
         print(y)
+        return x,y
+
+def main():
+    testclass = GPS2xy()
+    testclass.getvalue()
+    testclass.return_Position()
+
+if __name__ == '__main__':
+    main()
 

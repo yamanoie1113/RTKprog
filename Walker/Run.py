@@ -2,7 +2,7 @@ from msilib import MSIDBOPEN_DIRECT
 import re
 import sys
 #from inspect import walktree
-from Sensor.MotorMgmt import MotorMgmt
+from Sensors.MotorMgmt import MotorMgmt
 from Walker.PID import PID
 #from Walker.Run import Run
 from abc import ABCMeta,abstractmethod
