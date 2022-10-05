@@ -1,6 +1,6 @@
 import Sensor
 
-class SpeedSendor(Sensor.Sensor):
+class SpeedSendor(Sensor):
     def __init__(self,Speed_val):
         #self.speed_val = speed_val
         pass

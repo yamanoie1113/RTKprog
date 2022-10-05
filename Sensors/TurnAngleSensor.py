@@ -1,6 +1,5 @@
-import Sensor
 
-class TurnAngleSensor(Sensor.Sensor):
+class TurnAngleSensor(DeviceMgmt):
     def __init__(self,angle_speed):
         #self.angle_speed = angle_speed
         pass
