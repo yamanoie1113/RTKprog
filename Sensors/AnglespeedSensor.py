@@ -1,7 +1,7 @@
 from abc import abstractmethod
 from sense_hat import SenseHat
 
-sence = Sensehat()
+sence = SenseHat()
 yellow = (255,255,0)
 
 Anglespeed: float 
@@ -19,7 +19,7 @@ class AnglespeedSensor(Sensor):
 
         except KeyboardInterrupt:
             sence.clear()
-            
+
     @abstractmethod
     def update(self):
         Anglespeed =
