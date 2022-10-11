@@ -29,7 +29,7 @@ class SectionMgmt:
 
     def run(self):
 
-       
+
         if self.mState == self.UNDEFINED:
             self.execUndefined()
 

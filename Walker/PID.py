@@ -5,7 +5,7 @@ from math import nan
 
 
 class PID:
-
+        #デバッグprint("a")
         limit=100
         diff = [nan for i in range(2)]
         diff[0]=diff[1]=0.0
@@ -19,7 +19,6 @@ class PID:
         cnt=0
     # コンストラクタ
         def __init__(self,delta=0.01):
-
         # クラス変数
         #self.tgt_limit
 
@@ -145,11 +144,17 @@ class PID:
 
             self.DELTAT=delta
 
-p=PID()
-i=7
-n=3
-p.set_target(i)
-p.get_operation(n)
+#p=PID()
+#i=7
+#n=3
+#p.set_target(i)
+#p.get_operation(n)
 
 
-print("a")
+#print("a")
+
+def main():
+    pass
+
+if __name__=="__main__":
+    main()

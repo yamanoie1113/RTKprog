@@ -27,6 +27,7 @@ class SectionRun:
 
         if walker==self.CURVE:
             self.mWalker=VirtualLineTrace()
+            #self.mWalker=Run()
         elif walker==self.STRAIGHT:
             self.mWalker=VirtualLineTrace2()
         
@@ -42,3 +43,9 @@ class SectionRun:
             self.mJudge=TurnAngleJudge()
 
         return self.mJudge
+
+def main():
+    pass
+
+if __name__=="__main__":
+    main()

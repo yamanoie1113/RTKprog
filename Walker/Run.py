@@ -16,7 +16,7 @@ class Run:
           
      def set_param(self,param):
           
-          #配列でパラメータを分けている
+          #配列でパラメータを分けている+
           self.mForward=param(0)#前進
           self.mTurn=param(1)#ステアリング
 
@@ -32,14 +32,9 @@ class Run:
 
      #def set_comondV(self,mTargetSpeed,mTurn):
           #pass
-'''
-def main(self):
 
-     mPID=PID()
-     mrun=Run()
-     mMotorMgmt=MotorMgmt()
-     #mvir=VirtualLineTrace()
-     mrun.set_param()
-     mrun.run(mMotorMgmt)
-     mrun.reset_param()
-'''
+     def main():
+          pass
+
+     if __name__=="__main__":
+          main()

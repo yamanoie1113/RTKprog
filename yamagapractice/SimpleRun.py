@@ -1,6 +1,6 @@
 from inspect import walktree
 from turtle import speed
-from Sensor.MotorMgmt import MotorMgmt
+from DeviceManager.MotorMgmt import MotorMgmt
 from Walker.Run import Run
 from Walker.SpeedCtl import SpeedCtl
 
@@ -43,3 +43,33 @@ def main(self):
      mrun.run(mMotorMgmt)
      mrun.reset_param()
 '''
+
+
+from abc import ABCMeta,abstractmethod
+
+class Run(metaclass=ABCMeta):
+
+     @abstractmethod
+     def __init__(self):
+
+          pass
+
+     @abstractmethod
+     def set_param(self):
+          
+          pass
+
+     @abstractmethod
+     def run(self):
+
+          pass
+
+     @abstractmethod
+     def reset_param(self):
+
+          pass
+
+     @abstractmethod
+     def set_comondV(self):
+
+          pass

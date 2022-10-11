@@ -2,7 +2,7 @@ from Judgement.Judge import Judge
 from Judgement.TurnAngleJudge import TurnAngleJudge
 from Walker.Run import Run
 from Walker.PID import PID
-from Sensor.MotorMgmt import MotorMgmt
+from DeviceManager.MotorMgmt import MotorMgmt
 from Walker.VirtualLineTrace import VirtualLineTrace
 from Walker.VirtualLineTrace2 import VirtulLineTrace2
 from Judgement.DistanceJudge import DistenceJudge
@@ -35,5 +35,7 @@ class Main:
 
 
     def main_task(self):
+
+        pass
 
 
