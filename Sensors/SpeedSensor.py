@@ -5,9 +5,9 @@ class SpeedSendor(Sensor):
         #self.speed_val = speed_val
         pass
 
-    def getValue(self):
+    def getvalue(self):
         #getval
         pass
-    def Update(self):
+    def update(self):
         pass
         #speed_val = 0#updated val
