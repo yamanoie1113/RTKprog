@@ -20,9 +20,6 @@ class PositionMgmt(Sensor.Sensor):
     def update(self):
         return super().update()
 
-
-
-
 def main():
     tesclass = PositionMgmt()
     tesclass.getvalue()

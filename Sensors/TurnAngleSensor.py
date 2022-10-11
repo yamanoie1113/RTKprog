@@ -4,13 +4,13 @@ class TurnAngleSensor(DeviceMgmt):
         #self.angle_speed = angle_speed
         pass
 
-    def getValue(self):
+    def getvalue(self):
         #getval
         pass
 
-    def Update(self):
+    def update(self):
         pass
         #angle_speed = 0#updated val
     
-    def Reset():
+    def reset():
         #angle_speed = 0
