@@ -15,12 +15,15 @@ class AnglespeedSensor(Sensor):
                 orientation = sence.get_orientation_degrees()
                 print("p: {pitch}, r: {roll}, y: {yaw}".format(**orientation))
                 sence.show_letter("J",yellow)
+                return orientation
 
         except KeyboardInterrupt:
             sence.clear()
-    
+            
+    @abstractmethod
     def update(self):
-        pass
-
+        Anglespeed =
+         
+    @abstractmethod
     def reset(self):
         pass
