@@ -1,16 +1,43 @@
+from abc import abstractmethod
+from sense_hat import SenseHat
+import Sensor
 
-class TurnAngleSensor(DeviceMgmt):
-    def __init__(self,angle_speed):
-        #self.angle_speed = angle_speed
+    
+
+sence = SenseHat()
+yellow = (255,255,0)
+
+Anglespeed: float 
+class AnglespeedSensor(Sensor.Sensor):
+    
+    def __init__(self):
         pass
-
+    
     def getvalue(self):
-        #getval
-        pass
+        while True:
+            sense = SenseHat()
+            raw = sense.get_gyroscope_raw()
+            print("x: {x}, y: {y}, z: {z}".format(**raw))
+
+            # alternatives
+            print(sense.gyro_raw)
+            print(sense.gyroscope_raw)
+            return raw
 
     def update(self):
-        pass
-        #angle_speed = 0#updated val
+        self.Anglespeed = self.getvalue()
+        print(self.Anglespeed)
+         
+    def reset(self):
+        self.Anglespeed = None
+
+#testrun
+def main():
+    testclass = AnglespeedSensor()
+    testclass.update()
+    testclass.reset()
     
-    def reset():
-        #angle_speed = 0
+    print(testclass.Anglespeed)
+    sence.clear()
+if __name__ == '__main__':
+    main()
