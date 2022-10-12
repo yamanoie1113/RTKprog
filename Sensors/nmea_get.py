@@ -24,6 +24,7 @@ def get():
             if data==b"$":
                 #print("break1")
                 break
+            print("loading....")
 
         data = sock_sv.recv(5)
         #print(data)
