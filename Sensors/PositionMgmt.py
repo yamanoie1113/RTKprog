@@ -24,7 +24,7 @@ class PositionMgmt(Sensor.Sensor):
     def update(self):
         print("position")
         self.position = self.gps.getvalue()
-
+"""
 def main():
     tesclass = PositionMgmt(0.0)
     tesclass.update()
@@ -32,5 +32,5 @@ def main():
 
 if __name__ == '__main__':
     main()
-
+"""
 
