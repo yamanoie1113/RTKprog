@@ -41,7 +41,7 @@ class Run:
 def main():
      #mPID=PID()
      mrun=Run()
-     mMotorMgmt=MotorMgmt()
+     mMotorMgmt=MotorMgmt.MotorMgmt()
      #mvir=VirtualLineTrace()
      mrun.set_param()
      mrun.run(mMotorMgmt)
