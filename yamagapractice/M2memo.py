@@ -4,12 +4,13 @@ import pigpio
 import time
 pi = pigpio.pi()
 
-class MotorMgmt:
+class MotorMgmt():
 
         
-    def set_param(pin,pwm,freq,duty : float):
+    def set_param(pin,pwm,duty : float):
 
         if pin == 18:
+            pin = 18
             freq = 50
             if pwm ==0:
                 duty = 7.25
@@ -19,6 +20,7 @@ class MotorMgmt:
                 else:
                     duty = 7.25 - pwm*0.0475        
         else:
+            pin = 19
             freq = 200
             if pwm == 0:
                 duty == 78
@@ -45,7 +47,7 @@ class MotorMgmt:
         else:
             up_flag = True
             pi.set_PWM_frequency(pin,freq)
-            flag = 0
+            flog = 0
             duty = duty - 1
             try:
 
