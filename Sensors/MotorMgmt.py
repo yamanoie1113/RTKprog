@@ -11,7 +11,6 @@ class MotorMgmt():
     def set_param(sp,sv):
 
         
-        freq = 50
         if sv ==0:
             svduty = 7.25
         else:
@@ -21,7 +20,6 @@ class MotorMgmt():
                 svduty = 7.25 - sv*0.0475
         cycle = int((svduty * 1000000 / 100))        
         
-        freq = 200
         if sp == 0:
             spduty = 78
         else:
