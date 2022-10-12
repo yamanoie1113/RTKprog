@@ -8,7 +8,7 @@ pi = pigpio.pi()
 class MotorMgmt():
 
         
-    def set_param(sp : float,sv : float):
+    def set_param(sp,sv):
 
         
         freq = 50
