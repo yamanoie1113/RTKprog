@@ -21,7 +21,7 @@ class MotorMgmt:
         else:
             freq = 200
             if pwm == 0:
-                duty == 77
+                duty == 78
             else:
                 if pwm >= 0:
                     a2 = 76
