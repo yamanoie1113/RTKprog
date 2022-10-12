@@ -1,3 +1,4 @@
+from Sensors.MotorMgmt import MotorMgmt
 from Walker.Run import Run
 from Walker.VirtualLineTrace import VirtualLineTrace
 from Walker.VirtualLineTrace2 import VirtualLineTrace2
@@ -14,7 +15,7 @@ class SectionRun:
     walkerfirst=True
     mWalker=0
     mjudge=0
-
+    #mMotorMgmt=MotorMgmt()
     def run(self):
         
         #if self.judgefast:
@@ -27,7 +28,7 @@ class SectionRun:
 
         if walker==self.CURVE:
             self.mWalker=VirtualLineTrace()
-            #self.mWalker=Run()
+            #self.mWalker=Run(self.mMotorMgmt)
         elif walker==self.STRAIGHT:
             self.mWalker=VirtualLineTrace2()
         

@@ -4,7 +4,7 @@ import pigpio
 import time
 pi = pigpio.pi()
 
-class MotorMgmt:
+class MotorMgmt():
 
         
     def set_param(pin,pwm,freq,duty : float):
