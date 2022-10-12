@@ -5,9 +5,9 @@ import Sensor
 class PositionMgmt(Sensor.Sensor):
     position = 0.0
     gps = GPS2xy()
-    def __init__(self,posiion):
+    def __init__(self,position):
         # クラス変数
-        self.position = posiion
+        self.position = position
         
     #値の取得
     def getvalue(self):
@@ -24,6 +24,7 @@ class PositionMgmt(Sensor.Sensor):
     def update(self):
         print("position")
         self.position = self.gps.getvalue()
+        
 """
 def main():
     tesclass = PositionMgmt(0.0)
