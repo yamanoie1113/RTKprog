@@ -1,3 +1,4 @@
+# coding:utf-8
 from itertools import cycle
 from time import sleep
 import pigpio
@@ -7,72 +8,69 @@ pi = pigpio.pi()
 class MotorMgmt():
 
         
-    def set_param(pin,pwm,freq,duty : float):
+    def set_param(sv : float,sp : float):
 
-        if pin == 18:
-            freq = 50
-            if pwm ==0:
-                duty = 7.25
-            else:
-                if pwm > 0:
-                    duty = 7.25 + pwm*0.0475
-                else:
-                    duty = 7.25 - pwm*0.0475        
+        
+        freq = 50
+        if sv ==0:
+            svduty = 7.25
         else:
-            freq = 200
-            if pwm == 0:
-                duty == 78
+            if sv > 0:
+                svduty = 7.25 + sv*0.0475
             else:
-                if pwm >= 0:
-                    a2 = 76
-                    duty = a2 - pwm*0.4
-                else:
-                    pwm = pwm *-1
-                    a2 = 80
-                    duty = a2 + pwm*0.38
+                svduty = 7.25 - sv*0.0475
+        cycle = int((svduty * 1000000 / 100))        
+        
+        freq = 200
+        if sp == 0:
+            spduty = 78
+        else:
+            if sp >= 0:
+                a2 = 76
+                spduty = a2 - sp*0.4
+            else:
+                sp = sp *-1
+                a2 = 80
+                spduty = a2 + sp*0.38
                 
-        cycle = int((duty * 1000000 / 100))
 
-        return pin,duty,freq,cycle
-
+        MotorMgmt.run(cycle,spduty)
 
 
-    def run(self):
-        pin,duty,freq,cycle = MotorMgmt.set_param()
+
+    def run(cycle,duty):
         
-        if pin == 18:
-            pi.hardware_PWM(pin, freq, cycle)
-        else:
-            up_flag = True
-            pi.set_PWM_frequency(pin,freq)
-            flog = 0
-            duty = duty - 1
-            try:
+        pi.hardware_PWM(18, 50, cycle)
+        up_flag = True
+        pi.set_PWM_frequency(19,200)
+        flog = 0
+        duty = duty - 1
+        try:
 
-                while True:
+            while True:
 
-                    pi.set_PWM_dutycycle(pin,duty)#36-76
+                pi.set_PWM_dutycycle(19,duty)#36-76
         
-                    if up_flag == True:
-                        if duty >= duty:
-                            up_flag = False
-                        else:
-                            duty += 1
+                if up_flag == True:
+                    if duty >= duty:
+                        up_flag = False
                     else:
-                        if duty <= duty:
-                            up_flag = True
-                        else:
-                            duty -=1
+                        duty += 1
+                else:
+                    if duty <= duty:
+                        up_flag = True
+                    else:
+                        duty -=1
                     if flog == 0:
                         duty = duty + 1
                         flog = 1
                     time.sleep(0.1)
 
-            except KeybordInterrupt:
+        except KeybordInterrupt:
                 pass
 
-            pi.set_mode(PIN, pigpio.INPUT)
-            pi.stop()
+        pi.set_mode(PIN, pigpio.INPUT)
+        pi.stop()
 
             
 
