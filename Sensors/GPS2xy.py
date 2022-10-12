@@ -8,6 +8,7 @@ class GPS2xy():
     
 
     def getvalue(self):
+        print("gps2xy.getvalue")
         self.latitude,self.longitude = nmea_get.get()
         print(self.latitude,self.longitude)
         
@@ -15,8 +16,7 @@ class GPS2xy():
         latitude = nmea_get.list_GGA[2]
         longitude = nmea_get.list_GGA[4]
         """
-
-    def return_Position(self):
+        
         #緯度 ddmm.mmmmmmm
         #latitude = "3539.3146239"
 
@@ -83,7 +83,7 @@ class GPS2xy():
 def main():
     testclass = GPS2xy()
     testclass.getvalue()
-    testclass.return_Position()
+    testclass.return_position()
 
 if __name__ == '__main__':
     main()
