@@ -1,78 +1,78 @@
+from itertools import cycle
 from time import sleep
 import pigpio
 import time
+pi = pigpio.pi()
 
 class MotorMgmt:
 
-    def __init__(freq):
         
-        pi = pigpio.pi()
-        #PWMパラメータ
-        pwm_pin1 = 19 #PWM出力ピンを指定
-        pwm_pin2 = 18 #PWM出力ピンを指定
-        duty1 = 9#デューティー比を%で指定　スピードモーター
-        duty2 = 8#デューティー比を%で指定　サーボモーター
-        freq = 0 #PWM周波数をHzで指定
-        pwm = float(freq)
-        up_flag = True
-        #IN1、IN2の制御信号
-        cnv_dutycycle1 = int((duty1 * 1000000 / 100))
-        cnv_dutycycle2 = int((duty2 * 1000000 / 100))
+    def set_param(pin,pwm,freq,duty : float):
 
-        pi.hardware_PWM(pwm_pin1, pwm, cnv_dutycycle1)
-        pi.hardware_PWM(pwm_pin2, pwm, cnv_dutycycle2)
+        if pin == 18:
+            freq = 50
+            if pwm ==0:
+                duty = 7.25
+            else:
+                if pwm > 0:
+                    duty = 7.25 + pwm*0.0475
+                else:
+                    duty = 7.25 - pwm*0.0475        
+        else:
+            freq = 200
+            if pwm == 0:
+                duty == 78
+            else:
+                if pwm >= 0:
+                    a2 = 76
+                    duty = a2 - pwm*0.4
+                else:
+                    pwm = pwm *-1
+                    a2 = 80
+                    duty = a2 + pwm*0.38
+                
+        cycle = int((duty * 1000000 / 100))
 
-
-
-
-
-    def set_param(freq,self):
-        pi = pigpio.pi()
-        #PWMパラメータ
-        pwm_pin1 = 19 #PWM出力ピンを指定
-        pwm_pin2 = 18 #PWM出力ピンを指定
-        duty = 0 #デューティー比を%で指定
-        pwm = float(freq)
-        up_flag = True
-        #IN1、IN2の制御信号
-        pi.write(17, 0)
-        pi.write(22, 1)
-        while True:
-    
-        #デューティサイクル計算
-            cnv_dutycycle = int((duty * 1000000 / 100))
-        #PWMを出力
-            pi.hardware_PWM(pwm_pin1, pwm, cnv_dutycycle)
-            pi.hardware_PWM(pwm_pin2, pwm, cnv_dutycycle)
-        #dutyを変更
-
-            self.MAX_F=100
-            self.MAX_T=100
-
-          #限界値設定
-
-            if self.mFoward > self.MAX_F:
-
-               self.mFoward=100
-
-            if self.mForward < -self.MAX_F:
-
-               self.mForward=-100
+        return pin,duty,freq,cycle
 
 
-            if self.mTurn > self.MAX_T:
 
-               self.mTurn=100
-
-            if self.mTurn < -self.MAX_T:
-
-               self.mTurn=-100
-
-            return self.mForward,self.mTurn
-           
-
+    def run(self):
+        pin,duty,freq,cycle = MotorMgmt.set_param()
         
+        if pin == 18:
+            pi.hardware_PWM(pin, freq, cycle)
+        else:
+            up_flag = True
+            pi.set_PWM_frequency(pin,freq)
+            flog = 0
+            duty = duty - 1
+            try:
 
+                while True:
+
+                    pi.set_PWM_dutycycle(pin,duty)#36-76
+        
+                    if up_flag == True:
+                        if duty >= duty:
+                            up_flag = False
+                        else:
+                            duty += 1
+                    else:
+                        if duty <= duty:
+                            up_flag = True
+                        else:
+                            duty -=1
+                    if flog == 0:
+                        duty = duty + 1
+                        flog = 1
+                    time.sleep(0.1)
+
+            except KeybordInterrupt:
+                pass
+
+            pi.set_mode(PIN, pigpio.INPUT)
+            pi.stop()
 
             
 
