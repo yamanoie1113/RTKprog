@@ -1,20 +1,6 @@
 # coding:utf-8
 import os
 import sys
-#from Sensors.MotorMgmt import MotorMgmt
-#from inspect import walktreem 
-#rom mimetypes import init
-#from Sensors import MotorMgmt
-#from Sensors.MotorMgmt import MotorMgmt
-#from os import sched_getparam
-#from turtle import speed
-#from typing_extensions import Self
-#from Sensors import MotorMgmt
-#from  Sensors import MotorMgmt 
-#sys.path.append(os.path.join(os.path.dirname(__file__),'Sensors'))
-#sys.path.append('/path/to/Sensors/')
-#sys.path.append('../Sensors')
-#from yamagapractice.c import c
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
