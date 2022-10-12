@@ -1,43 +1,42 @@
+# coding:utf-8
+
 from abc import abstractmethod
 from sense_hat import SenseHat
 import Sensor
 
-    
-
 sence = SenseHat()
 yellow = (255,255,0)
 
-Anglespeed: float 
-class AnglespeedSensor(Sensor.Sensor):
+turnAngle: float 
+class TurnAngleSensor(Sensor.Sensor):
     
     def __init__(self):
         pass
     
     def getvalue(self):
-        while True:
-            sense = SenseHat()
-            raw = sense.get_gyroscope_raw()
-            print("x: {x}, y: {y}, z: {z}".format(**raw))
-
-            # alternatives
-            print(sense.gyro_raw)
-            print(sense.gyroscope_raw)
-            return raw
+            #event = sence.stick.wait_for_event()
+            orientation = sence.get_orientation_degrees()
+            print("p: {pitch}, r: {roll}, y: {yaw}".format(**orientation))
+            sence.show_letter("G",yellow)
+            
+            return orientation
 
     def update(self):
-        self.Anglespeed = self.getvalue()
-        print(self.Anglespeed)
+        self.turnAngle = self.getvalue()
+        print(self.turnAngle)
          
     def reset(self):
-        self.Anglespeed = None
+        self.turnAngle = None
 
 #testrun
+"""
 def main():
-    testclass = AnglespeedSensor()
+    testclass = TurnAngleSensor()
     testclass.update()
     testclass.reset()
     
-    print(testclass.Anglespeed)
+    print(testclass.turnAngle)
     sence.clear()
 if __name__ == '__main__':
     main()
+"""
