@@ -45,7 +45,8 @@ def main():
      #mvir=VirtualLineTrace()
      mrun.set_param()
      mrun.run(mMotorMgmt)
-          #mrun.reset_param()
+     #mMotorMgmt.set_param()
+     #mrun.reset_param()
      pass
 
 
