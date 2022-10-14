@@ -18,8 +18,6 @@ class Mgmt:
     def __init__(self):
 
 
-
-        #
         self.mState=self.UNDEFINED
         self.mSsm=SectionMgmt()
         

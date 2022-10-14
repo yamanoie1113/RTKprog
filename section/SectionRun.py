@@ -1,7 +1,7 @@
 from Sensors.MotorMgmt import MotorMgmt
 from Walker.Run import Run
 from Walker.VirtualLineTrace import VirtualLineTrace
-from Walker.VirtualLineTrace2 import VirtualLineTrace2
+from Walker.VirtualLineTrace2 import VirtulLineTrace2
 from Judgement.DistanceJudge import DistenceJudge
 from Judgement.TurnAngleJudge import TurnAngleJudge
 
@@ -30,7 +30,7 @@ class SectionRun:
             self.mWalker=VirtualLineTrace()
             #self.mWalker=Run(self.mMotorMgmt)
         elif walker==self.STRAIGHT:
-            self.mWalker=VirtualLineTrace2()
+            self.mWalker=VirtulLineTrace2()
         
         return self.mWalker
 
