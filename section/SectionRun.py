@@ -4,7 +4,10 @@ from Walker.VirtualLineTrace import VirtualLineTrace
 from Walker.VirtualLineTrace2 import VirtulLineTrace2
 from Judgement.DistanceJudge import DistenceJudge
 from Judgement.TurnAngleJudge import TurnAngleJudge
-
+import sys
+import pathlib
+current_dir = pathlib.Path(__file__).resolve().parent
+sys.path.append(str(current_dir) + '/../')
 class SectionRun:
 
     CURVE=0

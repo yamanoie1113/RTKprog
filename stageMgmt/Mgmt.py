@@ -3,9 +3,13 @@ from ast import Delete
 from tkinter import END
 from tracemalloc import start
 from section.SectionMgmt import SectionMgmt
-
+import sys
+import pathlib
+current_dir = pathlib.Path(__file__).resolve().parent
+sys.path.append(str(current_dir) + '/../')
 from section.SectionRun import SectionRun
-
+import time
+import threading
 
 class Mgmt:
 
@@ -24,7 +28,7 @@ class Mgmt:
     def run(self):
 
         if self.mState == self.UNDEFINED:
-            self.execUndefined()
+            self.excecUndefined()
             
         elif self.mState == self.START:
             self.execStart()
@@ -66,6 +70,18 @@ class Mgmt:
         pass
 
 
+def main():
+
+    mgmt=Mgmt()
+    #thread1=
+    #thread2=
+    #thread1.start()
+    #thread2.start()
+
+
+
+if __name__=="__main__":
+    main()
 
 
 

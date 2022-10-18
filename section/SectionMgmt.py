@@ -4,7 +4,10 @@ from curses.ascii import NUL
 from section.SectionPrm import SectionPrm
 from section.SectionRun import SectionRun
 from Walker.Run import Run
-
+import sys
+import pathlib
+current_dir = pathlib.Path(__file__).resolve().parent
+sys.path.append(str(current_dir) + '/../')
 class SectionMgmt:
 
     #クラス変数
