@@ -1,25 +1,30 @@
 # coding:utf-8
-
 from abc import abstractmethod
 from sense_hat import SenseHat
-import Sensor
+import sys
+import pathlib
+current_dir = pathlib.Path(__file__).resolve().parent
+sys.path.append(str(current_dir) + '/../')
+
+from Sensors import Sensor
 
 sence = SenseHat()
 yellow = (255,255,0)
 
-turnAngle: float 
+
 class TurnAngleSensor(Sensor.Sensor):
+    turnAngle: float
     
     def __init__(self):
-        pass
+        self.turnAngle = self.update()
     
     def getvalue(self):
             #event = sence.stick.wait_for_event()
-            orientation = sence.get_orientation_degrees()
-            print("p: {pitch}, r: {roll}, y: {yaw}".format(**orientation))
+            gyro = sence.get_orientation_degrees()
+            print("p: {pitch}, r: {roll}, y: {yaw}".format(**gyro))
             sence.show_letter("G",yellow)
-            
-            return orientation
+            sence.clear()
+            return gyro
 
     def update(self):
         self.turnAngle = self.getvalue()
@@ -27,16 +32,23 @@ class TurnAngleSensor(Sensor.Sensor):
          
     def reset(self):
         self.turnAngle = None
+        print("turnAngle reset")
 
 #testrun
-"""
+
 def main():
     testclass = TurnAngleSensor()
     testclass.update()
+    
+    print("before_reset")
+    print(testclass.turnAngle)
+    """
     testclass.reset()
     
     print(testclass.turnAngle)
-    sence.clear()
+    
+    """
+    
 if __name__ == '__main__':
     main()
-"""
+

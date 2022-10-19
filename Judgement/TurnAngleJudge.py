@@ -1,12 +1,10 @@
-from pdb import pm
-from re import X
-from turtle import position
 import Judge
 import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from Sensors import PositionMgmt as PMgmt
+from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
+
 
 class TurnAngleJudge(Judge.Judge):
 
@@ -16,12 +14,22 @@ class TurnAngleJudge(Judge.Judge):
     my=0.0
     
     def __init__(self):
-        #XYから値取得 selfを渡しているが、そこは要検証
+        #旋回角度取得
+        #sensehatからジャイロ取得
+        angget = TASensor.TurnAngleSensor()
+                
+        #ジャイロから旋回角度抽出
+        tmp = angget.getvalue()
+        self.startangle = tmp['yaw']
+        self.finishangle = self.startangle + 5
+        #XYから値取得
+        """
         pget = PMgmt.PositionMgmt(0.0)
         positionXY = pget.getvalue()
         #mx,myに座標をセット
         self.mx = positionXY[0]
         self.my = positionXY[1]
+        """
 
 
     def judge(self):
@@ -46,12 +54,12 @@ class TurnAngleJudge(Judge.Judge):
     def Test(self):
         print(self.mx,self.my)
 
-
 #testrun
 
 def main():
     testclass = TurnAngleJudge()
     testclass.Test()
+    print(testclass.startangle)
 
 if __name__ == '__main__':
     main()
