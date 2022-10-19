@@ -18,14 +18,14 @@ class DistenceJudge(Judge):
         #mx.get_value()
         #my.get_value()
         #XYから値取得
-        self.endpoint=find_end_point()
+        self.endpoint=self.find_end_point()
 
         #座標計算
     def find_end_point(self):
 
         #移動距離、現在の座標、走行体の向きから終了座標を求める
         endpoint=0
-        return  endpoint
+        return endpoint
     
     def judge():
 

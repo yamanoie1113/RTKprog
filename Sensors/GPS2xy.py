@@ -1,6 +1,11 @@
 from cgitb import lookup
 import pyproj
-import nmea_get
+import sys
+import pathlib
+current_dir = pathlib.Path(__file__).resolve().parent
+sys.path.append(str(current_dir) + '/../')
+from Sensors import nmea_get
+
 
 class GPS2xy():
     latitude : float
@@ -79,7 +84,7 @@ class GPS2xy():
         print("y:",end="")
         print(y)
         return x,y
-
+"""
 def main():
     testclass = GPS2xy()
     testclass.getvalue()
@@ -87,4 +92,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-
+"""

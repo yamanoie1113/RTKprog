@@ -1,13 +1,17 @@
 from multiprocessing import get_start_method
-from GPS2xy import *
-import Sensor
+import sys
+import pathlib
+
+current_dir = pathlib.Path(__file__).resolve().parent
+sys.path.append(str(current_dir) + '/../')
+from Sensors import Sensor,GPS2xy
 
 class PositionMgmt(Sensor.Sensor):
-    position = 0.0
-    gps = GPS2xy()
+   # gps = GPS2xy()
+    position: float
     def __init__(self,position):
         # クラス変数
-        self.position = position
+        self.update()
         
     #値の取得
     def getvalue(self):
@@ -22,10 +26,12 @@ class PositionMgmt(Sensor.Sensor):
 
     #値の更新
     def update(self):
-        print("position")
-        self.position = self.gps.getvalue()
-        
-"""
+        print("update position")
+        self.position = GPS2xy.GPS2xy.getvalue(self)
+        print("updated position:")
+
+
+
 def main():
     tesclass = PositionMgmt(0.0)
     tesclass.update()
@@ -33,5 +39,5 @@ def main():
 
 if __name__ == '__main__':
     main()
-"""
+
 

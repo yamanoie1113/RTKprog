@@ -6,11 +6,13 @@ class Judge(metaclass=ABCMeta):
     def judge():
 
         pass
+    """
     @abstractmethod
     def get_Value():
 
         pass
-    
+    """
+
     @abstractmethod
     def set_param():
 

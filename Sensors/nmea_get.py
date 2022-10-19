@@ -42,7 +42,7 @@ def get():
                 list_GGA = GGA.split(",")
 
             if list_GGA[2] != '' and list_GGA[4] !='':
-                print(list_GGA[2],list_GGA[4])
+                #print(list_GGA[2],list_GGA[4])
                 return list_GGA[2],list_GGA[4]
 
 
