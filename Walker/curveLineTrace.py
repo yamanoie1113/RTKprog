@@ -1,4 +1,13 @@
+# coding:utf-8
+import os
+import sys
+import pathlib
+from cmath import cos, sin, sqrt
+from math import fabs
 from Walker.Run import Run
+current_dir = pathlib.Path(__file__).resolve().parent
+sys.path.append(str(current_dir) + '/../')
+from Sensors import PositionMgmt
 
 
 class VirtulLineTrace2(Run):

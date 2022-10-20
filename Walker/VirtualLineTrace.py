@@ -1,60 +1,32 @@
+# coding:utf-8
+import os
+import sys
+import pathlib
 from cmath import cos, sin, sqrt
 from math import fabs
 from Walker.Run import Run
+current_dir = pathlib.Path(__file__).resolve().parent
+sys.path.append(str(current_dir) + '/../')
+from Sensors import PositionMgmt
 
 
 class VirtualLineTrace(Run):
-    def __init__(self):
-        self.cx=0
-        self.cy=0
-        self.ax=0
-        self.ay=0
-        self.basedistance=0
-        self.currentdistance=0
-        self.mTarget=0
-        self.mTargetSpeed=0
-        self.mPFactor=0
-        self.mIFactor=0
-        self.mDFactor=0
-        self.mCurve
-        self.mAngleKp
-        self.mLimit=100
-        self.round
-        self.mround
-        self.uflag
-        self.mBias
-        self.co=0
-        self.si=0
-        self.M_PI=3.14159265358979323846
 
-        #生成
-        #mXPosition=
-        #mYPosition=
-        #mTurnAngle=
-        self.cx=mXPosition.get_value()-self.mround*sin((mTurnAngle.get_value()/180)*self.M_PI)
-        self.cy=mYPosition.get_value()+self.mround*cos((mTurnAngle.get_value()/180)*self.M_PI)
-        self.buf[100]
+    y-b = (d-b)/(c-a)*(x-a)
+    startx = 0
+    starty = 0
+    goalx = 0
+    goaly = 0
 
-    def set_param(self,speed,kp,ki,kd,angleTarget,angleKp):
-        self.mTargetSpeed=speed
 
-        self.mPFactor=kp
-        self.mIFactor=ki
-        self.mDFactor=kd
+    def set_param(self,PositionMgmt):
+        
+        PositionMgmt.getvalue(para)
 
-        mPID.set_target(fabs(self.mround))
+    def set_round(self,):
 
-        mPID.set_Kpid(self.mPFactor,self.mIFactor,self.mDFactor)
-
-        self.mCurve=angleTarget
-        self.mAngleKp=angleKp
-
-        self.currentdistance=calc_distance()
-
-        mPID.reset_param()
-
-    def set_round(self,round):
-        self.mround=round
+        
+        
 
 
     def set_center_position(self,centerx,centery):

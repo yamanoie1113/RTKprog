@@ -1,14 +1,14 @@
 # coding:utf-8
 from itertools import cycle
 from time import sleep
-import pigpio
+#import pigpio
 import time
-pi = pigpio.pi()
+#pi = pigpio.pi()
 
 class MotorMgmt():
 
         
-    def set_param(sp,sv):
+    def set_param(self,sp,sv):
 
         
         if sv ==0:
@@ -23,7 +23,7 @@ class MotorMgmt():
         if sp == 0:
             spduty = 78
         else:
-            if sp >= 0:
+            if sp >= 1:
                 a2 = 76
                 spduty = a2 - sp*0.4
             else:
@@ -38,16 +38,17 @@ class MotorMgmt():
 
     def run(cycle,duty):
         
-        pi.hardware_PWM(18, 50, cycle)
+        #pi.hardware_PWM(18, 50, cycle)
         up_flag = True
-        pi.set_PWM_frequency(19,200)
+        #pi.set_PWM_frequency(19,200)
         flog = 0
         duty = duty - 1
+        print(cycle,duty)
         try:
 
             while True:
 
-                pi.set_PWM_dutycycle(19,duty)#36-76
+                #pi.set_PWM_dutycycle(19,duty)#36-76
         
                 if up_flag == True:
                     if duty >= duty:
@@ -67,8 +68,8 @@ class MotorMgmt():
         except KeybordInterrupt:
                 pass
 
-        pi.set_mode(PIN, pigpio.INPUT)
-        pi.stop()
+        #pi.set_mode(PIN, pigpio.INPUT)
+        #pi.stop()
 
             
 
