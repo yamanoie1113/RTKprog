@@ -8,11 +8,12 @@ from Walker.Run import Run
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import PositionMgmt
+from section import SectionMgmt
 
 
 class VirtualLineTrace(Run):
 
-    y-b = (d-b)/(c-a)*(x-a)
+    
     startx = 0
     starty = 0
     goalx = 0
@@ -23,10 +24,11 @@ class VirtualLineTrace(Run):
         
         PositionMgmt.getvalue(para)
 
-    def set_round(self,):
+    def set_run(self,):
 
-        
-        
+        SectionMgmt
+        z = (d-b)/(c-a)
+        x=(y+za-b)/z
 
 
     def set_center_position(self,centerx,centery):
