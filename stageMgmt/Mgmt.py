@@ -2,14 +2,19 @@
 from ast import Delete
 from tkinter import END
 from tracemalloc import start
-from section.SectionMgmt import SectionMgmt
+import time
+import threading
 import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from section.SectionRun import SectionRun
-import time
-import threading
+from Sensors import TurnAngleSensor
+from Walker import VirtualLineTrace
+from Walker import VirtualLineTrace2
+from Sensors import MotorMgmt
+from section import SectionMgmt
+from section import SectionRun
+from Sensors import PositionMgmt
 
 class Mgmt:
 
@@ -23,7 +28,7 @@ class Mgmt:
 
 
         self.mState=self.UNDEFINED
-        self.mSsm=SectionMgmt()
+        #self.mSsm=SectionMgmt()
         
     def run(self):
 
@@ -40,7 +45,7 @@ class Mgmt:
             self.execSpeed()
 
         elif self.mState == self.END: 
-            self.finish()
+            self.__del__()
         else:
             return True
 
@@ -64,15 +69,56 @@ class Mgmt:
         if self.mSsm.run():
             del self.mSsm
             self.mstate=self.END
-
-    def finish(self):
+        #finish()
+    def __del__():
         #相談
         pass
 
 
-def main():
 
+    def main_task(self,mMotorMgmt):
+
+            pass
+        #mMotorMgmt.set_param(0,0)
+
+
+    def Walker_task(self,mLinTracer,mLinTracer2):
+        #パラメータ設定
+        #self.param=[50,0,5,5,5]#タプル
+        #{前進量,旋回量,P,I,D}
+
+        #mLinTracer2.init(self.param)
+        #mLinTracer2.run()
+
+        #mLinTracer.init(self.param)
+        #mLinTracer.run()
+        pass
+
+        
+    def sensor_task(mTurnAngleSensor,mPositionMgmt):
+
+        mTurnAngleSensor.update()
+        mPositionMgmt.update()
+
+    #センサーにタスク命令
+
+
+        pass
+
+    
+
+def main():
+    #スレッド実装
+    mSsm=SectionMgmt()
     mgmt=Mgmt()
+    mMotorMgmt=MotorMgmt()
+    mLintracer=VirtualLineTrace()
+    mLintracer2=VirtualLineTrace2()
+    mTurnAngleSensor=TurnAngleSensor()
+    mPositionMgmt=PositionMgmt()
+
+    #mgmt.main_task(mMotorMgmt)
+
     #thread1=
     #thread2=
     #thread1.start()

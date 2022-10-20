@@ -1,13 +1,17 @@
-from Sensors.MotorMgmt import MotorMgmt
-from Walker.Run import Run
-from Walker.VirtualLineTrace import VirtualLineTrace
-from Walker.VirtualLineTrace2 import VirtulLineTrace2
-from Judgement.DistanceJudge import DistenceJudge
-from Judgement.TurnAngleJudge import TurnAngleJudge
+# coding:utf-8
 import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
+#from Sensors import MotorMgmt
+#from Walker import Run
+from Walker import VirtualLineTrace
+from Walker import VirtualLineTrace2
+from Judgement import DistanceJudge
+from Judgement import TurnAngleJudge
+
+
+
 class SectionRun:
 
     CURVE=0
@@ -33,7 +37,7 @@ class SectionRun:
             self.mWalker=VirtualLineTrace()
             #self.mWalker=Run(self.mMotorMgmt)
         elif walker==self.STRAIGHT:
-            self.mWalker=VirtulLineTrace2()
+            self.mWalker=VirtualLineTrace2()
         
         return self.mWalker
 
@@ -42,13 +46,14 @@ class SectionRun:
         #判定の生成依頼
 
         if judge==self.DISTANCE:
-            self.mJudge=DistenceJudge()
+            self.mJudge=DistanceJudge()
         elif judge==self.ANGLE:
             self.mJudge=TurnAngleJudge()
 
         return self.mJudge
 
 def main():
+    
     pass
 
 if __name__=="__main__":

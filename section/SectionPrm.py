@@ -2,10 +2,13 @@
 class SectionPrm:
 
     def init(self):
-
-        pass
+        #パラメータを初期化
+        self.param=[0,1,2]
+        
     
 
     def get_param(self):
-
-        pass
+        #パラメータを設定
+        self.param=[]
+    
+        

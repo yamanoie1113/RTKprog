@@ -13,7 +13,7 @@ class PID:
         integral=0
         delta=0.01
         DELTAT=delta
-        KPID={"kp":nan,"ki":nan,"kd":nan}
+        KPID={"kp":nan,"ki":nan,"kd":nan}#辞書型
         resetFlg=True
         sec=3
         cnt=0

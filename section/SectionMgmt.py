@@ -1,13 +1,15 @@
 
+# coding:utf-8
 from asyncio.windows_events import NULL
-from curses.ascii import NUL
-from section.SectionPrm import SectionPrm
-from section.SectionRun import SectionRun
-from Walker.Run import Run
+#from curses.ascii import NUL
 import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
+from section import SectionPrm
+from section import SectionRun
+from Walker import Run
+
 class SectionMgmt:
 
     #クラス変数
@@ -74,17 +76,19 @@ class SectionMgmt:
         self.mlastIdx+=1
         self.section[self.mlastIdx]=None
         
+        
 
     def setWalker(self,mSection,param):
         
+
         run=mSection.request_Walker(param["walker"])
-    
+            #パラメータの判定
         if param["walker"]==self.CURVE:
-            #パラメータ投げる
+            #曲線のパラメータ投げる
             run.set_param(param["walkervalue"])
 
         elif param["walker"]==self.STRAIGHT:
-            #パラメータ投げる
+            #直線のパラメータ投げる
             run.set_param(param["walkervalue"])
 
         pass
@@ -122,4 +126,18 @@ class SectionMgmt:
     def __del__(self):
         pass
 
+
+def main():
+    pass
+
+if __name__=="__main__":
+    main()
+
+
+
+
+#init内でgetparam呼び出し
+#getparamでパラメータ設定（paramに入る値は　　　　)
+#addsectionに移る
+#SectionRunオブジェクト生成
 
