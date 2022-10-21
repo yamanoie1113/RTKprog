@@ -14,22 +14,21 @@ yellow = (255,255,0)
 
 class TurnAngleSensor(Sensor.Sensor):
     turnAngle: float
-    
+
     def __init__(self):
         self.turnAngle = self.update()
-    
+
     def getvalue(self):
             #event = sence.stick.wait_for_event()
-            gyro = sence.get_orientation_degrees()
-            print("p: {pitch}, r: {roll}, y: {yaw}".format(**gyro))
-            sence.show_letter("G",yellow)
-            sence.clear()
             return gyro
 
     def update(self):
-        self.turnAngle = self.getvalue()
-        print(self.turnAngle)
-         
+        gyro = sence.get_orientation_degrees()
+        #print("p: {pitch}, r: {roll}, y: {yaw}".format(**gyro))
+        sence.show_letter("G",yellow)
+        self.turnAngle = gyro["yaw"]
+        #print(self.turnAngle)
+
     def reset(self):
         self.turnAngle = None
         print("turnAngle reset")
@@ -39,16 +38,15 @@ class TurnAngleSensor(Sensor.Sensor):
 def main():
     testclass = TurnAngleSensor()
     testclass.update()
-    
+
     print("before_reset")
     print(testclass.turnAngle)
     """
     testclass.reset()
-    
+
     print(testclass.turnAngle)
-    
+
     """
-    
+
 if __name__ == '__main__':
     main()
-
