@@ -6,7 +6,7 @@ import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 
-from Sensors import Sensor
+from Sensors import Sensor0.2
 
 sence = SenseHat()
 yellow = (255,255,0)

@@ -33,7 +33,7 @@ class TurnAngleJudge(Judge.Judge):
 
     def judge(self):
         #X,Y座標を取得し、その値が基準値をこえていたらTrueを返す。それ以外はFalse
-        #ここジャイロでやるからXY関係ない説ある
+        #ここジャイロでやるからXY関係ない説ある?
 
         if self.finishangle >= self.startangle :
 
@@ -55,7 +55,13 @@ class TurnAngleJudge(Judge.Judge):
             self.finishangle = judgevalue
 
             if self.finishangle > 360 :
-               self.finishangle = self.finishangle%360
+               
+               
+
+
+
+
+               +
 
     def Test(self):
         print(self.mx,self.my)
