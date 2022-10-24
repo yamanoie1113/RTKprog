@@ -5,7 +5,6 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
 
-
 class TurnAngleJudge(Judge.Judge):
 
     startangle=0.0
@@ -34,15 +33,19 @@ class TurnAngleJudge(Judge.Judge):
 
     def judge(self):
         #X,Y座標を取得し、その値が基準値をこえていたらTrueを返す。それ以外はFalse
+        #ここジャイロでやるからXY関係ない説ある
 
         if self.finishangle >= self.startangle :
+
             if PMgmt.getvalue() >= self.finishangle :
                 return True
+
             else :
                 return False
 
         else :
-            if PMgmt.getvalue() >= self.finishangle :
+
+            if PMgmt.getvalue() <= self.finishangle :
                 return True
 
             else :
@@ -52,14 +55,12 @@ class TurnAngleJudge(Judge.Judge):
             self.finishangle = judgevalue
 
             if self.finishangle > 360 :
-               self.finishangle = self.finishangle - 360
-
+               self.finishangle = self.finishangle%360
 
     def Test(self):
         print(self.mx,self.my)
 
 #testrun
-
 def main():
     testclass = TurnAngleJudge()
     testclass.Test()
