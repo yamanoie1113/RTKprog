@@ -33,4 +33,7 @@ class VirtualLineTrace(Run):
         startz = z
         position = True
         while position == False:
-            VirtualLineTrace.set_param()
+            VirtualLineTrace.set_param(param)
+            gz = (d-parab)/(c-paraa)
+            raz = (z - gz)/(1 + z*gz)
+            math.degrees(math.atan(raz))
