@@ -25,7 +25,10 @@ class SectionRun:
     #mMotorMgmt=MotorMgmt()
     def run(self):
         
-        #if self.judgefast:
+        if self.judgefirst:
+            self.mjudge.init()
+            if self.ajudge !=None: #ajudgeはどうすれば？
+                self.aJudge
 
         pass
 
@@ -37,7 +40,7 @@ class SectionRun:
             self.mWalker=VirtualLineTrace()
             #self.mWalker=Run(self.mMotorMgmt)
         elif walker==self.STRAIGHT:
-            self.mWalker=VirtualLineTrace2()
+            self.mWalker=VirtualLineTrace()
         
         return self.mWalker
 

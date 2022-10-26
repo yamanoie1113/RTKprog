@@ -5,20 +5,17 @@ import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import MotorMgmt
-class Run:
+from Walker import Run2
+class Run(Run2):
      def __init__(self):
 
           self.mForward=0 #前進
           self.mTurn=0   #ステアリング
-          #self.mMotorMgmt=MotorMgmt(0,0)  
           print(self.mForward,self.mTurn)
-          # return self.mForward,self.mTurn
           
      def set_param(self):
-          
-          #配列でパラメータを分けている+
-          #self.mForward=param(0)#前進
-          #self.mTurn=param(1)#ステアリング
+          #とりあえずここで設定
+          #本番はおそらくステージ管理
           self.mForward=50#前進
           self.mTurn=50#ステ
           print(self.mForward,self.mTurn)

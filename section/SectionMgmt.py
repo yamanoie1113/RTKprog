@@ -9,9 +9,7 @@ sys.path.append(str(current_dir) + '/../')
 from section import SectionPrm
 from section import SectionRun
 from Walker import Run
-
 class SectionMgmt:
-
     #クラス変数
     NULL_PTR=0
     mSectionIdx=0
@@ -27,8 +25,6 @@ class SectionMgmt:
     section=[]
     mlastIdx=0
 
-    
-
     def __init__(self):
         #セクションパラメーターを初期化
         self.sectionParam.init()
@@ -36,7 +32,6 @@ class SectionMgmt:
     def run(self):
 
         #状態の分岐
-
         #状態がUNDEFINEDだったらexecUndefindを実行
         if self.mState == self.UNDEFINED:
             self.execUndefined()
@@ -60,8 +55,8 @@ class SectionMgmt:
         param=self.get_param()
         #addセクションを回す
         while(param[self.mSectionIdx]["flag"]):
-            self.addSection(param[self.mSectionIdx][:])
-            self.mSectionIdx+=1
+            self.addSection(param[self.mSectionIdx][:])#addsection実行
+            self.mSectionIdx+=1#プラスしていく
             break
         self.mState=self.RUN
         pass
@@ -83,12 +78,13 @@ class SectionMgmt:
 
         run=mSection.request_Walker(param["walker"])
             #パラメータの判定
-        if param["walker"]==self.CURVE:
+        if param["walker"]==self.CURVE:#0
             #曲線のパラメータ投げる
             run.set_param(param["walkervalue"])
 
-        elif param["walker"]==self.STRAIGHT:
+        elif param["walker"]==self.STRAIGHT:#1
             #直線のパラメータ投げる
+
             run.set_param(param["walkervalue"])
 
         pass
@@ -107,7 +103,6 @@ class SectionMgmt:
 
         pass
 
-
     def execRun(self):
         #msectionがNONEだったらTrueを返す
         if self.mSection[self.mSectionIdx] is None:
@@ -118,14 +113,13 @@ class SectionMgmt:
             
         return False
 
-        #パラメータをsectionSectionPrmからもらう
+        #パラメータをSectionPrmからもらう
     def get_param(self):
-        param=self.sectionParam.get_param(self.mSectionIdx)
+        param=self.sectionParam.set_param(self.mSectionIdx)
         return param
 
     def __del__(self):
         pass
-
 
 def main():
     pass
