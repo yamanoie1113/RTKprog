@@ -1,6 +1,7 @@
 # coding:utf-8
 import os
 import sys
+import math
 import pathlib
 from cmath import cos, sin, sqrt
 from math import fabs
@@ -8,27 +9,31 @@ from Walker.Run import Run
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import PositionMgmt
+from section import SectionMgmt
 
 
-class VirtulLineTrace2(Run):
+class cuvreLineTrace2(Run):
 
-    sx=0
-    sy=0
-    fx=0
-    fy=0
-    nx=0
-    ny=0
-    basedistance=0
-    mTarget=0
-    mTargetSpeed=0
-    mPFactor=0
-    mIFactor=0
-    mDFactor=0
-    mLimit=100
-    #?
-    mPID.resetParam()
+     
+    startx = 0
+    starty = 0
+    goalx = 0
+    goaly = 0
 
-    def init(self):
-        #?
-        self.sx=mXPosition.getvalue()
-        self.sy=mYPosition.getvalue()
+
+    def set_param(PositionMgmt):
+        
+        PositionMgmt.getvalue(param)
+
+    def set_run(self,):
+
+        SectionMgmt
+        z = (d-b)/(c-a)
+        x=(y+z*a-b)/z
+        startz = z
+        position = True
+        while position == False:
+            VirtualLineTrace.set_param(param)
+            gz = (d-parab)/(c-paraa)
+            raz = (z - gz)/(1 + z*gz)
+            math.degrees(math.atan(raz))
