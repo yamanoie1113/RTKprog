@@ -4,31 +4,66 @@ import sys
 import math
 import pathlib
 from cmath import cos, sin, sqrt
-from math import fabs
-from Walker.Run2 import Run2
+from math import fabs,pi
+from Judgement.TurnAngleJudge import TurnAngleJudge
+from Sensors.TurnAngleSensor import TurnAngleSensor
+from Walker import Run2,PID
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from Sensors import PositionMgmt
+from Sensors import PositionMgmt,MotorMgmt
 from section import SectionMgmt
-from Sensors import MotorMgmt
+
 
 #旋回の円の中心座標は走行中に決めるパターンと事前に指定するパターンある
+#とりあえず右旋回を想定して作成
 
 class curveLineTrace2(Run2):
 
 
     startx = 0.0  #自己位置？
-    starty = 0.0  #自己位置
-    goalx = 0.0   #目標点
-    goaly = 0.0   #目標点
+    starty = 0.0  #自己位置?
+    goalx = 0.0   #目標点?
+    goaly = 0.0   #目標点?
     mForward = 0.0
     mTurn = 0.0
+    mBias = 0.0
+    angle2 = 0.0
+    mPFactor = 0
+    mIFactor = 0
+    mDFactor = 0
 
     def __init__(self):
-        self.set_param()
+        #基準位置からの角度に変換
+        #angle2 = TurnAngleSensor.getvalue()
 
-    def set_param(PositionMgmt,self):
+        """#中心点求めてる？
+        self.goalx = 5*cos((angle2/180)*pi) + self.sx
+        self.goaly = 5*sin((angle2/180)*pi) + self.sy
+        """
         self.startx,self.starty = PositionMgmt.getvalue()
+
+        #Testrun用
+        print("input_x?")
+        self.goalx = float(input())
+        print("input_y?")
+        self.goaly = float(input())
+
+        PID.reset_param()
+
+
+    def set_param(PositionMgmt,kp,ki,kd,angleTarget,angleKp,self):
+
+        self.mPFactor = kp
+        self.mIFactor = ki
+        self.mDFactor = kd
+
+
+    def setBias(self,curve):
+        self.mBias = curve
+
+    def calcdistance(self):
+        dis = sqrt(self.startx - self.goalx)
+        return dis
 
 
 

@@ -53,7 +53,7 @@ class PID:
 
             self.diff[0]=self.diff[1]
             self.diff[1]=self.target - value
-            self.prev_i=self.integral 
+            self.prev_i=self.integral
 
             self.delta=(self.diff[1]-self.diff[0])/self.DELTAT
             #self.integral+=(self.diff[0]+self.diff[1])/2.0*self.DELTAT
@@ -96,7 +96,7 @@ class PID:
             #if (self.debug):
 
                 #self.sprintf(self.buf,"pid:(float(%3.1),self.diff:float(%4.2) d:float(%4.2) i:float(%4.2) op:float(%5.3)",self.target,value,self.diff[1],self.delta,self.integral,self.val)
-                #self.msg_log (self.buf) 
+                #self.msg_log (self.buf)
 
             if (self.val>self.limit):
                 self.val=self.limit
@@ -105,7 +105,7 @@ class PID:
                 self.val=-self.limit
 
             return self.val
-            
+
 
             #PID設定
         def set_Kpid(self,kp,ki,kd):
@@ -115,7 +115,7 @@ class PID:
             self.KPID["kd"]=kd
         #def set_Ki(self,ki):
 
-            
+
 
         #def set_Kd(self,kd):
 
@@ -156,7 +156,7 @@ class PID:
 def main():
     mPID=PID()
 
-    
+
 
 if __name__=="__main__":
     main()
