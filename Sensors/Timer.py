@@ -8,31 +8,31 @@ from Sensors import Sensor
 
 class Timer(Sensor.Sensor):
 
+    def __init__(self):
+
+        self.count2=0
+
     def update(self):
         #self.count=0
-        self.count2=0
+        pass
+        
 
     def getvalue(self):
 
-        print("perf_counter")
-        for j in range(180):
+        print("実行")
+        for j in range(180):#直接数字じゃなくて引数をいれるかも
             self.start = time.perf_counter()
             time.sleep(1)
             
             self.count2+=round(time.perf_counter() - self.start)
-            
-            if self.count2%10==0:
-                print(self.count2,"秒経過")
-                
-            else:
-                print(".")
-            pass
-        
-        
+            #sprint(self.count2)
+            #return self.count2
+
 
 def main():
     timer=Timer()
-    timer.update()
+    #timer.update()
+    #timer.set_i()
     timer.getvalue()
 
     pass
