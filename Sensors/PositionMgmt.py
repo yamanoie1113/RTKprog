@@ -12,14 +12,14 @@ class PositionMgmt(Sensor.Sensor):
     def __init__(self,position):
         # クラス変数
         self.update()
-        
+
     #値の取得
     def getvalue(self):
         if self.position != None:
             print(self.position)
             print("return_end")
             return self.position
-            
+
         else:
             print("None GPS")
             print(self.position)

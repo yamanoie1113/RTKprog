@@ -8,7 +8,10 @@ from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
 class TurnAngleJudge(Judge.Judge):
 
     startangle=0.0
-    finishangle=0.0
+    finishangle=0.03
+
+
+    last_angle = 0.0
     mx=0.0
     my=0.0
 
@@ -19,7 +22,7 @@ class TurnAngleJudge(Judge.Judge):
 
         #ジャイロから旋回角度抽出
         tmp = angget.getvalue()
-        self.startangle = tmp['yaw']
+        self.startangle = tmp['yaw'] + self.startangle
         #XYから値取得
 
         """
@@ -52,16 +55,10 @@ class TurnAngleJudge(Judge.Judge):
                 return False
 
     def set_param(self,judgevalue):
-            self.finishangle = judgevalue
-
-            if self.finishangle > 360 :
-               
-               
+            self.finishangle = self.startangle + judgevalue
 
 
 
-
-               +
 
     def Test(self):
         print(self.mx,self.my)
