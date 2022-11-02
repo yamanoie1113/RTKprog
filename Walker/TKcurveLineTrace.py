@@ -62,7 +62,7 @@ class curveLineTrace2(Run2):
         self.mBias = curve
 
     def calcdistance(self):
-        dis = sqrt(self.startx - self.goalx)
+        dis = sqrt(pow(self.startx - self.goalx,2) + pow(self.starty - self.goal,2))
         return dis
 
 
