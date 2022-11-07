@@ -46,8 +46,6 @@ class GPS2xy():
         latitude = latitude_d+ latitude_m
         print(latitude)
 
-
-
         #経度 dddmm.mmmmmmm
         #longitude = "13945.6411751"
 
@@ -76,7 +74,8 @@ class GPS2xy():
         #grs80 = pyproj.Proj(init='EPSG:6668')
         #rect6 = pyproj.Proj(init='EPSG:6680')
 
-        transformer = pyproj.Transformer.from_crs('EPSG:6668','EPSG:6680',always_xy=True)
+        #transformer = pyproj.Transformer.from_crs('EPSG:2453','EPSG:6680',always_xy=True)
+        transformer = pyproj.Transformer.from_crs('EPSG:4612','EPSG:2453',always_xy=True)
         x,y = transformer.transform(longitude,latitude)
 
         print("x:",end="")
@@ -84,12 +83,12 @@ class GPS2xy():
         print("y:",end="")
         print(y)
         return x,y
-"""
+
 def main():
     testclass = GPS2xy()
     testclass.getvalue()
-    testclass.return_position()
+    #testclass.return_position()
 
 if __name__ == '__main__':
     main()
-"""
+
