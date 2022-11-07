@@ -46,8 +46,6 @@ class GPS2xy():
         latitude = latitude_d+ latitude_m
         print(latitude)
 
-
-
         #経度 dddmm.mmmmmmm
         #longitude = "13945.6411751"
 
