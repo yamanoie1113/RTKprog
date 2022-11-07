@@ -3,16 +3,20 @@ import os
 import sys
 import math
 import pathlib
+from tkinter import W
+from turtle import right
+import numpy as np
 from cmath import cos, sin, sqrt
 from math import fabs
 from Walker.Run import Run
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
+from Sensors import MotorMgmt
 from Sensors import PositionMgmt
-from section import SectionMgmt
 
 
-class cuvreLineTrace2(Run):
+
+class cuvreLineTrace(Run):
 
      
     startx = 0
@@ -23,17 +27,36 @@ class cuvreLineTrace2(Run):
 
     def set_param(PositionMgmt):
         
+        
         PositionMgmt.getvalue(param)
+        a = x-1
+        b = y-1
+        r = np.sqrt((a-x)**2 + (b-y)**1)
+        return r
 
     def set_run(self,):
 
-        SectionMgmt
-        z = (d-b)/(c-a)
-        x=(y+z*a-b)/z
-        startz = z
-        position = True
-        while position == False:
-            VirtualLineTrace.set_param(param)
-            gz = (d-parab)/(c-paraa)
-            raz = (z - gz)/(1 + z*gz)
-            math.degrees(math.atan(raz))
+        
+        r = 0
+        cuvreLineTrace.set_param(r)
+        loca = r 
+        turn = right
+
+        while True:
+            if r < loca:
+                #中心点に近づく
+                loca = 0
+                if turn == right:
+                    MotorMgmt.set_param(0,1,0)
+                else:
+                    MotorMgmt.set_param(0,-1,0)
+
+            elif r > loca:
+                #中心点から離れる
+                loca = 0
+                if turn == right:
+                    MotorMgmt.set_param(0,-1,0)
+                else:
+                    MotorMgmt.set_param(0,1,0)
+            
+            cuvreLineTrace.set_param(loca)
