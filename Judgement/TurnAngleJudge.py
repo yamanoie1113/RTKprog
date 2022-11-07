@@ -1,8 +1,9 @@
-import Judge
 import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
+
+from Judgement import Judge
 from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
 
 class TurnAngleJudge(Judge.Judge):

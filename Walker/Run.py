@@ -26,8 +26,6 @@ class Run(Run2):
           mMotorMgmt.set_param(self.mForward,self.mTurn)
           #set_param(self.mForward,self.mTurn)
           
-
-
      def reset_param(self):
           self.mForward=0
           self.mTurn=0
