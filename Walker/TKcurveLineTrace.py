@@ -52,8 +52,8 @@ class TKcurveLineTrace(Run2):
         d=status[2];
         mPID->setKd(status[2]);
 
-        forw=status[3];      
-        bias=status[4];      
+        forw=status[3];
+        bias=status[4];
         mdistance=status[5]; #半径の距離の維持
 
 
@@ -99,13 +99,13 @@ class TKcurveLineTrace(Run2):
     def run(self,mMotormgmt):
         dire :float
         mMotormgmt.set_param(self.mForward,self.mTurn)
-        
+
         x,y = PositionMgmt.getvalue()   #機体のx,y座標
         theta = TurnAngleSensor.getvalue()  #角度
 
         x = 5.0*cos(theta)+x # 車体幅の5.0は使わない
         y = 5.0*sin(theta)+y # 同上
-        
+
         distance = self.calc_distance(self.goalx,self.goaly,x,y)
         dire = PID.get_operation(distance)
 

@@ -12,7 +12,7 @@ sence = SenseHat()
 yellow = (255,255,0)
 
 #合計
-ang_sum = 0.0
+ang_total = 0.0
 
 #前回旋回後の角度
 last_ang = 0.0
@@ -28,13 +28,15 @@ class TurnAngleSensor(Sensor.Sensor):
 
     def getvalue(self):
             #event = sence.stick.wait_for_event()
-            return gyro
+            return self.turnAngle
 
     def update(self):
         gyro = sence.get_orientation_degrees()
         #print("p: {pitch}, r: {roll}, y: {yaw}".format(**gyro))
         sence.show_letter("G",yellow)
         self.turnAngle = gyro["yaw"]
+        self.ang_total += self.turnAngle
+
         #print(self.turnAngle)
 
     def reset(self):

@@ -27,7 +27,7 @@ class PID:
 
                 print(self.last_integral[29])
 
-    
+
     #デストラクト
         def __del__(self):
 
@@ -68,7 +68,7 @@ class PID:
                 self.cnt=(self.cnt+1)%self.cnt
             except ZeroDivisionError:
                 print("ZeroDivisionError!!")
-                
+
 
             #print(self.cnt)
             if (self.resetFlg):
@@ -78,7 +78,7 @@ class PID:
 
                 for i in range(self.sec):
                     self.last_integral[i]=float(0.0)
-                
+
                 self.cnt=0
                 self.resetFlg=False
 
@@ -90,7 +90,7 @@ class PID:
             if (self.integral)<-11.0:
                 self.integral=-11.0
             '''
-            
+
             self.val=self.diff[1]*self.KPID["kp"]+self.delta*self.KPID["ki"]+self.integral*self.KPID["kd"]
 
             #if (self.debug):

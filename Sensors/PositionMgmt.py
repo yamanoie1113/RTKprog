@@ -9,6 +9,7 @@ from Sensors import Sensor,GPS2xy
 class PositionMgmt(Sensor.Sensor):
    # gps = GPS2xy()
     position: float
+    #pos_total: float
     def __init__(self,position):
         # クラス変数
         self.update()
