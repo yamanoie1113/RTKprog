@@ -29,8 +29,11 @@ class cuvreLineTrace(Run):
         
         
         PositionMgmt.getvalue(param)
-        a = x-1
-        b = y-1
+        param = [1,2]
+        x = param[:1]
+        y = param[1:]
+        a = x-1 #中心点X
+        b = y-1 #中心点Y
         r = np.sqrt((a-x)**2 + (b-y)**1)
         return r
 
