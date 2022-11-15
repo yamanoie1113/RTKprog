@@ -1,12 +1,12 @@
 import time
 import sys
 import pathlib
-import Timer
+import Timer2
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import Sensor 
 
-class Timer(Sensor.Sensor):
+class Timer2(Sensor.Sensor):
 
     def __init__(self):
 
@@ -20,6 +20,7 @@ class Timer(Sensor.Sensor):
     def getvalue(self):
 
         print("実行")
+            
         for j in range(180):#直接数字じゃなくて引数をいれるかも
             self.start = time.perf_counter()
             time.sleep(1)
@@ -30,7 +31,7 @@ class Timer(Sensor.Sensor):
 
 
 def main():
-    timer=Timer()
+    timer=Timer2()
     #timer.update()
     #timer.set_i()
     timer.getvalue()

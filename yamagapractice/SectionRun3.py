@@ -13,7 +13,7 @@ sys.path.append(str(current_dir) + '/../')
 
 
 
-class SectionRun2:
+class SectionRun3:
 
     CURVE=0
     STRAIGHT=1
@@ -23,12 +23,18 @@ class SectionRun2:
     walkerfirst=True
     mWalker=0
     mjudge=0
+    deb=None
     #mMotorMgmt=MotorMgmt()
+
+    def init(self):
+        self.deb=None
+        pass
+
     def run(self):#作成中
         
         #判定
         if self.judgefirst:#truekafalseか
-            #elf.mjudge.init()
+            #self.mjudge.init()
             #if self.ajudge !=None: #ajudgeはどうすれば？
                 #self.aJudge.init()
             #self.judgefirst= False
@@ -46,13 +52,11 @@ class SectionRun2:
     #走法の生成依頼
 
         if walker==self.CURVE:
-            #self.mWalker=VirtualLineTrace()
+            #オブジェクト生成
+            #self.mWalker=VirtualLineTrace()#今外すとエラーになりますわよ★
             print("curve")
-        
-            #self.mWalker=VirtualLineTrace()
-            #self.mWalker=Run(self.mMotorMgmt)
-            #self.run()
         elif walker==self.STRAIGHT:
+            #オブジェクト生成
             #self.mWalker=curveLineTrace()
             print("straight")
         
@@ -63,34 +67,38 @@ class SectionRun2:
         #判定の生成依頼
 
         if judge==self.DISTANCE:
+            #オブジェクト生成
             #self.mJudge=DistanceJudge()
             print("judge")
         elif judge==self.ANGLE:
+            #オブジェクト生成
             #self.mJudge=TurnAngleJudge()
             print("mjudghe")
 
         #return self.mJudge
 
-    def set_param(self):
+    def set_param(self,mnumber):#パラメータ設定
         #曲線
-        self.prm[0,0,0,0,0]#前進量、旋回量、P,I,D
-        
+        if mnumber==0:
+            self.prm=[50,6,0,0,0]
+            self.deb=self.prm#[前進量、旋回量、P,I,D]
+            print("cuevever",self.deb)
+            #(ここで値を設定すると思っている)
+        elif mnumber==1:
         #直線
-        self.prm[0,0,0,0]#前進量、P,I,D
-
+            self.prm=[50,0,0,0]
+            self.deb=self.prm#[前進量、P,I,D]
+            print("cuevever",self.deb)
         
-        pass
+        return self.deb
 
-    def set_param(self):
-        pass
-
-    def i(self,p):
-        #print("i=",p)
-        pass
 
 
 
 def main():
+    sec=SectionRun3()
+    mnumber=1
+    sec.set_param(mnumber)
     
     pass
 
