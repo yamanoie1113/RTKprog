@@ -3,13 +3,16 @@ import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 
+import math
 from Judgement import Judge
 from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
+from section import SectionMgmt
 
 class TurnAngleJudge(Judge.Judge):
 
     startangle=0.0
     finishangle=0.03
+    baseline = 0.0
 
 
     last_angle = 0.0
@@ -55,8 +58,9 @@ class TurnAngleJudge(Judge.Judge):
             else :
                 return False
 
-    def set_param(self,judgevalue):
-            self.finishangle = self.startangle + judgevalue
+    def set_param(self,status):
+             baseline = math.pi*(status[0])/180+SectionMgmt.ANGLE #現在の角度足し合わせてるっぽい
+             diff = baseline - TASensor.getvalue()  #目標角度と現在角度の差
 
 
 

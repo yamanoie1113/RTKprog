@@ -28,7 +28,7 @@ class TurnAngleSensor(Sensor.Sensor):
 
     def getvalue(self):
             #event = sence.stick.wait_for_event()
-            return self.turnAngle
+            return self.turnAngle  #ここ返すのangtotalかも
 
     def update(self):
         gyro = sence.get_orientation_degrees()
