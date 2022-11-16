@@ -29,7 +29,7 @@ class Timer2(Sensor.Sensor):
 
     def count(self):
         print("count")
-        for j in range(10):#直接数字じゃなくて引数をいれるかも
+        for j in range(50):#直接数字じゃなくて引数をいれるかも
             self.start = time.perf_counter()
             time.sleep(1)
 
