@@ -6,6 +6,8 @@ sys.path.append(str(current_dir) + '/../')
 from TKPra import Timer2
 
 class TKTimejudge():
+    #白井の班参考にして作成
+    #まだちゃんと動作してないっぽい
 
     time=0.0
     timelimit = 0.0

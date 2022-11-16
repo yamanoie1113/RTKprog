@@ -2,13 +2,15 @@ import time
 import sys
 import pathlib
 import threading
-import random
 
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import Sensor
 
 class Timer2(Sensor.Sensor):
+    #timer2ｗちょこっと変更
+    #countをスレッドで動かしてみてる
+
     #count2 = 0
     thread1 = None
     thread2 = None
