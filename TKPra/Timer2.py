@@ -16,9 +16,11 @@ class Timer2(Sensor.Sensor):
     thread2 = None
 
     def __init__(self):
-        print("init")
+        print("Timer_init")
+        #タイマ初期化。1からカウントしないと1秒ずれる
         self.count2=0
         self.thread1 = threading.Thread(target=self.count)
+        self.thread1.start()
 
         self.thread2 = threading.Thread(target=self.getvalue)
         print("end_init")
@@ -31,7 +33,8 @@ class Timer2(Sensor.Sensor):
 
     def count(self):
         print("count")
-        for j in range(50):#直接数字じゃなくて引数をいれるかも
+        #カウントダウン
+        for j in range(20):#直接数字じゃなくて引数をいれるかも
             self.start = time.perf_counter()
             time.sleep(1)
 
