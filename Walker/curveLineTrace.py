@@ -1,7 +1,7 @@
 # coding:utf-8
 import os
 import sys
-import math
+import time
 import pathlib
 from tkinter import W
 from turtle import right
@@ -12,6 +12,8 @@ from Walker.Run import Run
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import MotorMgmt
+current_dir = pathlib.Path(__file__).resolve().parent
+sys.path.append(str(current_dir) + '/../')
 from Sensors import PositionMgmt
 
 
@@ -62,4 +64,5 @@ class cuvreLineTrace(Run):
                 else:
                     MotorMgmt.set_param(30,100,0)
             
+            time.sleep(0.1)
             cuvreLineTrace.set_param(loca)
