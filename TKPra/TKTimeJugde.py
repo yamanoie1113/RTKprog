@@ -23,11 +23,11 @@ class TKTimejudge():
         print(time)
 
         if(time >= self.timelimit):
-            print("judge_return_TRUE")
+            print("timejudge_return_TRUE")
             return True
 
         else :
-            print("judge_return_FALSE")
+            print("timejudge_return_FALSE")
             return False
 
 
