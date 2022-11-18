@@ -23,7 +23,7 @@ class Timer2(Sensor.Sensor):
         self.thread1.start()
 
         self.thread2 = threading.Thread(target=self.getvalue)
-        print("end_init")
+        print("end_Timer_init")
 
 
 
