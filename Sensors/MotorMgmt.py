@@ -64,6 +64,7 @@ class MotorMgmt():
                         duty = duty + 1
                         flog = 1
                     time.sleep(0.1)
+                    break
 
         except KeybordInterrupt:
                 pass

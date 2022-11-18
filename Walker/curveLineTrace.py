@@ -63,6 +63,10 @@ class cuvreLineTrace(Run):
                     MotorMgmt.set_param(30,-100,0)
                 else:
                     MotorMgmt.set_param(30,100,0)
+<<<<<<< HEAD
             
             time.sleep(0.1)
+=======
+
+>>>>>>> 11ef2b41f0416653eb195eb163f7877f0fb3668e
             cuvreLineTrace.set_param(loca)
