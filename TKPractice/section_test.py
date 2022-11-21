@@ -3,11 +3,13 @@ import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Walker import Run
+from Sensors import MotorMgmt
 import Timer2,TKTimeJudge,time,threading
 
 
 def main():
     runner =Run.Run()
+    mMotorMgmt = MotorMgmt.MotorMgmt()
     while True :
         jclass = TKTimeJudge.TKTimeJudge()
         result = jclass.test()
@@ -26,6 +28,7 @@ def main():
             print("simple")
             runner.set_param(30,0,0,0,0)
 
+        runner.run(mMotorMgmt)
         time.sleep(1)
 
 if __name__=="__main__":
