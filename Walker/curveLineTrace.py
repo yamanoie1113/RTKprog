@@ -63,7 +63,7 @@ class cuvreLineTrace(Run):
                     MotorMgmt.set_param(0,30,100)
 
             
-            cuvreLineTrace.set_param(loca)
+            cuvreLineTrace.set_param(loca,a,b)
             time.sleep(0.1)
             c += 1
             if c == 600:
