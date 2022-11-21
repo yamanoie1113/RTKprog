@@ -15,7 +15,7 @@ class timedebuge:
 
         self.time=170
         ob.getValue(self.time)
-        
+
 
 
     def main():

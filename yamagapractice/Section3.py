@@ -104,6 +104,8 @@ class Section3:
         #print(self.mSection[self.mSectionIdx])
         print("exec",self.param[0])
         print("exec",self.param[1])
+        print("2zigenn",self.param[1][1])
+        print("all",self.param)
         #print(self.section)
         #runメソッド呼ぶ
         #ここで走るんじゃなかろうか
@@ -136,13 +138,15 @@ class Section3:
         run2=self.mSection.request_judge(param[self.mSectionIdx])
         
         if self.mSectionIdx==self.CURVE:
+
+            
             #run2.set_param(self.mSectionIdx)
             pass
         
-        elif param==self.STRAIGHT:
-            self.mSection.request_judge(param)
+        elif self.mSectionIdx==self.STRAIGHT:
+            #self.mSection.request_judge(param)
             #run2.set_param(self.mSectionIdx)
-
+            pass
         #パラメータをSectionPrmからもらう
     def get_param(self):
         self.Param[self.mSectionIdx]=self.sectionParam.set_param(self.mSectionIdx)

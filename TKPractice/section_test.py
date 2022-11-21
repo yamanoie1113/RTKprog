@@ -10,26 +10,30 @@ import Timer2,TKTimeJudge,time,threading
 def main():
     runner =Run.Run()
     mMotorMgmt = MotorMgmt.MotorMgmt()
-    while True :
-        jclass = TKTimeJudge.TKTimeJudge()
-        result = jclass.test()
-        print("result:",end="")
-        print(result)
+    try:
+        while True :
+            jclass = TKTimeJudge.TKTimeJudge()
+            result = jclass.test()
+            print("result:",end="")
+            print(result)
 
 
-        #10秒ごとに動きが変化する予定
-        if result  == True :
-            #カーブとか
-            print("curve")
-            runner.set_param(0,0,0,0,0)
+            #10秒ごとに動きが変化する予定
+            if result  == True :
+                #カーブとか
+                print("curve")
+                runner.set_param(0,0,0,0,0)
 
-        else :
-            #シンプルラン
-            print("simple")
-            runner.set_param(30,0,0,0,0)
+            else :
+                #シンプルラン
+                print("simple")
+                runner.set_param(5,0,0,0,0)
 
-        runner.run(mMotorMgmt)
-        time.sleep(1)
+            runner.run(mMotorMgmt)
+            time.sleep(1)
+
+    except KeyboardInterrupt:
+        pass
 
 if __name__=="__main__":
      main()
