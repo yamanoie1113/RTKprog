@@ -96,7 +96,7 @@ class SectionMgmt:
         if param["judge"]==self.DISTANCE:
             #パラメータ投げる
             judge.set_param(param["judgevalue"])
-            
+
             #パラメータ投げる
         elif param["judge"]==self.ANGLE: #複数ある可能性あり
             judge.set_param(param["judgevalue"])
