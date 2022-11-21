@@ -66,7 +66,7 @@ class MotorMgmt():
                     time.sleep(0.1)
                     break
 
-        except KeybordInterrupt:
+        except KeyboardInterrupt:
                 pass
 
         #pi.set_mode(PIN, pigpio.INPUT)
