@@ -11,15 +11,22 @@ class Run(Run2.Run2):
 
           self.mForward=0 #前進
           self.mTurn=0   #ステアリング
+          self.mP = 0
+          self.mI = 0
+          self.mD = 0
           print(self.mForward,self.mTurn)
 
-     def set_param(self):
+     def set_param(self,forward,turn,P,I,D):
           #とりあえずここで設定
           #本番はおそらくステージ管理
-          self.mForward=50#前進
-          self.mTurn=50#ステ
           print("run.set_param")
-          print(self.mForward,self.mTurn)
+          self.mForward= forward#前進
+          self.mTurn= turn#ステ
+          self.mP = P
+          self.mI = I
+          self.mD = D
+          print("RUN_SET_PARAM")
+          print(self.mForward,self.mTurn,self.mP,self.mI,self.mP)
 
      def run(self,mMotorMgmt):
           #-100から100までのPWMを設定してMotorMgmtに送る
