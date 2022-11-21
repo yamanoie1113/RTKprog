@@ -13,7 +13,7 @@ def main():
     try:
         while True :
             jclass = TKTimeJudge.TKTimeJudge()
-            result = jclass.test()
+            result = jclass.test() #タイムジャッジのテスト関数
             print("result:",end="")
             print(result)
 
