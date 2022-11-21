@@ -27,8 +27,7 @@ class cuvreLineTrace(Run):
 
     def set_param(PositionMgmt,a,b):
         
-        param = [1,2]
-        PositionMgmt.getvalue(param)
+        param = PositionMgmt.getvalue()
         x = param[0] #座標分け
         y = param[1]
         a = x-1 #中心点X
