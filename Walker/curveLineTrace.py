@@ -27,7 +27,7 @@ class cuvreLineTrace(Run):
     goaly = 0
 
 
-    def set_param(PositionMgmt):
+    def set_param(PositionMgmt,a,b):
         
         
         PositionMgmt.getvalue(param)
@@ -43,7 +43,7 @@ class cuvreLineTrace(Run):
 
         
         r = 0
-        cuvreLineTrace.set_param(r)
+        r = cuvreLineTrace.set_param(0,a,b)
         loca = r 
         turn = right
 
