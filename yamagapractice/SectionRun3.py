@@ -4,6 +4,7 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
+import Param
 #from Sensors import MotorMgmt
 #from Walker import Run
 #from Walker import VirtualLineTrace
@@ -24,6 +25,7 @@ class SectionRun3:
     mWalker=0
     mjudge=0
     deb=None
+    param=Param.Param()
     #mMotorMgmt=MotorMgmt()
 
     def init(self):
@@ -80,17 +82,17 @@ class SectionRun3:
     def set_param(self,mnumber):#パラメータ設定
         #曲線
         if mnumber==0:
-            self.prm=[50,6,0,0,0]
-            self.deb=self.prm#[前進量、旋回量、P,I,D]
-            print("cuevever",self.deb)
-            #(ここで値を設定すると思っている)
+            self.prm=self.param.Curve_set_param()
+            #[前進量、旋回量、P,I,D]
+            print("cuevever",self.prm)
+            #(ここで値を設定すると思っているs)
         elif mnumber==1:
         #直線
-            self.prm=[50,0,0,0]
-            self.deb=self.prm#[前進量、P,I,D]
-            print("cuevever",self.deb)
+            self.prm=self.param.Straight_set_param()
+            #[前進量、P,I,D]
+            print("straight",self.deb)
         
-        return self.deb
+        return self.prm
 
 
 
