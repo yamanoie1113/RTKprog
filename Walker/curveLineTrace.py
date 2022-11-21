@@ -6,7 +6,6 @@ import pathlib
 from tkinter import W
 from turtle import right
 import numpy as np
-from cmath import cos, sin, sqrt
 from math import fabs
 from Walker.Run import Run
 current_dir = pathlib.Path(__file__).resolve().parent
@@ -32,17 +31,19 @@ class cuvreLineTrace(Run):
         
         PositionMgmt.getvalue(param)
         param = [1,2]
-        x = param[0]
+        x = param[0] #座標分け
         y = param[1]
         a = x-1 #中心点X
         b = y-1 #中心点Y
-        r = np.sqrt((a-x)**2 + (b-y)**2)
+        r = np.sqrt((a-x)**2 + (b-y)**2) #座標計算
         return r
 
     def set_run(self,):
 
         
         r = 0
+        a = 0 #中心点X
+        b = 0 #中心点Y
         r = cuvreLineTrace.set_param(0,a,b)
         loca = r 
         turn = right
