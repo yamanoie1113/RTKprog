@@ -27,8 +27,8 @@ class cuvreLineTrace(Run):
 
     def set_param(PositionMgmt,a,b):
         
-        param = [1,2]
-        PositionMgmt.getvalue(param)
+        PM = PositionMgmt.PositionMgmt()
+        param = PM.PositionMgmt.getvalue()
         x = param[0] #座標分け
         y = param[1]
         a = x-1 #中心点X
@@ -38,7 +38,7 @@ class cuvreLineTrace(Run):
 
     def set_run(self,c):
 
-        
+        PM = PositionMgmt.PositionMgmt()
         r = 0
         a = 0 #中心点X
         b = 0 #中心点Y
@@ -64,7 +64,7 @@ class cuvreLineTrace(Run):
                     MotorMgmt.set_param(0,30,100)
 
             
-            cuvreLineTrace.set_param(loca)
+            cuvreLineTrace.set_param(PM,a,b)
             time.sleep(0.1)
             c += 1
             if c == 600:
