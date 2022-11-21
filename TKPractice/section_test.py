@@ -3,18 +3,18 @@ import Run,Timer2,TKTimeJudge,time,threading
 def main():
     while True :
         jclass = TKTimeJudge.TKTimeJudge()
-        result = jclass.judge()
+        result = jclass.test()
         print("result:",end="")
         print(result)
 
 
-        #10秒ごとに動きが変化
+        #10秒ごとに動きが変化する予定
         if result  == True :
-            #偶数 カーブ
+            #カーブとか
             print("curve")
 
         else :
-            #奇数 シンプルラン
+            #シンプルラン
             print("simple")
 
         time.sleep(1)

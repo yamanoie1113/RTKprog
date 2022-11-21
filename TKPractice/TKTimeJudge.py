@@ -25,7 +25,7 @@ class TKTimeJudge():
         print("gettime:",end="")
         print(time)
 
-        if(time >= self.timelimit):
+        if time >= self.timelimit :
             print("timejudge_return_TRUE")
             return True
 
@@ -41,11 +41,31 @@ class TKTimeJudge():
         print(limit)
 
 
+    #テスト用関数 10秒ごとにTrueとFalseを交互に返す
+    def test(self):
+        time = self.timer.getvalue()
+        print("gettime:",end="")
+        tmp = time /10
+        testval = int(tmp % 2)
+        print("testval:",end="")
+        print(testval)
+
+        if testval == 0 :
+            print("timejudge_return_False")
+            return False
+
+        else :
+            print("timejudge_return_True")
+            return True
+
+
+
+
 def main():
-    test = TKTimejudge()
+    test = TKTimeJudge()
     #タイマのカウント待ち
     time.sleep(10)
-    test.judge()
+    test.test()
 
 
 if __name__=="__main__":
