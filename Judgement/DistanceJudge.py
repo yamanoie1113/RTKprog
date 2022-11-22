@@ -1,14 +1,15 @@
 import numpy as np
 import math
-import Judge
+
 import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
+from Judgement import Judge
 from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
 
 class DistenceJudge(Judge.Judge):
-    
+
     mx=0.0    #X座標系　オブジェクト
     my=0.0   #Y座標系　オブジェクト
     mdir=0.0  #方位計   オブジェクト
@@ -16,7 +17,7 @@ class DistenceJudge(Judge.Judge):
     endpoint=0.0
     finishlength=0.0
 
-    def init(self):
+    def __init__(self):
         pget = PMgmt.PositionMgmt(0.0)
         #mdir.get_value
         #mydir.get_value()
