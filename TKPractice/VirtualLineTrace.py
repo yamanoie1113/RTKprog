@@ -4,8 +4,8 @@ import math
 
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from Walker import Run,Run2
-from Sensors import PositionMgmt#,TurnAngleSensor as TASensor
+from Walker import Run,Run2,PID
+from Sensors import PositionMgmt#,TurnAngleSensor as TASensor ここsenshat
 #from section import SectionRun
 
 #直線仮想ライントレースお試し実装　使えるかどうかわからん
@@ -41,12 +41,15 @@ class VirtualLineTrace(Run2.Run2):
         y = math.sin(th) + y
         print("run_x,y")
         print(x,y)
+        distance = self.calc_distance(x,y,sx,sy,gx,gy)
+        dire = PID.PID.get_operation(distance)
 
     def reset_param(self):
         self.__init__()
 
     def calc_distance(nowX,nowY,x1,y1,x2,y2):
-        dis = (y2 - y1)*nowX - (x2)
+        dis = ((y2 - y1)*nowX - (x2 - x1)*nowY + (x2*y1 - y2*x1))
+        return -dis
 
 
 def main():
