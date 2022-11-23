@@ -11,20 +11,20 @@ from Sensors import PositionMgmt#,TurnAngleSensor as TASensor ここsenshat
 #直線仮想ライントレースお試し実装　使えるかどうかわからん
 
 class VirtualLineTrace(Run2.Run2):
-    x = 0.0
-    y = 0.0
-    p = 0.0
-    i = 0.0
-    d = 0.0
 
     #initの引数が配列かどうかわからん。たぶん配列？
     def __init__(self):
         self.x = 0.0
         self.y = 0.0
+        self.sx = 0.0
+        self.sy = 0.0
         #こいつらは受け取った値を設定するはず？
+        self.gx = 0.0
+        self.gy = 0.0
         self.p = 0.0
         self.i = 0.0
         self.d = 0.0
+        self.mPmgt = PositionMgmt.PositionMgmt()
 
     def set_param(self,x,y,p,i,d):
         self.x = x
@@ -34,7 +34,7 @@ class VirtualLineTrace(Run2.Run2):
         self.d = d
 
     def run(self):
-        x,y = PositionMgmt.PositionMgmt.getvalue() #現在地xy取得
+        x,y = self.mPmgt.getvalue() #現在地xy取得
         th = 320 #dummy!
         #th = TASensor.TurnAngleSensor.getvalue()   #現在角度取得
         x = math.cos(th) + x
