@@ -29,6 +29,9 @@ class Section3:
     mSection=SectionRun3.SectionRun3()
     msection=0
     Param=[None,None]
+    runinstance_param=[None,None]
+    judgeinstance_param=[None,None]
+    count=[None]
     def __init__(self):
         #セクションパラメーターを初期化
         self.sectionParam.__init__()#Section
@@ -102,51 +105,47 @@ class Section3:
     
     def execRun(self):
         #print(self.mSection[self.mSectionIdx])
-        print("exec",self.param[0])
-        print("exec",self.param[1])
-        print("2zigenn",self.param[1][1])
-        print("all",self.param)
-        #print(self.section)
-        #runメソッド呼ぶ
-        #ここで走るんじゃなかろうか
-        #whileでループさせるのかな？
-        #
-        pass
-
+        print("exec",self.param)
+        print("runinstance",self.runinstance_param)
+        print("judeinstance",self.judgeinstance_param)
+        print("count",self.count)
+        self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)
         self.mState=self.END
 
-        pass
 
 
     def setWalker(self,param):
-        run=self.mSection.request_Walker(param[self.mSectionIdx])
-        
+        #run=self.mSection.request_Walker(param[self.mSectionIdx])
+        #self.instance_param[0]=self.mSection.request_Walker(param[self.mSectionIdx])
 
         if self.mSectionIdx==self.CURVE:
-
+            self.runinstance_param[self.mSectionIdx]=self.mSection.request_Walker(self.mSectionIdx)
             #sectionRunでオブウジェクトが作れたらrun=にする。。と思う　以下も同じ
             param[self.mSectionIdx]=self.mSection.set_param(self.mSectionIdx)
             
         elif self.mSectionIdx==self.STRAIGHT:
-            
-            self.mSection.request_Walker(param)
-
+            self.runinstance_param[self.mSectionIdx]=self.mSection.request_Walker(self.mSectionIdx)
+            print("ooo",self.mSectionIdx)
+            #self.mSection.request_Walker(param)
+            self.count=self.mSection.count_set_param()
             param[self.mSectionIdx]=self.mSection.set_param(self.mSectionIdx)
         
-
+        
+        print("run",self.runinstance_param)
+        print("cnt",self.count)#何秒走るか
     def setjudge(self,param):
-        run2=self.mSection.request_judge(param[self.mSectionIdx])
+        #run2=self.mSection.request_judge(param[self.mSectionIdx])
         
         if self.mSectionIdx==self.CURVE:
 
-            
+            self.judgeinstance_param[self.mSectionIdx]=self.mSection.request_judge(self.mSectionIdx)
             #run2.set_param(self.mSectionIdx)
-            pass
         
         elif self.mSectionIdx==self.STRAIGHT:
+            self.judgeinstance_param[self.mSectionIdx]=self.mSection.request_judge(self.mSectionIdx)
+            print("ju",self.judgeinstance_param)
             #self.mSection.request_judge(param)
             #run2.set_param(self.mSectionIdx)
-            pass
         #パラメータをSectionPrmからもらう
     def get_param(self):
         self.Param[self.mSectionIdx]=self.sectionParam.set_param(self.mSectionIdx)

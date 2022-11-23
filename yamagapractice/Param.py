@@ -27,3 +27,9 @@ class Param:
         print("straight",self.deb)
 
         return self.deb
+
+    def count_set_param(self):
+
+        self.cnt=(2,4,4,4,4,4,4,4)
+
+        return  self.cnt

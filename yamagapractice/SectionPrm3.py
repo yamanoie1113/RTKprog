@@ -13,7 +13,8 @@ class SectionPrm3:
 
     def __init__(self):
                                 #前進量、旋回量、P,I,D           前進量、P,I,D
-        self.list_section = [self.curve,[0,0,0,0,0],self.straight,[0,0,0,0,0]]#list_section[0]が曲線
+        self.list_section = [self.curve,[None],self.straight,[None]]#list_section[0]が曲線
+        self.listSection = [self.curve,[None,None,None,None,None],self.straight,[None,None,None,None,None]]#list_section[0]が曲線
         self.pr=[None]              #↑ごめん多分これ２５６こくらい要素作って値設定していくのかもしれん。わからん
         self.list_se=[[0]*256,[0]*256]#２案
         #print(self.list_se[1])
