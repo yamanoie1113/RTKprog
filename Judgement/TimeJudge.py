@@ -21,16 +21,17 @@ class TimeJudge():
         print("end_judge_init")
 
     def judge(self,limit):
-        print("_________________________________")
-        print(limit)
+
         self.timelimit = limit
+        print("timelimit:",end="")
+        print(self.timelimit)
         self.timer.set_param(limit)
         self.timer.thread1.start()#スレッドでカウントを開始する。
 
         while True :
+            print("_________________________________")
             time = self.timer.getvalue()
-            print("timelimit:",end="")
-            print(self.timelimit)
+
             print("gettime:",end="")
             print(time)
 
