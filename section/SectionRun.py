@@ -104,12 +104,12 @@ class SectionRun:
         if judge==self.DISTANCE:
             #オブジェクト生成
             self.mJudge=DistanceJudge()
-            self.mjudge-0
+            #self.mjudge-0
             print("judge")
         if judge==self.ANGLE:
             #オブジェクト生成
             self.mJudge=TurnAngleJudge()
-            self.mjudge=1
+            #self.mjudge=1
             print("mjudghe")
 
         return self.mjudge
