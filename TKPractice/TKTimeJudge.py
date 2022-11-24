@@ -17,7 +17,7 @@ class TKTimeJudge():
     timer = Timer2.Timer2()
     def __init__(self):
         print("judge_init")
-        self.set_param(10)
+        #self.set_param()
         print("end_judge_init")
 
     def judge(self):
@@ -64,7 +64,9 @@ class TKTimeJudge():
 def main():
     test = TKTimeJudge()
     #タイマのカウント待ち
-    time.sleep(10)
+    tm = input()
+    test.set_param(int(tm))
+    time.sleep(15)
     test.test()
 
 
