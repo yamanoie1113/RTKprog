@@ -67,7 +67,7 @@ class SectionRun3:
                     self.cnt+=1
                     self.N1+=1
                     self.N2+=1
-                    #ここにif文　stateがfalseになったら↓を実行
+                    #stateの受け取り方がわからない　判定でstateを送る関数作ると思う
                     if self.state==False:
                         mwalker[self.number2].run(param[self.number2][self.N2],count[self.cnt])#走法にGo(直線)
                     #stateを戻す
