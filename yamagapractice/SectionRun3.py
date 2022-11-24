@@ -46,7 +46,7 @@ class SectionRun3:
         while self.judgefirst:#trueかfalseか
             
             #ここで時間の判定を呼び出す
-            #180秒経過したら強制的にbreakさせたい
+            #180秒経過したら強制的にbreakさせたい←それってステージ管理かな？
             #self.timejudge.run(self.state)
             #if self.state==true:
             #break
@@ -64,9 +64,10 @@ class SectionRun3:
                     self.cnt+=1
                     self.N1+=1
                     self.N2+=1
-                    #ここにif文　statteが変わったら↓を実行かな
+                    #ここにif文　stateがfalseになったら↓を実行
                     mwalker[self.number2].run(param[self.number2][self.N2],count[self.cnt])#走法にGo(直線)
-                    #stateを変える
+                    #stateを戻す
+                    #state=true
                 else:
                     self.walkerfirst=False
                     self.judgefirst=False#これでwhileを終わらせてしまう
