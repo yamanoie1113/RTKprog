@@ -6,7 +6,7 @@ import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 #from Sensors import MotorMgmt
-class SectionPrm3:
+class SectionPrm:
     #クラス変数
     curve=0
     straight=1
@@ -41,7 +41,7 @@ class SectionPrm3:
 
 def main():
     msectionIdx=0
-    dd=SectionPrm3()
+    dd=SectionPrm()
     dd.set_param(msectionIdx)
     pass
     

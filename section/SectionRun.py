@@ -15,7 +15,7 @@ from Judgement import TurnAngleJudge
 
 
 
-class SectionRun3:
+class SectionRun:
 
     CURVE=1
     STRAIGHT=1
@@ -138,7 +138,7 @@ class SectionRun3:
 
 
 def main():
-    sec=SectionRun3()
+    sec=SectionRun()
     mnumber=1
     sec.set_param(mnumber)
     
