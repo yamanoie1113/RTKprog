@@ -28,7 +28,7 @@ class SectionRun3:
     deb=None
     param=Param.Param()
     number1=0
-    number2=0
+    number2=1
     cnt=0
     N1=0
     N2=0
@@ -46,16 +46,14 @@ class SectionRun3:
         while self.judgefirst:#trueかfalseか
             
             #ここで時間の判定を呼び出す
-            #180秒経過したら強制的にbreakさせたい←それってステージ管理かな？
-            #self.timejudge.run(self.state)
-            #if self.state==true:
-            #break
-
+            #180秒経過はどこで実行判定すればいいかわからん
+            
             if self.judgepoint==0:
                 mjudge[self.judgepoint].run()#距離判定
+                self.judgepoint+=1
             else:
                 mjudge[self.judgepoint].run()#旋回角度判定
-                self.judgepoint=0
+                self.judgepoint-=1
 
             self.walkerfirst=True
 
@@ -72,6 +70,7 @@ class SectionRun3:
                         mwalker[self.number2].run(param[self.number2][self.N2],count[self.cnt])#走法にGo(直線)
                     #stateを戻す
                         self.state=True
+
                 else:
                     self.walkerfirst=False
                     self.judgefirst=False#これでwhileを終わらせてしまう

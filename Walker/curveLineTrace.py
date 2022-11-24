@@ -19,8 +19,8 @@ class cuvreLineTrace:
 
         def set_param(PositionMgmt,a,b):
         
-            #PM = PositionMgmt.PositionMgmt()
-            #param = PM.PositionMgmt.getvalue()
+            PM = PositionMgmt.PositionMgmt()
+            param = PM.PositionMgmt.getvalue()
             param = [5,7]
             x = param[0] #座標分け
             y = param[1]
@@ -32,7 +32,7 @@ class cuvreLineTrace:
         def set_run(self):
 
             
-            #PM = PositionMgmt.PositionMgmt()
+            PM = PositionMgmt.PositionMgmt()
             r = 0
             a = 0 #中心点X
             b = 0 #中心点Y
@@ -47,23 +47,24 @@ class cuvreLineTrace:
                     #中心点に近づく
                     loca = 0
                     if turn == right:
-                        MotorMgmt.set_param(0,1,100)
+                        MotorMgmt.set_param(0,10,100)
                     else:
-                        MotorMgmt.set_param(0,30,-100)
+                        MotorMgmt.set_param(0,10,-100)
 
                 elif r > loca:
                     #中心点から離れる
                     loca = 0
                     if turn == right:
-                        MotorMgmt.set_param(0,30,-100)
+                        MotorMgmt.set_param(0,10,-100)
                     else:
-                        MotorMgmt.set_param(0,30,100)
+                        MotorMgmt.set_param(0,10,100)
 
             
                 cuvreLineTrace.set_param(PM,a,b)
                 time.sleep(0.1)
                 c += 1
                 if c == 600:
+                    MotorMgmt.set_param(0,0,0)
                     break
                 print (c)
                 
