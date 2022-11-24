@@ -28,7 +28,7 @@ class SectionRun3:
     deb=None
     param=Param.Param()
     number1=0
-    number2=0
+    number2=1
     cnt=0
     N1=0
     N2=0
