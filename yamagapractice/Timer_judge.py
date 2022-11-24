@@ -62,7 +62,7 @@ class TimerJudge():
 
 
 def main():
-    test = TKTimeJudge()
+    test = TimerJudge()
     #タイマのカウント待ち
     time.sleep(10)
     test.test()
