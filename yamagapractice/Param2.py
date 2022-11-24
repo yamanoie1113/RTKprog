@@ -2,13 +2,11 @@
 
 class Param2:
     def init(self):
-        self.number=0
-        self.number1=0
-        self.number2=0
-        pass
+        
+        print("init通りました")
 
     def Curve_set_param(self):
-        
+        self.number=0
         self.prm=([5,6,0,0,0],
         [5,6,1,1,1],
         [5,2,1,1,1],
@@ -20,7 +18,7 @@ class Param2:
         return self.deb
     
     def Straight_set_param(self):
-
+        self.number1=0
         self.prm=([5,0,0,0,0],
         [5,0,1,1,1],
         [5,0,1,1,1],
@@ -32,7 +30,7 @@ class Param2:
         return self.deb
 
     def count_set_param(self):
-
+        self.number2=0
         self.cnt=(2,4,4,4,4,4,4,4)
         self.count=self.cnt[self.number2]
         self.number2+=1

@@ -109,7 +109,7 @@ class SectionMgmt2:
         print("runinstance",self.runinstance_param)
         print("judeinstance",self.judgeinstance_param)
         print("count",self.count)
-        self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)
+        #self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)
         self.mState=self.END
 
 

@@ -7,11 +7,11 @@ sys.path.append(str(current_dir) + '/../')
 import Param2
 #from Sensors import MotorMgmt
 #from Walker import Run
-from Walker import VirtualLineTrace
-from Walker import curveLineTrace
+#from Walker import VirtualLineTrace
+#from Walker import curveLineTrace
 from Judgement import TimeJudge
-from Judgement import DistanceJudge
-from Judgement import TurnAngleJudge
+#from Judgement import DistanceJudge
+#from Judgement import TurnAngleJudge
 
 
 
@@ -104,11 +104,11 @@ class SectionRun2:
         if judge==self.DISTANCE:
             #オブジェクト生成
             #self.mJudge=DistanceJudge()
-            self.mjudge-0
+            self.mjudge=0
             print("judge")
         if judge==self.ANGLE:
             #オブジェクト生成
-            self.mJudge=TurnAngleJudge()
+            #self.mJudge=TurnAngleJudge()
             self.mjudge=1
             print("mjudghe")
 

@@ -65,17 +65,38 @@ class SectionRun:
                     self.cnt+=1
                     self.N1+=1
                     self.N2+=1
-                    #stateの受け取り方がわからない　判定でstateを送る関数作ると思う
-                    if self.state==False:
-                        mwalker[self.number2].run(param[self.number2][self.N2],count[self.cnt])#走法にGo(直線)
-                    #stateを戻す
-                        self.state=True
-                    else:
+
+                    while self.state:
+                        print("待ち1")
                         pass
+
+                        if self.state==True:
+                            break
+
+                    #if self.state==False:
+                    self.state=True
+                    self.state=self.timejudge.judge(count[self.cnt])
+                    mwalker[self.number2].run(param[self.number2][self.N2],count[self.cnt])#走法にGo(直線)
+
+                    while self.state:
+                        print("待ち２")
+                        pass
+                        
+                        if self.state==True:
+                            break
+
+                        #if self.state==False:
+                    self.state=True
+                    self.walkerfirst=False
+                    #stateを戻す
+
+                    #else:
+                        #pass
                     
                 else:
                     self.walkerfirst=False
                     self.judgefirst=False#これでwhileを終わらせてしまう
+                    break
 
         #self.mWalker.run()
             
