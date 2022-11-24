@@ -3,11 +3,10 @@ import pathlib
 import time
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-
 #ここのパス変えてね
 import Timer2
 
-class TimerJudge():
+class Timer_Judge():
     #白井の班参考にして作成
     #タイマ値はちゃんと取得できてるっぽい
     #main関数でn秒経過後にタイマ値取得してる。取得しているのは"経過した"秒数？
@@ -25,13 +24,12 @@ class TimerJudge():
         print("gettime:",end="")
         print(time)
 
-        if time >= self.timelimit :
+        if time <= self.timelimit :
             print("timejudge_return_TRUE")
-            return True
+            return False
 
         else :
-            print("timejudge_return_FALSE")
-            return False
+            pass
 
 
     def set_param(self,limit):
@@ -62,7 +60,7 @@ class TimerJudge():
 
 
 def main():
-    test = TimerJudge()
+    test = Timer_Judge()
     #タイマのカウント待ち
     time.sleep(10)
     test.test()
