@@ -70,7 +70,9 @@ class SectionRun3:
                         mwalker[self.number2].run(param[self.number2][self.N2],count[self.cnt])#走法にGo(直線)
                     #stateを戻す
                         self.state=True
-
+                    else:
+                        pass
+                    
                 else:
                     self.walkerfirst=False
                     self.judgefirst=False#これでwhileを終わらせてしまう
