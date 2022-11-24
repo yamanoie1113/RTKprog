@@ -62,7 +62,7 @@ class SectionRun3:
         #走法
             while self.walkerfirst:
                 if param[self.number1][self.N1]!=None:#walkerの配列がなくなったらおーわり★
-                    self.timejudge.judge(count[self.cnt])#timejudgeにカウント数をぶち送る
+                    self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウント数をぶち送る
                     mwalker[self.number1].run(param[self.number1][self.N1])#走法にGo(曲線)
                     self.cnt+=1
                     self.N1+=1
