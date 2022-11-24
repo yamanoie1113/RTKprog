@@ -29,6 +29,8 @@ class Timer2(Sensor.Sensor):
             #sprint(self.count2)
             #return self.count2
 
+            return self.count2
+
 
 def main():
     timer=Timer2()

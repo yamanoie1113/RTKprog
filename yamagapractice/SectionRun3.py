@@ -41,7 +41,7 @@ class SectionRun3:
         self.deb=None
         pass
 
-    def run(self,mjudge,mwalker,count,param):
+    def run(self,mjudge,mwalker,count,param):#判定２つ、走法２つ、秒数、パラメータ
         #早く仮想ラインつくってよおおおおおおおお
         while self.judgefirst:#trueかfalseか
             
@@ -57,17 +57,21 @@ class SectionRun3:
                 mjudge[self.judgepoint].run()#旋回角度判定
                 self.judgepoint=0
 
+            self.walkerfirst=True
+
         #走法
-            if self.walkerfirst:
+            while self.walkerfirst:
                 if param[self.number1][self.N1]!=None:#walkerの配列がなくなったらおーわり★
-                    mwalker[self.number1].run(param[self.number1][self.N1],count[self.cnt])#走法にGo(曲線)
+                    self.timejudge.judge(count[self.cnt])#timejudgeにカウント数をぶち送る
+                    mwalker[self.number1].run(param[self.number1][self.N1])#走法にGo(曲線)
                     self.cnt+=1
                     self.N1+=1
                     self.N2+=1
                     #ここにif文　stateがfalseになったら↓を実行
-                    mwalker[self.number2].run(param[self.number2][self.N2],count[self.cnt])#走法にGo(直線)
+                    if self.state==False:
+                        mwalker[self.number2].run(param[self.number2][self.N2],count[self.cnt])#走法にGo(直線)
                     #stateを戻す
-                    #state=true
+                        self.state=True
                 else:
                     self.walkerfirst=False
                     self.judgefirst=False#これでwhileを終わらせてしまう
