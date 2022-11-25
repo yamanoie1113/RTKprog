@@ -12,40 +12,43 @@ class SectionPrm2:
     straight=1
 
     def __init__(self):
-        self.param=[0,1]
-        self.param[0]=self.curve#曲線
-        self.param[1]=self.straight#直線
-        self.p=[0,1]#区間管理に渡す用のパラメータ
-        print(self.param)
-        print("section2からsectionprmのinitを呼び出した")
+                                #前進量、旋回量、P,I,D           前進量、P,I,D
+        self.list_section = [self.curve,[None],self.straight,[None]]#list_section[0]が曲線
+        self.listSection = [self.curve,[None,None,None,None,None],self.straight,[None,None,None,None,None]]#list_section[0]が曲線
+        self.pr=[None]              #↑ごめん多分これ２５６こくらい要素作って値設定していくのかもしれん。わからん
+        self.list_se=[[0]*256,[0]*256]#２案
+        #print(self.list_se[1])
+
+        pass
 
     def set_param(self,msectionIdx):#msectionIdxは区間管理のget_paramから
-    
-
         if msectionIdx==0:
-            self.p[msectionIdx]=self.param[0]#曲線0
-            print("set_paramです")
-            #print("prm",self.p[0])
-            
+            self.number=1 #ごめんこれはinitでめんどくさいことしちゃったから
+            self.pr=self.list_section[self.number]#self.prに[0,0,0,0,0]を入れる
+            print("set_param値",self.pr)
             
         elif msectionIdx==1:
-            self.p[msectionIdx]=self.param[1]#直線1
-            print("prm2")
+            self.number=3
+            self.pr=self.list_section[self.number]
+            print("set_param値",self.pr)
+            
+        return self.pr
+            
         
-        return self.p[msectionIdx]#パラメータを返す
-
-
-
-#def main():
-    #msectionIdx=0
-    #dd=SectionPrm2()
-    #dd.set_param(msectionIdx)
 
     
 
 
-#if __name__=="__main__":
-    #main()
+def main():
+    msectionIdx=0
+    dd=SectionPrm2()
+    dd.set_param(msectionIdx)
+    pass
+    
+
+
+if __name__=="__main__":
+    main()
 
     #def set_Swalker():
 

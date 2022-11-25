@@ -4,11 +4,11 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-import Param
+from yamagapractice import Param
 #from Sensors import MotorMgmt
 #from Walker import Run
-from Walker import VirtualLineTrace
-from Walker import curveLineTrace
+#from Walker import VirtualLineTrace
+#from Walker import curveLineTrace
 from Judgement import TimeJudge
 from Judgement import DistanceJudge
 from Judgement import TurnAngleJudge

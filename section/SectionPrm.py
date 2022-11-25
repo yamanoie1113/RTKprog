@@ -5,51 +5,45 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from Sensors import MotorMgmt
+#from Sensors import MotorMgmt
 class SectionPrm:
     #クラス変数
     curve=0
     straight=1
 
     def __init__(self):
-        self.param=[0,1]
-        self.param[0]=self.curve#曲線
-        self.param[1]=self.straight#直線
-        self.p=[0,1]#区間管理に渡す用のパラメータ
-        
-        
+                                #前進量、旋回量、P,I,D           前進量、P,I,D
+        self.list_section = [self.curve,[None],self.straight,[None]]#list_section[0]が曲線
+        self.listSection = [self.curve,[None,None,None,None,None],self.straight,[None,None,None,None,None]]#list_section[0]が曲線
+        self.pr=[None]              #↑ごめん多分これ２５６こくらい要素作って値設定していくのかもしれん。わからん
+        self.list_se=[[0]*256,[0]*256]#２案
+        #print(self.list_se[1])
+
+        pass
 
     def set_param(self,msectionIdx):#msectionIdxは区間管理のget_paramから
-    
-
         if msectionIdx==0:
-            self.p[0]=self.param[0]#曲線0
-            print(self.p)
+            self.number=1 #ごめんこれはinitでめんどくさいことしちゃったから
+            self.pr=self.list_section[self.number]#self.prに[0,0,0,0,0]を入れる
+            print("set_param値",self.pr)
             
         elif msectionIdx==1:
-            self.p[1]=self.param[1]#直線1
-            print(self.p)
+            self.number=3
+            self.pr=self.list_section[self.number]
+            print("set_param値",self.pr)
+            
+        return self.pr
+            
         
-        return self.p#パラメータを返す
-        
-        #if msectionIdx==0:
-        #オブジェクト生成()
-            #rtrace=VirtualLineTrace()
-            #ctrace=curvelineTrace()
-            #rtrace.run()
-            
-            #crtrace.run()
-            
-            
-        #時間設定して実行するのは区間パラメータでははないのかも
 
+    
 
 
 def main():
-
+    msectionIdx=0
     dd=SectionPrm()
-    dd.set_param()
-
+    dd.set_param(msectionIdx)
+    pass
     
 
 

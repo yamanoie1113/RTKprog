@@ -12,7 +12,7 @@ class PositionMgmt(Sensor.Sensor):
     #pos_total: float
     def __init__(self):
         # クラス変数
-        self.update()
+        pass
 
     #値の取得
     def getvalue(self):

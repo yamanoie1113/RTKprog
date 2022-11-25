@@ -1,137 +1,170 @@
 
 # coding:utf-8
-from asyncio.windows_events import NULL
 #from curses.ascii import NUL
 import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from section import SectionPrm
-from section import SectionRun
-from Walker import Run
+import SectionRun
+import SectionPrm
+#from yamagapractice import SectionRun2
+#from Walker import Run
 class SectionMgmt:
     #クラス変数
     NULL_PTR=0
     mSectionIdx=0
-    sectionParam=SectionPrm()
+    sectionParam=SectionPrm.SectionPrm()
     UNDEFINED=0
     INIT=1
     RUN=2
+    END=3
     mState=UNDEFINED
     CURVE=0
     STRAIGHT=1
     DISTANCE=0
     ANGLE=1
-    section=[]
+    section=[0,0]
     mlastIdx=0
-
+    param=[None,None]
+    mSection=SectionRun.SectionRun()
+    msection=0
+    Param=[None,None]
+    runinstance_param=[None,None]
+    judgeinstance_param=[None,None]
+    count=[None]
     def __init__(self):
         #セクションパラメーターを初期化
-        self.sectionParam.init()
+        self.sectionParam.__init__()#Section
+        pass
 
+        #走法
     def run(self):
-
-        #状態の分岐
-        #状態がUNDEFINEDだったらexecUndefindを実行
         if self.mState == self.UNDEFINED:
+            print(self.mState)
             self.execUndefined()
+        else:
+            pass
 
-        #状態がINITだったらinitを実行
-        elif self.mState == self.INIT:
+        if self.mState == self.INIT:
+            
             self.init()
 
-        #状態がRUNのだったらexecRunを実行
-        elif self.mState == self.RUN:
+        else:
+            pass
+        
+        if self.mState == self.RUN:
             self.execRun()
+        
+        else:
+            pass
+
+        if self.mState==self.END:
+            sys.exit()
 
     def execUndefined(self):
-        #状態をINITにする
-        self.mState=self.INIT
+        self.mState=self.INIT#状態をINITにする
+        
 
         pass
 
     def init(self):
-        #パラメータを設定する
-        param=self.get_param()
-        #addセクションを回す
-        while(param[self.mSectionIdx]["flag"]):
-            self.addSection(param[self.mSectionIdx][:])#addsection実行
-            self.mSectionIdx+=1#プラスしていく
-            break
-        self.mState=self.RUN
-        pass
+        self.param[self.mSectionIdx]=self.get_param()#get_paramから値を取得
+        flag=True
 
-        #セクション追加
-    def addSection(self,param):
-        mSection=SectionRun()#オブジェクト生成
-        self.setWalker(mSection,param)#走法
-        self.setJudge(mSection,param)#判定
-        #msectionを入れる
-        self.section[self.mlastIdx]=mSection
-        self.mlastIdx+=1
-        self.section[self.mlastIdx]=None
-        
-        
+        while flag:
 
-    def setWalker(self,mSection,param):
-        
-
-        run=mSection.request_Walker(param["walker"])
-            #パラメータの判定
-        if param["walker"]==self.CURVE:#0
-            #曲線のパラメータ投げる
-            run.set_param(param["walkervalue"])
-
-        elif param["walker"]==self.STRAIGHT:#1
-            #直線のパラメータ投げる
-
-            run.set_param(param["walkervalue"])
-
-        pass
-
-    def setJudge(self,mSection,param):
-
-        judge=mSection.request_Judge(param["judge"])
-
-        if param["judge"]==self.DISTANCE:
-            #パラメータ投げる
-            judge.set_param(param["judgevalue"])
-
-            #パラメータ投げる
-        elif param["judge"]==self.ANGLE: #複数ある可能性あり
-            judge.set_param(param["judgevalue"])
-
-        pass
-
-    def execRun(self):
-        #msectionがNONEだったらTrueを返す
-        if self.mSection[self.mSectionIdx] is None:
-            return True
-
-        if self.mSection[self.mSectionIdx].run():
+            self.addSection(self.param)#addセクションを回す
+            
             self.mSectionIdx+=1
             
-        return False
+            if self.mSectionIdx==2:#もし引数が２だったらもう配列に入れれないためbreakする               print("NONE")
+            #if self.param[self.mSectionIdx]==None:
+                print("配列の限界")
+                break
+            else:
+                pass
 
+            self.param[self.mSectionIdx]=self.get_param()#値設定
+            
+
+        self.mState=self.RUN
+
+    
+        #セクション追加
+    def addSection(self,param):
+        #paramに値一つ
+        self.setWalker(param)
+        self.setjudge(param)
+        
+        
+        self.section[self.mlastIdx]=None#sectionを埋める
+        self.mlastIdx+=1 
+
+        #return param[self.mlastIdx]
+        
+    
+    def execRun(self):
+        #print(self.mSection[self.mSectionIdx])
+        print("exec",self.param)
+        print("runinstance",self.runinstance_param)
+        print("judeinstance",self.judgeinstance_param)
+        print("count",self.count)
+        self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)
+        self.mState=self.END
+
+
+
+    def setWalker(self,param):
+        #run=self.mSection.request_Walker(param[self.mSectionIdx])
+        #self.instance_param[0]=self.mSection.request_Walker(param[self.mSectionIdx])
+
+        if self.mSectionIdx==self.CURVE:
+            self.runinstance_param[self.mSectionIdx]=self.mSection.request_Walker(self.mSectionIdx)
+            #sectionRunでオブウジェクトが作れたらrun=にする。。と思う　以下も同じ
+            param[self.mSectionIdx]=self.mSection.set_param(self.mSectionIdx)
+            
+        elif self.mSectionIdx==self.STRAIGHT:
+            self.runinstance_param[self.mSectionIdx]=self.mSection.request_Walker(self.mSectionIdx)
+            print("ooo",self.mSectionIdx)
+            #self.mSection.request_Walker(param)
+            self.count=self.mSection.count_set_param()
+            param[self.mSectionIdx]=self.mSection.set_param(self.mSectionIdx)
+        
+        
+        print("run",self.runinstance_param)
+        print("cnt",self.count)#何秒走るか
+    def setjudge(self,param):
+        #run2=self.mSection.request_judge(param[self.mSectionIdx])
+        
+        if self.mSectionIdx==self.CURVE:
+
+            self.judgeinstance_param[self.mSectionIdx]=self.mSection.request_judge(self.mSectionIdx)
+            #run2.set_param(self.mSectionIdx)
+        
+        elif self.mSectionIdx==self.STRAIGHT:
+            self.judgeinstance_param[self.mSectionIdx]=self.mSection.request_judge(self.mSectionIdx)
+            print("ju",self.judgeinstance_param)
+            #self.mSection.request_judge(param)
+            #run2.set_param(self.mSectionIdx)
         #パラメータをSectionPrmからもらう
     def get_param(self):
-        param=self.sectionParam.set_param(self.mSectionIdx)
-        return param
+        self.Param[self.mSectionIdx]=self.sectionParam.set_param(self.mSectionIdx)
 
-    def __del__(self):
-        pass
+        return self.Param[self.mSectionIdx]
 
 def main():
-    pass
+    se=SectionMgmt()
+    se.run()
+    '''
+    mSectionIdx=0
+    se.get_param(mSectionIdx)
+    mSectionIdx=1
+    se.get_param(mSectionIdx)
+    '''
+
 
 if __name__=="__main__":
     main()
 
 
-
-
-#init内でgetparam呼び出し
-#getparamでパラメータ設定（paramに入る値は　　　　)
-#addsectionに移る
-#SectionRunオブジェクト生成
 

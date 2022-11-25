@@ -5,15 +5,15 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-import SectionRun3
-import SectionPrm3
+import SectionRun2
+import SectionPrm2
 #from yamagapractice import SectionRun2
 #from Walker import Run
-class Section3:
+class SectionMgmt2:
     #クラス変数
     NULL_PTR=0
     mSectionIdx=0
-    sectionParam=SectionPrm3.SectionPrm3()
+    sectionParam=SectionPrm2.SectionPrm2()
     UNDEFINED=0
     INIT=1
     RUN=2
@@ -26,7 +26,7 @@ class Section3:
     section=[0,0]
     mlastIdx=0
     param=[None,None]
-    mSection=SectionRun3.SectionRun3()
+    mSection=SectionRun2.SectionRun2()
     msection=0
     Param=[None,None]
     runinstance_param=[None,None]
@@ -109,7 +109,7 @@ class Section3:
         print("runinstance",self.runinstance_param)
         print("judeinstance",self.judgeinstance_param)
         print("count",self.count)
-        self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)
+        #self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)
         self.mState=self.END
 
 
@@ -153,7 +153,7 @@ class Section3:
         return self.Param[self.mSectionIdx]
 
 def main():
-    se=Section3()
+    se=SectionMgmt2()
     se.run()
     '''
     mSectionIdx=0

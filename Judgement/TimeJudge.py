@@ -1,26 +1,85 @@
-import Judge
 import sys
 import pathlib
+import time
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
+import threading
 
-class TimeJudge(Judge):
+from Sensors import Timer
 
-    def judge():
-        #区間の秒数の判定
-        #直線
-        #if section().count=任意の値
-            #セクションを変える(1)
-            #値を返却
+class TimeJudge():
+    #白井の班参考にして作成
+    #タイマ値はちゃんと取得できてるっぽい
+    #main関数でn秒経過後にタイマ値取得してる。取得しているのは"経過した"秒数？
 
-        #else
-            #pass
+    time=0.0
+    timelimit = 0.0
+    timer = Timer.Timer()
+    def __init__(self):
+        print("judge_init")
+        #self.set_param()
+        print("end_judge_init")
 
-        pass
+    def judge(self,limit):
 
-    def set_param():
+        self.timelimit = limit
+        print("timelimit:",end="")
+        print(self.timelimit)
+        self.timer.set_param(limit)
+        self.timer.thread1.start()#スレッドでカウントを開始する。
+
+        while True :
+            print("_________________________________")
+            time = self.timer.getvalue()
+
+            print("gettime:",end="")
+            print(time)
+
+            if time > self.timelimit-1 :
+                print("timejudge_return_False")
+                return False
+        """
+            else :
+                print("timejudge_return_FALSE")
+                return False
+        """
+
+
+    def set_param(self,limit):
+        #ここで時間を設定できるようにしなければならないけどまだ
+        self.timelimit = limit
+        print("limit:",end="")
+        print(limit)
+
+
+    #テスト用関数 10秒ごとにTrueとFalseを交互に返す
+    def test(self):
+        time = self.timer.getvalue()
+        print("gettime:",end="")
+        tmp = time /10
+        testval = int(tmp % 2)
+        print("testval:",end="")
+        print(testval)
+
+        if testval == 0 :
+            print("timejudge_return_False")
+            return False
+
+        else :
+            print("timejudge_return_True")
+            return True
 
 
 
 
-        pass
+def main():
+    test = TimeJudge()
+    #タイマのカウント待ち
+    tm = input()
+    test.set_param(int(tm))
+    time.sleep(15)
+    test.test()
+
+
+if __name__=="__main__":
+     main()

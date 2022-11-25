@@ -7,20 +7,21 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import Sensor
 
-class Timer2(Sensor.Sensor):
+class Timer(Sensor.Sensor):
     #timer2ｗちょこっと変更
     #countをスレッドで動かしてみてる
 
     #count2 = 0
     thread1 = None
     thread2 = None
+    timelmit = 0
 
     def __init__(self):
         print("Timer_init")
         #タイマ初期化
         self.count2=0
         self.thread1 = threading.Thread(target=self.count)
-        self.thread1.start()
+
 
         self.thread2 = threading.Thread(target=self.getvalue)
         print("end_Timer_init")
@@ -28,13 +29,19 @@ class Timer2(Sensor.Sensor):
 
 
     def update(self):
-        #self.count=0
+        self.count=0
         pass
 
+    def set_param(self,limit):
+        self.timelimit = limit
+
     def count(self):
+
         print("count")
+        self.update()
         #カウントダウン
-        for j in range(10):#直接数字じゃなくて引数をいれるかも
+
+        for j in range(self.timelimit):#直接数字じゃなくて引数をいれるかも
             self.start = time.perf_counter()
             time.sleep(1)
 
