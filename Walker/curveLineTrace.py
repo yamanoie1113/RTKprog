@@ -23,6 +23,7 @@ class cuvreLineTrace:
             y = param[1]
             a = x-200 #中心点X
             b = y-200 #中心点Y
+
             r = np.sqrt((a-x)**2 + (b-y)**2) #座標計算
             return r
 
@@ -56,7 +57,7 @@ class cuvreLineTrace:
                         MotorMgmt.set_param(0,10,100)
 
             
-                cuvreLineTrace.set_param(a,b)
+                r = cuvreLineTrace.set_param(a,b)
                 time.sleep(0.1)
                 c += 1
                 if c == 600:
