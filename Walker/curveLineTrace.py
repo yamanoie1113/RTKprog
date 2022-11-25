@@ -10,17 +10,15 @@ from Sensors import PositionMgmt
 from tkinter import W
 from turtle import right
 import numpy as np
-from math import fabs
-from Walker.Run import Run
 
 
 class cuvreLineTrace:
 
 
-        def set_param(PositionMgmt,a,b):
+        def set_param(a,b):
         
             PM = PositionMgmt.PositionMgmt()
-            param = PM.PositionMgmt.getvalue()
+            param = PM.getvalue()
             param = [5,7]
             x = param[0] #座標分け
             y = param[1]
@@ -32,11 +30,10 @@ class cuvreLineTrace:
         def set_run(self):
 
             
-            PM = PositionMgmt.PositionMgmt()
             r = 0
             a = 0 #中心点X
             b = 0 #中心点Y
-            r = cuvreLineTrace.set_param(0,a,b)
+            r = cuvreLineTrace.set_param(a,b)
             loca = r 
             turn = right
             c = 0
@@ -60,7 +57,7 @@ class cuvreLineTrace:
                         MotorMgmt.set_param(0,10,100)
 
             
-                cuvreLineTrace.set_param(PM,a,b)
+                cuvreLineTrace.set_param(a,b)
                 time.sleep(0.1)
                 c += 1
                 if c == 600:
