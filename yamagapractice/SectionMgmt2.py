@@ -5,36 +5,43 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-import SectionRun2
-import SectionPrm2
+from yamagapractice import SectionRun2
+from yamagapractice import SectionPrm2
+#import SectionPrm2
 #from yamagapractice import SectionRun2
 #from Walker import Run
 class SectionMgmt2:
     #クラス変数
-    NULL_PTR=0
-    mSectionIdx=0
-    sectionParam=SectionPrm2.SectionPrm2()
     UNDEFINED=0
     INIT=1
     RUN=2
     END=3
-    mState=UNDEFINED
     CURVE=0
     STRAIGHT=1
     DISTANCE=0
     ANGLE=1
-    section=[0,0]
-    mlastIdx=0
-    param=[None,None]
-    mSection=SectionRun2.SectionRun2()
-    msection=0
-    Param=[None,None]
-    runinstance_param=[None,None]
-    judgeinstance_param=[None,None]
-    count=[None]
+    mcount=0
     def __init__(self):
+        self.NULL_PTR=0
+        self.mSectionIdx=0
+        self.sectionParam=SectionPrm2.SectionPrm2()
+        self.mState=self.UNDEFINED
+        self.section=[0,0]
+        self.mlastIdx=0
+        self.param=[None,None]
+        self.mSection=SectionRun2.SectionRun2()
+        self.msection=0
+        self.Param=[None,None]
+        self.runinstance_param=[None,None]
+        self.judgeinstance_param=[None,None]
+        self.count=[None,None]
+    #def __init__(self):
         #セクションパラメーターを初期化
         self.sectionParam.__init__()#Section
+
+        print("プリント")
+        self.mState=self.UNDEFINED
+        self.run()
         pass
 
         #走法
@@ -59,7 +66,11 @@ class SectionMgmt2:
             pass
 
         if self.mState==self.END:
-            sys.exit()
+            print("おわり")
+            self.end()
+            #sys.exit()
+        else:
+            pass
 
     def execUndefined(self):
         self.mState=self.INIT#状態をINITにする
@@ -86,7 +97,7 @@ class SectionMgmt2:
 
             self.param[self.mSectionIdx]=self.get_param()#値設定
             
-
+        self.mcount+=1
         self.mState=self.RUN
 
     
@@ -96,6 +107,7 @@ class SectionMgmt2:
         self.setWalker(param)
         self.setjudge(param)
         
+        #self.count=self.mSection.count_set_param(self.mcount)
         
         self.section[self.mlastIdx]=None#sectionを埋める
         self.mlastIdx+=1 
@@ -109,6 +121,9 @@ class SectionMgmt2:
         print("runinstance",self.runinstance_param)
         print("judeinstance",self.judgeinstance_param)
         print("count",self.count)
+        #デバッグ
+        if self.param[0][0]==None:
+            self.mcount=0
         #self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)
         self.mState=self.END
 
@@ -121,15 +136,16 @@ class SectionMgmt2:
         if self.mSectionIdx==self.CURVE:
             self.runinstance_param[self.mSectionIdx]=self.mSection.request_Walker(self.mSectionIdx)
             #sectionRunでオブウジェクトが作れたらrun=にする。。と思う　以下も同じ
-            param[self.mSectionIdx]=self.mSection.set_param(self.mSectionIdx)
+            param[self.mSectionIdx]=self.mSection.set_param(self.mSectionIdx,self.mcount)
+            self.count[self.mSectionIdx]=self.mSection.count_set_param1(self.mcount)
             
         elif self.mSectionIdx==self.STRAIGHT:
             self.runinstance_param[self.mSectionIdx]=self.mSection.request_Walker(self.mSectionIdx)
             print("ooo",self.mSectionIdx)
+            self.count[self.mSectionIdx]=self.mSection.count_set_param1(self.mcount)
             #self.mSection.request_Walker(param)
-            self.count=self.mSection.count_set_param()
-            param[self.mSectionIdx]=self.mSection.set_param(self.mSectionIdx)
-        
+            
+            param[self.mSectionIdx]=self.mSection.set_param(self.mSectionIdx,self.mcount)
         
         print("run",self.runinstance_param)
         print("cnt",self.count)#何秒走るか
@@ -151,6 +167,10 @@ class SectionMgmt2:
         self.Param[self.mSectionIdx]=self.sectionParam.set_param(self.mSectionIdx)
 
         return self.Param[self.mSectionIdx]
+
+    def end(self):
+        print("エンド")
+        pass
 
 def main():
     se=SectionMgmt2()

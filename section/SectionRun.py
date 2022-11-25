@@ -35,6 +35,7 @@ class SectionRun:
     judgepoint=0
     timejudge=TimeJudge.TimeJudge()
     state=True
+    counter=0
     #mMotorMgmt=MotorMgmt()
 
     def init(self):
@@ -63,25 +64,33 @@ class SectionRun:
                     mwalker[self.number1].run(param[self.number1][self.N1])#走法にGo(曲線)
                     self.cnt+=1
                     self.N1+=1
-                    self.N2+=1
+                    
 
                     while self.state:
                         print("待ち1")
                         pass
 
-                        if self.state==True:
+                        if self.state==False:
                             break
 
                     #if self.state==False:
                     self.state=True
                     self.state=self.timejudge.judge(count[self.cnt])
                     mwalker[self.number2].run(param[self.number2][self.N2])#走法にGo(直線)
+                    self.N2+=1
+                    self.cnt+=1
+
+                    if count[self.cnt]==None:
+                            print("秒数戻す")
+                            self.cnt=0
+                    else:
+                        pass
 
                     while self.state:
                         print("待ち２")
                         pass
                         
-                        if self.state==True:
+                        if self.state==False:
                             break
 
                         #if self.state==False:

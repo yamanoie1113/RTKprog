@@ -4,7 +4,7 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-import Param2
+from yamagapractice import Param2
 #from Sensors import MotorMgmt
 #from Walker import Run
 #from Walker import VirtualLineTrace
@@ -60,22 +60,37 @@ class SectionRun2:
         #走法
             while self.walkerfirst:
                 if param[self.number1][self.N1]!=None:#walkerの配列がなくなったらおーわり★
+
                     self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウント数をぶち送る
                     mwalker[self.number1].run(param[self.number1][self.N1])#走法にGo(曲線)
                     self.cnt+=1
-                    self.N1+=1
-                    self.N2+=1
-                    #stateの受け取り方がわからない　判定でstateを送る関数作ると思う
-                    if self.state==False:
-                        mwalker[self.number2].run(param[self.number2][self.N2],count[self.cnt])#走法にGo(直線)
-                    #stateを戻す
-                        self.state=True
-                    else:
+
+                    while self.state:
+                        print("待ち1")
                         pass
+
+                        if self.state==False:
+                            break
+
+                    self.state=True
+                    mwalker[self.number2].run(param[self.number2][self.N2],count[self.cnt])#走法にGo(直線)
+                    #stateを戻す
+
+                    while self.state:
+                        print("待ち2")
+                        pass
+
+                        if self.state==False:
+                            break
                     
+                    
+                    self.walkerfirst=False
+                    self.judgefirst=False
                 else:
+
                     self.walkerfirst=False
                     self.judgefirst=False#これでwhileを終わらせてしまう
+                    break
 
         #self.mWalker.run()
             
@@ -114,27 +129,33 @@ class SectionRun2:
 
         return self.mjudge
 
-    def set_param(self,mnumber):#パラメータ設定
+    def set_param(self,mnumber,count):#パラメータ設定
         #曲線
         if mnumber==0:
-            self.prm=self.param.Curve_set_param()
+            self.Count=count
+            self.prm=self.param.Curve_set_param(self.Count)
             #[前進量、旋回量、P,I,D]
             print("cuevever",self.prm)
             #(ここで値を設定すると思っているs)
         elif mnumber==1:
         #直線
-            self.prm=self.param.Straight_set_param()
+            self.prm=self.param.Straight_set_param(self.Count)
             #[前進量、P,I,D]
             print("straight",self.deb)
         
         return self.prm
 
-    def count_set_param(self):
+    def count_set_param1(self,count):
+        self.cnt=count
 
-        self.cnt=self.param.count_set_param()
+        self.cnt=self.param.count_set_param1(self.cnt)
 
         return self.cnt
 
+    def count_set_param2(self,count):
+        self.cnt=count
+
+        self.cnt=self.param.count_set_param2(self.cnt)
 
 
 def main():
