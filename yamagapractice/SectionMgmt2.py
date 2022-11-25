@@ -21,15 +21,18 @@ class SectionMgmt2:
     DISTANCE=0
     ANGLE=1
     mcount=0
+    sectionParam=SectionPrm2.SectionPrm2()
+    mSection=SectionRun2.SectionRun2()
+    
     def __init__(self):
         self.NULL_PTR=0
         self.mSectionIdx=0
-        self.sectionParam=SectionPrm2.SectionPrm2()
+        
         self.mState=self.UNDEFINED
         self.section=[0,0]
         self.mlastIdx=0
         self.param=[None,None]
-        self.mSection=SectionRun2.SectionRun2()
+        
         self.msection=0
         self.Param=[None,None]
         self.runinstance_param=[None,None]
