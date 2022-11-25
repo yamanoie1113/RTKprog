@@ -46,7 +46,6 @@ class SectionRun:
         while self.judgefirst:#trueかfalseか
             
             #ここで時間の判定を呼び出す
-            #180秒経過はどこで実行判定すればいいかわからん
             
             if self.judgepoint==0:
                 mjudge[self.judgepoint].run()#距離判定
@@ -76,7 +75,7 @@ class SectionRun:
                     #if self.state==False:
                     self.state=True
                     self.state=self.timejudge.judge(count[self.cnt])
-                    mwalker[self.number2].run(param[self.number2][self.N2],count[self.cnt])#走法にGo(直線)
+                    mwalker[self.number2].run(param[self.number2][self.N2])#走法にGo(直線)
 
                     while self.state:
                         print("待ち２")
