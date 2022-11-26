@@ -34,7 +34,7 @@ class PositionMgmt(Sensor.Sensor):
 
 
 def main():
-    tesclass = PositionMgmt(0.0)
+    tesclass = PositionMgmt()
     tesclass.update()
     tesclass.getvalue()
 

@@ -11,31 +11,41 @@ from Sensors import Sensor
 sence = SenseHat()
 yellow = (255,255,0)
 
-#合計
-ang_total = 0.0
 
-#前回旋回後の角度
-last_ang = 0.0
-
-#走行体が最終的に向きたい角度（finishang?）
-base_ang = 0.0
 
 class TurnAngleSensor(Sensor.Sensor):
     turnAngle: float
+    #合計
+    ang_total = 0.0
+
+    #前回旋回後の角度
+    last_ang = 0.0
+
+    #走行体が最終的に向きたい角度（finishang?）
+    base_ang = 0.0
 
     def __init__(self):
-        self.turnAngle = self.update()
+        #self.turnAngle = self.update()
+        pass
 
     def getvalue(self):
-            #event = sence.stick.wait_for_event()
             return self.turnAngle  #ここ返すのangtotalかも
+            #return self.ang_total
 
     def update(self):
         gyro = sence.get_orientation_degrees()
         #print("p: {pitch}, r: {roll}, y: {yaw}".format(**gyro))
-        sence.show_letter("G",yellow)
         self.turnAngle = gyro["yaw"]
-        self.ang_total += self.turnAngle
+
+        #360をまたいだか判定
+        if abs(self.turnAngle - self.last_ang) < 180:
+            self.ang_total += self.turnAngle
+
+        else :
+            self.ang_total += (360 - self.last_ang) + self.turnAngle
+
+        self.last_ang = self.turnAngle
+
 
         #print(self.turnAngle)
 

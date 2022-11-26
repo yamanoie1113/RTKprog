@@ -15,6 +15,7 @@ class Timer(Sensor.Sensor):
     thread1 = None
     thread2 = None
     timelmit = 0
+    sumtime = 0
 
     def __init__(self):
         print("Timer_init")
@@ -24,6 +25,7 @@ class Timer(Sensor.Sensor):
 
 
         self.thread2 = threading.Thread(target=self.getvalue)
+        self.thread3 = threading.Thread(target=self.count)
         print("end_Timer_init")
 
 
@@ -46,11 +48,14 @@ class Timer(Sensor.Sensor):
             time.sleep(1)
 
             self.count2+=round(time.perf_counter() - self.start)
+            self.sumtime += 1
             print(self.count2)
             #sprint(self.count2)
             #return self.count2
 
         print("endcount")
+        #タイマのリセットここでやってるけど変えるかも
+        self.count2 = 0
 
 
 
@@ -65,14 +70,14 @@ class Timer(Sensor.Sensor):
 
 """
 def main():
-    timer=Timer2()
+    timer=Timer()
     #timer.update()
     #timer.set_i()
-    rand = random.randint(0,10)
-    time.sleep(rand)
-    print("rand:",end="")
-    print(rand)
-    timer.thread2.start()
+    timer.set_param(5)
+    timer.thread1.start()
+    timer.thread1.join()
+    timer.set_param(10)   
+    timer.thread3.start() 
 
     pass
 
