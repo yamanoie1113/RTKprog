@@ -14,7 +14,7 @@ from Judgement import TurnAngleJudge
 
 
 
-class SectionRun2:
+class SectionRunTest:
 
     CURVE=1
     STRAIGHT=1
@@ -111,14 +111,14 @@ class SectionRun2:
 
         if walker==self.CURVE:
             #オブジェクト生成
-            self.mWalker=curveLineTrace.cuvreLineTrace()
-            #self.mWalker=0
+            #self.mWalker=curveLineTrace.cuvreLineTrace()
+            self.mWalker=0
             print("curve")
 
         if walker==self.STRAIGHT:
             #オブジェクト生成
-            self.mWalker=VirtualLineTrace.VirtualLineTrace()#今外すとエラーになりますわよ★
-            #self.mWalker=2
+            #self.mWalker=VirtualLineTrace.VirtualLineTrace()#今外すとエラーになりますわよ★
+            self.mWalker=2
             print("straight")
         
         return self.mWalker
@@ -129,8 +129,8 @@ class SectionRun2:
 
         if judge==self.ANGLE:
             #オブジェクト生成
-            self.mJudge=TurnAngleJudge.TurnAngleJudge()
-            #self.mjudge=0
+            #self.mJudge=TurnAngleJudge.TurnAngleJudge()
+            self.mjudge=0
             print("judge")
         if judge==self.DISTANCE:
             #オブジェクト生成
