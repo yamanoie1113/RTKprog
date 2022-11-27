@@ -30,7 +30,16 @@ class cuvreLineTrace:
 
         def set_run(self):
 
-            
+            self.mPID=PID()
+            self.mPID.reset_param()
+            if self.mTargetSpeed*speed<0:
+                self.bai=0.6
+
+            if fabs(self.mTargetSpeed)>fabs(speed):
+                self.bai=1.2
+            #self.mPID.set_target(10)
+            #self.mPID.set_Kpid()
+            #self.mPID.set_limit()
             r = 0
             a = 0 #中心点X
             b = 0 #中心点Y
@@ -63,6 +72,7 @@ class cuvreLineTrace:
                 c += 1
                 if c == 600:
                     MotorMgmt.set_param(0,0,0)
+                    #self.mPID.reset_param()
                     break
                 print (c)
                 
