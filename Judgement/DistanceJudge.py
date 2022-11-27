@@ -44,6 +44,14 @@ class DistanceJudge(Judge.Judge):
         #y軸方向の移動量
         y_move = math.sin(self.mdir * math.pi / 180) * self.finishlength
 
+        #到着地点のxy座標を計算（あってるかわからん）
+        goal_x = self.mx + x_move
+        goal_y = self.my + y_move
+
+        #2点間の距離計算
+        math.sqrt((goal_x - self.mx)**2 + (goal_y - self.my)**2)
+
+
         self.endpoint=0
         print("done.endpoint:",end="")
         print(self.endpoint)
@@ -63,14 +71,13 @@ class DistanceJudge(Judge.Judge):
         tmp = angget.getvalue()
         self.mdir = tmp['yaw']
 
-    #目標となる値をここで設定したい
+    #目標となる値をここで設定したい(進みたい距離)
     def set_param(self,judgevalue):
         self.finishlength=judgevalue
 
 def main():
-    mdisjudge = DistenceJudge.DistanceJudge()
-    mdisjudge.find_end_point()
-    mdisjudge.set_param()
+    mdisjudge = DistanceJudge()
+    mdisjudge.set_param(10)
 
 if __name__ == '__main__':
     main()
