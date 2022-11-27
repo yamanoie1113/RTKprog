@@ -18,7 +18,7 @@ class DistenceJudge(Judge.Judge):
     finishlength=0.0
 
     def __init__(self):
-        pget = PMgmt.PositionMgmt(0.0)
+        pget = PMgmt.PositionMgmt()
         #mdir.get_value
         #mydir.get_value()
         #mx.get_value()
