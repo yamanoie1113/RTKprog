@@ -3,6 +3,7 @@ import os
 import sys
 import time
 import pathlib
+from Walker.PID import PID
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import MotorMgmt
@@ -29,7 +30,11 @@ class cuvreLineTrace:
 
         def set_run(self):
 
-            
+            self.mPID=PID()
+            self.mPID.reset_param()
+            #self.mPID.set_target(10)
+            #self.mPID.set_Kpid()
+            #self.mPID.set_limit()
             r = 0
             a = 0 #中心点X
             b = 0 #中心点Y
@@ -60,8 +65,9 @@ class cuvreLineTrace:
                 r = cuvreLineTrace.set_param(a,b)
                 time.sleep(0.1)
                 c += 1
-                if c == 600:
+                if c == 300:
                     MotorMgmt.set_param(0,0,0)
+                    #self.mPID.reset_param()
                     break
                 print (c)
                 
