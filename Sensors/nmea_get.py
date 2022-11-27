@@ -13,7 +13,13 @@ def get():
     # IPアドレスとポート番号でバインド、タプルで指定
     sock_sv.connect((IPADDR, PORT))
     # 接続・受信の無限ループ
+    
+    #屋内テスト用コード
+    return 1,2
 
+
+"""
+#本番用
     while True:
 
         while True:
@@ -46,7 +52,7 @@ def get():
                 return list_GGA[2],list_GGA[4]
 
 
-  
+"""
 def main():
     while True:
         #print("enter1")

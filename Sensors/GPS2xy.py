@@ -10,17 +10,21 @@ from Sensors import nmea_get
 class GPS2xy():
     latitude : float
     longitude : float
-    
+
 
     def getvalue(self):
         print("gps2xy.getvalue")
+        print("test")
+        x,y = nmea_get.get()
+        """
+        #本番用コード
         self.latitude,self.longitude = nmea_get.get()
         print(self.latitude,self.longitude)
         
-        """
+        
         latitude = nmea_get.list_GGA[2]
         longitude = nmea_get.list_GGA[4]
-        """
+    
         
         #緯度 ddmm.mmmmmmm
         #latitude = "3539.3146239"
@@ -77,6 +81,7 @@ class GPS2xy():
         #transformer = pyproj.Transformer.from_crs('EPSG:2453','EPSG:6680',always_xy=True)
         transformer = pyproj.Transformer.from_crs('EPSG:4612','EPSG:2453',always_xy=True)
         x,y = transformer.transform(longitude,latitude)
+        """
 
         print("x:",end="")
         print(x)
