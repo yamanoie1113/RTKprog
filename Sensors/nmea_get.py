@@ -26,7 +26,7 @@ def get():
             # ソケットから byte 形式でデータ受信
             data = sock_sv.recv(1)
             #print(data)
-                
+
             if data==b"$":
                 #print("break1")
                 break
