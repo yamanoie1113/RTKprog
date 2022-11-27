@@ -93,6 +93,7 @@ class SectionRun2:
                     
                     self.walkerfirst=False
                     self.judgefirst=False
+                    
                 else:
 
                     self.walkerfirst=False
@@ -100,7 +101,7 @@ class SectionRun2:
                     break
 
         #self.mWalker.run()
-            
+        self.cnt=0   
     def request_Walker(self,walker):
 
     #走法の生成依頼
