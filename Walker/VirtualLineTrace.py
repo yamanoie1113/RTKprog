@@ -9,7 +9,7 @@ from Walker.Run import Run
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import PositionMgmt
-from section import SectionMgmt
+from section import SectionMgmt2
 
 
 class VirtualLineTrace(Run):
