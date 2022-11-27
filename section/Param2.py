@@ -34,7 +34,7 @@ class Param2:
     def count_set_param1(self,counting):
         #self.number2=0
         print("xxxxxxxxxxx",counting)
-        self.cnt=(2,4,4,4,4,5,4,6,3,7,3,8,3,9,3,10,None)
+        self.cnt=(1,4,4,4,4,5,4,6,3,7,3,8,3,9,3,10,None)
         self.count=self.cnt[counting] 
         print("カウントの秒数",self.cnt[counting])
         #self.number2+=1
@@ -43,7 +43,7 @@ class Param2:
     def count_set_param2(self,counting):
         #self.number2=0
         print("xxxxxxxxxxx",counting)
-        self.cnt=(2,2,2,3,2,2,2,5,7,4,5,7,2,6,3,11,None)
+        self.cnt=(2,5,2,3,2,2,2,5,7,4,5,7,2,6,3,11,None)
         self.count=self.cnt[counting] 
         print("カウントの秒数",self.cnt[counting])
         #self.number2+=1

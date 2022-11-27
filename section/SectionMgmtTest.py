@@ -90,7 +90,7 @@ class SectionMgmtTest:
             self.addSection(self.param)#addセクションを回す
             
             self.mSectionIdx+=1
-            
+            print("kokokokokoko",self.mSectionIdx)
             if self.mSectionIdx==2:#もし引数が２だったらもう配列に入れれないためbreakする               print("NONE")
             #if self.param[self.mSectionIdx]==None:
                 print("配列の限界")
@@ -124,7 +124,8 @@ class SectionMgmtTest:
         print("exec",self.param)
         print("runinstance",self.runinstance_param)
         print("judeinstance",self.judgeinstance_param)
-        print("count",self.count)
+        print("count",self.count[0])
+        print("count",self.count[1])
         print("cnt",self.mcount)
         #デバッグ
         if self.param[0]==None:
@@ -147,12 +148,14 @@ class SectionMgmtTest:
             #sectionRunでオブウジェクトが作れたらrun=にする。。と思う　以下も同じ
             param[self.mSectionIdx]=self.mSection.set_param(self.mSectionIdx,self.mcount)
             self.count[self.mSectionIdx]=self.mSection.count_set_param1(self.mcount)
-            
+            print("konoyaroumeee",self.count)
         elif self.mSectionIdx==self.STRAIGHT:
             self.runinstance_param[self.mSectionIdx]=self.mSection.request_Walker(self.mSectionIdx)
             print("ooo",self.mSectionIdx)
+            print("self.mcountdaaaaaaa",self.mcount)
             param[self.mSectionIdx]=self.mSection.set_param(self.mSectionIdx,self.mcount)
             self.count[self.mSectionIdx]=self.mSection.count_set_param2(self.mcount)
+            print("カウントだい",self.count[self.mSectionIdx])
             #self.mSection.request_Walker(param)
             
         
@@ -182,7 +185,7 @@ class SectionMgmtTest:
         pass
 
 def main():
-    se=SectionMgmt2()
+    se=SectionMgmtTest()
     se.run()
     '''
     mSectionIdx=0
