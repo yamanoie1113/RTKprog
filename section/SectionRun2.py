@@ -1,5 +1,4 @@
 # coding:utf-8
-from asyncio.windows_events import NULL
 import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
