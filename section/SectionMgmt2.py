@@ -125,7 +125,7 @@ class SectionMgmt2:
         print("judeinstance",self.judgeinstance_param)
         print("count",self.count)
         #デバッグ
-        if self.param[0][0]==None:
+        if self.param[0]==None:
             self.mcount=0
         if self.count[0]==None:
             self.mcount=0

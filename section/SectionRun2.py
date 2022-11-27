@@ -26,11 +26,9 @@ class SectionRun2:
     mjudge=0
     deb=None
     param=Param2.Param2()
-    number1=0
-    number2=1
+    number=0
     cnt=0
     N1=0
-    N2=0
     judgepoint=0
     timejudge=TimeJudge.TimeJudge()
     state=True
@@ -59,12 +57,15 @@ class SectionRun2:
 
         #走法
             while self.walkerfirst:
-                if param[self.number1][self.N1]!=None or count[self.cnt]!=None:#walkerかcpuntの配列がなくなったらおーわり★
-
+                if param[self.N1]!=None or count[self.cnt] !=None:#別に２次元配列ではなくてもいいことに気が付いた
+                    #param[self.number1][self.N1]!=None or count[self.cnt]!=None:#walkerかcpuntの配列がなくなったらおーわり★
                     self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウント数をぶち送る
-                    #mwalker[self.number1].run(param[self.number1][self.N1])#走法にGo(曲線)　絶対にエラーになるのでコメントアウト
+                    #mwalker[self.number].run(param[self.N1])#これをコメント外す
+                    #mwalker[self.number].run(param[self.number1][self.N1])#走法にGo(曲線)　絶対にエラーになるのでコメントアウト
                     print("テスト１")
                     self.cnt+=1
+                    self.N1+=1
+                    self.number+=1
 
                     while self.state:
                         print("待ち1")
@@ -80,7 +81,7 @@ class SectionRun2:
                     else:
                         print("テスト２")
                         self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウントをぶち送る
-                        #mwalker[self.number2].run(param[self.number2][self.N2],count[self.cnt])#走法にGo(直線) 絶対にエラーになるのでコメントアウト
+                        #mwalker[self.number1].run(param[self.N1])#走法にGo(直線) 絶対にエラーになるのでコメントアウト
                         #stateを戻す
 
                     while self.state:
@@ -93,6 +94,7 @@ class SectionRun2:
                     
                     self.walkerfirst=False
                     self.judgefirst=False
+
                     
                 else:
 
@@ -100,8 +102,10 @@ class SectionRun2:
                     self.judgefirst=False#これでwhileを終わらせてしまう
                     break
 
-        #self.mWalker.run()
+        self.number=0
+        self.N1=0
         self.cnt=0   
+        #↑これは後でinitでやります。
     def request_Walker(self,walker):
 
     #走法の生成依頼
