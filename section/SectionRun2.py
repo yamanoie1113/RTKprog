@@ -36,13 +36,15 @@ class SectionRun2:
 
     def init(self):
         self.deb=None
+        
+
+    def run(self,mjudge,mwalker,count,param):#判定２つ、走法２つ、秒数、パラメータ エラーになったらmWalkerを一回外して
+        #早く仮想ラインつくってよおおおおおおおお
         self.number=0
         self.N1=0
         self.cnt=0   
         self.judgepoint=0
-
-    def run(self,mjudge,mwalker,count,param):#判定２つ、走法２つ、秒数、パラメータ エラーになったらmWalkerを一回外して
-        #早く仮想ラインつくってよおおおおおおおお
+        
         while self.judgefirst:#trueかfalseか
             
             #ここで時間の判定を呼び出す
@@ -167,6 +169,8 @@ class SectionRun2:
         self.cnt=count
 
         self.cnt=self.param.count_set_param2(self.cnt)
+
+        return self.cnt
 
 
 def main():
