@@ -149,7 +149,7 @@ class SectionMgmt2:
         elif self.mSectionIdx==self.STRAIGHT:
             self.runinstance_param[self.mSectionIdx]=self.mSection.request_Walker(self.mSectionIdx)
             print("ooo",self.mSectionIdx)
-            self.count[self.mSectionIdx]=self.mSection.count_set_param1(self.mcount)
+            self.count[self.mSectionIdx]=self.mSection.count_set_param2(self.mcount)
             #self.mSection.request_Walker(param)
             
             param[self.mSectionIdx]=self.mSection.set_param(self.mSectionIdx,self.mcount)
