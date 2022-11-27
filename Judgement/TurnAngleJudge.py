@@ -24,9 +24,12 @@ class TurnAngleJudge(Judge.Judge):
         #sensehatからジャイロ取得
         angget = TASensor.TurnAngleSensor()
 
-        #ジャイロから旋回角度抽出
-        tmp = angget.getvalue()
-        self.startangle = tmp['yaw'] + self.startangle
+        #ジャイロから旋回角度抽出 元々yawだけ返ってくるようになってる
+        #挙動に合わせてこっちで選択出来るように変えてもいいかも
+        self.startangle = angget.getvalue()
+
+        #tmp = angget.getvalue()
+        #self.startangle = tmp['yaw'] + self.startangle
         #XYから値取得
 
         """
