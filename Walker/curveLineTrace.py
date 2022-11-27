@@ -32,11 +32,6 @@ class cuvreLineTrace:
 
             self.mPID=PID()
             self.mPID.reset_param()
-            if self.mTargetSpeed*speed<0:
-                self.bai=0.6
-
-            if fabs(self.mTargetSpeed)>fabs(speed):
-                self.bai=1.2
             #self.mPID.set_target(10)
             #self.mPID.set_Kpid()
             #self.mPID.set_limit()
