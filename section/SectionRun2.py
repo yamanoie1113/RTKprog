@@ -44,7 +44,7 @@ class SectionRun2:
         self.N1=0
         self.cnt=0   
         self.judgepoint=0
-        
+
         while self.judgefirst:#trueかfalseか
             
             #ここで時間の判定を呼び出す
@@ -66,7 +66,7 @@ class SectionRun2:
                     #param[self.number1][self.N1]!=None or count[self.cnt]!=None:#walkerかcpuntの配列がなくなったらおーわり★
                     self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウント数をぶち送る
                     #mwalker[self.number].run(param[self.N1])#これをコメント外す
-                    #mwalker[self.number].run(param[self.number1][self.N1])#走法にGo(曲線)　絶対にエラーになるのでコメントアウト
+                    #mwalker[self.number].run(param[self.number1][self.N1])#外すな
                     print("テスト１")
                     self.cnt+=1
                     self.N1+=1
@@ -74,11 +74,12 @@ class SectionRun2:
 
                     while self.state:
                         print("待ち1")
-                        pass
 
                     
                         if self.state==False:
                             break
+                        else:
+                            pass
 
                     self.state=True
                     if count[self.cnt]==None:
@@ -91,10 +92,11 @@ class SectionRun2:
 
                     while self.state:
                         print("待ち2")
-                        pass
-
+                        
                         if self.state==False:
                             break
+                        else:
+                            pass
                     
                     
                     self.walkerfirst=False

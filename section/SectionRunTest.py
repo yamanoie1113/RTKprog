@@ -65,12 +65,12 @@ class SectionRunTest:
 
         #走法
             while self.walkerfirst:
-                    print("ikuzwe!",count[self.cnt])
-                #if param[self.N1]!=None or count[self.cnt] !=None:#別に２次元配列ではなくてもいいことに気が付いた
+                print("ikuzwe!",count[self.cnt])
+                if param[self.N1]!=None or count[self.cnt] !=None:#別に２次元配列ではなくてもいいことに気が付いた
                     #param[self.number1][self.N1]!=None or count[self.cnt]!=None:#walkerかcpuntの配列がなくなったらおーわり★
-                    #self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウント数をぶち送る
+                    self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウント数をぶち送る
                     #mwalker[self.number].run(param[self.N1])#これをコメント外す
-                    #mwalker[self.number].run(param[self.number1][self.N1])#走法にGo(曲線)　絶対にエラーになるのでコメントアウト
+                    #mwalker[self.number].run(param[self.number1][self.N1])#外すな
                     print("テスト１")
                     self.cnt+=1
                     self.N1+=1
@@ -79,8 +79,6 @@ class SectionRunTest:
                     while self.state:
                         print("待ち1")
                         #デバック
-                        self.state=False
-
                     
                         if self.state==False:
                             break
@@ -88,26 +86,28 @@ class SectionRunTest:
                             pass
 
                     self.state=True
-                    #if count[self.cnt]==None:
-                        #self.walkerfirst=False
+                    if count[self.cnt]==None:
+                        self.walkerfirst=False
+                    
                     
                     print("テスト２")
-                        #self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウントをぶち送る
+                    self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウントをぶち送る
                         #mwalker[self.number1].run(param[self.N1])#走法にGo(直線) 絶対にエラーになるのでコメントアウト
                         #stateを戻す
 
                     while self.state:
                         print("待ち2")
                         #デバック
-                        self.state=False
-                        
-
                         if self.state==False:
                             break
                         else:
                             pass
+
+
+                    self.walkerfirst=False
+                    self.judgefirst=False
                     
-                    
+                else:
                     self.walkerfirst=False
                     self.judgefirst=False
                     break
