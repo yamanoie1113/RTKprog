@@ -65,7 +65,7 @@ class cuvreLineTrace:
                 r = cuvreLineTrace.set_param(a,b)
                 time.sleep(0.1)
                 c += 1
-                if c == 600:
+                if c == 300:
                     MotorMgmt.set_param(0,0,0)
                     #self.mPID.reset_param()
                     break
