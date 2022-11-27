@@ -138,7 +138,7 @@ class SectionRun2:
             print("judge")
         if judge==self.DISTANCE:
             #オブジェクト生成
-            self.mjudge=DistanceJudge.DistenceJudge()
+            self.mjudge=DistanceJudge.DistanceJudge()
             #self.mjudge=1
             print("mjudghe")
 
