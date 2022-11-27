@@ -127,7 +127,7 @@ class SectionMgmt2:
         #デバッグ
         if self.param[0][0]==None:
             self.mcount=0
-        self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)#えらーになったらself.runinstance_paramを一回外してください
+        #self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)#えらーになったらself.runinstance_paramを一回外してください
         self.mState=self.END
 
 
