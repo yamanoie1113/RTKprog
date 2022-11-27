@@ -3,6 +3,7 @@ import os
 import sys
 import time
 import pathlib
+from Walker.PID import PID
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import MotorMgmt
