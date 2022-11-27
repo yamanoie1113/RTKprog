@@ -16,6 +16,7 @@ class PositionMgmt(Sensor.Sensor):
 
     #値の取得
     def getvalue(self):
+        self.update()
         if self.position != None:
             print(self.position)
             print("return_end")
