@@ -8,7 +8,7 @@ sys.path.append(str(current_dir) + '/../')
 from Judgement import Judge
 from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
 
-class DistenceJudge(Judge.Judge):
+class DistanceJudge(Judge.Judge):
 
     mx=0.0    #X座標系　オブジェクト
     my=0.0   #Y座標系　オブジェクト
@@ -19,7 +19,7 @@ class DistenceJudge(Judge.Judge):
     Pm = PMgmt.PositionMgmt()
 
     def __init__(self):
-        pget = PMgmt.PositionMgmt(0.0)
+        pget = PMgmt.PositionMgmt()
         #mdir.get_value
         #mydir.get_value()
         #mx.get_value()
