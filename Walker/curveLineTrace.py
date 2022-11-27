@@ -32,9 +32,6 @@ class cuvreLineTrace:
 
             self.mPID=PID()
             self.mPID.reset_param()
-            #self.mPID.set_target(10)
-            #self.mPID.set_Kpid()
-            #self.mPID.set_limit()
             r = 0
             a = 0 #中心点X
             b = 0 #中心点Y
@@ -45,6 +42,10 @@ class cuvreLineTrace:
             
 
             while True:
+                #self.mPID.set_target(loca)
+                #self.mPID.set_Kpid(0.6,0.6,0.6)
+                #self.mPID.set_limit()
+                #self.mPID.get_operation()
                 if r < loca:
                     #中心点に近づく
                     loca = 0
