@@ -14,7 +14,7 @@ yellow = (255,255,0)
 
 
 class TurnAngleSensor(Sensor.Sensor):
-    turnAngle: float
+    turnAngle = 0.0
     #合計
     ang_total = 0.0
 

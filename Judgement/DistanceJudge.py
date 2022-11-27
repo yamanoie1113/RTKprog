@@ -45,7 +45,7 @@ class DistenceJudge(Judge.Judge):
         endpoint=0
         return endpoint
     
-    def judge():
+    def judge(self):
 
         #X、Y座標を取得し、その値が基準値をこえていたらtrueを返す。それ以外はfalse
 
