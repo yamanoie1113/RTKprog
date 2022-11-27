@@ -59,7 +59,7 @@ class SectionRun2:
 
         #走法
             while self.walkerfirst:
-                if param[self.number1][self.N1]!=None:#walkerの配列がなくなったらおーわり★
+                if param[self.number1][self.N1]!=None or count[self.cnt]!=None:#walkerかcpuntの配列がなくなったらおーわり★
 
                     self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウント数をぶち送る
                     #mwalker[self.number1].run(param[self.number1][self.N1])#走法にGo(曲線)　絶対にエラーになるのでコメントアウト
@@ -70,13 +70,18 @@ class SectionRun2:
                         print("待ち1")
                         pass
 
+                    
                         if self.state==False:
                             break
 
                     self.state=True
-                    print("テスト２")
-                    #mwalker[self.number2].run(param[self.number2][self.N2],count[self.cnt])#走法にGo(直線) 絶対にエラーになるのでコメントアウト
-                    #stateを戻す
+                    if count[self.cnt]==None:
+                        self.walkerfirst=False
+                    else:
+                        print("テスト２")
+                        self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウントをぶち送る
+                        #mwalker[self.number2].run(param[self.number2][self.N2],count[self.cnt])#走法にGo(直線) 絶対にエラーになるのでコメントアウト
+                        #stateを戻す
 
                     while self.state:
                         print("待ち2")
