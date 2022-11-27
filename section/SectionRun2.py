@@ -39,7 +39,7 @@ class SectionRun2:
         self.number=0
         self.N1=0
         self.cnt=0   
-
+        self.judgepoint=0
 
     def run(self,mjudge,mwalker,count,param):#判定２つ、走法２つ、秒数、パラメータ エラーになったらmWalkerを一回外して
         #早く仮想ラインつくってよおおおおおおおお
@@ -54,7 +54,7 @@ class SectionRun2:
                 self.judgepoint+=1
             else:
                 mjudge[self.judgepoint].judge()#旋回角度判定
-                self.judgepoint-=1
+                
 
             self.walkerfirst=True
 
