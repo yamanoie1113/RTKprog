@@ -7,10 +7,10 @@ import time
 
 class MotorMgmt():
 
-
+        
     def set_param(self,sp,sv):
 
-
+        
         if sv ==0:
             svduty = 7.25
         else:
@@ -18,29 +18,29 @@ class MotorMgmt():
                 svduty = 7.25 + sv*0.0475
             else:
                 svduty = 7.25 - sv*0.0475
-        cycle = int((svduty * 1000000 / 100))
-
+        cycle = int((svduty * 1000000 / 100))        
+        
         if sp == 0:
             spduty = 78
         else:
-            if sp >= 1:
+            if sp >= 0:
                 a2 = 76
                 spduty = a2 - sp*0.4
             else:
                 sp = sp *-1
                 a2 = 80
                 spduty = a2 + sp*0.38
-
+                
 
         MotorMgmt.run(cycle,spduty)
 
 
 
     def run(cycle,duty):
-
-        pi.hardware_PWM(18, 50, cycle)
+        
+        #pi.hardware_PWM(18, 50, cycle)
         up_flag = True
-        pi.set_PWM_frequency(19,200)
+        #pi.set_PWM_frequency(19,200)
         flog = 0
         duty = duty - 1
         print(cycle,duty)
@@ -48,8 +48,8 @@ class MotorMgmt():
 
             while True:
 
-                pi.set_PWM_dutycycle(19,duty)#36-76
-
+                #pi.set_PWM_dutycycle(19,duty)#36-76
+        
                 if up_flag == True:
                     if duty >= duty:
                         up_flag = False
@@ -64,14 +64,20 @@ class MotorMgmt():
                         duty = duty + 1
                         flog = 1
                     time.sleep(0.1)
-                    break
 
-        except KeyboardInterrupt:
+        except KeybordInterrupt:
                 pass
 
         #pi.set_mode(PIN, pigpio.INPUT)
         #pi.stop()
 
+def main():
+    MotorMgmt.set_param(10,100)
+        
+if __name__ == '__main__':
+    main()
+
+            
 
 
 
