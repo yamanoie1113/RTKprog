@@ -24,8 +24,8 @@ class GPS2xy():
         print(self.latitude,self.longitude)
         
         
-        latitude = nmea_get.list_GGA[2]
-        longitude = nmea_get.list_GGA[4]
+        #latitude = nmea_get.list_GGA[2]
+        #longitude = nmea_get.list_GGA[4]
     
         
         #緯度 ddmm.mmmmmmm

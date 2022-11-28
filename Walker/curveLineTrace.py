@@ -3,7 +3,7 @@ import os
 import sys
 import time
 import pathlib
-from Walker.PID import PID
+#from Walker.PID import PID
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import MotorMgmt
@@ -31,15 +31,16 @@ class cuvreLineTrace:
 
         def set_run(self):
 
-            self.mPID=PID()
+            #self.mPID=PID()
             #self.mPID.reset_param()
             #self.param = list()
             #self.param = SectionRun2.set_param()
+            MM = MotorMgmt.MotorMgmt()
             r = 0
             a = 0 #中心点X
             b = 0 #中心点Y
             r = cuvreLineTrace.set_param(a,b)
-            loca = r 
+            loca = r
             turn = right
             c = 0
             
@@ -50,37 +51,44 @@ class cuvreLineTrace:
                 #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
                 #self.mPID.set_limit()
                 #self.mPID.get_operation()
+                
                 if r < loca:
                     #中心点に近づく
                     loca = 0
                     if turn == right:
-                        MotorMgmt.set_param(0,10,100)
+                        MM.set_param(10,100)
+                        #print ('zennsin')
                     else:
-                        MotorMgmt.set_param(0,10,-100)
+                        #print ('cousin')
+                        MM.set_param(10,-100)
 
                 elif r > loca:
                     #中心点から離れる
                     loca = 0
                     if turn == right:
-                        MotorMgmt.set_param(0,10,-100)
+                        #print ('zennsin2')
+                        MM.set_param(10,-100)
                     else:
-                        MotorMgmt.set_param(0,10,100)
+                        MM.set_param(10,100)
+                        #print ('cousin2')
 
-            
+                MM.run()
                 r = cuvreLineTrace.set_param(a,b)
                 time.sleep(0.1)
                 c += 1
-                if c == 300:
-                    MotorMgmt.set_param(0,0,0)
+                if c == 10:
+                    MM.set_param(0,0)
+                    MM.run()
                     #self.mPID.reset_param()
                     break
-                print (c)
+                #print (c)
                 
 
 def main():
-    print (1)
+    #print (1)
     cuvre = cuvreLineTrace()
     cuvre.set_run()
         
 if __name__ == '__main__':
     main()
+
