@@ -160,14 +160,14 @@ class SectionRun2:
         
         return self.prm
 
-    def count_set_param1(self,count):
+    def count_set_param1(self,count):#これが曲線
         self.cnt=count
 
         self.cnt=self.param.count_set_param1(self.cnt)
 
         return self.cnt
 
-    def count_set_param2(self,count):
+    def count_set_param2(self,count):#これが直線
         self.cnt=count
 
         self.cnt=self.param.count_set_param2(self.cnt)
