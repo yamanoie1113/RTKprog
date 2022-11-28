@@ -21,6 +21,7 @@ def get():
 """
 #本番用
     while True:
+        print("GPS_loading....")
 
         while True:
             # ソケットから byte 形式でデータ受信
@@ -30,7 +31,7 @@ def get():
             if data==b"$":
                 #print("break1")
                 break
-            print("loading....")
+            
 
         data = sock_sv.recv(5)
         #print(data)

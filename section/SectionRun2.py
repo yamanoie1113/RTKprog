@@ -53,7 +53,7 @@ class SectionRun2:
                 self.judgepoint+=1
             else:
                 mjudge[self.judgepoint].judge()#旋回角度判定
-                
+
 
             self.walkerfirst=True
 

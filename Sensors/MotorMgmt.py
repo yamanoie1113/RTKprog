@@ -71,8 +71,3 @@ class MotorMgmt():
 
         #pi.set_mode(PIN, pigpio.INPUT)
         #pi.stop()
-
-
-
-
-
