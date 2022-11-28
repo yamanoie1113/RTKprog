@@ -5,7 +5,7 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 import threading
 
-from Sensors import Timer
+from Sensors import Timer2
 
 class TimeJudge2():
     #白井の班参考にして作成
@@ -14,7 +14,7 @@ class TimeJudge2():
 
     time=0.0
     timelimit = 0.0
-    timer = Timer.Timer()
+    timer = Timer2.Timer2()
     def __init__(self):
         print("judge_init")
         #self.set_param()

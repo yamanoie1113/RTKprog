@@ -7,7 +7,7 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import Sensor
 
-class Timer(Sensor.Sensor):
+class Timer2(Sensor.Sensor):
     #timer2ｗちょこっと変更
     #countをスレッドで動かしてみてる
 
