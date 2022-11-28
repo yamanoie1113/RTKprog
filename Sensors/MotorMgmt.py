@@ -77,6 +77,7 @@ class MotorMgmt():
         except KeybordInterrupt:
                 pass
 
+<<<<<<< HEAD
         #self.pi.set_mode(PIN, pigpio.INPUT)
         #self.pi.stop()
 
@@ -91,3 +92,7 @@ if __name__ == '__main__':
 
 
 
+=======
+        #pi.set_mode(PIN, pigpio.INPUT)
+        #pi.stop()
+>>>>>>> 97d1f81d4445526523577e89c9c184e251cf0c98

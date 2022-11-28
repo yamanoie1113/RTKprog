@@ -13,17 +13,19 @@ class GPS2xy():
 
 
     def getvalue(self):
+        #テスト用コード
         print("gps2xy.getvalue")
         print("test")
         x,y = nmea_get.get()
+        #----------------------------test
         """
         #本番用コード
         self.latitude,self.longitude = nmea_get.get()
         print(self.latitude,self.longitude)
         
         
-        latitude = nmea_get.list_GGA[2]
-        longitude = nmea_get.list_GGA[4]
+        #latitude = nmea_get.list_GGA[2]
+        #longitude = nmea_get.list_GGA[4]
     
         
         #緯度 ddmm.mmmmmmm

@@ -40,7 +40,7 @@ class cuvreLineTrace:
             a = 0 #中心点X
             b = 0 #中心点Y
             r = cuvreLineTrace.set_param(a,b)
-            loca = r 
+            loca = r
             turn = right
             c = 0
             

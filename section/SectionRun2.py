@@ -16,22 +16,16 @@ from Judgement import TurnAngleJudge
 
 class SectionRun2:
 
-    CURVE=1
+    CURVE=0
     STRAIGHT=1
     DISTANCE=0
     ANGLE=1
-    judgefirst=True
-    walkerfirst=True
-    mWalker=0
-    mjudge=0
+    #mWalker=0
+    #mjudge=0
     deb=None
     param=Param2.Param2()
-    number=0
-    cnt=0
-    N1=0
-    judgepoint=0
     timejudge=TimeJudge.TimeJudge()
-    state=True
+    
     #mMotorMgmt=MotorMgmt()
 
     def __init__(self):
@@ -40,6 +34,9 @@ class SectionRun2:
         self.N1=0
         self.cnt=0   
         self.judgepoint=0
+        self.judgefirst=True
+        self.walkerfirst=True
+        self.state=True
 
     def run(self,mjudge,mwalker,count,param):#判定２つ、走法２つ、秒数、パラメータ エラーになったらmWalkerを一回外して
         #早く仮想ラインつくってよおおおおおおおお
@@ -56,7 +53,7 @@ class SectionRun2:
                 self.judgepoint+=1
             else:
                 mjudge[self.judgepoint].judge()#旋回角度判定
-                
+
 
             self.walkerfirst=True
 
