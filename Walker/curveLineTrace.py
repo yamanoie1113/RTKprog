@@ -8,6 +8,7 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import MotorMgmt
 from Sensors import PositionMgmt
+from section import SectionRun2
 from tkinter import W
 from turtle import right
 import numpy as np
@@ -22,8 +23,8 @@ class cuvreLineTrace:
             param = PM.getvalue()
             x = param[0] #座標分け
             y = param[1]
-            a = x-200 #中心点X
-            b = y-200 #中心点Y
+            a = x-300 #中心点X
+            b = y-300 #中心点Y
 
             r = np.sqrt((a-x)**2 + (b-y)**2) #座標計算
             return r
@@ -31,7 +32,9 @@ class cuvreLineTrace:
         def set_run(self):
 
             self.mPID=PID()
-            self.mPID.reset_param()
+            #self.mPID.reset_param()
+            #self.param = list()
+            #self.param = SectionRun2.set_param()
             r = 0
             a = 0 #中心点X
             b = 0 #中心点Y
@@ -42,8 +45,9 @@ class cuvreLineTrace:
             
 
             while True:
+                
                 #self.mPID.set_target(loca)
-                #self.mPID.set_Kpid(0.6,0.6,0.6)
+                #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
                 #self.mPID.set_limit()
                 #self.mPID.get_operation()
                 if r < loca:
