@@ -74,37 +74,43 @@ class SectionRun2:
 
                     
                         if self.state==False:
+                            print("False1")
                             break
                         else:
                             pass
 
                     self.state=True
                     if count[self.cnt]==None:
-                        self.walkerfirst=False
+                        print("もうカウントできない")
                     else:
                         print("テスト２")
                         self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウントをぶち送る
                         #mwalker[self.number1].run(param[self.N1])#走法にGo(直線) 絶対にエラーになるのでコメントアウト
                         #stateを戻す
 
-                    while self.state:
-                        print("待ち2")
+                        while self.state:
+                            print("待ち2")
                         
-                        if self.state==False:
-                            break
-                        else:
-                            pass
+                            if self.state==False:
+                                break
+                            else:
+                                pass
                     
                     
                     self.walkerfirst=False
                     self.judgefirst=False
-                    break
+                    
                     
                 else:
 
                     self.walkerfirst=False
                     self.judgefirst=False#これでwhileを終わらせてしまう
+                
+                if self.walkerfirst==False:
                     break
+            #終わらす  
+            if self.judgefirst==False:
+                break
         
     def request_Walker(self,walker):
 

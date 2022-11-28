@@ -40,8 +40,8 @@ class SectionMgmt2:
         self.count=[None,None]
     #def __init__(self):
         #セクションパラメーターを初期化
-        self.sectionParam.__init__()#Section
-        self.mSection.__init__()
+        self.sectionParam.__init__()#Sectionparam2
+        self.mSection.__init__()#SectionRun2
 
         print("プリント")
         self.mState=self.UNDEFINED
@@ -128,10 +128,11 @@ class SectionMgmt2:
         print("count",self.count)
         print("cnt",self.mcount)
         #デバッグ
-        if self.param[0]==None:
+        if self.param[0]==None or self.param[1]==None:
             self.mcount=0
-        elif self.count[0]==None:
+        elif self.count[0]==None or self.count[1]==None:
             self.mcount=0
+            
         else:
             self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)#えらーになったらself.runinstance_paramを一回外してください
         

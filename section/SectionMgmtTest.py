@@ -131,8 +131,12 @@ class SectionMgmtTest:
         #デバッグ
         if self.param[0]==None:
             self.mcount=0
+        elif self.param[0]==None:
+            self.mcont=0
         elif self.count[0]==None:
             self.mcount=0
+        elif self.count[1]==None:
+            self.mcont=0
         else:
             #self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)#えらーになったらself.runinstance_paramを一回外してください
             pass

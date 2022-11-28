@@ -17,6 +17,7 @@ class PID:
         resetFlg=True
         sec=3
         cnt=0
+        #↑initで設定するやつ多いかも
     # コンストラクタ
         def __init__(self,delta=0.01):
         # クラス変数
@@ -95,7 +96,7 @@ class PID:
 
             #if (self.debug):
 
-                #self.sprintf(self.buf,"pid:(float(%3.1),self.diff:float(%4.2) d:float(%4.2) i:float(%4.2) op:float(%5.3)",self.target,value,self.diff[1],self.delta,self.integral,self.val)
+                #self.printf(self.buf,"pid:(float(%3.1),self.diff:float(%4.2) d:float(%4.2) i:float(%4.2) op:float(%5.3)",self.target,value,self.diff[1],self.delta,self.integral,self.val)
                 #self.msg_log (self.buf)
 
             if (self.val>self.limit):
