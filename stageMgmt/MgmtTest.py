@@ -21,7 +21,7 @@ class MgmtTest:
     def run(self,section):
         self.count=0
         self.state=True
-        self.time=30
+        self.time=15
         self.timeMgmt=TimeJudge2.TimeJudge2()
         self.statment=self.timeMgmt.judge(self.time)
         while self.state:

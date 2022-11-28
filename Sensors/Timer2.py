@@ -55,7 +55,7 @@ class Timer2(Sensor.Sensor):
 
         print("endcount")
         #タイマのリセットここでやってるけど変えるかも
-        self.count2 = 0
+        #self.count2 = 0
 
 
 
