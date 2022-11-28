@@ -7,14 +7,14 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import Sensor
 
-class Timer(Sensor.Sensor):
+class Timer2(Sensor.Sensor):
     #timer2ｗちょこっと変更
     #countをスレッドで動かしてみてる
 
     #count2 = 0
     thread1 = None
     thread2 = None
-    timelimit = 0
+    timelmit = 0
     sumtime = 0
 
     def __init__(self):
@@ -55,7 +55,7 @@ class Timer(Sensor.Sensor):
 
         print("endcount")
         #タイマのリセットここでやってるけど変えるかも
-        self.count2 = 0
+        #self.count2 = 0
 
 
 

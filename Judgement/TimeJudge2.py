@@ -5,16 +5,16 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 import threading
 
-from Sensors import Timer
+from Sensors import Timer2
 
-class TimeJudge():
+class TimeJudge2():
     #白井の班参考にして作成
     #タイマ値はちゃんと取得できてるっぽい
     #main関数でn秒経過後にタイマ値取得してる。取得しているのは"経過した"秒数？
 
     time=0.0
     timelimit = 0.0
-    timer = Timer.Timer()
+    timer = Timer2.Timer2()
     def __init__(self):
         print("judge_init")
         #self.set_param()
@@ -73,13 +73,13 @@ class TimeJudge():
 
 
 def main():
-    test = TimeJudge()
+    test = TimeJudge2()
     #タイマのカウント待ち
     tm = input()
     test.set_param(int(tm))
-    time.sleep(5)
+    time.sleep(15)
     test.test()
 
 
 if __name__=="__main__":
-     main()
+    main()

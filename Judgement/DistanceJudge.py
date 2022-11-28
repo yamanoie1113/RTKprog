@@ -8,7 +8,7 @@ sys.path.append(str(current_dir) + '/../')
 from Judgement import Judge
 from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
 
-class DistenceJudge(Judge.Judge):
+class DistanceJudge(Judge.Judge):
 
     mx=0.0    #X座標系　オブジェクト
     my=0.0   #Y座標系　オブジェクト
@@ -24,26 +24,38 @@ class DistenceJudge(Judge.Judge):
         #mx.get_value()
         #my.get_value()
 
-        #XYから値取得
+        #XY値取得
         positionXY = pget.getvalue()
-        #mx,myに座標をセット
+
+        #mx ,myに座標をセット
         self.mx = positionXY[0]
         self.my = positionXY[1]
-        
+
         self.endpoint=self.find_end_point()
 
         #座標計算
     def find_end_point(self):
-
+        print("find_endpoint")
         #移動距離、現在の座標、走行体の向きから終了座標を求める
-        
+
         #x軸方向の移動量
         x_move = math.cos(self.mdir * math.pi / 180) * self.finishlength
 
         #y軸方向の移動量
         y_move = math.sin(self.mdir * math.pi / 180) * self.finishlength
-        endpoint=0
-        return endpoint
+
+        #到着地点のxy座標を計算（あってるかわからん）
+        goal_x = self.mx + x_move
+        goal_y = self.my + y_move
+
+        #2点間の距離計算
+        math.sqrt((goal_x - self.mx)**2 + (goal_y - self.my)**2)
+
+
+        self.endpoint=0
+        print("done.endpoint:",end="")
+        print(self.endpoint)
+
     
     def judge(self):
 
@@ -58,8 +70,14 @@ class DistenceJudge(Judge.Judge):
         #ジャイロから旋回角度抽出
         tmp = angget.getvalue()
         self.mdir = tmp['yaw']
-    
+
+    #目標となる値をここで設定したい(進みたい距離)
     def set_param(self,judgevalue):
         self.finishlength=judgevalue
 
-        pass
+def main():
+    mdisjudge = DistanceJudge()
+    mdisjudge.set_param(10)
+
+if __name__ == '__main__':
+    main()

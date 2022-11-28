@@ -6,11 +6,11 @@ sys.path.append(str(current_dir) + '/../')
 from section import Param2
 #from Sensors import MotorMgmt
 #from Walker import Run
-from Walker import VirtualLineTrace
-from Walker import curveLineTrace
+#from Walker import VirtualLineTrace
+#from Walker import curveLineTrace
 from Judgement import TimeJudge
-from Judgement import DistanceJudge
-from Judgement import TurnAngleJudge
+#from Judgement import DistanceJudge
+#from Judgement import TurnAngleJudge
 
 
 
@@ -36,74 +36,87 @@ class SectionRunTest:
 
     def init(self):
         self.deb=None
-        self.number=0
-        self.N1=0
-        self.cnt=0   
-        self.judgepoint=0
 
     def run(self,mjudge,mwalker,count,param):#判定２つ、走法２つ、秒数、パラメータ エラーになったらmWalkerを一回外して
+        self.number=0
+        self.N1=0
+        self.judgepoint=0
+        self.cnt=0
         #早く仮想ラインつくってよおおおおおおおお
+        print("koraaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",count)
+        print("いけええ",self.cnt)
+        print("kokodesyo",count[1])
         while self.judgefirst:#trueかfalseか
             
             #ここで時間の判定を呼び出す
             #180秒経過はどこで実行判定すればいいかわからん
-            mjudge[self.judgepoint].__init__()
-
+            #mjudge[self.judgepoint].__init__()
+            print("judgeいけた")
             if self.judgepoint==0:
-                mjudge[self.judgepoint].judge()#距離判定
-                self.judgepoint+=1
-            else:
-                mjudge[self.judgepoint].judge()#旋回角度判定
+                #mjudge[self.judgepoint].judge()#距離判定
+                #self.judgepoint+=1
+                print("judge2いけた")
                 
+            else:
+                #mjudge[self.judgepoint].judge()#旋回角度判定
+                print("つかれた")
 
             self.walkerfirst=True
 
         #走法
             while self.walkerfirst:
+                print("ikuzwe!",count[self.cnt])
                 if param[self.N1]!=None or count[self.cnt] !=None:#別に２次元配列ではなくてもいいことに気が付いた
                     #param[self.number1][self.N1]!=None or count[self.cnt]!=None:#walkerかcpuntの配列がなくなったらおーわり★
                     self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウント数をぶち送る
                     #mwalker[self.number].run(param[self.N1])#これをコメント外す
-                    #mwalker[self.number].run(param[self.number1][self.N1])#走法にGo(曲線)　絶対にエラーになるのでコメントアウト
+                    #mwalker[self.number].run(param[self.number1][self.N1])#外すな
                     print("テスト１")
                     self.cnt+=1
                     self.N1+=1
                     self.number+=1
-
+                    print("ikuzwe2!",count[self.cnt])
                     while self.state:
                         print("待ち1")
-                        pass
-
+                        #デバック
                     
                         if self.state==False:
                             break
+                        else:
+                            pass
 
                     self.state=True
                     if count[self.cnt]==None:
                         self.walkerfirst=False
-                    else:
-                        print("テスト２")
-                        self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウントをぶち送る
+                    
+                    
+                    print("テスト２")
+                    self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウントをぶち送る
                         #mwalker[self.number1].run(param[self.N1])#走法にGo(直線) 絶対にエラーになるのでコメントアウト
                         #stateを戻す
 
                     while self.state:
                         print("待ち2")
-                        pass
-
+                        #デバック
                         if self.state==False:
                             break
+                        else:
+                            pass
+
+
+                    self.walkerfirst=False
+                    self.judgefirst=False
                     
-                    
+                else:
                     self.walkerfirst=False
                     self.judgefirst=False
                     break
                     
-                else:
+                
 
-                    self.walkerfirst=False
-                    self.judgefirst=False#これでwhileを終わらせてしまう
-                    break
+                    #irst=False
+                    #self.judgefirst=False#これでwhileを終わらせてしまう
+                    #sbreak
         
     def request_Walker(self,walker):
 
@@ -134,8 +147,8 @@ class SectionRunTest:
             print("judge")
         if judge==self.DISTANCE:
             #オブジェクト生成
-            self.mjudge=DistanceJudge.DistenceJudge()
-            #self.mjudge=1
+            #self.mjudge=DistanceJudge.DistenceJudge()
+            self.mjudge=1
             print("mjudghe")
 
         return self.mjudge
@@ -144,17 +157,19 @@ class SectionRunTest:
         #曲線
         if mnumber==0:
             self.Count=count
-            self.prm=self.param.Curve_set_param(self.Count)
+            self.prm1=self.param.Curve_set_param(self.Count)
             #[前進量、旋回量、P,I,D]
-            print("cuevever",self.prm)
+            print("cuevever",self.prm1)
             #(ここで値を設定すると思っているs)
-        elif mnumber==1:
-        #直線
-            self.prm=self.param.Straight_set_param(self.Count)
-            #[前進量、P,I,D]
-            print("straight",self.deb)
+            return self.prm1
         
-        return self.prm
+        if mnumber==1:
+        #直線
+            self.prm2=self.param.Straight_set_param(self.Count)
+            #[前進量、P,I,D]
+            print("straight",self.prm2)
+        
+        return self.prm2
 
     def count_set_param1(self,count):
         self.cnt=count
@@ -168,9 +183,10 @@ class SectionRunTest:
 
         self.cnt=self.param.count_set_param2(self.cnt)
 
+        return self.cnt
 
 def main():
-    sec=SectionRun2()
+    sec=SectionRunTest()
     mnumber=1
     sec.set_param(mnumber)
     

@@ -34,7 +34,7 @@ class SectionRun2:
     state=True
     #mMotorMgmt=MotorMgmt()
 
-    def init(self):
+    def __init__(self):
         self.deb=None
         self.number=0
         self.N1=0
@@ -43,6 +43,8 @@ class SectionRun2:
 
     def run(self,mjudge,mwalker,count,param):#判定２つ、走法２つ、秒数、パラメータ エラーになったらmWalkerを一回外して
         #早く仮想ラインつくってよおおおおおおおお
+        
+
         while self.judgefirst:#trueかfalseか
             
             #ここで時間の判定を呼び出す
@@ -64,7 +66,7 @@ class SectionRun2:
                     #param[self.number1][self.N1]!=None or count[self.cnt]!=None:#walkerかcpuntの配列がなくなったらおーわり★
                     self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウント数をぶち送る
                     #mwalker[self.number].run(param[self.N1])#これをコメント外す
-                    #mwalker[self.number].run(param[self.number1][self.N1])#走法にGo(曲線)　絶対にエラーになるのでコメントアウト
+                    #mwalker[self.number].run(param[self.number1][self.N1])#外すな
                     print("テスト１")
                     self.cnt+=1
                     self.N1+=1
@@ -72,11 +74,12 @@ class SectionRun2:
 
                     while self.state:
                         print("待ち1")
-                        pass
 
                     
                         if self.state==False:
                             break
+                        else:
+                            pass
 
                     self.state=True
                     if count[self.cnt]==None:
@@ -89,10 +92,11 @@ class SectionRun2:
 
                     while self.state:
                         print("待ち2")
-                        pass
-
+                        
                         if self.state==False:
                             break
+                        else:
+                            pass
                     
                     
                     self.walkerfirst=False
@@ -134,7 +138,7 @@ class SectionRun2:
             print("judge")
         if judge==self.DISTANCE:
             #オブジェクト生成
-            self.mjudge=DistanceJudge.DistenceJudge()
+            self.mjudge=DistanceJudge.DistanceJudge()
             #self.mjudge=1
             print("mjudghe")
 
@@ -156,17 +160,19 @@ class SectionRun2:
         
         return self.prm
 
-    def count_set_param1(self,count):
+    def count_set_param1(self,count):#これが曲線
         self.cnt=count
 
         self.cnt=self.param.count_set_param1(self.cnt)
 
         return self.cnt
 
-    def count_set_param2(self,count):
+    def count_set_param2(self,count):#これが直線
         self.cnt=count
 
         self.cnt=self.param.count_set_param2(self.cnt)
+
+        return self.cnt
 
 
 def main():

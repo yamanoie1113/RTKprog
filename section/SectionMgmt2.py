@@ -41,6 +41,7 @@ class SectionMgmt2:
     #def __init__(self):
         #セクションパラメーターを初期化
         self.sectionParam.__init__()#Section
+        self.mSection.__init__()
 
         print("プリント")
         self.mState=self.UNDEFINED
@@ -115,7 +116,7 @@ class SectionMgmt2:
         
         self.section[self.mlastIdx]=None#sectionを埋める
         self.mlastIdx+=1 
-
+        
         #return param[self.mlastIdx]
         
     
@@ -151,8 +152,10 @@ class SectionMgmt2:
         elif self.mSectionIdx==self.STRAIGHT:
             self.runinstance_param[self.mSectionIdx]=self.mSection.request_Walker(self.mSectionIdx)
             print("ooo",self.mSectionIdx)
+            print("self.mcountdaaaaaaaaaaaaaaaaaaaaa",self.mcount)
             param[self.mSectionIdx]=self.mSection.set_param(self.mSectionIdx,self.mcount)
             self.count[self.mSectionIdx]=self.mSection.count_set_param2(self.mcount)
+            
             #self.mSection.request_Walker(param)
             
         
