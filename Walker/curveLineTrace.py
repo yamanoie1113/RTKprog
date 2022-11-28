@@ -72,12 +72,13 @@ class cuvreLineTrace:
                         MM.set_param(10,100)
                         #print ('cousin2')
 
-            
+                MM.run()
                 r = cuvreLineTrace.set_param(a,b)
                 time.sleep(0.1)
                 c += 1
                 if c == 10:
                     MM.set_param(0,0)
+                    MM.run()
                     #self.mPID.reset_param()
                     break
                 #print (c)
