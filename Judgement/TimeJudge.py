@@ -77,7 +77,7 @@ def main():
     #タイマのカウント待ち
     tm = input()
     test.set_param(int(tm))
-    time.sleep(15)
+    time.sleep(5)
     test.test()
 
 

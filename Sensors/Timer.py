@@ -14,7 +14,7 @@ class Timer(Sensor.Sensor):
     #count2 = 0
     thread1 = None
     thread2 = None
-    timelmit = 0
+    timelimit = 0
     sumtime = 0
 
     def __init__(self):
