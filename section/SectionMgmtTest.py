@@ -126,6 +126,7 @@ class SectionMgmtTest:
         print("judeinstance",self.judgeinstance_param)
         print("count",self.count[0])
         print("count",self.count[1])
+        print("countall",self.count)
         print("cnt",self.mcount)
         #デバッグ
         if self.param[0]==None:
@@ -133,8 +134,8 @@ class SectionMgmtTest:
         elif self.count[0]==None:
             self.mcount=0
         else:
-            self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)#えらーになったらself.runinstance_paramを一回外してください
-        
+            #self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)#えらーになったらself.runinstance_paramを一回外してください
+            pass
         self.mState=self.END
 
 

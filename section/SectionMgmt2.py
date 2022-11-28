@@ -41,6 +41,7 @@ class SectionMgmt2:
     #def __init__(self):
         #セクションパラメーターを初期化
         self.sectionParam.__init__()#Section
+        self.mSection.__init__()
 
         print("プリント")
         self.mState=self.UNDEFINED

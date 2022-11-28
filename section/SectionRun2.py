@@ -34,16 +34,16 @@ class SectionRun2:
     state=True
     #mMotorMgmt=MotorMgmt()
 
-    def init(self):
+    def __init__(self):
         self.deb=None
-        
-
-    def run(self,mjudge,mwalker,count,param):#判定２つ、走法２つ、秒数、パラメータ エラーになったらmWalkerを一回外して
-        #早く仮想ラインつくってよおおおおおおおお
         self.number=0
         self.N1=0
         self.cnt=0   
         self.judgepoint=0
+
+    def run(self,mjudge,mwalker,count,param):#判定２つ、走法２つ、秒数、パラメータ エラーになったらmWalkerを一回外して
+        #早く仮想ラインつくってよおおおおおおおお
+        
 
         while self.judgefirst:#trueかfalseか
             
@@ -160,14 +160,14 @@ class SectionRun2:
         
         return self.prm
 
-    def count_set_param1(self,count):
+    def count_set_param1(self,count):#これが曲線
         self.cnt=count
 
         self.cnt=self.param.count_set_param1(self.cnt)
 
         return self.cnt
 
-    def count_set_param2(self,count):
+    def count_set_param2(self,count):#これが直線
         self.cnt=count
 
         self.cnt=self.param.count_set_param2(self.cnt)
