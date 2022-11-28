@@ -128,11 +128,11 @@ class SectionMgmt2:
         print("count",self.count)
         print("cnt",self.mcount)
         #デバッグ
-        if self.param[0]==None or self.param[1]==None:
+        if (self.param[0]==None) or (self.param[1]==None) :
             self.mcount=0
-        elif self.count[0]==None or self.count[1]==None:
+        elif (self.count[0]==None) or (self.count[1]==None):
             self.mcount=0
-            
+
         else:
             self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)#えらーになったらself.runinstance_paramを一回外してください
         

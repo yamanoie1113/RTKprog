@@ -138,7 +138,7 @@ class SectionMgmtTest:
         elif self.count[1]==None:
             self.mcont=0
         else:
-            #self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)#えらーになったらself.runinstance_paramを一回外してください
+            self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)#えらーになったらself.runinstance_paramを一回外してください
             pass
         self.mState=self.END
 
