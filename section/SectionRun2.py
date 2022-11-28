@@ -40,12 +40,8 @@ class SectionRun2:
 
     def run(self,mjudge,mwalker,count,param):#判定２つ、走法２つ、秒数、パラメータ エラーになったらmWalkerを一回外して
         #早く仮想ラインつくってよおおおおおおおお
-        
-
         while self.judgefirst:#trueかfalseか
             
-            #ここで時間の判定を呼び出す
-            #180秒経過はどこで実行判定すればいいかわからん
             mjudge[self.judgepoint].__init__()
 
             if self.judgepoint==0:
@@ -57,14 +53,11 @@ class SectionRun2:
 
             self.walkerfirst=True
 
-        #走法
+            #走法
             while self.walkerfirst:
-                if  (param[0]!=None) or (count[0] !=None):
-                    #(param[self.N1]!=None) or (count[self.cnt] !=None):#別に２次元配列ではなくてもいいことに気が付いた
-                    #param[self.number1][self.N1]!=None or count[self.cnt]!=None:#walkerかcpuntの配列がなくなったらおーわり★
+                if  (param[0]!=None) or (count[0] !=None):#配列無しならおわり
                     self.state=self.timejudge.judge(count[0])#timejudgeにカウント数をぶち送る
                     #mwalker[self.number].run(param[self.N1])#これをコメント外す
-                    #mwalker[self.number].run(param[self.number1][self.N1])#外すな
                     print("テスト１")
                     self.cnt+=1
                     self.N1+=1
@@ -73,21 +66,16 @@ class SectionRun2:
                     while self.state:
                         print("待ち1")
 
-                    
                         if self.state==False:
-                            print("False1")
                             break
                         else:
                             pass
 
                     self.state=True
-                    if count[1]==None:
-                        print("もうカウントできない")
-                    else:
-                        print("テスト２")
+                    print("テスト２")
+                    if (param[1]!=None) or (count[1] !=None):#配列無しならおわり
                         self.state=self.timejudge.judge(count[1])#timejudgeにカウントをぶち送る
                         #mwalker[self.number1].run(param[self.N1])#走法にGo(直線) 絶対にエラーになるのでコメントアウト
-                        #stateを戻す
 
                         while self.state:
                             print("待ち2")
@@ -97,20 +85,30 @@ class SectionRun2:
                             else:
                                 pass
                 
-                    self.walkerfirst=False
-                    self.judgefirst=False
-                    
-                    
-                else:
+                        self.walkerfirst=False
 
-                    self.walkerfirst=False
-                    self.judgefirst=False#これでwhileを終わらせてしまう
-                
-                if self.walkerfirst==False:
-                    break
-            #終わらす  
+                        if self.walkerfirst==False:
+                            break
+                    else:
+                        self.walkerfirst==False
+
+                        if self.walkerfirst==False:
+                            break
+                        
+
+                else:
+                    self.walkerfirst==False
+
+                    if self.walkerfirst==False:
+                        break
+
+            
+            self.judgefirst=False
+                    
+            #↓ここで終わりたい
             if self.judgefirst==False:
                 break
+        
         
     def request_Walker(self,walker):
 

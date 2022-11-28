@@ -34,89 +34,79 @@ class SectionRunTest:
     state=True
     #mMotorMgmt=MotorMgmt()
 
-    def init(self):
+    def __init__(self):
         self.deb=None
-
-    def run(self,mjudge,mwalker,count,param):#判定２つ、走法２つ、秒数、パラメータ エラーになったらmWalkerを一回外して
         self.number=0
         self.N1=0
+        self.cnt=0   
         self.judgepoint=0
-        self.cnt=0
-        #早く仮想ラインつくってよおおおおおおおお
-        print("koraaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",count)
-        print("いけええ",self.cnt)
-        print("kokodesyo",count[1])
+        self.judgefirst=True
+        self.walkerfirst=True
+        self.state=True
+
+    def run(self,mjudge,mwalker,count,param):#判定２つ、走法２つ、秒数、パラメータ エラーになったらmWalkerを一回外して
         while self.judgefirst:#trueかfalseか
             
-            #ここで時間の判定を呼び出す
-            #180秒経過はどこで実行判定すればいいかわからん
-            #mjudge[self.judgepoint].__init__()
-            print("judgeいけた")
+            
+            mjudge[self.judgepoint].__init__()
+
             if self.judgepoint==0:
                 #mjudge[self.judgepoint].judge()#距離判定
-                #self.judgepoint+=1
-                print("judge2いけた")
-                
+                self.judgepoint+=1
             else:
                 #mjudge[self.judgepoint].judge()#旋回角度判定
-                print("つかれた")
+                print("ora")
+
 
             self.walkerfirst=True
 
-        #走法
+            #走法
             while self.walkerfirst:
-                print("ikuzwe!",count[self.cnt])
-                if param[self.N1]!=None or count[self.cnt] !=None:#別に２次元配列ではなくてもいいことに気が付いた
-                    #param[self.number1][self.N1]!=None or count[self.cnt]!=None:#walkerかcpuntの配列がなくなったらおーわり★
-                    self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウント数をぶち送る
+                if  (param[0]!=None) or (count[0] !=None):
+                    self.state=self.timejudge.judge(count[0])#timejudgeにカウント数をぶち送る
                     #mwalker[self.number].run(param[self.N1])#これをコメント外す
-                    #mwalker[self.number].run(param[self.number1][self.N1])#外すな
                     print("テスト１")
                     self.cnt+=1
                     self.N1+=1
                     self.number+=1
-                    print("ikuzwe2!",count[self.cnt])
+
                     while self.state:
                         print("待ち1")
-                        #デバック
-                    
+
                         if self.state==False:
                             break
                         else:
                             pass
 
                     self.state=True
-                    if count[self.cnt]==None:
-                        self.walkerfirst=False
-                    
-                    
                     print("テスト２")
-                    self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウントをぶち送る
-                        #mwalker[self.number1].run(param[self.N1])#走法にGo(直線) 絶対にエラーになるのでコメントアウト
-                        #stateを戻す
+                    self.state=self.timejudge.judge(count[1])#timejudgeにカウントをぶち送る
+                    #mwalker[self.number1].run(param[self.N1])#走法にGo(直線) 絶対にエラーになるのでコメントアウト
 
                     while self.state:
                         print("待ち2")
-                        #デバック
+                        
                         if self.state==False:
                             break
                         else:
                             pass
-
-
-                    self.walkerfirst=False
-                    self.judgefirst=False
-                    
-                else:
-                    self.walkerfirst=False
-                    self.judgefirst=False
-                    break
-                    
                 
+                    self.walkerfirst=False
 
-                    #irst=False
-                    #self.judgefirst=False#これでwhileを終わらせてしまう
-                    #sbreak
+                    if self.walkerfirst==False:
+                        break
+                else:
+                    self.walkerfirst==False
+
+                    if self.walkerfirst==False:
+                        break
+
+            
+            self.judgefirst=False
+                    
+            #↓ここで終わりたい
+            if self.judgefirst==False:
+                break
         
     def request_Walker(self,walker):
 
