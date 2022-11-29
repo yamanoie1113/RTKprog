@@ -1,8 +1,7 @@
 import time
 import sys
 import pathlib
-import threading
-
+from multiprocessing import Pool
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import Sensor
@@ -16,22 +15,13 @@ class Timer(Sensor.Sensor):
     thread2 = None
     timelimit = 0
     sumtime = 0
-    startflag = True
 
     def __init__(self):
         print("Timer_init")
         #タイマ初期化
         self.count2=0
-        self.thread1 = threading.Thread(target=self.count)
-
-
-        self.thread2 = threading.Thread(target=self.getvalue)
+        self.p = Pool(4)
         print("end_Timer_init")
-
-    def exec_thread(self):
-        if self.startflag == True:
-            self.thread1.start()
-            self.startflag = False
 
 
 
@@ -58,13 +48,9 @@ class Timer(Sensor.Sensor):
             #sprint(self.count2)
             #return self.count2
 
-        #カウント終わり
         print("endcount")
-
-        return
         #タイマのリセットここでやってるけど変えるかも
-
-            
+        self.count2 = 0
 
 
 

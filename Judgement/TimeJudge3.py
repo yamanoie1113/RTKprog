@@ -3,9 +3,9 @@ import pathlib
 import time
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-import threading
+import multiprocessing
 
-from Sensors import Timer
+from Sensors import Timer3
 
 class TimeJudge():
     #白井の班参考にして作成
@@ -14,7 +14,7 @@ class TimeJudge():
 
     time=0.0
     timelimit = 0.0
-    timer = Timer.Timer()
+    timer = Timer3.Timer()
     def __init__(self):
         print("judge_init")
         #self.set_param()
@@ -26,8 +26,9 @@ class TimeJudge():
         print("timelimit:",end="")
         print(self.timelimit)
         self.timer.set_param(limit)
-        self.timer.exec_thread()
-        #スレッドでカウントを開始する。
+
+        self.timer.p.apply_async(self.timer.count)#スレッドでカウントを開始する。
+
 
         while True :
             print("_________________________________")
@@ -38,7 +39,7 @@ class TimeJudge():
 
             if time > self.timelimit-1 :
                 print("timejudge_return_False")
-
+                self.timer.p.close()
                 return False
         """
             else :
@@ -78,7 +79,9 @@ def main():
     test = TimeJudge()
     #タイマのカウント待ち
     tm = input()
-    test.judge(int(tm))
+    test.set_param(int(tm))
+    time.sleep(3)
+    test.judge(3)
 
 
 if __name__=="__main__":
