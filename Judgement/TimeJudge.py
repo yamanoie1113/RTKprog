@@ -75,10 +75,12 @@ class TimeJudge():
 
 
 def main():
-    test = TimeJudge()
-    #タイマのカウント待ち
-    tm = input()
-    test.judge(int(tm))
+    while True:
+        test = TimeJudge()
+        #タイマのカウント待ち
+        print("wait")        
+        tm = input()
+        test.judge(int(tm))
 
 
 if __name__=="__main__":

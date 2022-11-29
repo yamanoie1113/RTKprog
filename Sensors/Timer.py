@@ -25,13 +25,18 @@ class Timer(Sensor.Sensor):
         self.thread1 = threading.Thread(target=self.count)
 
 
-        self.thread2 = threading.Thread(target=self.getvalue)
+        #self.thread2 = threading.Thread(target=self.getvalue)
         print("end_Timer_init")
 
     def exec_thread(self):
         if self.startflag == True:
+            print("thread_start")
             self.thread1.start()
             self.startflag = False
+
+        else :
+            print("thread_run")
+            self.thread1.run()
 
 
 
@@ -60,7 +65,7 @@ class Timer(Sensor.Sensor):
 
         #カウント終わり
         print("endcount")
-
+        self.count2 = 0
         return
         #タイマのリセットここでやってるけど変えるかも
 
