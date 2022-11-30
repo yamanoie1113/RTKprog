@@ -81,7 +81,7 @@ class cuvreLineTrace:
                 r = cuvreLineTrace.set_param(a,b)
                 time.sleep(0.1)
                 c += 1
-                if c == 10:
+                if c == 100:
                     MM.set_param(0,0)
                     MM.run()
                     MM.stop()
