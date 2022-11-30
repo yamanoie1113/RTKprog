@@ -71,15 +71,18 @@ class MotorMgmt():
                     if flog == 0:
                         self.duty = self.duty + 1
                         flog = 1
-                    time.sleep(0.1)
-                    break
+                time.sleep(0.1)
+                break
 
         except KeyboardInterrupt:
                 pass
 
 
-        #self.pi.set_mode(PIN, pigpio.INPUT)
+    def stop(self):
+        #self.pi.set_mode(18, pigpio.INPUT)
+        #self.pi.set_mode(19, pigpio.INPUT)
         #self.pi.stop()
+        print('end')
 
 def main():
     MotorMgmt.set_param(10,100)

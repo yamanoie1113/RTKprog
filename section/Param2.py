@@ -27,14 +27,14 @@ class Param2:
         [None])#(前進量,旋回量,P,I,D)
         self.deb=self.prm[count]
         #self.number1+=1
-        print("straight",self.deb)
+
 
         return self.deb
 
     def count_set_param1(self,counting):
         #self.number2=0
         print("xxxxxxxxxxx",counting)
-        self.cnt=(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,None)
+        self.cnt=(10,20,30,40,50,6,7,8,9,10,11,12,13,14,15,16,None)
         self.count=self.cnt[counting] 
         print("カウントの秒数",self.cnt[counting])
         #self.number2+=1
@@ -43,7 +43,7 @@ class Param2:
     def count_set_param2(self,counting):
         #self.number2=0
         print("xxxxxxxxxxx",counting)
-        self.cnt=(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,None)
+        self.cnt=(10,20,30,40,50,6,7,8,9,10,11,12,13,14,15,16,None)
         self.count=self.cnt[counting] 
         print("カウントの秒数",self.cnt[counting])
         #self.number2+=1
