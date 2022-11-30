@@ -1,5 +1,4 @@
 # coding:utf-8
-from asyncio.windows_events import NULL
 import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
@@ -8,7 +7,7 @@ from section import Param
 #from Sensors import MotorMgmt
 #from Walker import Run
 #from Walker import VirtualLineTrace
-#from Walker import curveLineTrace
+from Walker import curveLineTrace
 from Judgement import TimeJudge
 from Judgement import DistanceJudge
 from Judgement import TurnAngleJudge
@@ -115,8 +114,8 @@ class SectionRun:
 
         if walker==self.CURVE:
             #オブジェクト生成
-            #self.mWalker=VirtualLineTrace()#今外すとエラーになりますわよ★
-            self.mWalker=0
+            self.mWalker=curveLineTrace.cuvreLineTrace()#今外すとエラーになりますわよ★
+            #self.mWalker=0
             print("curve")
 
         if walker==self.STRAIGHT:
@@ -133,12 +132,12 @@ class SectionRun:
 
         if judge==self.DISTANCE:
             #オブジェクト生成
-            self.mJudge=DistanceJudge()
+            self.mJudge=DistanceJudge.DistanceJudge()
             #self.mjudge-0
             print("judge")
         if judge==self.ANGLE:
             #オブジェクト生成
-            self.mJudge=TurnAngleJudge()
+            self.mJudge=TurnAngleJudge.TurnAngleJudge()
             #self.mjudge=1
             print("mjudghe")
 
