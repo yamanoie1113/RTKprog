@@ -30,7 +30,7 @@ class cuvreLineTrace:
             r = np.sqrt((a-x)**2 + (b-y)**2) #座標計算
             return r
 
-        def set_run(self,p,v):
+        def set_run(self,sp,sv,p,i,d):
 
             #self.mPID=PID()
             #self.mPID.reset_param()
@@ -56,32 +56,32 @@ class cuvreLineTrace:
                 if r < loca:
                     #中心点に近づく
                     if turn == right:
-                        MM.set_param(p,v)
+                        MM.set_param(sp,sv)
                         #MM.set_param(1,100)
                         #print ('zennsin')
                     else:
                         #print ('cousin')
-                        MM.set_param(p,v)
+                        MM.set_param(sp,sv)
                         #MM.set_param(10,-100)
 
                 elif r > loca:
                     #中心点から離れる
                     if turn == right:
                         #print ('zennsin2')
-                        MM.set_param(p,v)
+                        MM.set_param(sp,sv)
                         #MM.set_param(1,-100)
                     else:
                         #MM.set_param(10,100)
-                        MM.set_param(p,v)
+                        MM.set_param(sp,sv)
                         #print ('cousin2')
                 else:
                     if turn == right:
                         #MM.set_param(1,100)
-                        MM.set_param(p,v)
+                        MM.set_param(sp,sv)
                         #print ('zennsin')
                     else:
                         #print ('cousin')
-                        MM.set_param(p,v)
+                        MM.set_param(sp,sv)
                         #MM.set_param(10,-100)
 
                 MM.run()
@@ -99,8 +99,8 @@ class cuvreLineTrace:
 
 def main():
     #print (1)
-    cuvre = cuvreLineTrace(1,100)
-    cuvre.set_run()
+    cuvre = cuvreLineTrace()
+    cuvre.set_run(1,100,0,0,0)
         
 if __name__ == '__main__':
     main()
