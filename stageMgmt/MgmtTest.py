@@ -25,19 +25,22 @@ class MgmtTest:
         self.timeMgmt=TimeJudge2.TimeJudge2()
         self.statment=self.timeMgmt.judge(self.time)
         while self.state:
-
-            #if self.count==5:
-                #self.count=0
-                print("終了")
-                #self.state=False
-            #else:
-                #self.mstate=0
-                section.__init__()
+                #section.__init__()
                 print(self.count,"回目")
+                #mSection=section
+                self.section_run(section)
                 self.count+=1
+                
                 if self.statment==False:
                     self.state==False
+                    print("終了")
                     break
+                
+        print("合計",self.count)
+
+    def section_run(self,section):
+        section.__init__()  
+
 
 def main():
     mgmt=MgmtTest()
