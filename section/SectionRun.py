@@ -51,7 +51,7 @@ class SectionRun:
                 mjudge[self.judgepoint].run()#距離判定
                 self.judgepoint+=1
             else:
-                #mjudge[self.judgepoint].run()#旋回角度判定
+                mjudge[self.judgepoint].run()#旋回角度判定
                 self.judgepoint-=1
             
             self.walkerfirst=True
@@ -60,7 +60,7 @@ class SectionRun:
             while self.walkerfirst:
                 if param[self.number1][self.N1]!=None:#walkerの配列がなくなったらおーわり★
                     self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウント数をぶち送る
-                    #mwalker[self.number1].run(param[self.number1][self.N1])#走法にGo(曲線)
+                    mwalker[self.number1].run(param[self.number1][self.N1])#走法にGo(曲線)
                     self.cnt+=1
                     self.N1+=1
                     
@@ -75,7 +75,7 @@ class SectionRun:
                     #if self.state==False:
                     self.state=True
                     self.state=self.timejudge.judge(count[self.cnt])
-                    mwalker[self.number2].run(param[self.number2][self.N2])#走法にGo(直線)
+                    #mwalker[self.number2].run(param[self.number2][self.N2])#走法にGo(直線)
                     self.N2+=1
                     self.cnt+=1
 
