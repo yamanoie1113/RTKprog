@@ -1,9 +1,9 @@
 # coding:utf-8
 from itertools import cycle
 from time import sleep
-#import pigpio
+import pigpio
 import time
-#pi = pigpio.pi()
+pi = pigpio.pi()
 
 class MotorMgmt():
 
@@ -14,7 +14,7 @@ class MotorMgmt():
     def __init__(self):
 
         self.mMotor = MotorMgmt()
-        #self.pi = pigpio.pi()
+        self.pi = pigpio.pi()
         pass
 
         
@@ -25,7 +25,7 @@ class MotorMgmt():
             svduty = 7.25
         else:
             if sv > 0:
-                svduty = 7.25 + sv*0.0475
+                svduty = 7.25 + sv*0.00475
             else:
                 svduty = 7.25 - sv*0.0475
         self.cycle = int((svduty * 1000000 / 100))        
@@ -46,9 +46,9 @@ class MotorMgmt():
 
     def run(self):
         
-        #self.pi.hardware_PWM(18, 50, self.cycle)
+        self.pi.hardware_PWM(18, 50, self.cycle)
         up_flag = True
-        #self.pi.set_PWM_frequency(19,200)
+        self.pi.set_PWM_frequency(19,200)
         flog = 0
         self.duty = self.duty - 1
         print(self.cycle,self.duty)
@@ -56,7 +56,7 @@ class MotorMgmt():
 
             while True:
 
-                #self.pi.set_PWM_dutycycle(19,duty)#36-76
+                self.pi.set_PWM_dutycycle(19,self.duty)#36-76
         
                 if up_flag == True:
                     if self.duty >= self.duty:
@@ -79,9 +79,9 @@ class MotorMgmt():
 
 
     def stop(self):
-        #self.pi.set_mode(18, pigpio.INPUT)
-        #self.pi.set_mode(19, pigpio.INPUT)
-        #self.pi.stop()
+        self.pi.set_mode(18, pigpio.INPUT)
+        self.pi.set_mode(19, pigpio.INPUT)
+        self.pi.stop()
         print('end')
 
 def main():

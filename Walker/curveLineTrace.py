@@ -8,7 +8,7 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import MotorMgmt
 from Sensors import PositionMgmt
-from section import SectionRun2
+#from section import SectionRun2
 from tkinter import W
 from turtle import right
 import numpy as np
@@ -50,13 +50,12 @@ class cuvreLineTrace:
                 
                 #self.mPID.set_target(loca)
                 #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
-                #self.mPID.set_limit()
                 #self.mPID.get_operation()
                 
                 if r < loca:
                     #中心点に近づく
                     if turn == right:
-                        MM.set_param(10,100)
+                        MM.set_param(1,100)
                         #print ('zennsin')
                     else:
                         #print ('cousin')
@@ -66,13 +65,13 @@ class cuvreLineTrace:
                     #中心点から離れる
                     if turn == right:
                         #print ('zennsin2')
-                        MM.set_param(10,-100)
+                        MM.set_param(1,-100)
                     else:
                         MM.set_param(10,100)
                         #print ('cousin2')
                 else:
                     if turn == right:
-                        MM.set_param(10,100)
+                        MM.set_param(1,100)
                         #print ('zennsin')
                     else:
                         #print ('cousin')

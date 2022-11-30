@@ -34,11 +34,10 @@ class Timer(Sensor.Sensor):
             print("thread_start")
             self.thread1.start()
             self.startflag = False
-        """
+
         else :
-            print("thread_run")
-            self.thread1.run()
-        """
+            self.count()
+        
 
 
 
@@ -47,14 +46,16 @@ class Timer(Sensor.Sensor):
 
     def set_param(self,limit):
         self.timelimit = limit
+        self.update()
 
     def count(self):
 
         print("count")
-        self.update()
+        self.count2 = 0
         #カウントダウン
         try:
             while True:#直接数字じゃなくて引数をいれるかも
+                print("loop")
                 self.start = time.perf_counter()
                 time.sleep(1)
 
@@ -63,9 +64,11 @@ class Timer(Sensor.Sensor):
                 print("lm=",end="")
                 print(self.timelimit)
                 print(self.count2)
-                if self.count2 > self.timelimit:
-                    self.update()
+                if self.count2 > self.timelimit-1:
+                    print("end")
+
                     return False
+
                 #sprint(self.count2)
                 #return self.count2
 
@@ -83,9 +86,9 @@ class Timer(Sensor.Sensor):
 
     def getvalue(self):
 
-        print("timer.getvalue")
-        print("return_value:",end="")
-        print(self.count2)
+        #print("timer.getvalue")
+        #print("return_value:",end="")
+        #print(self.count2)
         return self.count2
 
 
