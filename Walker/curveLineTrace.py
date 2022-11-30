@@ -36,13 +36,14 @@ class cuvreLineTrace:
             #self.param = list()
             #self.param = SectionRun2.set_param()
             MM = MotorMgmt.MotorMgmt()
-            r = 0
+            r = 0 #現在半径
+            loca = 0 #目標半径
             a = 0 #中心点X
             b = 0 #中心点Y
             r = cuvreLineTrace.set_param(a,b)
             loca = r
-            turn = right
-            c = 0
+            turn = right #旋回半径
+            c = 0#ループカウンタ
             
 
             while True:
@@ -54,7 +55,6 @@ class cuvreLineTrace:
                 
                 if r < loca:
                     #中心点に近づく
-                    loca = 0
                     if turn == right:
                         MM.set_param(10,100)
                         #print ('zennsin')
@@ -64,13 +64,19 @@ class cuvreLineTrace:
 
                 elif r > loca:
                     #中心点から離れる
-                    loca = 0
                     if turn == right:
                         #print ('zennsin2')
                         MM.set_param(10,-100)
                     else:
                         MM.set_param(10,100)
                         #print ('cousin2')
+                else:
+                    if turn == right:
+                        MM.set_param(10,100)
+                        #print ('zennsin')
+                    else:
+                        #print ('cousin')
+                        MM.set_param(10,-100)
 
                 MM.run()
                 r = cuvreLineTrace.set_param(a,b)
@@ -79,6 +85,7 @@ class cuvreLineTrace:
                 if c == 10:
                     MM.set_param(0,0)
                     MM.run()
+                    MM.stop()
                     #self.mPID.reset_param()
                     break
                 #print (c)
