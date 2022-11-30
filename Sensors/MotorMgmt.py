@@ -71,8 +71,8 @@ class MotorMgmt():
                     if flog == 0:
                         self.duty = self.duty + 1
                         flog = 1
-                    time.sleep(0.1)
-                    break
+                time.sleep(0.1)
+                break
 
         except KeyboardInterrupt:
                 pass
