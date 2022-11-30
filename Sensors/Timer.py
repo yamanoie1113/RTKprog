@@ -23,8 +23,7 @@ class Timer(Sensor.Sensor):
         #タイマ初期化
         self.count2=0
         self.thread1 = threading.Thread(target=self.count)
-
-        self.thread2 = threading.Thread(target=self.count)
+        self.endtime = 190
 
         #self.thread2 = threading.Thread(target=self.getvalue)
         print("end_Timer_init")
@@ -36,7 +35,7 @@ class Timer(Sensor.Sensor):
             self.startflag = False
 
         else :
-            self.count()
+            self.update()
         
 
 
@@ -64,11 +63,12 @@ class Timer(Sensor.Sensor):
                 print("lm=",end="")
                 print(self.timelimit)
                 print(self.count2)
-                if self.count2 > self.timelimit-1:
+                
+                if self.sumtime > self.endtime:
                     print("end")
 
                     return False
-
+                
                 #sprint(self.count2)
                 #return self.count2
 
