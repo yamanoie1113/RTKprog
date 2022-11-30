@@ -36,7 +36,7 @@ class TimeJudge():
             print("gettime:",end="")
             print(time)
 
-            if time > self.timelimit-1 :
+            if time == self.timelimit :
                 print("timejudge_return_False")
 
                 return False
@@ -75,12 +75,13 @@ class TimeJudge():
 
 
 def main():
-    while True:
-        test = TimeJudge()
-        #タイマのカウント待ち
-        print("wait")        
-        tm = input()
-        test.judge(int(tm))
+    test = TimeJudge()
+        
+    #タイマのカウント待ち
+    #print("wait")        
+    tm = 5
+    test.judge(int(tm))
+    test.judge(10)
 
 
 if __name__=="__main__":
