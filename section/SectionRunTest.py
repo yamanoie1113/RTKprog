@@ -72,9 +72,7 @@ class SectionRunTest:
                     #self.state=self.timejudge.judge(count[0])#timejudgeにカウント数をぶち送る
                     #mwalker[self.number].run(param[self.N1])#これをコメント外す
                     print("テスト１")
-                    self.cnt+=1
-                    self.N1+=1
-                    self.number+=1
+                    
 
                     print("待ち1")
                     ''''

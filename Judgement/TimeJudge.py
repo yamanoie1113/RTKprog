@@ -36,12 +36,12 @@ class TimeJudge():
         #スレッドでカウントを開始する。
 
         while flag :
-            #print("_________________________________")
+            print("_________________________________")
             
             time = self.timer.getvalue()
 
-            #print("gettime:",end="")
-            #print(time)
+            print("gettime:",end="")
+            print(time)
 
             if time >= self.timelimit :
                 print("timejudge_return_False")
@@ -91,7 +91,6 @@ def main():
     hnt = True
     hnt=test.judge(int(tm))
     if hnt == False:
-        test.timer.thread1.join()
         test.judge(10)
 
 

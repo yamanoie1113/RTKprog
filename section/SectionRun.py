@@ -1,13 +1,12 @@
 # coding:utf-8
-from asyncio.windows_events import NULL
 import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-import Param
+from section import Param
 #from Sensors import MotorMgmt
 #from Walker import Run
-from Walker import VirtualLineTrace
+#from Walker import VirtualLineTrace
 from Walker import curveLineTrace
 from Judgement import TimeJudge
 from Judgement import DistanceJudge
@@ -54,7 +53,7 @@ class SectionRun:
             else:
                 mjudge[self.judgepoint].run()#旋回角度判定
                 self.judgepoint-=1
-
+            
             self.walkerfirst=True
 
         #走法
@@ -65,7 +64,7 @@ class SectionRun:
                     self.cnt+=1
                     self.N1+=1
                     
-
+                
                     while self.state:
                         print("待ち1")
                         pass
@@ -76,35 +75,36 @@ class SectionRun:
                     #if self.state==False:
                     self.state=True
                     self.state=self.timejudge.judge(count[self.cnt])
-                    mwalker[self.number2].run(param[self.number2][self.N2])#走法にGo(直線)
+                    #mwalker[self.number2].run(param[self.number2][self.N2])#走法にGo(直線)
                     self.N2+=1
                     self.cnt+=1
 
                     if count[self.cnt]==None:
                             print("秒数戻す")
-                            self.cnt=0
+                            self.warkerfirst=False
+                            self.judgefirst=False
                     else:
-                        pass
-
-                    while self.state:
-                        print("待ち２")
-                        pass
                         
+
+                        while self.state:
+                            print("待ち２")
+                            pass
+
                         if self.state==False:
                             break
 
                         #if self.state==False:
-                    self.state=True
-                    self.walkerfirst=False
-                    #stateを戻す
+                        self.state=True
+                        self.walkerfirst=True
+                        #stateを戻す
 
-                    #else:
-                        #pass
-                    
                 else:
+
                     self.walkerfirst=False
-                    self.judgefirst=False#これでwhileを終わらせてしまう
                     break
+            
+            self.judgefirst=False#これでwhileを終わらせてしまう
+            break
 
         #self.mWalker.run()
             
@@ -114,14 +114,14 @@ class SectionRun:
 
         if walker==self.CURVE:
             #オブジェクト生成
-            self.mWalker=VirtualLineTrace()#今外すとエラーになりますわよ★
+            self.mWalker=curveLineTrace.cuvreLineTrace()#今外すとエラーになりますわよ★
             #self.mWalker=0
             print("curve")
 
         if walker==self.STRAIGHT:
             #オブジェクト生成
-            self.mWalker=curveLineTrace()
-            #self.mWalker=2
+            #self.mWalker=curveLineTrace()
+            self.mWalker=2
             print("straight")
         
         return self.mWalker
@@ -132,12 +132,12 @@ class SectionRun:
 
         if judge==self.DISTANCE:
             #オブジェクト生成
-            self.mJudge=DistanceJudge()
+            self.mJudge=DistanceJudge.DistanceJudge()
             #self.mjudge-0
             print("judge")
         if judge==self.ANGLE:
             #オブジェクト生成
-            self.mJudge=TurnAngleJudge()
+            self.mJudge=TurnAngleJudge.TurnAngleJudge()
             #self.mjudge=1
             print("mjudghe")
 

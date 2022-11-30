@@ -36,7 +36,7 @@ class MgmtTest:
                     print("終了")
                     break
                 
-        print("合計",self.count)
+        print("合計",self.count-1)
 
     def section_run(self,section):
         section.__init__()  
