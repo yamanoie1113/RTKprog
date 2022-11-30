@@ -4,11 +4,11 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-import Param
+from section import Param
 #from Sensors import MotorMgmt
 #from Walker import Run
-from Walker import VirtualLineTrace
-from Walker import curveLineTrace
+#from Walker import VirtualLineTrace
+#from Walker import curveLineTrace
 from Judgement import TimeJudge
 from Judgement import DistanceJudge
 from Judgement import TurnAngleJudge
@@ -52,20 +52,20 @@ class SectionRun:
                 mjudge[self.judgepoint].run()#距離判定
                 self.judgepoint+=1
             else:
-                mjudge[self.judgepoint].run()#旋回角度判定
+                #mjudge[self.judgepoint].run()#旋回角度判定
                 self.judgepoint-=1
-
+            
             self.walkerfirst=True
 
         #走法
             while self.walkerfirst:
                 if param[self.number1][self.N1]!=None:#walkerの配列がなくなったらおーわり★
                     self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウント数をぶち送る
-                    mwalker[self.number1].run(param[self.number1][self.N1])#走法にGo(曲線)
+                    #mwalker[self.number1].run(param[self.number1][self.N1])#走法にGo(曲線)
                     self.cnt+=1
                     self.N1+=1
                     
-
+                
                     while self.state:
                         print("待ち1")
                         pass
@@ -82,29 +82,30 @@ class SectionRun:
 
                     if count[self.cnt]==None:
                             print("秒数戻す")
-                            self.cnt=0
+                            self.warkerfirst=False
+                            self.judgefirst=False
                     else:
-                        pass
-
-                    while self.state:
-                        print("待ち２")
-                        pass
                         
+
+                        while self.state:
+                            print("待ち２")
+                            pass
+
                         if self.state==False:
                             break
 
                         #if self.state==False:
-                    self.state=True
-                    self.walkerfirst=False
-                    #stateを戻す
+                        self.state=True
+                        self.walkerfirst=True
+                        #stateを戻す
 
-                    #else:
-                        #pass
-                    
                 else:
+
                     self.walkerfirst=False
-                    self.judgefirst=False#これでwhileを終わらせてしまう
                     break
+            
+            self.judgefirst=False#これでwhileを終わらせてしまう
+            break
 
         #self.mWalker.run()
             
@@ -114,14 +115,14 @@ class SectionRun:
 
         if walker==self.CURVE:
             #オブジェクト生成
-            self.mWalker=VirtualLineTrace()#今外すとエラーになりますわよ★
-            #self.mWalker=0
+            #self.mWalker=VirtualLineTrace()#今外すとエラーになりますわよ★
+            self.mWalker=0
             print("curve")
 
         if walker==self.STRAIGHT:
             #オブジェクト生成
-            self.mWalker=curveLineTrace()
-            #self.mWalker=2
+            #self.mWalker=curveLineTrace()
+            self.mWalker=2
             print("straight")
         
         return self.mWalker

@@ -5,8 +5,8 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-import SectionRun
-import SectionPrm
+from section import SectionRun
+from section import SectionPrm
 #from yamagapractice import SectionRun2
 #from Walker import Run
 class SectionMgmt:
@@ -35,7 +35,7 @@ class SectionMgmt:
     def __init__(self):
         #セクションパラメーターを初期化
         self.sectionParam.__init__()#Section
-        pass
+        self.run()
 
         #走法
     def run(self):
