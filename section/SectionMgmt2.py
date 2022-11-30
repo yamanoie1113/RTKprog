@@ -94,7 +94,6 @@ class SectionMgmt2:
             
             if self.mSectionIdx==2:#もし引数が２だったらもう配列に入れれないためbreakする               print("NONE")
             #if self.param[self.mSectionIdx]==None:
-                print("配列の限界")
                 break
             else:
                 pass
@@ -129,11 +128,11 @@ class SectionMgmt2:
         print("cnt",self.mcount)
         #デバッグ
         if (self.param[0]==None) or (self.param[1]==None) :
-            self.mcount=0
+            self.mcount-=1
         elif (self.count[0]==None) or (self.count[1]==None):
-            self.mcount=0
+            self.mcount-=1
 
-        else:
+        #else:
             self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)#えらーになったらself.runinstance_paramを一回外してください
         
         self.mState=self.END
@@ -152,8 +151,6 @@ class SectionMgmt2:
             
         elif self.mSectionIdx==self.STRAIGHT:
             self.runinstance_param[self.mSectionIdx]=self.mSection.request_Walker(self.mSectionIdx)
-            print("ooo",self.mSectionIdx)
-            print("self.mcountdaaaaaaaaaaaaaaaaaaaaa",self.mcount)
             param[self.mSectionIdx]=self.mSection.set_param(self.mSectionIdx,self.mcount)
             self.count[self.mSectionIdx]=self.mSection.count_set_param2(self.mcount)
             
