@@ -78,8 +78,11 @@ class MotorMgmt():
                 pass
 
 
-        #self.pi.set_mode(PIN, pigpio.INPUT)
+    def stop(self):
+        #self.pi.set_mode(18, pigpio.INPUT)
+        #self.pi.set_mode(19, pigpio.INPUT)
         #self.pi.stop()
+        print('end')
 
 def main():
     MotorMgmt.set_param(10,100)
