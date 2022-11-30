@@ -5,22 +5,20 @@ from math import nan
 
 
 class PID:
-        #デバッグprint("a")
-        limit=100
-        diff = [nan for i in range(2)]
-        diff[0]=diff[1]=0.0
-        last_integral = [nan for i in range(40)]
-        integral=0
-        delta=0.01
-        DELTAT=delta
-        KPID={"kp":nan,"ki":nan,"kd":nan}#辞書型
-        resetFlg=True
-        sec=3
-        cnt=0
-        #↑initで設定するやつ多いかも
-    # コンストラクタ
-        def __init__(self,delta=0.01):
+        
+        def __init__(self,delta):
+            self.resetFlg=True
+            KPID={"kp":nan,"ki":nan,"kd":nan}#辞書型
+            self.limit=100
+            self.diff = [nan for i in range(2)]
+            self.diff[0]=self.diff[1]=0.0
+            delta=0.01
+            self.DELTAT=delta
         # クラス変数
+            self.last_integral = [nan for i in range(40)]
+            self.integral=0
+            self.sec=30
+            self.cnt=0
         #self.tgt_limit
 
             for i in range(self.sec):
@@ -84,13 +82,13 @@ class PID:
                 self.resetFlg=False
 
     #積分地のオーバーを防ぐ
-            '''
+            
             if (self.integral)>11.0:
                 self.integral=11.0
 
             if (self.integral)<-11.0:
                 self.integral=-11.0
-            '''
+            
 
             self.val=self.diff[1]*self.KPID["kp"]+self.delta*self.KPID["ki"]+self.integral*self.KPID["kd"]
 
@@ -105,7 +103,7 @@ class PID:
             if (self.val<-self.limit):
                 self.val=-self.limit
 
-            return self.val
+            return self.val#これ！！！！
 
 
             #PID設定

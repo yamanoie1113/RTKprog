@@ -5,49 +5,38 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 import threading
 
-from Sensors import Timer
+from yamagapractice import TimeTest
 
-class TimeJudge():
+class Tjudge():
     #白井の班参考にして作成
     #タイマ値はちゃんと取得できてるっぽい
     #main関数でn秒経過後にタイマ値取得してる。取得しているのは"経過した"秒数？
 
     time=0.0
     timelimit = 0.0
-    timer = Timer.Timer()
+    timer = TimeTest.TimeTest()
     def __init__(self):
-        print("judge_init")
-        #self.set_param()
-        print("end_judge_init")
 
-    def judge(self,limit):
-        time = 0
-        self.timelimit = limit
+        self.timelimit = 180
         print("timelimit:",end="")
         print(self.timelimit)
-        self.timer.set_param(limit)
-        print("tjudge_flag_reset")
-        print(time)
-        print(self.timelimit)
-        print(self.timer.getvalue())
-        self.timer.exec_thread()
-        
-        flag =True
-        #スレッドでカウントを開始する。
+        self.timer.set_param(self.timelimit)
+        self.timer.thread1.start()#スレッドでカウントを開始する。
 
-        while flag :
-            #print("_________________________________")
-            
+    def judge(self,Cnt):
+
+        
+
+        while True :
+            print("_________________________________")
             time = self.timer.getvalue()
 
-            #print("gettime:",end="")
-            #print(time)
+            print("gettime:",end="")
+            print(time)
 
-            if time >= self.timelimit :
+            if time > Cnt :
                 print("timejudge_return_False")
-                flag = False
                 return False
-                
         """
             else :
                 print("timejudge_return_FALSE")
@@ -83,17 +72,13 @@ class TimeJudge():
 
 
 def main():
-    test = TimeJudge()
-        
+    test = Tjudge()
     #タイマのカウント待ち
-    #print("wait")        
-    tm = 5
-    hnt = True
-    hnt=test.judge(int(tm))
-    if hnt == False:
-        test.timer.thread1.join()
-        test.judge(10)
+    tm = input()
+    test.set_param(int(tm))
+    time.sleep(15)
+    test.test()
 
 
 if __name__=="__main__":
-     main()
+    main()

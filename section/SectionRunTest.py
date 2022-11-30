@@ -32,6 +32,9 @@ class SectionRunTest:
     judgepoint=0
     timejudge=TimeJudge.TimeJudge()
     state=True
+    roopinit=0
+    roopcount=0
+    roopcount2=0
     #mMotorMgmt=MotorMgmt()
 
     def __init__(self):
@@ -43,6 +46,9 @@ class SectionRunTest:
         self.judgefirst=True
         self.walkerfirst=True
         self.state=True
+        self.roopinit+=1
+        print("initの回数",self.roopinit)
+        
 
     def run(self,mjudge,mwalker,count,param):#判定２つ、走法２つ、秒数、パラメータ エラーになったらmWalkerを一回外して
         while self.judgefirst:#trueかfalseか
@@ -63,15 +69,17 @@ class SectionRunTest:
             #走法
             while self.walkerfirst:
                 if  (param[0]!=None) or (count[0] !=None):
-                    self.state=self.timejudge.judge(count[0])#timejudgeにカウント数をぶち送る
+                    #self.state=self.timejudge.judge(count[0])#timejudgeにカウント数をぶち送る
                     #mwalker[self.number].run(param[self.N1])#これをコメント外す
                     print("テスト１")
                     self.cnt+=1
                     self.N1+=1
                     self.number+=1
 
+                    print("待ち1")
+                    ''''
                     while self.state:
-                        print("待ち1")
+                        
 
                         if self.state==False:
                             break
@@ -80,7 +88,7 @@ class SectionRunTest:
 
                     self.state=True
                     print("テスト２")
-                    self.state=self.timejudge.judge(count[1])#timejudgeにカウントをぶち送る
+                    #self.state=self.timejudge.judge(count[1])#timejudgeにカウントをぶち送る
                     #mwalker[self.number1].run(param[self.N1])#走法にGo(直線) 絶対にエラーになるのでコメントアウト
 
                     while self.state:
@@ -100,13 +108,24 @@ class SectionRunTest:
 
                     if self.walkerfirst==False:
                         break
-
-            
-            self.judgefirst=False
-                    
+                    '''
+                    self.roopcount+=1
+                    print("ループループ",self.roopcount)
+                    self.walkerfirst=False
+                    self.judgefirst=False
+                else:
+                    self.roopcount2+=1
+                    print("ループ回数１",self.roopcount)
+                    print("ループ回数２",self.roopcount2)
+                    self.walkerfirst=False
+                    self.judgefirst=False   
+                    if self.walkerfirst==False:
+                        break
             #↓ここで終わりたい
             if self.judgefirst==False:
                 break
+        print("ループ回数１１",self.roopcount)
+        print("ループ回数２２",self.roopcount2)
         
     def request_Walker(self,walker):
 

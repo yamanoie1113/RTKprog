@@ -32,7 +32,7 @@ class Mgmt:
                 #self.state=False
             #else:
                 #self.mstate=0
-                section.__init__()
+                section.__init__()#これでsectionMgmt2がすべて回る
                 print(self.count,"回目")
                 self.count+=1
                 if self.statment==False:
