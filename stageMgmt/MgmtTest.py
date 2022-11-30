@@ -10,7 +10,7 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from section import SectionMgmtTest
 #from section import SectionMgmt
-from Judgement import TimeJudge2
+from Judgement import TimeJudge
 
 class MgmtTest:
     def init(self):
@@ -22,7 +22,7 @@ class MgmtTest:
         self.count=1
         self.state=True
         self.time=30
-        self.timeMgmt=TimeJudge2.TimeJudge2()
+        self.timeMgmt=TimeJudge.TimeJudge()
         self.statment=self.timeMgmt.judge(self.time)
         while self.state:
                 #section.__init__()

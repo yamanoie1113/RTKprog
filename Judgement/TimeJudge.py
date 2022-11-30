@@ -21,25 +21,33 @@ class TimeJudge():
         print("end_judge_init")
 
     def judge(self,limit):
-
+        time = 0
         self.timelimit = limit
         print("timelimit:",end="")
         print(self.timelimit)
         self.timer.set_param(limit)
+        print("tjudge_flag_reset")
+        print(time)
+        print(self.timelimit)
+        print(self.timer.getvalue())
         self.timer.exec_thread()
+        
+        flag =True
         #スレッドでカウントを開始する。
 
-        while True :
-            print("_________________________________")
+        while flag :
+            #print("_________________________________")
+            
             time = self.timer.getvalue()
 
-            print("gettime:",end="")
-            print(time)
+            #print("gettime:",end="")
+            #print(time)
 
-            if time == self.timelimit :
+            if time >= self.timelimit :
                 print("timejudge_return_False")
-
+                flag = False
                 return False
+                
         """
             else :
                 print("timejudge_return_FALSE")
@@ -80,8 +88,11 @@ def main():
     #タイマのカウント待ち
     #print("wait")        
     tm = 5
-    test.judge(int(tm))
-    test.judge(10)
+    hnt = True
+    hnt=test.judge(int(tm))
+    if hnt == False:
+        test.timer.thread1.join()
+        test.judge(10)
 
 
 if __name__=="__main__":
