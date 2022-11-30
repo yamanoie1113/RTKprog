@@ -24,6 +24,7 @@ class Timer(Sensor.Sensor):
         self.count2=0
         self.thread1 = threading.Thread(target=self.count)
 
+        self.thread2 = threading.Thread(target=self.count)
 
         #self.thread2 = threading.Thread(target=self.getvalue)
         print("end_Timer_init")
@@ -33,16 +34,16 @@ class Timer(Sensor.Sensor):
             print("thread_start")
             self.thread1.start()
             self.startflag = False
-
+        """
         else :
             print("thread_run")
             self.thread1.run()
+        """
 
 
 
     def update(self):
-        self.count=0
-        pass
+        self.count2=0
 
     def set_param(self,limit):
         self.timelimit = limit
@@ -52,22 +53,28 @@ class Timer(Sensor.Sensor):
         print("count")
         self.update()
         #カウントダウン
+        try:
+            while True:#直接数字じゃなくて引数をいれるかも
+                self.start = time.perf_counter()
+                time.sleep(1)
 
-        for j in range(self.timelimit):#直接数字じゃなくて引数をいれるかも
-            self.start = time.perf_counter()
-            time.sleep(1)
+                self.count2+=round(time.perf_counter() - self.start)
+                self.sumtime += 1
+                print("lm=",end="")
+                print(self.timelimit)
+                print(self.count2)
+                if self.count2 > self.timelimit:
+                    self.update()
+                    return False
+                #sprint(self.count2)
+                #return self.count2
 
-            self.count2+=round(time.perf_counter() - self.start)
-            self.sumtime += 1
-            print(self.count2)
-            #sprint(self.count2)
-            #return self.count2
 
-        #カウント終わり
-        print("endcount")
-        self.count2 = 0
-        return
-        #タイマのリセットここでやってるけど変えるかも
+            #カウント終わり
+            print("endcount")
+            #タイマのリセットここでやってるけど変えるかも
+        except KeyboardInterrupt:
+            print("count_interrupt")
 
             
 
@@ -82,7 +89,7 @@ class Timer(Sensor.Sensor):
         return self.count2
 
 
-"""
+
 def main():
     timer=Timer()
     #timer.update()
@@ -90,13 +97,11 @@ def main():
     timer.set_param(5)
     timer.thread1.start()
     timer.thread1.join()
-    timer.set_param(10)   
-    timer.thread3.start() 
+    timer.set_param(10)
 
-    pass
 
 
 if __name__=="__main__":
     main()
-"""
+
 
