@@ -58,13 +58,13 @@ class DistanceJudge(Judge.Judge):
 
     
     def judge(self):
-
+        """
         #X、Y座標を取得し、その値が基準値をこえていたらtrueを返す。それ以外はfalse
         if :
             return True
         else ;
             return False
-
+        """
 
         pass
     
