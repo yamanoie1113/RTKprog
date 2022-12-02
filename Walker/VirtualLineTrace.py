@@ -14,21 +14,52 @@ from turtle import right
 import numpy as np
 
 
-class cuvreLineTrace:
+class VirtualLineTrace:
+
+        goalx = 1000 #目標地点ｘ
+        goaly = 1000 #目標地点ｙ
+        startx = 0 #開始地点ｘ
+        starty = 0 #開始地点ｙ
+        turn = 'no'
 
 
-        def set_param(a,b):
-        
-            #PM = PositionMgmt.PositionMgmt()
-            #para = PM.getvalue()
-            para = [500,500]
-            x = para[0] #座標分け
+
+        def set_distance(self,para):
+            x = para[0]
             y = para[1]
-            #a = x-300 #中心点X
-            #b = y-300 #中心点Y
+            x2 = (self.goaly - self.starty)/(self.goalx - self.startx)
+            x3 = y - self.starty - x2 * (-self.startx) / x2 
+            VirtualLineTrace.set_turn(x3,x)
 
-            r = np.sqrt((a-x)**2 + (b-y)**2) #座標計算
+            r = abs(x2 * (x) + 1 * y) / np.sqrt(x2**2 + 1**2) #直線との最短距離            
             return r
+
+
+        def set_turn(self,mx,gx):
+            
+            if self.goaly > self.starty:
+                if mx > gx:
+                    self.turn == 'left' #左
+                elif mx < gx:
+                    self.turn == 'right' #右
+                else:
+                    self.turn == 'no'
+            elif self.goaly < self.starty: 
+                if mx > gx:
+                    self.turn == 'right' #右
+                elif mx < gx:
+                    self.turn == 'left' #左
+                else:
+                    self.turn == 'no'
+
+
+        def set_param(self):
+        
+            PM = PositionMgmt.PositionMgmt()
+            #para = PM.getvalue()
+            param = [500,500]
+            return param
+
 
         def set_run(self,sp,sv,p,i,d):
 
@@ -36,13 +67,9 @@ class cuvreLineTrace:
             #self.mPID.reset_param()
             #self.param = list()
             MM = MotorMgmt.MotorMgmt()
-            r = 0 #現在半径
-            loca = 0 #目標半径
-            a = 300 #中心点X
-            b = 300 #中心点Y
-            r = cuvreLineTrace.set_param(a,b)
-            loca = r
-            turn = right #旋回半径
+            param = VirtualLineTrace.set_param()
+            self.startx = param[0]
+            self.starty = param[1]  
             c = 0#ループカウンタ
             
 
@@ -52,40 +79,35 @@ class cuvreLineTrace:
                 #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
                 #self.mPID.get_operation()
 
-                
-                if r < loca:
-                    #中心点に近づく
-                    if turn == right:
+                if self.turn == 'no':
+                     #print ('zennsin2')
                         MM.set_param(sp,sv)
                         #MM.set_param(1,100)
+                elif r < 0:
+                    #中心点に近づく
+                    if self.turn == 'right':
+                        MM.set_param(sp,sv)
+                        #MM.set_param(1,-100)
                         #print ('zennsin')
-                    else:
+                    elif self.turn == 'left':
                         #print ('cousin')
                         MM.set_param(sp,sv)
-                        #MM.set_param(10,-100)
-
-                elif r > loca:
+                        #MM.set_param(10,100)
+                elif r > 0:
                     #中心点から離れる
-                    if turn == right:
+                    if self.turn == 'right':
                         #print ('zennsin2')
                         MM.set_param(sp,sv)
                         #MM.set_param(1,-100)
-                    else:
+                    elif self.turn == 'left':
                         #MM.set_param(10,100)
                         MM.set_param(sp,sv)
                         #print ('cousin2')
-                else:
-                    if turn == right:
-                        #MM.set_param(1,100)
-                        MM.set_param(sp,sv)
-                        #print ('zennsin')
-                    else:
-                        #print ('cousin')
-                        MM.set_param(sp,sv)
-                        #MM.set_param(10,-100)
 
+                    
                 MM.run()
-                r = cuvreLineTrace.set_param(a,b)
+                param =VirtualLineTrace.set_param()
+                r = VirtualLineTrace.set_distance(param)
                 time.sleep(0.1)
                 c += 1
                 if c == 100:
@@ -99,7 +121,7 @@ class cuvreLineTrace:
 
 def main():
     #print (1)
-    cuvre = cuvreLineTrace()
+    cuvre = VirtualLineTrace()
     cuvre.set_run(1,100,0,0,0)
         
 if __name__ == '__main__':
