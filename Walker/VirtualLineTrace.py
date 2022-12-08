@@ -39,18 +39,18 @@ class VirtualLineTrace:
             
             if self.goaly > self.starty:
                 if mx > gx:
-                    self.turn == 'left' #左
+                    self.turn = 'left' #左
                 elif mx < gx:
-                    self.turn == 'right' #右
+                    self.turn = 'right' #右
                 else:
-                    self.turn == 'no'
+                    self.turn = 'no'
             elif self.goaly < self.starty: 
                 if mx > gx:
-                    self.turn == 'right' #右
+                    self.turn = 'right' #右
                 elif mx < gx:
-                    self.turn == 'left' #左
+                    self.turn = 'left' #左
                 else:
-                    self.turn == 'no'
+                    self.turn = 'no'
 
 
         def set_param(self):
