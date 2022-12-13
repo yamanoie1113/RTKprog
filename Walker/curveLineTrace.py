@@ -9,8 +9,6 @@ sys.path.append(str(current_dir) + '/../')
 from Sensors import MotorMgmt
 from Sensors import PositionMgmt
 from section import SectionRun
-from tkinter import W
-from turtle import right
 import numpy as np
 
 
@@ -42,7 +40,7 @@ class cuvreLineTrace:
             b = 300 #中心点Y
             r = cuvreLineTrace.set_param(a,b)
             loca = r
-            turn = right #旋回半径
+            turn = 'right' #旋回半径
             c = 0#ループカウンタ
             
 
@@ -55,7 +53,7 @@ class cuvreLineTrace:
                 
                 if r < loca:
                     #中心点に近づく
-                    if turn == right:
+                    if turn == 'right':
                         MM.set_param(sp,sv)
                         #MM.set_param(1,100)
                         #print ('zennsin')
@@ -66,7 +64,7 @@ class cuvreLineTrace:
 
                 elif r > loca:
                     #中心点から離れる
-                    if turn == right:
+                    if turn == 'right':
                         #print ('zennsin2')
                         MM.set_param(sp,sv)
                         #MM.set_param(1,-100)
@@ -75,7 +73,7 @@ class cuvreLineTrace:
                         MM.set_param(sp,sv)
                         #print ('cousin2')
                 else:
-                    if turn == right:
+                    if turn == 'right':
                         #MM.set_param(1,100)
                         MM.set_param(sp,sv)
                         #print ('zennsin')
