@@ -15,10 +15,10 @@ def get():
     # 接続・受信の無限ループ
     
     #屋内テスト用コード
-    return 1,2
+    #return 1,2
 
 
-"""
+
 #本番用
     while True:
         print("GPS_loading....")
@@ -53,7 +53,6 @@ def get():
                 return list_GGA[2],list_GGA[4]
 
 
-"""
 def main():
     while True:
         #print("enter1")
