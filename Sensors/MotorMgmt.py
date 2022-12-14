@@ -1,134 +1,94 @@
 # coding:utf-8
-import os
-import sys
+from itertools import cycle
+from time import sleep
+import pigpio
 import time
-import pathlib
-#from Walker.PID import PID
-current_dir = pathlib.Path(__file__).resolve().parent
-sys.path.append(str(current_dir) + '/../')
-from Sensors import MotorMgmt
-from Sensors import PositionMgmt
-from section import SectionRun
-from tkinter import W
-import numpy as np
+pi = pigpio.pi()
+
+class MotorMgmt():
+
+    cycle = 0
+    duty = 0
 
 
-class cuvreLineTrace:
+    def __init__(self):
 
+        #self.mMotor = MotorMgmt()
+        self.pi = pigpio.pi()
+        pass
 
-        def set_param(a,b):
         
-            PM = PositionMgmt.PositionMgmt()
-            para = PM.getvalue()
-            #para = [500,500]
-            x = para[0] #座標分け
-            y = para[1]
-            #a = x-200 #中心点X
-            #b = y-300 #中心点Y
+    def set_param(self,sp,sv):
 
-            r = np.sqrt((a-x)**2 + (b-y)**2) #座標計算
-            print('x:',x,'y:',y) 
-            return r
         
-        def fast_param(a,b):
+        if sv ==0:
+            svduty = 7.25
+        else:
+            if sv > 0:
+                svduty = 7.25 + sv*0.0475
+            else:
+                svduty = 7.25 - sv*0.0475
+        self.cycle = int((svduty * 1000000 / 100))        
         
-            PM = PositionMgmt.PositionMgmt()
-            para = PM.getvalue()
-            #para = [500,500]
-            x = para[0] #座標分け
-            y = para[1]
-            a = x+300 #中心点X
-            b = y #中心点Y
+        if sp == 0:
+            self.duty = 78
+        else:
+            if sp >= 0:
+                a2 = 76
+                self.duty = a2 - sp*0.4
+            else:
+                sp = sp *-1
+                a2 = 80
+                self.duty = a2 + sp*0.38
+                
 
-            r = np.sqrt((a-x)**2 + (b-y)**2) #座標計算
-            print('x:',x,'y:',y) 
-            return r,a,b
 
-        def set_run(self,sp,sv,p,i,d):
 
-            #self.mPID=PID()
-            #self.mPID.reset_param()
-            #self.param = list()
-            MM = MotorMgmt.MotorMgmt()
-            r = 0 #現在半径
-            loca = 0 #目標半径
-            a = 0#中心点X
-            b = 0 #中心点Y
-            #para = [500,500]
-            r,a,b = cuvreLineTrace.fast_param(a,b)
-            loca = r
-            turn = 'right' #旋回半径
-            c = 0#ループカウンタ
-            #f = open('log.txt', 'w')
-            
+    def run(self):
+        
+        self.pi.hardware_PWM(18, 50, self.cycle)
+        up_flag = True
+        self.pi.set_PWM_frequency(19,200)
+        flog = 0
+        self.duty = self.duty - 1
+        print(self.cycle,self.duty)
+        try:
 
             while True:
-                
-                #self.mPID.set_target(loca)
-                #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
-                #self.mPID.get_operation()
 
-                #if c < 20:
-                    #para = [700,700]
-                #elif c > 40:
-                    #para  = [300,300]
-                #else:    
-                    #para = [500,500]
-                #f.write(r,a,b \n)
-                print('loca',loca,'r:',r,'a:',a,'b:',b)
-                
-                if c < 10:
-                    MM.set_param(30,100)
-                elif r < loca:
-                    #中心点に近づく
-                    if turn == 'right':
-                        #MM.set_param(sp,sv)
-                        MM.set_param(30,100)
-                        print ('zennsin')
+                self.pi.set_PWM_dutycycle(19,self.duty)#36-76
+        
+                if up_flag == True:
+                    if self.duty >= self.duty:
+                        self.up_flag = False
                     else:
-                        print ('cousin')
-                        #MM.set_param(sp,sv)
-                        MM.set_param(30,-100)
-                elif r > loca:
-                    #中心点から離れる
-                    if turn == 'right':
-                        print ('zennsin2')
-                        #MM.set_param(sp,sv)
-                        MM.set_param(30,-100)
-                    else:
-                        MM.set_param(30,100)
-                        #MM.set_param(sp,sv)
-                        print ('cousin2')
+                        self.duty += 1
                 else:
-                    if turn == 'right':
-                        MM.set_param(30,80)
-                        #MM.set_param(sp,sv)
-                        print ('zennsin3')
+                    if self.duty <= self.duty:
+                        up_flag = True
                     else:
-                        #print ('cousin')
-                        MM.set_param(sp,sv)
-                        MM.set_param(30,-100)
-
-                MM.run()
-                r = cuvreLineTrace.set_param(a,b)
+                        self.duty -=1
+                    if flog == 0:
+                        self.duty = self.duty + 1
+                        flog = 1
                 time.sleep(0.1)
-                c += 1
-                if c == 50:
-                    MM.set_param(0,0)
-                    MM.run()
-                    MM.stop()
-                    #f.close()
-                    #self.mPID.reset_param()
-                    break
-                #print (c)
-                
+                break
+
+        except KeyboardInterrupt:
+                pass
+
+
+    def stop(self):
+        self.pi.set_mode(18, pigpio.INPUT)
+        self.pi.set_mode(19, pigpio.INPUT)
+        self.pi.stop()
+        print('end')
 
 def main():
-    #print (1)
-    cuvre = cuvreLineTrace()
-    cuvre.set_run(1,100,0,0,0)
+    MotorMgmt.set_param(0,0)
         
 if __name__ == '__main__':
     main()
 
+            
 
