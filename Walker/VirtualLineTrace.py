@@ -10,7 +10,6 @@ from Sensors import MotorMgmt
 from Sensors import PositionMgmt
 from section import SectionRun
 from tkinter import W
-from turtle import right
 import numpy as np
 
 
