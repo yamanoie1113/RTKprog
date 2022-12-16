@@ -6,34 +6,35 @@ import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Judgement import Judge
-from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
+
+#室内用インポート
+from Sensors import PositionMgmt as PMgmt
+
+#室外用インポート
+#from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
 
 class DistanceJudge(Judge.Judge):
 
-    mx=0.0    #X座標系　オブジェクト
-    my=0.0   #Y座標系　オブジェクト
+    start_x=0.0    #X座標系　オブジェクト
+    start_y=0.0   #Y座標系　オブジェクト
     mdir=0.0  #方位計   オブジェクト
-    startpoint=0.0
-    endpoint=0.0
-    finishlength=0.0
+    mlength =0.0
+    finishlength = 0.0
 
     def __init__(self):
-        pget = PMgmt.PositionMgmt()
+        self.pget = PMgmt.PositionMgmt()
         #mdir.get_value
         #mydir.get_value()
         #mx.get_value()
         #my.get_value()
 
         #XY値取得
-        positionXY = pget.getvalue()
+        #self.getPosition()
 
-        #mx ,myに座標をセット
-        self.mx = positionXY[0]
-        self.my = positionXY[1]
+        #self.endpoint=self.find_end_point()
 
-        self.endpoint=self.find_end_point()
-
-        #座標計算
+    """
+    #座標計算 これいらんかも
     def find_end_point(self):
         print("find_endpoint")
         #移動距離、現在の座標、走行体の向きから終了座標を求める
@@ -48,17 +49,16 @@ class DistanceJudge(Judge.Judge):
         goal_x = self.mx + x_move
         goal_y = self.my + y_move
 
-        #2点間の距離計算
-        math.sqrt((goal_x - self.mx)**2 + (goal_y - self.my)**2)
-
 
         self.endpoint=0
         print("done.endpoint:",end="")
         print(self.endpoint)
+    """
 
-    
+
     def judge(self):
-        """
+        """ここ直す
+            あと、計算周りを自分たちの仕様に直す
         #X、Y座標を取得し、その値が基準値をこえていたらtrueを返す。それ以外はfalse
         if :
             return True
@@ -66,9 +66,15 @@ class DistanceJudge(Judge.Judge):
             return False
         """
 
-        pass
-    
-    #これいらないかもしれない
+    def getPosition(self):
+        positionXY = self.pget.getvalue()
+
+        #mx ,myに座標をセット
+        self.start_x = positionXY[0]
+        self.start_y = positionXY[1]
+
+
+    #これいらないかもしれない.到達地点を求めるために必要だが、今回はGPSがあるため
     def getangle(self):
         angget = TASensor.TurnAngleSensor()
 
@@ -76,13 +82,39 @@ class DistanceJudge(Judge.Judge):
         tmp = angget.getvalue()
         self.mdir = tmp['yaw']
 
+    def calc_dist(self,end_x,end_y):
+
+        #現在地の設定
+        #self.getPosition()
+
+        #現在地ダミー設定
+        self.start_x = 0.0
+        self.start_y = 0.0
+
+        #目標値が一つずつの場合　必要なかったら消す
+        self.goal_x = end_x
+        self.goal_y = end_y
+
+        #目標値が配列の場合　必要なかったら消す
+        #self.goal_x = endpoint[0]
+        #self.goal_y = endpoint[1]
+
+        #2点間の距離計算
+        self.mlength = math.sqrt(( self.goal_x- self.start_x)**2 + ( self.goal_y - self.start_y)**2)
+        print("距離",self.mlength)
+
+
     #目標となる値をここで設定したい(進みたい距離)
     def set_param(self,judgevalue):
         self.finishlength=judgevalue
 
 def main():
     mdisjudge = DistanceJudge()
-    mdisjudge.set_param(10)
+
+    goal_x = 0.0
+    goal_y = 0.0
+
+    mdisjudge.calc_dist(goal_x,goal_y)
 
 if __name__ == '__main__':
     main()

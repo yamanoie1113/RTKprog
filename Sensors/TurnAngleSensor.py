@@ -29,7 +29,7 @@ class TurnAngleSensor(Sensor.Sensor):
         pass
 
     def getvalue(self):
-            return self.turnAngle  #ここ返すのangtotalかも
+            return self.ang_total  #ここ返すのangtotalかも
             #return self.ang_total
 
     def update(self):

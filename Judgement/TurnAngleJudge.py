@@ -11,7 +11,7 @@ from section import SectionMgmt2
 class TurnAngleJudge(Judge.Judge):
 
     startangle=0.0
-    finishangle=0.03
+    finishangle=0.0
     baseline = 0.0
 
 
@@ -23,6 +23,7 @@ class TurnAngleJudge(Judge.Judge):
         #旋回角度取得
         #sensehatからジャイロ取得
         angget = TASensor.TurnAngleSensor()
+
 
         #ジャイロから旋回角度抽出 元々yawだけ返ってくるようになってる
         #挙動に合わせてこっちで選択出来るように変えてもいいかも
