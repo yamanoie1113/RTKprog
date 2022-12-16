@@ -44,7 +44,7 @@ class cuvreLineTrace:
             print('x:',x,'y:',y) 
             return r,a,b
 
-        def set_run(self,sp,sv,p,i,d):
+        def right_run(self,sp,sv,p,i,d):
 
             #self.mPID=PID()
             #self.mPID.reset_param()
@@ -57,7 +57,6 @@ class cuvreLineTrace:
             #para = [500,500]
             r,a,b = cuvreLineTrace.fast_param(a,b)
             loca = r
-            turn = 'right' #旋回半径
             c = 0#ループカウンタ
             #f = open('log.txt', 'w')
             
@@ -77,48 +76,93 @@ class cuvreLineTrace:
                 #f.write(r,a,b \n)
                 print('loca',loca,'r:',r,'a:',a,'b:',b)
                 
-                if c < 10:
-                    MM.set_param(30,100)
-                elif r < loca:
+                #if c < 10:
+                    #MM.set_param(30,100)
+                if r < loca:
                     #中心点に近づく
-                    if turn == 'right':
-                        #MM.set_param(sp,sv)
-                        MM.set_param(30,100)
-                        print ('zennsin')
-                    else:
-                        print ('cousin')
-                        #MM.set_param(sp,sv)
-                        MM.set_param(30,-100)
+                    #MM.set_param(sp,sv)
+                    MM.set_param(30,100)
+                    print ('zennsin')
+
                 elif r > loca:
                     #中心点から離れる
-                    if turn == 'right':
-                        print ('zennsin2')
-                        #MM.set_param(sp,sv)
-                        MM.set_param(30,-100)
-                    else:
-                        MM.set_param(30,100)
-                        #MM.set_param(sp,sv)
-                        print ('cousin2')
+                    print ('zennsin2')
+                    #MM.set_param(sp,sv)
+                    MM.set_param(308,-100)
+
                 else:
-                    if turn == 'right':
-                        MM.set_param(30,80)
-                        #MM.set_param(sp,sv)
-                        print ('zennsin3')
-                    else:
-                        #print ('cousin')
-                        MM.set_param(sp,sv)
-                        MM.set_param(30,-100)
+                    MM.set_param(30,80)
+                    #MM.set_param(sp,sv)
+                    print ('zennsin3')
+
 
                 MM.run()
                 r = cuvreLineTrace.set_param(a,b)
                 time.sleep(0.1)
                 c += 1
+                
                 if c == 50:
-                    
+                    cuvreLineTrace.stop()
                     #f.close()
                     #self.mPID.reset_param()
                     break
                 #print (c)
+
+
+        def left_run(self,sp,sv,p,i,d):
+            #self.mPID=PID()
+            #self.mPID.reset_param()
+            #self.param = list()
+            MM = MotorMgmt.MotorMgmt()
+            r = 0 #現在半径
+            loca = 0 #目標半径
+            a = 0#中心点X
+            b = 0 #中心点Y
+            #para = [500,500]
+            r,a,b = cuvreLineTrace.fast_param(a,b)
+            loca = r
+            c = 0#ループカウンタ
+            #f = open('log.txt', 'w')
+            while True:
+                
+                #self.mPID.set_target(loca)
+                #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
+                #self.mPID.get_operation()
+
+                #if c < 20:
+                    #para = [700,700]
+                #elif c > 40:
+                    #para  = [300,300]
+                #else:    
+                    #para = [500,500]
+                #f.write(r,a,b \n)
+                print('loca',loca,'r:',r,'a:',a,'b:',b)
+                if r < loca:
+                    #中心点に近づく
+                    print ('cousin')
+                    #MM.set_param(sp,sv)
+                    MM.set_param(30,-100)
+                elif r > loca:
+                    MM.set_param(30,100)
+                    #MM.set_param(sp,sv)
+                    print ('cousin2')
+                else:
+                    #print ('cousin')
+                    MM.set_param(sp,sv)
+                    MM.set_param(30,-100)
+
+                MM.run()
+                r = cuvreLineTrace.set_param(a,b)
+                time.sleep(0.1)
+                c += 1
+                
+                if c == 50:
+                    cuvreLineTrace.stop()
+                    #f.close()
+                    #self.mPID.reset_param()
+                    break
+                #print (c)
+                
 
 
         def stop():
