@@ -17,6 +17,8 @@ class cuvreLineTrace:
 
         MM = MotorMgmt.MotorMgmt()
         PM = PositionMgmt.PositionMgmt()
+        
+
 
 
         def set_param(self,a,b):
@@ -94,7 +96,7 @@ class cuvreLineTrace:
                     self.MM.set_param(308,-100)
 
                 else:
-                    self.MM.set_param(30,80)
+                    self.MM.set_param(30,100)
                     #MM.set_param(sp,sv)
                     print ('zennsin3')
 
@@ -104,11 +106,11 @@ class cuvreLineTrace:
                 time.sleep(0.1)
                 c += 1
                 
-                if c == 50:
-                    cuvreLineTrace.stop()
+                #if c == 50:
+                    #cuvreLineTrace.stop()
                     #f.close()
                     #self.mPID.reset_param()
-                    break
+                    #break
                 #print (c)
 
 
@@ -159,13 +161,25 @@ class cuvreLineTrace:
                 time.sleep(0.1)
                 c += 1
                 
-                if c == 50:
-                    cuvreLineTrace.stop()
+                #if c == 50:
+                    #cuvreLineTrace.stop()
                     #f.close()
                     #self.mPID.reset_param()
-                    break
+                    #break
                 #print (c)
-                
+
+        
+        def run(self,sp,sv,p,i,d):
+            c = 0#ループカウンタ
+            while True:      
+                self.MM.set_param(30,0)
+                self.MM.run()
+                time.sleep(0.1)
+                #if c == 50:
+                    #cuvreLineTrace.stop()
+                    #f.close()
+                    #self.mPID.reset_param()
+                    #break
 
 
         def stop(self):
