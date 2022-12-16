@@ -15,11 +15,14 @@ import numpy as np
 
 class cuvreLineTrace:
 
+        MM = MotorMgmt.MotorMgmt()
+        PM = PositionMgmt.PositionMgmt()
 
-        def set_param(a,b):
+
+        def set_param(self,a,b):
         
-            PM = PositionMgmt.PositionMgmt()
-            para = PM.getvalue()
+            #PM = PositionMgmt.PositionMgmt()
+            para = self.PM.getvalue()
             #para = [500,500]
             x = para[0] #座標分け
             y = para[1]
@@ -30,10 +33,10 @@ class cuvreLineTrace:
             print('x:',x,'y:',y) 
             return r
         
-        def fast_param(a,b):
+        def fast_param(self,a,b):
         
-            PM = PositionMgmt.PositionMgmt()
-            para = PM.getvalue()
+            #PM = PositionMgmt.PositionMgmt()
+            para = self.PM.getvalue()
             #para = [500,500]
             x = para[0] #座標分け
             y = para[1]
@@ -49,7 +52,7 @@ class cuvreLineTrace:
             #self.mPID=PID()
             #self.mPID.reset_param()
             #self.param = list()
-            MM = MotorMgmt.MotorMgmt()
+            #MM = MotorMgmt.MotorMgmt()
             r = 0 #現在半径
             loca = 0 #目標半径
             a = 0#中心点X
@@ -81,22 +84,22 @@ class cuvreLineTrace:
                 if r < loca:
                     #中心点に近づく
                     #MM.set_param(sp,sv)
-                    MM.set_param(30,100)
+                    self.MM.set_param(30,100)
                     print ('zennsin')
 
                 elif r > loca:
                     #中心点から離れる
                     print ('zennsin2')
                     #MM.set_param(sp,sv)
-                    MM.set_param(308,-100)
+                    self.MM.set_param(308,-100)
 
                 else:
-                    MM.set_param(30,80)
+                    self.MM.set_param(30,80)
                     #MM.set_param(sp,sv)
                     print ('zennsin3')
 
 
-                MM.run()
+                self.MM.run()
                 r = cuvreLineTrace.set_param(a,b)
                 time.sleep(0.1)
                 c += 1
@@ -113,7 +116,7 @@ class cuvreLineTrace:
             #self.mPID=PID()
             #self.mPID.reset_param()
             #self.param = list()
-            MM = MotorMgmt.MotorMgmt()
+            #MM = MotorMgmt.MotorMgmt()
             r = 0 #現在半径
             loca = 0 #目標半径
             a = 0#中心点X
@@ -141,17 +144,17 @@ class cuvreLineTrace:
                     #中心点に近づく
                     print ('cousin')
                     #MM.set_param(sp,sv)
-                    MM.set_param(30,-100)
+                    self.MM.set_param(30,-100)
                 elif r > loca:
-                    MM.set_param(30,100)
+                    self.MM.set_param(30,100)
                     #MM.set_param(sp,sv)
                     print ('cousin2')
                 else:
                     #print ('cousin')
-                    MM.set_param(sp,sv)
-                    MM.set_param(30,-100)
+                    self.MM.set_param(sp,sv)
+                    self.MM.set_param(30,-100)
 
-                MM.run()
+                self.MM.run()
                 r = cuvreLineTrace.set_param(a,b)
                 time.sleep(0.1)
                 c += 1
@@ -165,11 +168,10 @@ class cuvreLineTrace:
                 
 
 
-        def stop():
-            MM = MotorMgmt.MotorMgmt()
-            MM.set_param(0,0)
-            MM.run()
-            MM.stop()
+        def stop(self):
+            self.MM.set_param(0,0)
+            self.MM.run()
+            self.MM.stop()
                 
 
 def main():
