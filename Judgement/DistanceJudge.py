@@ -57,6 +57,7 @@ class DistanceJudge(Judge.Judge):
 
 
     def judge(self):
+        pass
         """ここ直す
             あと、計算周りを自分たちの仕様に直す
         #X、Y座標を取得し、その値が基準値をこえていたらtrueを返す。それ以外はfalse
