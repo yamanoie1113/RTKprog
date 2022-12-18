@@ -64,17 +64,19 @@ class SectionRun:
                     mwalker[self.number1].left_run(param[self.number1][self.N1])#走法にGo(曲線)
                     self.cnt+=1
                     self.N1+=1
-                    
+                    self.Statment=True
                 
-                    while self.state:
+                    while self.Statment:
                         print("待ち1")
                         pass
 
                         if self.state==False:
+                            self.Statment==False
                             break
 
                     #if self.state==False:
                     self.state=True
+                    self.Statment==True
                     self.state=self.timejudge.judge(count[self.cnt])
                     mwalker[self.number2].set_run(param[self.number2][self.N2])#走法にGo(直線)
                     self.N2+=1
@@ -87,11 +89,12 @@ class SectionRun:
                     else:
                         
 
-                        while self.state:
+                        while self.Statment:
                             print("待ち２")
-                            pass
+                            
 
                         if self.state==False:
+                            self.Statment==False
                             break
 
                         #if self.state==False:
