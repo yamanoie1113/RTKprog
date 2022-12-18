@@ -28,7 +28,7 @@ class SectionRun:
     param=Param.Param()
     number1=0
     number2=1
-    cnt=0
+    countnum=0
     N1=0
     N2=0
     judgepoint=0
@@ -41,7 +41,7 @@ class SectionRun:
         self.deb=None
         pass
 
-    def run(self,mjudge,mwalker,count,param):#判定２つ、走法２つ、秒数、パラメータ
+    def run(self,mjudge,mwalker,counter,param):#判定２つ、走法２つ、秒数、パラメータ
         #早く仮想ラインつくってよおおおおおおおお
         while self.judgefirst:#trueかfalseか
             
@@ -60,9 +60,9 @@ class SectionRun:
         #走法
             while self.walkerfirst:
                 if param[self.number1][self.N1]!=999:#walkerの配列がなくなったら終了
-                    self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウント数を送る
+                    self.state=self.timejudge.judge(counter[self.countnum])#timejudgeにカウント数を送る
                     mwalker[self.number1].left_run(param[self.number1][self.N1])#走法にGo(曲線)
-                    self.cnt+=1
+                    self.countnum+=1
                     self.N1+=1
                     self.Statment=True
                 
@@ -77,12 +77,12 @@ class SectionRun:
                     #if self.state==False:
                     self.state=True
                     self.Statment==True
-                    self.state=self.timejudge.judge(count[self.cnt])
+                    self.state=self.timejudge.judge(counter[self.countnum])
                     mwalker[self.number2].set_run(param[self.number2][self.N2])#走法にGo(直線)
                     self.N2+=1
-                    self.cnt+=1
+                    self.countnum+=1
 
-                    if count[self.cnt]==999:
+                    if counter[self.countnum]==999:
                             print("秒数戻す")
                             self.warkerfirst=False
                             self.judgefirst=False
@@ -99,7 +99,8 @@ class SectionRun:
 
                         #if self.state==False:
                         self.state=True
-                        self.walkerfirst=True
+                        self.walkerfirst=False
+                        break
                         #stateを戻す
 
                 else:
