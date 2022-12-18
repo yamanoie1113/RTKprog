@@ -143,7 +143,7 @@ class SectionRun2:
             #self.mjudge=1
             print("mjudghe")
 
-        return self.mjudge
+        return self.mJudge
 
     def set_param(self,mnumber,count):#パラメータ設定
         #曲線

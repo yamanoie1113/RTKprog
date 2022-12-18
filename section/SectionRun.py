@@ -6,7 +6,7 @@ sys.path.append(str(current_dir) + '/../')
 from section import Param
 #from Sensors import MotorMgmt
 #from Walker import Run
-#from Walker import VirtualLineTrace
+from Walker import VirtualLineTrace
 from Walker import curveLineTrace
 from Judgement import TimeJudge
 from Judgement import DistanceJudge
@@ -16,7 +16,7 @@ from Judgement import TurnAngleJudge
 
 class SectionRun:
 
-    CURVE=1
+    CURVE=0
     STRAIGHT=1
     DISTANCE=0
     ANGLE=1
@@ -45,6 +45,7 @@ class SectionRun:
         #早く仮想ラインつくってよおおおおおおおお
         while self.judgefirst:#trueかfalseか
             
+                
             #ここで時間の判定を呼び出す
             
             if self.judgepoint==0:
@@ -58,39 +59,42 @@ class SectionRun:
 
         #走法
             while self.walkerfirst:
-                if param[self.number1][self.N1]!=None:#walkerの配列がなくなったらおーわり★
-                    self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウント数をぶち送る
-                    mwalker[self.number1].run(param[self.number1][self.N1])#走法にGo(曲線)
+                if param[self.number1][self.N1]!=999:#walkerの配列がなくなったら終了
+                    self.state=self.timejudge.judge(count[self.cnt])#timejudgeにカウント数を送る
+                    mwalker[self.number1].left_run(param[self.number1][self.N1])#走法にGo(曲線)
                     self.cnt+=1
                     self.N1+=1
-                    
+                    self.Statment=True
                 
-                    while self.state:
+                    while self.Statment:
                         print("待ち1")
                         pass
 
                         if self.state==False:
+                            self.Statment==False
                             break
 
                     #if self.state==False:
                     self.state=True
+                    self.Statment==True
                     self.state=self.timejudge.judge(count[self.cnt])
-                    #mwalker[self.number2].run(param[self.number2][self.N2])#走法にGo(直線)
+                    mwalker[self.number2].set_run(param[self.number2][self.N2])#走法にGo(直線)
                     self.N2+=1
                     self.cnt+=1
 
-                    if count[self.cnt]==None:
+                    if count[self.cnt]==999:
                             print("秒数戻す")
                             self.warkerfirst=False
                             self.judgefirst=False
                     else:
                         
 
-                        while self.state:
+                        while self.Statment:
                             print("待ち２")
-                            pass
+                            
 
                         if self.state==False:
+                            self.Statment==False
                             break
 
                         #if self.state==False:
@@ -107,6 +111,7 @@ class SectionRun:
             break
 
         #self.mWalker.run()
+        mwalker[self.number1].stop()
             
     def request_Walker(self,walker):
 
@@ -114,14 +119,14 @@ class SectionRun:
 
         if walker==self.CURVE:
             #オブジェクト生成
-            self.mWalker=curveLineTrace.cuvreLineTrace()#今外すとエラーになりますわよ★
+            self.mWalker=curveLineTrace.cuvreLineTrace()
             #self.mWalker=0
             print("curve")
 
         if walker==self.STRAIGHT:
             #オブジェクト生成
-            #self.mWalker=curveLineTrace()
-            self.mWalker=2
+            self.mWalker=VirtualLineTrace.VirtualLineTrace()
+            #self.mWalker=2
             print("straight")
         
         return self.mWalker
@@ -141,7 +146,7 @@ class SectionRun:
             #self.mjudge=1
             print("mjudghe")
 
-        return self.mjudge
+        return self.mJudge
 
     def set_param(self,mnumber):#パラメータ設定
         #曲線
