@@ -7,11 +7,11 @@ class Param:
 
     def Curve_set_param(self):
         
-        self.prm=([5,6,0,0,0],
-        [5,6,1,1,1],
-        [5,2,1,1,1],
-        [5,1,1,1,1],
-        [None])
+        self.prm=([5,100,0,0,0],
+        [5,-100,1,1,1],
+        [5,50,1,1,1],
+        [5,-50,1,1,1],
+        [999])
         #[前進量、旋回量、P,I,D]
         self.deb=self.prm
         print("Curve",self.deb)
@@ -24,7 +24,7 @@ class Param:
         [5,0,1,1,1],
         [5,0,1,1,1],
         [5,0,1,1,1],
-        [None])#(前進量,旋回量,P,I,D)
+        [999])#(前進量,旋回量,P,I,D)
         self.deb=self.prm
         print("straight",self.deb)
 
@@ -32,6 +32,6 @@ class Param:
 
     def count_set_param(self):
 
-        self.cnt=(2,4,4,4,4,4,4,4,None)
+        self.cnt=[2,4,4,4,4,4,4,4,999]
 
         return  self.cnt
