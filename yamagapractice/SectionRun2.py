@@ -45,7 +45,7 @@ class SectionRun2:
         #早く仮想ラインつくってよおおおおおおおお
         while self.judgefirst:#trueかfalseか
             
-                
+            
             #ここで時間の判定を呼び出す
             
             if self.judgepoint==0:
@@ -97,7 +97,7 @@ class SectionRun2:
 
                         while self.Statment:
                             print("待ち２")
-                            
+                            pass
 
                         if self.state==False:
                             self.Statment==False
@@ -112,13 +112,16 @@ class SectionRun2:
                 else:
 
                     self.walkerfirst=False
+                    self.judgefirst=False
                     break
             
-            self.judgefirst=False#これでwhileを終わらせてしまう
+            #self.judgefirst=False#これでwhileを終わらせてしまう
+            if self.judgefirst==False:
+                print("終了")
             break
 
         #self.mWalker.run()
-        #mwalker[self.number1].stop()
+        mwalker[self.number1].stop()
             
     def request_Walker(self,walker):
 
