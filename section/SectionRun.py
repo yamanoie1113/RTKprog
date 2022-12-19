@@ -106,13 +106,17 @@ class SectionRun:
                 else:
 
                     self.walkerfirst=False
+                    self.judgefirst=False
                     break
             
-            self.judgefirst=False#これでwhileを終わらせてしまう
+            
+            if self.judgefirst==False:
+                print("終了")
             break
 
         #self.mWalker.run()
         mwalker[self.number1].stop()
+        print("終了")
             
     def request_Walker(self,walker):
 
