@@ -21,7 +21,6 @@ class SectionRun:
     DISTANCE=0
     ANGLE=1
     judgefirst=True
-    walkerfirst=True
     mWalker=0
     mjudge=0
     deb=None
@@ -49,73 +48,63 @@ class SectionRun:
             #ここで時間の判定を呼び出す
             
             if self.judgepoint==0:
-                mjudge[self.judgepoint].run()#距離判定
+                mjudge[self.judgepoint].judge()#距離判定
                 self.judgepoint+=1
             else:
-                mjudge[self.judgepoint].run()#旋回角度判定
+                mjudge[self.judgepoint].judge()#旋回角度判定
                 self.judgepoint-=1
             
-            self.walkerfirst=True
 
         #走法
-            while self.walkerfirst:
-                if param[self.number1][self.N1]!=999:#walkerの配列がなくなったら終了
-                    self.state=self.timejudge.judge(counter[self.countnum])#timejudgeにカウント数を送る
-                    mwalker[self.number1].left_run(param[self.number1][self.N1])#走法にGo(曲線)
-                    self.countnum+=1
-                    self.N1+=1
-                    self.Statment=True
+            #while self.walkerfirst:
+            if param[self.number1][self.N1]!=999:#walkerの配列がなくなったら終了
+                self.state=self.timejudge.judge(counter[self.countnum])#timejudgeにカウント数を送る
+                mwalker[self.number1].left_run(param[self.number1][self.N1])#走法にGo(曲線)
+                self.countnum+=1
+                self.N1+=1
+                self.Statment=True
                 
-                    while self.Statment:
-                        print("待ち1")
-                        pass
+                while self.Statment:
+                    print("待ち1")
+                    pass
 
-                        if self.state==False:
-                            self.Statment==False
-                            break
+                    if self.state==False:
+                        self.Statment==False
+                        break
 
                     #if self.state==False:
-                    self.state=True
-                    self.Statment==True
-                    self.state=self.timejudge.judge(counter[self.countnum])
-                    #mwalker[self.number2].set_run(param[self.number2][self.N2])#走法にGo(直線)
-                    mwalker[self.number1].left_run(param[self.number2][self.N2])
-                    self.N2+=1
-                    self.countnum+=1
+                self.state=True
+                self.Statment==True
+                self.state=self.timejudge.judge(counter[self.countnum])
+                #mwalker[self.number2].set_run(param[self.number2][self.N2])#走法にGo(直線)
+                mwalker[self.number1].left_run(param[self.number2][self.N2])
+                self.N2+=1
+                self.countnum+=1
 
-                    if counter[self.countnum]==999:
-                            print("秒数戻す")
-                            self.warkerfirst=False
-                            self.judgefirst=False
-                    else:
-                        
-
-                        while self.Statment:
-                            print("待ち２")
+                if counter[self.countnum]==999:
+                    print("秒数戻す")
+                    self.judgefirst=False
+                else:
+                    while self.Statment:
+                        print("待ち２")
                             
 
                         if self.state==False:
                             self.Statment==False
                             break
 
-                        #if self.state==False:
-                        self.state=True
-                        self.walkerfirst=False
-                        break
-                        #stateを戻す
+                    self.state=True
+                    self.Statment=True
+                    #stateを戻す
 
-                else:
-
-                    self.walkerfirst=False
+            else:
                     self.judgefirst=False
-                    break
             
             
             if self.judgefirst==False:
                 print("終了")
             break
 
-        #self.mWalker.run()
         mwalker[self.number1].stop()
         print("終了")
             
