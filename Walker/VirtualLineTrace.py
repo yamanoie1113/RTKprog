@@ -20,6 +20,7 @@ class VirtualLineTrace:
         startx = 0 #開始地点ｘ
         starty = 0 #開始地点ｙ
         turn = 'no'
+        MM = MotorMgmt.MotorMgmt()
 
 
 
@@ -60,6 +61,21 @@ class VirtualLineTrace:
             return param
 
 
+        def fast_param(self,a,b):
+        
+            #PM = PositionMgmt.PositionMgmt()
+            #para = self.PM.getvalue()
+            para = [500,500]
+            x = para[0] #座標分け
+            y = para[1]
+            a = x+300 #中心点X
+            b = y #中心点Y
+
+            r = np.sqrt((a-x)**2 + (b-y)**2) #座標計算
+            print('x:',x,'y:',y) 
+            return r,a,b
+
+
         def set_run(self,paramlist):
 
             #self.mPID=PID()
@@ -74,7 +90,6 @@ class VirtualLineTrace:
             p = param_list[2]
             i = param_list[3]
             d = param_list[4]
-            MM = MotorMgmt.MotorMgmt()
             param = VirtualLineTrace.set_param()
             self.startx = param[0]
             self.starty = param[1]  
@@ -89,48 +104,47 @@ class VirtualLineTrace:
 
                 if self.turn == 'no':
                      #print ('zennsin2')
-                        MM.set_param(sp,sv)
-                        #MM.set_param(1,100)
+                        self.MM.set_param(sp,sv)
+                        #self.MM.set_param(1,100)
                 elif r < 0:
                     #中心点に近づく
                     if self.turn == 'right':
-                        MM.set_param(sp,sv)
-                        #MM.set_param(1,-100)
+                        self.MM.set_param(sp,sv)
+                        #self.MM.set_param(1,-100)
                         #print ('zennsin')
                     elif self.turn == 'left':
                         #print ('cousin')
-                        MM.set_param(sp,sv)
-                        #MM.set_param(10,100)
+                        self.MM.set_param(sp,sv)
+                        #self.MM.set_param(10,100)
                 elif r > 0:
                     #中心点から離れる
                     if self.turn == 'right':
                         #print ('zennsin2')
-                        MM.set_param(sp,sv)
-                        #MM.set_param(1,-100)
+                        self.MM.set_param(sp,sv)
+                        #self.MM.set_param(1,-100)
                     elif self.turn == 'left':
-                        #MM.set_param(10,100)
-                        MM.set_param(sp,sv)
+                        #self.MM.set_param(10,100)
+                        self.MM.set_param(sp,sv)
                         #print ('cousin2')
 
                     
-                MM.run()
+                self.MM.run()
                 param =VirtualLineTrace.set_param()
                 r = VirtualLineTrace.set_distance(param)
                 time.sleep(0.1)
                 c += 1
                 if c == 100:
-                    MM.set_param(0,0)
-                    MM.run()
-                    MM.stop()
+                    self.MM.set_param(0,0)
+                    self.MM.run()
+                    self.MM.stop()
                     #self.mPID.reset_param()
                     break
                 #print (c)
 
         def stop(self):
-            MM = MotorMgmt.MotorMgmt()
-            MM.set_param(0,0)
-            MM.run()
-            MM.stop()
+            self.MM.set_param(0,0)
+            self.MM.run()
+            self.MM.stop()
                 
 
 def main():
