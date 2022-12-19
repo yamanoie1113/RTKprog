@@ -38,8 +38,8 @@ class cuvreLineTrace:
         def fast_param(self,a,b):
         
             #PM = PositionMgmt.PositionMgmt()
-            para = self.PM.getvalue()
-            #para = [500,500]
+            #para = self.PM.getvalue()
+            para = [500,500]
             x = para[0] #座標分け
             y = para[1]
             a = x+300 #中心点X
@@ -49,12 +49,21 @@ class cuvreLineTrace:
             print('x:',x,'y:',y) 
             return r,a,b
 
-        def right_run(self,sp,sv,p,i,d):
+        def right_run(self,paramlist):
 
             #self.mPID=PID()
             #self.mPID.reset_param()
             #self.param = list()
             #MM = MotorMgmt.MotorMgmt()
+            param_list = [0]*5
+            for f in range(4):
+                param_list = paramlist[f:f+1]
+            
+            sp = param_list[0]
+            sv = param_list[1]
+            p = param_list[2]
+            i = param_list[3]
+            d = param_list[4]
             r = 0 #現在半径
             loca = 0 #目標半径
             a = 0#中心点X
@@ -114,21 +123,33 @@ class cuvreLineTrace:
                 #print (c)
 
 
-        def left_run(self,sp,sv,p,i,d):
+        def left_run(self,paramlist):
             #self.mPID=PID()
             #self.mPID.reset_param()
             #self.param = list()
             #MM = MotorMgmt.MotorMgmt()
+            print(paramlist)
+            param_list = [0]*5
+            for f in range(4):
+                param_list = paramlist[f:f+1]
+            
+            sp = param_list[0]
+            sv = param_list[1]
+            p = param_list[2]
+            i = param_list[3]
+            d = param_list[4]
+            print('sp',sp,sv,p,i,d)
             r = 0 #現在半径
             loca = 0 #目標半径
             a = 0#中心点X
             b = 0 #中心点Y
             #para = [500,500]
-            r,a,b = cuvreLineTrace.fast_param(a,b)
+            #r,a,b = cuvreLineTrace.fast_param(a,b)
             loca = r
             c = 0#ループカウンタ
             #f = open('log.txt', 'w')
-            while True:
+            
+            #while True:
                 
                 #self.mPID.set_target(loca)
                 #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
@@ -141,25 +162,26 @@ class cuvreLineTrace:
                 #else:    
                     #para = [500,500]
                 #f.write(r,a,b \n)
-                print('loca',loca,'r:',r,'a:',a,'b:',b)
-                if r < loca:
+            print('sp',sp,sv,p,i,d)
+            print('loca',loca,'r:',r,'a:',a,'b:',b)
+                #if r < loca:
                     #中心点に近づく
-                    print ('cousin')
+            print ('cousin')
+            self.MM.set_param(sp,sv)
+                    #self.MM.set_param(30,-100)
+                #elif r > loca:
+                    #self.MM.set_param(30,100)
                     #MM.set_param(sp,sv)
-                    self.MM.set_param(30,-100)
-                elif r > loca:
-                    self.MM.set_param(30,100)
-                    #MM.set_param(sp,sv)
-                    print ('cousin2')
-                else:
+                    #print ('cousin2')
+                #else:
                     #print ('cousin')
-                    self.MM.set_param(sp,sv)
-                    self.MM.set_param(30,-100)
+                    #self.MM.set_param(sp,sv)
+                    #self.MM.set_param(30,-100)
 
-                self.MM.run()
-                r = cuvreLineTrace.set_param(a,b)
-                time.sleep(0.1)
-                c += 1
+            self.MM.run()
+                #r = cuvreLineTrace.set_param(a,b)
+            time.sleep(0.1)
+            #c += 1
                 
                 #if c == 50:
                     #cuvreLineTrace.stop()
@@ -169,10 +191,19 @@ class cuvreLineTrace:
                 #print (c)
 
         
-        def run(self,sp,sv,p,i,d):
+        def run(self,paramlist):
+            param_list = [0]*5
+            for f in range(4):
+                param_list = paramlist[f:f+1]
+            
+            sp = param_list[0]
+            sv = param_list[1]
+            p = param_list[2]
+            i = param_list[3]
+            d = param_list[4]
             c = 0#ループカウンタ
             while True:      
-                self.MM.set_param(30,0)
+                self.MM.set_param(sp,sv)
                 self.MM.run()
                 time.sleep(0.1)
                 #if c == 50:
@@ -195,5 +226,6 @@ def main():
         
 if __name__ == '__main__':
     main()
+
 
 
