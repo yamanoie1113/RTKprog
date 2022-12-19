@@ -5,7 +5,7 @@ sys.path.append(str(current_dir) + '/../')
 
 import math
 from Judgement import Judge
-from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
+from Sensors import TurnAngleSensor as TASensor
 
 class TurnAngleJudge(Judge.Judge):
 
@@ -46,7 +46,27 @@ class TurnAngleJudge(Judge.Judge):
 
     def judge(self):
         pass
+
+        if self.finish_angle >= self.start_angle :
+
+            if self.pget.getvalue() >= self.finish_angle :
+                return True
+
+            else :
+                return False
+
+        else :
+
+            if self.pget.getvalue() <= self.finish_angle :
+                return True
+
+            else :
+                return False
     """
+    def judge(self):
+        #X,Y座標を取得し、その値が基準値をこえていたらTrueを返す。それ以外はFalse
+        #ここジャイロでやるからXY関係ない説ある?
+
 
         if self.finish_angle >= self.start_angle :
 
@@ -64,29 +84,6 @@ class TurnAngleJudge(Judge.Judge):
             else :
                 return False
 
-    """
-
-    """
-
-    def judge(self):
-        #X,Y座標を取得し、その値が基準値をこえていたらTrueを返す。それ以外はFalse
-        #ここジャイロでやるからXY関係ない説ある?
-
-        if self.finish_angle >= self.start_angle :
-
-            if PMgmt.getvalue() >= self.finish_angle :
-                return True
-
-            else :
-                return False
-
-        else :
-
-            if PMgmt.getvalue() <= self.finish_angle :
-                return True
-
-            else :
-                return False
     """
 
     def set_param(self,status):
