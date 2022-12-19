@@ -3,7 +3,7 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from Sensors import Timer
+from Sensors import oooTimer
 
 class timedebuge:
 
@@ -21,5 +21,5 @@ class timedebuge:
     def main():
 
         ti=timedebuge()
-        ob=Timer()
+        ob=oooTimer()
         ti.request(ob)

@@ -12,7 +12,7 @@ class TimeJudge():
     #タイマ値はちゃんと取得できてるっぽい
     #main関数でn秒経過後にタイマ値取得してる。取得しているのは"経過した"秒数？
 
-    time=0.0
+    mtime=0.0
     timelimit = 0.0
     timer = Timer.Timer()
     def __init__(self):
@@ -21,13 +21,13 @@ class TimeJudge():
         print("end_judge_init")
 
     def judge(self,limit):
-        time = 0
+        mtime = 0
         self.timelimit = limit
         print("timelimit:",end="")
         print(self.timelimit)
         self.timer.set_param(limit)
         print("tjudge_flag_reset")
-        print(time)
+        print(mtime)
         print(self.timelimit)
         print(self.timer.getvalue())
         self.timer.exec_thread()
@@ -36,15 +36,16 @@ class TimeJudge():
         #スレッドでカウントを開始する。
 
         while flag :
-            print("_________________________________")
+            print("--------------------------------------------------------------")
             
-            time = self.timer.getvalue()
+            mtime = self.timer.getvalue()
 
             print("gettime:",end="")
-            print(time)
+            print(mtime)
 
-            if time >= self.timelimit :
+            if mtime >= self.timelimit :
                 print("timejudge_return_False")
+                time.sleep(1)
                 flag = False
                 return False
                 
@@ -90,8 +91,18 @@ def main():
     tm = 5
     hnt = True
     hnt=test.judge(int(tm))
+
     if hnt == False:
-        test.judge(10)
+        hnt=test.judge(10)
+
+    if hnt == False:
+        hnt=test.judge(15)
+
+    
+    
+    if hnt == False:
+        print("end")
+
 
 
 if __name__=="__main__":
