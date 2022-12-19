@@ -129,15 +129,11 @@ class cuvreLineTrace:
             #self.param = list()
             #MM = MotorMgmt.MotorMgmt()
             print(paramlist)
-            param_list = [0]*5
-            for f in range(4):
-                param_list = paramlist[f:f+1]
-            
-            sp = param_list[0]
-            sv = param_list[1]
-            p = param_list[2]
-            i = param_list[3]
-            d = param_list[4]
+            sp = paramlist[0]
+            sv = paramlist[1]
+            p = paramlist[2]
+            i = paramlist[3]
+            d = paramlist[4]
             print('sp',sp,sv,p,i,d)
             r = 0 #現在半径
             loca = 0 #目標半径
