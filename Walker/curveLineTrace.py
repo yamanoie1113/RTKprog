@@ -93,7 +93,7 @@ class cuvreLineTrace:
                     #中心点から離れる
                     print ('zennsin2')
                     #MM.set_param(sp,sv)
-                    self.MM.set_param(308,-100)
+                    self.MM.set_param(30,-100)
 
                 else:
                     self.MM.set_param(30,100)

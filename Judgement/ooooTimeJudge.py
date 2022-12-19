@@ -5,29 +5,29 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 import threading
 
-from Sensors import Timer_copy
+from Sensors import oooTimer
 
 class TimeJudge():
     #白井の班参考にして作成
     #タイマ値はちゃんと取得できてるっぽい
     #main関数でn秒経過後にタイマ値取得してる。取得しているのは"経過した"秒数？
 
-    mtime=0.0
+    time=0.0
     timelimit = 0.0
-    timer = Timer_copy.Timer()
+    timer = oooTimer.Timer()
     def __init__(self):
         print("judge_init")
         #self.set_param()
         print("end_judge_init")
 
     def judge(self,limit):
-        mtime = 0
+        time = 0
         self.timelimit = limit
         print("timelimit:",end="")
         print(self.timelimit)
         self.timer.set_param(limit)
         print("tjudge_flag_reset")
-        print(mtime)
+        print(time)
         print(self.timelimit)
         print(self.timer.getvalue())
         self.timer.exec_thread()
@@ -36,16 +36,15 @@ class TimeJudge():
         #スレッドでカウントを開始する。
 
         while flag :
-            print("--------------------------------------------------------------")
+            print("_________________________________")
             
-            mtime = self.timer.getvalue()
+            time = self.timer.getvalue()
 
             print("gettime:",end="")
-            print(mtime)
+            print(time)
 
-            if mtime >= self.timelimit :
+            if time >= self.timelimit :
                 print("timejudge_return_False")
-                time.sleep(1)
                 flag = False
                 return False
                 
@@ -91,18 +90,8 @@ def main():
     tm = 5
     hnt = True
     hnt=test.judge(int(tm))
-
     if hnt == False:
-        hnt=test.judge(10)
-
-    if hnt == False:
-        hnt=test.judge(15)
-
-    
-    
-    if hnt == False:
-        print("end")
-
+        test.judge(10)
 
 
 if __name__=="__main__":

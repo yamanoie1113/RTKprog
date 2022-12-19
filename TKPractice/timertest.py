@@ -4,9 +4,9 @@ import time
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 
-from Judgement import TimeJudge
+from Judgement import ooooTimeJudge
 
-tclass = TimeJudge.TimeJudge()
+tclass = ooooTimeJudge.TimeJudge()
 res = tclass.judge(20)
 
 print("jugde_result")

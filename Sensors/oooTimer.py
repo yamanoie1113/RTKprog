@@ -13,8 +13,9 @@ class Timer(Sensor.Sensor):
 
     #count2 = 0
     thread1 = None
+    thread2 = None
     timelimit = 0
-    time_master = 0
+    sumtime = 0
     startflag = True
 
     def __init__(self):
@@ -22,7 +23,7 @@ class Timer(Sensor.Sensor):
         #タイマ初期化
         self.count2=0
         self.thread1 = threading.Thread(target=self.count)
-        self.end_time = 50
+        self.endtime = 190
 
         #self.thread2 = threading.Thread(target=self.getvalue)
         print("end_Timer_init")
@@ -35,17 +36,12 @@ class Timer(Sensor.Sensor):
 
         else :
             self.update()
-            
-
         
 
 
 
     def update(self):
-        print("counter_reset")
         self.count2=0
-        #time.sleep(1)
-
 
     def set_param(self,limit):
         self.timelimit = limit
@@ -54,30 +50,27 @@ class Timer(Sensor.Sensor):
     def count(self):
 
         print("count")
+        self.count2 = 0
         #カウントダウン
         try:
             while True:#直接数字じゃなくて引数をいれるかも
-                print("count_loop")
+                print("loop")
                 self.start = time.perf_counter()
                 time.sleep(1)
 
                 self.count2+=round(time.perf_counter() - self.start)
-                self.time_master += 1
+                self.sumtime += 1
                 print("lm=",end="")
                 print(self.timelimit)
-                print(self.time_master)
+                print(self.count2)
                 
-                if self.count2 > self.timelimit:
-                    #指定時間が終了したとき
-                    #でもそれはジャッジでやるのでは？あれ？
-                    return False
-
-                elif self.time_master > self.end_time:
-                    #制限時間経過後の終了処理
+                if self.sumtime > self.endtime:
                     print("end")
 
-                    #print(self.count2)
-                    #return self.count2
+                    return False
+                
+                #sprint(self.count2)
+                #return self.count2
 
 
             #カウント終わり
@@ -85,6 +78,10 @@ class Timer(Sensor.Sensor):
             #タイマのリセットここでやってるけど変えるかも
         except KeyboardInterrupt:
             print("count_interrupt")
+
+            
+
+
 
 
     def getvalue(self):
