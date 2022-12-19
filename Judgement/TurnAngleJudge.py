@@ -14,7 +14,7 @@ class TurnAngleJudge(Judge.Judge):
     finish_angle=0.0
     baseline = 0.0
 
-    
+
     last_angle = 0.0
     mx=0.0
     my=0.0
@@ -45,7 +45,7 @@ class TurnAngleJudge(Judge.Judge):
         self.my = positionXY[1]
         """
 
-    def jugde(self):
+    def judge(self):
         if self.finish_angle >= self.start_angle :
 
             if PMgmt.getvalue() >= self.finish_angle :

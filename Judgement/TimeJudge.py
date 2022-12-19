@@ -45,7 +45,7 @@ class TimeJudge():
 
             if mtime >= self.timelimit :
                 print("timejudge_return_False")
-                time.sleep(1)
+                #time.sleep(1)
                 flag = False
                 return False
                 

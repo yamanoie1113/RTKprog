@@ -8,7 +8,7 @@ sys.path.append(str(current_dir) + '/../')
 from Judgement import Judge
 
 #室内用インポート
-from Sensors import PositionMgmt as PMgmt
+from Sensors import PositionMgmt as PMgmt,TurnAngleSensor as TASensor
 
 #室外用インポート
 #from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
