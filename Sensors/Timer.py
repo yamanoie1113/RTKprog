@@ -22,7 +22,7 @@ class Timer(Sensor.Sensor):
         #タイマ初期化
         self.count2=0
         self.thread1 = threading.Thread(target=self.count)
-        self.end_time = 50
+        self.end_time = 190
 
         #self.thread2 = threading.Thread(target=self.getvalue)
         print("end_Timer_init")
