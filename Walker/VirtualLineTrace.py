@@ -60,11 +60,20 @@ class VirtualLineTrace:
             return param
 
 
-        def set_run(self,sp,sv,p,i,d):
+        def set_run(self,paramlist):
 
             #self.mPID=PID()
             #self.mPID.reset_param()
             #self.param = list()
+            param_list = [0]*5
+            for f in range(4):
+                param_list = paramlist[f:f+1]
+            
+            sp = param_list[0]
+            sv = param_list[1]
+            p = param_list[2]
+            i = param_list[3]
+            d = param_list[4]
             MM = MotorMgmt.MotorMgmt()
             param = VirtualLineTrace.set_param()
             self.startx = param[0]
@@ -116,6 +125,12 @@ class VirtualLineTrace:
                     #self.mPID.reset_param()
                     break
                 #print (c)
+
+        def stop(self):
+            MM = MotorMgmt.MotorMgmt()
+            MM.set_param(0,0)
+            MM.run()
+            MM.stop()
                 
 
 def main():
