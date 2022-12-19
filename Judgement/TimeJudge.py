@@ -21,13 +21,15 @@ class TimeJudge():
         print("end_judge_init")
 
     def judge(self,limit):
+        print("judge_enter￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥")
+        #time.sleep(1)
         mtime = 0
         self.timelimit = limit
         print("timelimit:",end="")
         print(self.timelimit)
         self.timer.set_param(limit)
         print("tjudge_flag_reset")
-        print(mtime)
+        #print(mtime)
         print(self.timelimit)
         print(self.timer.getvalue())
         self.timer.exec_thread()
@@ -46,7 +48,7 @@ class TimeJudge():
             if mtime >= self.timelimit :
                 print("timejudge_return_False")
                 #time.sleep(1)
-                flag = False
+                #flag = False
                 return False
                 
         """

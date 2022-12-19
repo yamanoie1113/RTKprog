@@ -37,18 +37,21 @@ class TurnAngleJudge(Judge.Judge):
         #self.startangle = tmp['yaw'] + self.startangle
         #XYから値取得
 
-        """
+        
         pget = PMgmt.PositionMgmt(0.0)
         positionXY = pget.getvalue()
         #mx,myに座標をセット
         self.mx = positionXY[0]
         self.my = positionXY[1]
-        """
+        
 
     def judge(self):
+        pass
+    """
+
         if self.finish_angle >= self.start_angle :
 
-            if PMgmt.getvalue() >= self.finish_angle :
+            if self.pget.getvalue() >= self.finish_angle :
                 return True
 
             else :
@@ -56,13 +59,16 @@ class TurnAngleJudge(Judge.Judge):
 
         else :
 
-            if PMgmt.getvalue() <= self.finish_angle :
+            if self.pget.getvalue() <= self.finish_angle :
                 return True
 
             else :
                 return False
 
     """
+
+    """
+
     def judge(self):
         #X,Y座標を取得し、その値が基準値をこえていたらTrueを返す。それ以外はFalse
         #ここジャイロでやるからXY関係ない説ある?

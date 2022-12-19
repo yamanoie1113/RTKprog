@@ -22,7 +22,7 @@ class Timer(Sensor.Sensor):
         #タイマ初期化
         self.count2=0
         self.thread1 = threading.Thread(target=self.count)
-        self.end_time = 190
+        self.end_time = 50
 
         #self.thread2 = threading.Thread(target=self.getvalue)
         print("end_Timer_init")
@@ -67,14 +67,18 @@ class Timer(Sensor.Sensor):
                 print(self.timelimit)
                 print(self.time_master)
                 
+                """
                 if self.count2 > self.timelimit:
                     #指定時間が終了したとき
                     #でもそれはジャッジでやるのでは？あれ？
                     return False
-
-                elif self.time_master > self.end_time:
+                """
+                
+                if self.time_master > self.end_time:
                     #制限時間経過後の終了処理
                     print("end")
+                    return False
+                
 
                     #print(self.count2)
                     #return self.count2
