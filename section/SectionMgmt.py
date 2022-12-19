@@ -109,7 +109,7 @@ class SectionMgmt:
         print("runinstance",self.runinstance_param)
         print("judeinstance",self.judgeinstance_param)
         print("count",self.count)
-        #self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)
+        self.mSection.run(self.judgeinstance_param,self.runinstance_param,self.count,self.param)
         self.mState=self.END
 
 
@@ -137,7 +137,7 @@ class SectionMgmt:
         #run2=self.mSection.request_judge(param[self.mSectionIdx])
         
         if self.mSectionIdx==self.CURVE:
-
+            
             self.judgeinstance_param[self.mSectionIdx]=self.mSection.request_judge(self.mSectionIdx)
             #run2.set_param(self.mSectionIdx)
         

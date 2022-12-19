@@ -10,23 +10,28 @@ from section import SectionMgmt2
 
 class TurnAngleJudge(Judge.Judge):
 
-    startangle=0.0
-    finishangle=0.03
+    start_angle=0.0
+    finish_angle=0.0
     baseline = 0.0
 
-
+    
     last_angle = 0.0
     mx=0.0
     my=0.0
 
+    angget = TASensor.TurnAngleSensor()
+
+
     def __init__(self):
         #旋回角度取得
         #sensehatからジャイロ取得
-        angget = TASensor.TurnAngleSensor()
 
-        #ジャイロから旋回角度抽出 元々yawだけ返ってくるようになってる
-        #挙動に合わせてこっちで選択出来るように変えてもいいかも
-        self.startangle = angget.getvalue()
+
+        #sectionからstatusを渡す位置を考える initかsetparamか
+        #とりあえずダミーを設置する
+        status = 0.0
+
+        self.set_param(status)
 
         #tmp = angget.getvalue()
         #self.startangle = tmp['yaw'] + self.startangle
@@ -40,14 +45,10 @@ class TurnAngleJudge(Judge.Judge):
         self.my = positionXY[1]
         """
 
+    def jugde(self):
+        if self.finish_angle >= self.start_angle :
 
-    def judge(self):
-        #X,Y座標を取得し、その値が基準値をこえていたらTrueを返す。それ以外はFalse
-        #ここジャイロでやるからXY関係ない説ある?
-
-        if self.finishangle >= self.startangle :
-
-            if PMgmt.getvalue() >= self.finishangle :
+            if PMgmt.getvalue() >= self.finish_angle :
                 return True
 
             else :
@@ -55,18 +56,39 @@ class TurnAngleJudge(Judge.Judge):
 
         else :
 
-            if PMgmt.getvalue() <= self.finishangle :
+            if PMgmt.getvalue() <= self.finish_angle :
                 return True
 
             else :
                 return False
 
+    """
+    def judge(self):
+        #X,Y座標を取得し、その値が基準値をこえていたらTrueを返す。それ以外はFalse
+        #ここジャイロでやるからXY関係ない説ある?
+
+        if self.finish_angle >= self.start_angle :
+
+            if PMgmt.getvalue() >= self.finish_angle :
+                return True
+
+            else :
+                return False
+
+        else :
+
+            if PMgmt.getvalue() <= self.finish_angle :
+                return True
+
+            else :
+                return False
+    """
+
     def set_param(self,status):
-             baseline = math.pi*(status[0])/180+SectionMgmt.ANGLE #現在の角度足し合わせてるっぽい
-             diff = baseline - TASensor.getvalue()  #目標角度と現在角度の差
+        self.start_angle = self.angget.getvalue()
+        self.finish_angle = status
 
-
-
+        self.finish_angle = self.start_angle + status
 
     def Test(self):
         print(self.mx,self.my)
@@ -75,7 +97,7 @@ class TurnAngleJudge(Judge.Judge):
 def main():
     testclass = TurnAngleJudge()
     testclass.Test()
-    print(testclass.startangle)
+    print(testclass.start_angle)
 
 if __name__ == '__main__':
     main()

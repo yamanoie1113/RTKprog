@@ -3,9 +3,9 @@ import pathlib
 import time
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-import multiprocessing
+import threading
 
-from Sensors import Timer3
+from Sensors import oooTimer
 
 class TimeJudge():
     #白井の班参考にして作成
@@ -14,33 +14,40 @@ class TimeJudge():
 
     time=0.0
     timelimit = 0.0
-    timer = Timer3.Timer()
+    timer = oooTimer.Timer()
     def __init__(self):
         print("judge_init")
         #self.set_param()
         print("end_judge_init")
 
     def judge(self,limit):
-
+        time = 0
         self.timelimit = limit
         print("timelimit:",end="")
         print(self.timelimit)
         self.timer.set_param(limit)
+        print("tjudge_flag_reset")
+        print(time)
+        print(self.timelimit)
+        print(self.timer.getvalue())
+        self.timer.exec_thread()
+        
+        flag =True
+        #スレッドでカウントを開始する。
 
-        self.timer.p.apply_async(self.timer.count)#スレッドでカウントを開始する。
-
-
-        while True :
+        while flag :
             print("_________________________________")
+            
             time = self.timer.getvalue()
 
             print("gettime:",end="")
             print(time)
 
-            if time > self.timelimit-1 :
+            if time >= self.timelimit :
                 print("timejudge_return_False")
-                self.timer.p.close()
+                flag = False
                 return False
+                
         """
             else :
                 print("timejudge_return_FALSE")
@@ -77,11 +84,14 @@ class TimeJudge():
 
 def main():
     test = TimeJudge()
+        
     #タイマのカウント待ち
-    tm = input()
-    test.set_param(int(tm))
-    time.sleep(3)
-    test.judge(3)
+    #print("wait")        
+    tm = 5
+    hnt = True
+    hnt=test.judge(int(tm))
+    if hnt == False:
+        test.judge(10)
 
 
 if __name__=="__main__":
