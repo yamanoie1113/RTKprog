@@ -6,7 +6,6 @@ sys.path.append(str(current_dir) + '/../')
 import math
 from Judgement import Judge
 from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
-from section import SectionMgmt2
 
 class TurnAngleJudge(Judge.Judge):
 
