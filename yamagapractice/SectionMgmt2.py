@@ -145,6 +145,7 @@ class SectionMgmt2:
         elif self.mSectionIdx==self.STRAIGHT:
             self.judgeinstance_param[self.mSectionIdx]=self.mSection.request_judge(self.mSectionIdx)
             print("ju",self.judgeinstance_param)
+            print("yamaga")
             #self.mSection.request_judge(param)
             #run2.set_param(self.mSectionIdx)
         #パラメータをSectionPrmからもらう

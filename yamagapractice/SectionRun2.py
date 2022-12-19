@@ -119,7 +119,6 @@ class SectionRun2:
             if self.judgefirst==False:
                 print("終了")
             break
-
         #self.mWalker.run()
         mwalker[self.number1].stop()
             

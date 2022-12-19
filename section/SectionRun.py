@@ -78,7 +78,8 @@ class SectionRun:
                     self.state=True
                     self.Statment==True
                     self.state=self.timejudge.judge(counter[self.countnum])
-                    mwalker[self.number2].set_run(param[self.number2][self.N2])#走法にGo(直線)
+                    #mwalker[self.number2].set_run(param[self.number2][self.N2])#走法にGo(直線)
+                    mwalker[self.number1].left_run(param[self.number2][self.N2])
                     self.N2+=1
                     self.countnum+=1
 
