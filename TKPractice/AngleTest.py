@@ -5,20 +5,20 @@ sys.path.append(str(current_dir) + '/../')
 
 import math
 from Judgement import Judge
-from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
 
 class TurnAngleJudge(Judge.Judge):
 
     start_angle=0.0
     finish_angle=0.0
     baseline = 0.0
+    testcnt = 0
 
 
     last_angle = 0.0
     mx=0.0
     my=0.0
 
-    angget = TASensor.TurnAngleSensor()
+    #angget = TASensor.TurnAngleSensor()
 
 
     def __init__(self):
@@ -28,28 +28,34 @@ class TurnAngleJudge(Judge.Judge):
 
         #sectionからstatusを渡す位置を考える initかsetparamか
         #とりあえずダミーを設置する
-        status = 0.0
+        status =int(input("旋回したい角度: "))
 
         self.set_param(status)
 
         #tmp = angget.getvalue()
         #self.startangle = tmp['yaw'] + self.startangle
-        #XYから値取得
-
         
+        #XYから値取得
+        """
         pget = PMgmt.Position()
         positionXY = pget.getvalue()
+        """
+
         #mx,myに座標をセット
-        self.mx = positionXY[0]
-        self.my = positionXY[1]
+        self.mx = int(input("現在のX: "))
+        self.my = int(input("現在のY: "))
         
 
     def judge(self):
-        pass
+
+        #Test用コード/現在の角度は本来pget.getvalue()で取得
+        self.testcnt += 1
+        self.nowAngle = int(input("現在の角度: "))
+
 
         if self.finish_angle >= self.start_angle :
 
-            if self.pget.getvalue() >= self.finish_angle :
+            if self.nowAngle >= self.finish_angle :
                 return True
 
             else :
@@ -57,7 +63,7 @@ class TurnAngleJudge(Judge.Judge):
 
         else :
 
-            if self.pget.getvalue() <= self.finish_angle :
+            if self.nowAngle <= self.finish_angle :
                 return True
 
             else :
@@ -87,7 +93,7 @@ class TurnAngleJudge(Judge.Judge):
     """
 
     def set_param(self,status):
-        self.start_angle = self.angget.getvalue()
+        self.start_angle = int(input("開始角度: "))#self.angget.getvalue()で現在の角度を取得
         self.finish_angle = status
 
         self.finish_angle = self.start_angle + status
@@ -99,6 +105,10 @@ class TurnAngleJudge(Judge.Judge):
 def main():
     testclass = TurnAngleJudge()
     testclass.Test()
+    booly = False
+    while booly == False:
+        booly = testclass.judge()
+
     print(testclass.start_angle)
 
 if __name__ == '__main__':
