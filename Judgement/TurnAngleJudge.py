@@ -37,7 +37,7 @@ class TurnAngleJudge(Judge.Judge):
         #XYから値取得
 
         
-        pget = PMgmt.Position()
+        pget = PMgmt.PositionMgmt()
         positionXY = pget.getvalue()
         #mx,myに座標をセット
         self.mx = positionXY[0]
