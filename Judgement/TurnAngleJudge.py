@@ -28,28 +28,33 @@ class TurnAngleJudge(Judge.Judge):
 
         #sectionからstatusを渡す位置を考える initかsetparamか
         #とりあえずダミーを設置する
-        status = 0.0
+        status = float(input("input_finish_angle?"))
 
         self.set_param(status)
 
-        #tmp = angget.getvalue()
-        #self.startangle = tmp['yaw'] + self.startangle
+        self.start_angle = self.angget.getvalue()
+        
         #XYから値取得
 
         
-        pget = PMgmt.PositionMgmt()
-        positionXY = pget.getvalue()
+        self.pget = PMgmt.PositionMgmt()
+        #positionXY = pget.getvalue()
+        
         #mx,myに座標をセット
-        self.mx = positionXY[0]
-        self.my = positionXY[1]
+        #self.mx = positionXY[0]
+        #self.my = positionXY[1]
+        
+        #test_position
+        self.mx = 1
+        self.my = 0
         
 
     def judge(self):
-        pass
-
+        print("judge")
+        
         if self.finish_angle >= self.start_angle :
 
-            if self.pget.getvalue() >= self.finish_angle :
+            if self.angget.getvalue() >= self.finish_angle :
                 return True
 
             else :
@@ -57,7 +62,7 @@ class TurnAngleJudge(Judge.Judge):
 
         else :
 
-            if self.pget.getvalue() <= self.finish_angle :
+            if self.angget.getvalue() <= self.finish_angle :
                 return True
 
             else :
@@ -88,18 +93,24 @@ class TurnAngleJudge(Judge.Judge):
 
     def set_param(self,status):
         self.start_angle = self.angget.getvalue()
+        print(self.start_angle)
+        #終了角度をセクションから受け取る場合
         self.finish_angle = status
+        
+        #旋回したい角度をセクションから受け取る場合
+        #self.finish_angle = self.start_angle + status
 
-        self.finish_angle = self.start_angle + status
-
-    def Test(self):
-        print(self.mx,self.my)
 
 #testrun
 def main():
     testclass = TurnAngleJudge()
-    testclass.Test()
-    print(testclass.start_angle)
+    judge_val = False
+    
+    while judge_val == False:
+        judge_val = testclass.judge()
+        print(testclass.angget.getvalue(),":",testclass.finish_angle)
+    
+    print("-------------------------END-------------------------------")
 
 if __name__ == '__main__':
     main()
