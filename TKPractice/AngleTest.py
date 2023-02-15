@@ -5,20 +5,20 @@ sys.path.append(str(current_dir) + '/../')
 
 import math
 from Judgement import Judge
-from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
 
 class TurnAngleJudge(Judge.Judge):
 
     start_angle=0.0
     finish_angle=0.0
     baseline = 0.0
+    testcnt = 0
 
 
     last_angle = 0.0
     mx=0.0
     my=0.0
 
-    angget = TASensor.TurnAngleSensor()
+    #angget = TASensor.TurnAngleSensor()
 
 
     def __init__(self):
@@ -28,33 +28,34 @@ class TurnAngleJudge(Judge.Judge):
 
         #sectionからstatusを渡す位置を考える initかsetparamか
         #とりあえずダミーを設置する
-        status = float(input("input_finish_angle?"))
+        status =int(input("旋回したい角度: "))
 
         self.set_param(status)
 
-        self.start_angle = self.angget.getvalue()
+        #tmp = angget.getvalue()
+        #self.startangle = tmp['yaw'] + self.startangle
         
         #XYから値取得
+        """
+        pget = PMgmt.Position()
+        positionXY = pget.getvalue()
+        """
 
-        
-        self.pget = PMgmt.PositionMgmt()
-        #positionXY = pget.getvalue()
-        
         #mx,myに座標をセット
-        #self.mx = positionXY[0]
-        #self.my = positionXY[1]
-        
-        #test_position
-        self.mx = 1
-        self.my = 0
+        self.mx = int(input("現在のX: "))
+        self.my = int(input("現在のY: "))
         
 
     def judge(self):
-        print("judge")
-        
+
+        #Test用コード/現在の角度は本来pget.getvalue()で取得
+        self.testcnt += 1
+        self.nowAngle = int(input("現在の角度: "))
+
+
         if self.finish_angle >= self.start_angle :
 
-            if self.angget.getvalue() >= self.finish_angle :
+            if self.nowAngle >= self.finish_angle :
                 return True
 
             else :
@@ -62,7 +63,7 @@ class TurnAngleJudge(Judge.Judge):
 
         else :
 
-            if self.angget.getvalue() <= self.finish_angle :
+            if self.nowAngle <= self.finish_angle :
                 return True
 
             else :
@@ -92,25 +93,23 @@ class TurnAngleJudge(Judge.Judge):
     """
 
     def set_param(self,status):
-        self.start_angle = self.angget.getvalue()
-        print(self.start_angle)
-        #終了角度をセクションから受け取る場合
+        self.start_angle = int(input("開始角度: "))#self.angget.getvalue()で現在の角度を取得
         self.finish_angle = status
-        
-        #旋回したい角度をセクションから受け取る場合
-        #self.finish_angle = self.start_angle + status
 
+        self.finish_angle = self.start_angle + status
+
+    def Test(self):
+        print(self.mx,self.my)
 
 #testrun
 def main():
     testclass = TurnAngleJudge()
-    judge_val = False
-    
-    while judge_val == False:
-        judge_val = testclass.judge()
-        print(testclass.angget.getvalue(),":",testclass.finish_angle)
-    
-    print("-------------------------END-------------------------------")
+    testclass.Test()
+    booly = False
+    while booly == False:
+        booly = testclass.judge()
+
+    print(testclass.start_angle)
 
 if __name__ == '__main__':
     main()

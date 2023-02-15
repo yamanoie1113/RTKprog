@@ -57,15 +57,14 @@ class DistanceJudge(Judge.Judge):
 
 
     def judge(self):
-        pass
-        """ここ直す
-            あと、計算周りを自分たちの仕様に直す
+        self.calc_dist(self.goal_x,self)
+        
+        #あと、計算周りを自分たちの仕様に直す
         #X、Y座標を取得し、その値が基準値をこえていたらtrueを返す。それ以外はfalse
-        if :
+        if self.finishlength < self.mlength:
             return True
-        else ;
+        else :
             return False
-        """
 
     def getPosition(self):
         positionXY = self.pget.getvalue()
@@ -86,7 +85,7 @@ class DistanceJudge(Judge.Judge):
     def calc_dist(self,end_x,end_y):
 
         #現在地の設定
-        #self.getPosition()
+        self.getPosition()
 
         #現在地ダミー設定
         self.start_x = 0.0
