@@ -98,12 +98,12 @@ class SectionRun:
                     #stateを戻す
 
             else:
-                    self.judgefirst=False
+                self.judgefirst=False
             
-            
+
             if self.judgefirst==False:
                 print("終了")
-            break
+                break
 
         mwalker[self.number1].stop()
         print("終了")

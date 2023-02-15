@@ -14,7 +14,7 @@ import b
 
 
 
-class SectionRun2:
+class SectionRun3:
 
     STRAIGHT=0
     CURVE=1
@@ -25,26 +25,28 @@ class SectionRun2:
     def init(self):
         pass
 
-    def run(self,mjudge,mwalker,Walkeparam):#判定２つ、走法２つ、パラメータ
+    def run(self,mwalker,mjudge,Walkeparam,pointer,state):#走法、判定、パラメータ、座標
 
         #中身確認
         print("mjudgeのオブジェクト",mjudge)
         print("mwalkerのオブジェクト",mwalker)
         print("walkeparam",Walkeparam)
+        print("座標",pointer)
+        print("state",state)
         
-        #point=0
+        
+        if state==0:
+        #mjudg.judge(mjudge,pointer)#距離判定
+            print("直進のジャッジ",mjudge,"座標",pointer)   #self.STRAIGHTは０
+        #mwalker.run(Walkeparam)
+            print("直線のウォーカーパラメータ",mwalker)
 
-        #while self.JudgeFarst:
-            
-        #mjudge[self.point].judge()#距離判定
-        print("直進のジャッジ",mjudge[self.STRAIGHT])   #self.STRAIGHTは０
-        #mwalker[pointr].run(Walkeparam[point])
-        print("直線のウォーカーパラメータ",mwalker[self.STRAIGHT])
+        else:
 
-        #mjudge[self.point].judge()#旋回角度判定
-        print("曲線のジャッジ",mjudge[self.CURVE])  #self.CURVEは１
-        #mwalker[pointr].run(Walkeparam[point])
-        print("曲線のウォーカーパラメータ",mwalker[self.CURVE])
+        #mjudge.judge(pointer)#旋回角度判定
+            print("曲線のジャッジ",mjudge,"座標",pointer)  #self.CURVEは１
+        #mwalker.run(Walkeparam)
+            print("曲線のウォーカーパラメータ",mwalker)
 
         #self.JudgeFarst=False
         #break
@@ -118,7 +120,7 @@ class SectionRun2:
 
 
 def main():
-    sec=SectionRun2()
+    sec=SectionRun3()
     mnumber=1
     sec.set_param(mnumber)
     
@@ -126,3 +128,4 @@ def main():
 
 if __name__=="__main__":
     main()
+

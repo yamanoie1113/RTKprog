@@ -10,7 +10,7 @@ class Timer3():
 
     def __init__(self):
 
-        self.count2=0
+        self.count=0
 
     def update(self):
         #self.count=0
@@ -21,15 +21,15 @@ class Timer3():
 
         print("実行")
             
-        for j in range(100):#直接数字じゃなくて引数をいれるかも
+        for j in range(10):#直接数字じゃなくて引数をいれるかも
             self.start = time.perf_counter()
             time.sleep(1)
             
             self.count2+=round(time.perf_counter() - self.start)
-            print("Timer3",self.count2)
+            print("Timer3",self.count)
             #return self.count2
 
-            return self.count2
+            return self.count
 
 
 def main():

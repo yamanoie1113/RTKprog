@@ -12,31 +12,19 @@ class SectionPrm2:
     straight=1
 
     def __init__(self):
-                                #前進量、旋回量、P,I,D           前進量、P,I,D
-        self.list_section = [self.curve,[None],self.straight,[None]]#list_section[0]が曲線
-        self.listSection = [self.curve,[None,None,None,None,None],self.straight,[None,None,None,None,None]]#list_section[0]が曲線
-        self.pr=[None]              #↑ごめん多分これ２５６こくらい要素作って値設定していくのかもしれん。わからん
-        self.list_se=[[0]*256,[0]*256]#２案
-        #print(self.list_se[1])
 
-        pass
+        print("sectionprmです")
 
-    def set_param(self,msectionIdx):#msectionIdxは区間管理のget_paramから
-        if msectionIdx==0:
-            self.number=1 #ごめんこれはinitでめんどくさいことしちゃったから
-            self.pr=self.list_section[self.number]#self.prに[0,0,0,0,0]を入れる
-            print("set_param値",self.pr)
-            
-        elif msectionIdx==1:
-            self.number=3
-            self.pr=self.list_section[self.number]
-            print("set_param値",self.pr)
-            
-        return self.pr
-            
-        
 
-    
+    def set_param(self,mnumber):#パラメータ設定
+        #直線＝０
+        if mnumber== 0:
+            #カーブのパラメータ設定
+            print("直線")
+
+        #曲線＝１
+        elif mnumber==1:
+            print("曲線")
 
 
 def main():

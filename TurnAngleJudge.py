@@ -59,8 +59,8 @@ class TurnAngleJudge(Judge.Judge):
                 return False
 
     def set_param(self,status):
-             baseline = math.pi*(status[0])/180+SectionMgmt.ANGLE #現在の角度足し合わせてるっぽい
-             diff = baseline - TASensor.getvalue()  #目標角度と現在角度の差
+        baseline = math.pi*(status[0])/180+SectionMgmt.ANGLE #現在の角度足し合わせてるっぽい
+        diff = baseline - TASensor.getvalue()  #目標角度と現在角度の差
 
 
 

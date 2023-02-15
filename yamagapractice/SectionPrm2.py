@@ -5,45 +5,61 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
+import Param2
 #from Sensors import MotorMgmt
 class SectionPrm2:
     #クラス変数
     curve=0
     straight=1
+    param=Param2.Param2()
+
 
     def __init__(self):
-                                #前進量、旋回量、P,I,D           前進量、P,I,D
-        self.list_section = [self.curve,[None],self.straight,[None]]#list_section[0]が曲線
-        self.listSection = [self.curve,[None,None,None,None,None],self.straight,[None,None,None,None,None]]#list_section[0]が曲線
-        self.pr=[None]              #↑ごめん多分これ２５６こくらい要素作って値設定していくのかもしれん。わからん
-        self.list_se=[[0]*256,[0]*256]#２案
-        #print(self.list_se[1])
+
+
 
         pass
 
-    def set_param(self,msectionIdx):#msectionIdxは区間管理のget_paramから
-        if msectionIdx==0:
-            self.number=1 #ごめんこれはinitでめんどくさいことしちゃったから
-            self.pr=self.list_section[self.number]#self.prに[0,0,0,0,0]を入れる
-            print("set_param値",self.pr)
-            
-        elif msectionIdx==1:
-            self.number=3
-            self.pr=self.list_section[self.number]
-            print("set_param値",self.pr)
-            
-        return self.pr
-            
+    def Walkerset_param(self,pointset,msectionIdx):#msectionIdxは区間管理のget_paramから
+
         
+        if pointset==0:
+            self.parameter=self.param.Straight_set_param(msectionIdx)
+        elif pointset==1:
+            self.parameter=self.param.Curve_set_param(msectionIdx)
 
-    
+        print("param",self.parameter)
 
+        return self.parameter
+
+
+    def pointer_param(self):
+
+        self.pointset=self.param.pointer_set_param()
+
+        print("座標です",self.pointset)
+
+        return self.pointset
+
+
+
+    def Walkerset_param2(self,pointset):#msectionIdxは区間管理のget_paramから
+
+        
+        if pointset==0:
+            self.parameter=self.param.Straight_set_param2()
+        elif pointset==1:
+            self.parameter=self.param.Curve_set_param2()
+
+        print("param",self.parameter)
+
+        return self.parameter
 
 def main():
-    msectionIdx=0
+    #param=Param2.Param2
     dd=SectionPrm2()
-    dd.set_param(msectionIdx)
-    pass
+    msectionIdx=1
+    dd.Walkerset_param(msectionIdx)
     
 
 

@@ -8,12 +8,12 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from yamagapractice import SectionMgmt2
+from yamagapractice import SectionMgmt3
 #from section import SectionMgmt
 import Timerset
 import time
 
-class Mgmt2:
+class Mgmt3:
     def __init__(self):
     
         print("プログラム開始")
@@ -28,7 +28,7 @@ class Mgmt2:
         print("経過時間",end_time)
         return end_time
 
-    def run(self,section,timerset):
+    def run(self,section):
         
         start_time = time.perf_counter()
 
@@ -36,26 +36,28 @@ class Mgmt2:
         self.counter=0
         self.state=True #ステートの設定
 
+        section.run()
+
         while self.state:
             #elf.state2=timerset.getvalue(self.timer)
             self.state2=self.timejudge(start_time)
             #print("state2",self.state2)
-            if self.state2>=180:
+            if self.state2>=18:
                 self.state=False
                 break
             
             self.counter+=1
             print('tesuto')
-            section.run()
+            section.execRun()
             print(self.counter,"回目")
 
         print("終了")
 
 def main():
-    mgmt=Mgmt2()
-    section=SectionMgmt2.SectionMgmt2()
-    timerset=Timerset.Timerset()
-    mgmt.run(section,timerset)
+    mgmt=Mgmt3()
+    section=SectionMgmt3.SectionMgmt3()
+
+    mgmt.run(section)
 
     
 
