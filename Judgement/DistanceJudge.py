@@ -57,11 +57,11 @@ class DistanceJudge(Judge.Judge):
 
 
     def judge(self):
-        self.calc_dist(self.goal_x,self)
+        self.calc_dist()
         
         #あと、計算周りを自分たちの仕様に直す
         #X、Y座標を取得し、その値が基準値をこえていたらtrueを返す。それ以外はfalse
-        if self.finishlength < self.mlength:
+        if self.mlength <= 0:
             return True
         else :
             return False
@@ -84,12 +84,14 @@ class DistanceJudge(Judge.Judge):
 
     def calc_dist(self,end_x,end_y):
 
-        #現在地の設定
-        self.getPosition()
-
         #現在地ダミー設定
         self.start_x = 0.0
         self.start_y = 0.0
+
+        #現在地の設定
+        self.getPosition()
+
+
 
         #目標値が一つずつの場合　必要なかったら消す
         self.goal_x = end_x
@@ -101,6 +103,7 @@ class DistanceJudge(Judge.Judge):
 
         #2点間の距離計算
         self.mlength = math.sqrt(( self.goal_x- self.start_x)**2 + ( self.goal_y - self.start_y)**2)
+        self.mlength = round(self.mlength)
         print("距離",self.mlength)
 
 
