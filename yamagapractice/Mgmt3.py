@@ -42,7 +42,7 @@ class Mgmt3:
             #elf.state2=timerset.getvalue(self.timer)
             self.state2=self.timejudge(start_time)
             #print("state2",self.state2)
-            if self.state2>=18:
+            if self.state2>=18: #走行時間の設定
                 self.state=False
                 break
             

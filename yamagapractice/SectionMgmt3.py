@@ -94,54 +94,54 @@ class SectionMgmt3:
         
 
         if self.section==0: #直線の場合
-                print("Walkerinstance:",self.Walkerinstance[self.STRAIGHT])
-                print("judgeinstance",self.Judgeinstance[self.STRAIGHT])
-                print("WalkerParam",self.WalkeParam[self.STRAIGHT][self.Swalkerpointer])
-                #print("WalkerParam2",self.WalkeParam[1][2])
-                print("座標",self.Pointer[self.pointerset])
+            print("Walkerinstance:",self.Walkerinstance[self.STRAIGHT])
+            print("judgeinstance",self.Judgeinstance[self.STRAIGHT])
+            print("WalkerParam",self.WalkeParam[self.STRAIGHT][self.Swalkerpointer])
+            #print("WalkerParam2",self.WalkeParam[1][2])
+            print("座標",self.Pointer[self.pointerset])
 
-                self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
+            self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
                                     self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset],self.section)
 
             
-                self.Swalkerpointer+=1
-                if self.Swalkerpointer==4:
-                    self.Swalkerpointer=0
+            self.Swalkerpointer+=1
+            if self.Swalkerpointer==4:
+                self.Swalkerpointer=0
 
-                self.pointerset+=1
-                if self.pointerset==6:
-                    self.pointerset=0
+            self.pointerset+=1
+            if self.pointerset==6:
+                self.pointerset=0
                 
-                self.sectionpoint+=1
-                if self.sectionpoint==2:
+            self.sectionpoint+=1
+            if self.sectionpoint==2:
+                self.sectionpoint=0
 
-                    self.sectionpoint=0
-                    self.section=1
+            self.section=1
                 
                 
         else: #曲線
-                print("Walkerinstance:",self.Walkerinstance[self.CURVE])
-                print("judgeinstance",self.Judgeinstance[self.CURVE])
-                print("WalkerParam",self.WalkeParam[self.CURVE][self.Cwalkerpointer])
-                print("座標",self.Pointer[self.pointerset])
+            print("Walkerinstance:",self.Walkerinstance[self.CURVE])
+            print("judgeinstance",self.Judgeinstance[self.CURVE])
+            print("WalkerParam",self.WalkeParam[self.CURVE][self.Cwalkerpointer])
+            print("座標",self.Pointer[self.pointerset])
                 
-                self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
+            self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
                                     self.WalkeParam[self.CURVE][self.Cwalkerpointer],self.Pointer[self.pointerset],self.section)
 
-                self.Cwalkerpointer+=1
-                if self.Cwalkerpointer==2:
-                    self.Cwalkerpointer=0
+            self.Cwalkerpointer+=1
+            if self.Cwalkerpointer==2:
+                self.Cwalkerpointer=0
 
-                self.pointerset+=1
-                if self.pointerset==6:
-                    self.pointerset=0
+            self.pointerset+=1
+            if self.pointerset==6:
+                self.pointerset=0
 
-                self.section=0
+            self.section=0
 
 
             
-                print("おわり")
-                self.mState=self.END
+            print("おわり")
+            self.mState=self.END
 
     def end(self):
         
