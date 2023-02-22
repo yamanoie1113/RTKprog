@@ -5,12 +5,12 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from yamagapractice import SectionRun3
+from yamagapractice import SRun
 from yamagapractice import SectionPrm2
 #from yamagapractice import SectionRun2
 
 #from Walker import Run
-class SectionMgmt3:
+class SMgmt:
     mState=1
     UNDEFINED=1
     INIT=2
@@ -22,7 +22,7 @@ class SectionMgmt3:
     Pointer=[None]
     
     sectionprm=SectionPrm2.SectionPrm2()
-    sectionrun=SectionRun3.SectionRun3()
+    sectionrun=SRun.SRun()
     STRAIGHT = 0
     CURVE = 1           #0は直線、1は曲線
     counter=0
@@ -182,7 +182,7 @@ class SectionMgmt3:
 
 
 def main():
-    sectionMgmt=SectionMgmt3()
+    sectionMgmt=SMgmt()
     #pointing=2
     sectionMgmt.run()
     

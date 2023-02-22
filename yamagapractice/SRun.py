@@ -4,7 +4,7 @@ import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 import b
-#from Sensors import MotorMgmt
+from Sensors import MotorMgmt
 #from Walker import Run
 #from Walker import VirtualLineTrace
 #from Walker import curveLineTrace
@@ -14,7 +14,7 @@ from Judgement import TimeJudge
 
 
 
-class SectionRun3:
+class SRun:
 
     STRAIGHT=0
     CURVE=1
@@ -22,6 +22,7 @@ class SectionRun3:
     ANGLE=1
     JudgeFarst=True
     timejudge=TimeJudge.TimeJudge()
+    Motor=MotorMgmt.MotorMgmt()
 
     def init(self):
         pass
@@ -40,10 +41,13 @@ class SectionRun3:
         #mjudg.judge(mjudge,pointer)#距離判定
             
             print("直進のジャッジ",mjudge,"座標",pointer)   #self.STRAIGHTは０
+            
         #mwalker.run(Walkeparam)
             print("直線のウォーカーパラメータ",mwalker)
-        
+
+            self.Motor.set_param(60,0)
             '''
+            #debug
             t=True
             tes=self.timejudge.judge(20)
             while t:
@@ -52,28 +56,36 @@ class SectionRun3:
                     t=False
                     break
                 print("まだ")
+                self.Motor.set_param(60,0)
             '''
+        
 
         else:  
 
         #mjudge.judge(pointer)#旋回角度判定
             print("曲線のジャッジ",mjudge,"座標",pointer)  #self.CURVEは１
+            
         #mwalker.run(Walkeparam)
             print("曲線のウォーカーパラメータ",mwalker)
 
-        '''
+            '''
             t=True
             tes=self.timejudge.judge(10)
+            self.Motor.set_param(50,0)
             while t:
 
                 if tes==False:
                     t=False
                     break
                 print("まだ2")
+                self.Motor.set_param(70,0)
+            '''
+
+            self.Motor.set_param(60,0)
 
         #self.JudgeFarst=False
         #break
-        '''
+        
             
     def request_Walker(self,number):
 
@@ -143,7 +155,7 @@ class SectionRun3:
 
 
 def main():
-    sec=SectionRun3()
+    sec=SRun()
     mnumber=1
     sec.set_param(mnumber)
     

@@ -8,12 +8,13 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from yamagapractice import SectionMgmt3
+from yamagapractice import SMgmt
+#from yamagapractice import SectionMgmt3
 #from section import SectionMgmt
 #import Timerset
 import time
 
-class Mgmt3:
+class MgmtTest:
 
     def __init__(self):
     
@@ -31,8 +32,7 @@ class Mgmt3:
 
     def run(self):
         
-        section=SectionMgmt3.SectionMgmt3()
-
+        section=SMgmt.SMgmt()
         start_time = time.perf_counter()
 
         self.timer=1
@@ -45,7 +45,7 @@ class Mgmt3:
             
             self.state2=self.timejudge(start_time)
 
-            if self.state2>=30: #走行時間の設定
+            if self.state2>=60: #走行時間の設定
                 self.state=False
                 break
             
@@ -57,7 +57,7 @@ class Mgmt3:
         print("終了")
 
 def main():
-    mgmt=Mgmt3()
+    mgmt=MgmtTest()
     
 
     mgmt.run()
