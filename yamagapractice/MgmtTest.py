@@ -47,6 +47,7 @@ class MgmtTest:
 
             if self.state2>=60: #走行時間の設定
                 self.state=False
+                #sys.exit('end')
                 break
             
             self.counter+=1
