@@ -46,7 +46,10 @@ class SRun:
             print("直線のウォーカーパラメータ",mwalker)
 
             self.Motor.set_param(60,0)
-            '''
+
+
+            #self.timejudge.judge(20)
+            
             #debug
             t=True
             tes=self.timejudge.judge(20)
@@ -57,7 +60,7 @@ class SRun:
                     break
                 print("まだ")
                 self.Motor.set_param(60,0)
-            '''
+            
         
 
         else:  
@@ -68,7 +71,9 @@ class SRun:
         #mwalker.run(Walkeparam)
             print("曲線のウォーカーパラメータ",mwalker)
 
-            '''
+            #self.timejudge.judge(10)
+
+            
             t=True
             tes=self.timejudge.judge(10)
             self.Motor.set_param(50,0)
@@ -79,15 +84,16 @@ class SRun:
                     break
                 print("まだ2")
                 self.Motor.set_param(70,0)
-            '''
+            
 
-            self.Motor.set_param(60,0)
+            #self.Motor.set_param(60,0)
 
         #self.JudgeFarst=False
         #break
         
             
     def request_Walker(self,number):
+
 
     #走法の生成依頼
 
