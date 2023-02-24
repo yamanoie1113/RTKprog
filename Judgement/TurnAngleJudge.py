@@ -109,7 +109,7 @@ def main():
     while judge_val == False:
         judge_val = testclass.judge()
         print(testclass.angget.getvalue(),":",testclass.finish_angle)
-    
+
     print("-------------------------END-------------------------------")
 
 if __name__ == '__main__':

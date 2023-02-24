@@ -1,30 +1,50 @@
 from multiprocessing import get_start_method
 import sys
 import pathlib
+import datetime
+
 
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from Sensors import Sensor,GPS2xy
+from Sensors import Sensor,GPS2xy,LogMgmt
 
 class PositionMgmt(Sensor.Sensor):
    # gps = GPS2xy()
     position: float
+    logfile ='GPS_log.txt'
     #pos_total: float
     def __init__(self):
         # クラス変数
-        pass
+        self.logfile = 'GPS_log.txt'
+        
+        
+        #GPSログの消去
+        LogMgmt.clear(self.logfile)
+
+
 
     #値の取得
     def getvalue(self):
+        #ログファイルオープン
+        f = open(self.logfile, 'a')
+
+        #GPSの更新
         self.update()
+
+        #GPSが見つかったらその値を、それ以外は1noneを返す
         if self.position != None:
             print(self.position)
-            print("return_end")
+
+            #logに書きこみ
+            LogMgmt.write(self.logfile,self.position)
+            print("log_saved")
             return self.position
 
         else:
-            print("None GPS")
+            print("None_GPS")
             print(self.position)
+
+        f.close()
 
     #値の更新
     def update(self):
