@@ -46,6 +46,7 @@ class SRun:
             print("直線のウォーカーパラメータ",mwalker)
 
             self.Motor.set_param(60,0)
+            self.Motor.run()
 
 
             #self.timejudge.judge(20)
@@ -60,6 +61,7 @@ class SRun:
                     break
                 print("まだ")
                 self.Motor.set_param(60,0)
+                self.Motor.run()
             
         
 
@@ -77,6 +79,7 @@ class SRun:
             t=True
             tes=self.timejudge.judge(10)
             self.Motor.set_param(50,0)
+            self.Motor.run()
             while t:
 
                 if tes==False:
@@ -84,6 +87,7 @@ class SRun:
                     break
                 print("まだ2")
                 self.Motor.set_param(70,0)
+                self.Motor.run()
             
 
             #self.Motor.set_param(60,0)

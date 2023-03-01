@@ -20,7 +20,7 @@ class Mgmt3:
         print("プログラム開始")
         pass
 
-    def timejudge(selfe,start_time):
+    def timejudge1(self,start_time):
 
         end_time = time.perf_counter()
 
@@ -30,31 +30,42 @@ class Mgmt3:
         return end_time
 
     def run(self):
-        
+        print('メインプロセスStart')
         section=SectionMgmt3.SectionMgmt3()
 
         start_time = time.perf_counter()
 
-        self.timer=1
-        self.counter=0
-        self.state=True #ステートの設定
+        #timer=1
+        counter=0
+        state=True #ステートの設定
 
         section.run()
 
-        while self.state:
+        while state:
             
-            self.state2=self.timejudge(start_time)
+            state2=self.timejudge1(start_time)
 
-            if self.state2>=30: #走行時間の設定
-                self.state=False
+            if state2>=2: #走行時間の設定
+                state=False
                 break
             
-            self.counter+=1
+            counter+=1
             print('tesuto')
             section.execRun()
-            print(self.counter,"回目")
+            print(counter,"回目")
 
         print("終了")
+
+    def timejudge1(start_time):
+
+        end_time = time.perf_counter()
+
+        # 経過時間を出力(秒)
+        end_time = end_time - start_time
+        print("経過時間",end_time)
+        return end_time
+        
+
 
 def main():
     mgmt=Mgmt3()

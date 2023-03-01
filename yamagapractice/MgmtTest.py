@@ -45,7 +45,7 @@ class MgmtTest:
             
             self.state2=self.timejudge(start_time)
 
-            if self.state2>=60: #走行時間の設定
+            if self.state2>=100: #走行時間の設定
                 self.state=False
                 #sys.exit('end')
                 break

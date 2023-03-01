@@ -43,7 +43,7 @@ class SectionRun3:
         #mwalker.run(Walkeparam)
             print("直線のウォーカーパラメータ",mwalker)
         
-            '''
+            
             t=True
             tes=self.timejudge.judge(20)
             while t:
@@ -52,7 +52,7 @@ class SectionRun3:
                     t=False
                     break
                 print("まだ")
-            '''
+            
 
         else:  
 
@@ -61,7 +61,7 @@ class SectionRun3:
         #mwalker.run(Walkeparam)
             print("曲線のウォーカーパラメータ",mwalker)
 
-        '''
+        
             t=True
             tes=self.timejudge.judge(10)
             while t:
@@ -73,7 +73,7 @@ class SectionRun3:
 
         #self.JudgeFarst=False
         #break
-        '''
+        
             
     def request_Walker(self,number):
 
