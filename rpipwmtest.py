@@ -9,6 +9,7 @@ ch2_in = 24
 
 ch1_out = 18
 ch2_out = 19
+on = True
 pi = pigpio.pi()
 
 class rpipwmtest:
@@ -17,6 +18,8 @@ class rpipwmtest:
         global ch1_rise_tick, ch2_rise_tick
         global ch1_in, ch2_in
         global ch1_out, ch2_out
+        global on
+        on = False
         if gpio == ch1_in :
             if level==1 :
                 ch1_rise_tick = tick
@@ -43,6 +46,8 @@ class rpipwmtest:
         
         global ch1_in, ch2_in
         global ch1_out, ch2_out
+        global on
+        power = 0
         print("s")
         pi.set_mode(ch1_out, pigpio.OUTPUT)
         pi.set_mode(ch2_out, pigpio.OUTPUT)
@@ -51,7 +56,11 @@ class rpipwmtest:
         rp = pi.callback(ch1_in, pigpio.EITHER_EDGE, rpipwmtest.gpiocallback)
         rp = pi.callback(ch2_in, pigpio.EITHER_EDGE, rpipwmtest.gpiocallback)
         while True:
+            if power == 0 and on == False:
+                power = 1
+                return on
             sleep(1)
+            
             
 def main():
     rpip = rpipwmtest()
