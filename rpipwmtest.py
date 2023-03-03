@@ -58,7 +58,7 @@ class rpipwmtest:
         while True:
             if power == 0 and on == False:
                 power = 1
-                return False
+                return on
             sleep(1)
             
             
