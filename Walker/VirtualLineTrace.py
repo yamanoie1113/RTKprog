@@ -93,7 +93,8 @@ class VirtualLineTrace:
             param = VirtualLineTrace.set_param()
             self.startx = param[0]
             self.starty = param[1]  
-            c = 0#ループカウンタ
+            c = 0
+            #ループカウンタ
             
 
             while True:
