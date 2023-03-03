@@ -13,17 +13,18 @@ class emergency():
     def emergency():
         c= 0
         MM = MotorMgmt.MotorMgmt()
+        pi.set_mode(20,pigpio.INPUT)
+        pi.set_pull_up_down(20, pigpio.PUD_UP)
         while True:
             
-            pi.set_mode(20,pigpio.INPUT)
-    
-            pi.set_pull_up_down(20, pigpio.PUD_UP)
             print(pi.read(20))
             p = pi.read(20)
             time.sleep(0.1)
             c += 1
             if p == 1:
                 MM.set_param(0,0)
+                MM.run()
+                MM.stop()
             if c ==20:
                 print ('end')
                 break
