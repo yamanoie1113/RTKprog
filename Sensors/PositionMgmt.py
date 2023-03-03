@@ -1,7 +1,7 @@
 from multiprocessing import get_start_method
 import sys
 import pathlib
-import datetime
+#import datetime
 
 
 current_dir = pathlib.Path(__file__).resolve().parent
@@ -16,7 +16,6 @@ class PositionMgmt(Sensor.Sensor):
     def __init__(self):
         # クラス変数
         self.logfile = 'GPS_log.txt'
-        
         
         #GPSログの消去
         LogMgmt.clear(self.logfile)

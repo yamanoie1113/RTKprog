@@ -22,15 +22,6 @@ class DistanceJudge(Judge.Judge):
 
     def __init__(self):
         self.pget = PMgmt.PositionMgmt()
-        #mdir.get_value
-        #mydir.get_value()
-        #mx.get_value()
-        #my.get_value()
-
-        #XY値取得
-        #self.getPosition()
-
-        #self.endpoint=self.find_end_point()
 
     """
     #座標計算 これいらんかも
@@ -55,10 +46,10 @@ class DistanceJudge(Judge.Judge):
     """
 
 
-    def judge(self):
-        self.calc_dist()
+    def judge(self,x,y):
+
+        self.calc_dist(x,y)
         
-        #あと、計算周りを自分たちの仕様に直す
         #X、Y座標を取得し、その値が基準値をこえていたらtrueを返す。それ以外はfalse
         if self.mlength <= 0:
             return True
@@ -68,7 +59,7 @@ class DistanceJudge(Judge.Judge):
     def getPosition(self):
         positionXY = self.pget.getvalue()
 
-        #mx ,myに座標をセット
+        #start_x ,start_yに座標をセット
         self.start_x = positionXY[0]
         self.start_y = positionXY[1]
 
@@ -83,13 +74,14 @@ class DistanceJudge(Judge.Judge):
 
     def calc_dist(self,end_x,end_y):
 
-        #現在地ダミー設定
-        self.start_x = 0.0
-        self.start_y = 0.0
-
         #現在地の設定
         self.getPosition()
 
+        """
+        テスト用現在地ダミー設定
+        self.start_x = 0.0
+        self.start_y = 0.0
+        """
 
 
         #目標値が一つずつの場合　必要なかったら消す
@@ -98,10 +90,12 @@ class DistanceJudge(Judge.Judge):
 
         #目標値が配列の場合　必要なかったら消す
         #self.goal_x = endpoint[0]
-        #self.goal_y = endpoint[1]
+        #self.goal_y = endpoint[1]　
 
         #2点間の距離計算
         self.mlength = math.sqrt(( self.goal_x- self.start_x)**2 + ( self.goal_y - self.start_y)**2)
+
+        #誤差補正のために切り捨てているが、もっと良い方法があるかも
         self.mlength = round(self.mlength)
         print("距離",self.mlength)
 
@@ -116,7 +110,7 @@ def main():
     goal_x = 0.0
     goal_y = 0.0
 
-    mdisjudge.calc_dist(goal_x,goal_y)
+    mdisjudge.judge(goal_x,goal_y)
 
 if __name__ == '__main__':
     main()
