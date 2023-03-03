@@ -78,6 +78,17 @@ class PointJudge(Judge.Judge):
     def set_param(self,judgevalue):
         self.finishlength=judgevalue
 
+    
+    def calc_ang(self,x,y):
+
+        #延長戦上に垂線を下した時の交点座標を設定
+        ex_x = x                #目標地点のx
+        ex_y = self.start_y     #開始地点のy
+
+        
+
+
+
 
 #テスト
 def main():

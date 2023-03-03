@@ -7,8 +7,7 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Judgement import Judge
 
-from Sensors import PositionMgmt as PMgmt,TurnAngleSensor as TASensor
-
+from Sensors import PositionMgmt as PMgmt
 #室外用インポート
 #from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
 
@@ -61,16 +60,16 @@ class DistanceJudge(Judge.Judge):
             return False
 
     def getPosition(self):
-        positionXY = self.pget.getvalue()
+        #positionXY = self.pget.getvalue()
 
         #start_x ,start_yに座標をセット
-        self.start_x = positionXY[0]
-        self.start_y = positionXY[1]
+        self.start_x = 0.0
+        self.start_y = 0.0
 
 
     #これいらないかもしれない.到達地点を求めるために必要だが、今回はGPSがあるため
     def getangle(self):
-        angget = TASensor.TurnAngleSensor()
+        #angget = TASensor.TurnAngleSensor()
 
         #ジャイロから旋回角度抽出
         tmp = angget.getvalue()
@@ -113,6 +112,7 @@ class DistanceJudge(Judge.Judge):
 
 
 
+
     #目標となる値をここで設定したい(進みたい距離)
     def set_param(self,judgevalue):
         self.finishlength=judgevalue
@@ -120,11 +120,11 @@ class DistanceJudge(Judge.Judge):
 def main():
     mdisjudge = DistanceJudge()
 
-    goal_x = 0.0
-    goal_y = 0.0
+    goal_x = 5.0
+    goal_y = 3.0
 
-    #判定テスト
-    mdisjudge.judge(goal_x,goal_y)
+    ang = mdisjudge.calc_ang(goal_x,goal_y)
+    print('return_ang:',ang)
 
 if __name__ == '__main__':
     main()
