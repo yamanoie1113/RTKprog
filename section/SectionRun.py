@@ -41,17 +41,18 @@ class SectionRun:
         #mjudg.judge(mjudge,pointer)#距離判定
             
             print("直進のジャッジ",mjudge,"座標",pointer)   #self.STRAIGHTは０
-        #mwalker.run(Walkeparam)
+        
             print("直線のウォーカーパラメータ",mwalker)
         
             
             t=True
             tes=self.timejudge.judge(20)
             
-            '''
+            
             self.Motor.set_param(40,0)
-            self.Motor.run()
-            '''
+            
+            #mwalker.run(Walkeparam)
+            #self.Motor.run()
             
             while t:
 
@@ -71,10 +72,11 @@ class SectionRun:
         
             t=True
             tes=self.timejudge.judge(10)
-            '''
+            
             self.Motor.set_param(60,0)
             self.Motor.run()
-            '''
+            #mwalker.run(Walkeparam)
+            #self.Motor.run()
             
             while t:
 
