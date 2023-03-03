@@ -15,6 +15,8 @@ import time
 
 class Mgmt:
 
+    signal=True
+
     def __init__(self):
     
         print("プログラム開始")
@@ -36,7 +38,7 @@ class Mgmt:
                 
             state2=self.timejudge1(start_time)
 
-            if state2>=100: #走行時間の設定
+            if (state2>=100) or (self.signal==False): #走行時間の設定
                 state=False
                 break
                 
@@ -64,6 +66,7 @@ class Mgmt:
         print('サブプロセス2Start')
         Motor=rpipwmtest.rpipwmtest()
         self.signal=Motor.callb()
+
         '''
         for i in range(101):
             time.sleep(1)
