@@ -3,128 +3,121 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from section import Param
-#from Sensors import MotorMgmt
+from section import b
+from Sensors import MotorMgmt
 #from Walker import Run
-from Walker import VirtualLineTrace
-from Walker import curveLineTrace
+#from Walker import VirtualLineTrace
+#from Walker import curveLineTrace
+#from Judgement import DistanceJudge
 from Judgement import TimeJudge
-from Judgement import DistanceJudge
-from Judgement import TurnAngleJudge
+#from Judgement import TurnAngleJudge
 
 
 
 class SectionRun:
 
-    CURVE=0
-    STRAIGHT=1
+    STRAIGHT=0
+    CURVE=1
     DISTANCE=0
     ANGLE=1
-    judgefirst=True
-    mWalker=0
-    mjudge=0
-    deb=None
-    param=Param.Param()
-    number1=0
-    number2=1
-    countnum=0
-    N1=0
-    N2=0
-    judgepoint=0
+    JudgeFarst=True
     timejudge=TimeJudge.TimeJudge()
-    state=True
-    counter=0
-    #mMotorMgmt=MotorMgmt()
+    Motor=MotorMgmt.MotorMgmt()
 
     def init(self):
-        self.deb=None
         pass
 
-    def run(self,mjudge,mwalker,counter,param):#判定２つ、走法２つ、秒数、パラメータ
-        #早く仮想ラインつくってよおおおおおおおお
-        while self.judgefirst:#trueかfalseか
+    def run(self,mwalker,mjudge,Walkeparam,pointer,state):#走法、判定、パラメータ、座標
+
+        #中身確認
+        print("mjudgeのオブジェクト",mjudge)
+        print("mwalkerのオブジェクト",mwalker)
+        print("walkeparam",Walkeparam)
+        print("座標",pointer)
+        print("state",state)
+        
+        
+        if state==0:
+        #mjudg.judge(mjudge,pointer)#距離判定
             
-                
-            #ここで時間の判定を呼び出す
+            print("直進のジャッジ",mjudge,"座標",pointer)   #self.STRAIGHTは０
+        #mwalker.run(Walkeparam)
+            print("直線のウォーカーパラメータ",mwalker)
+        
             
-            if self.judgepoint==0:
-                mjudge[self.judgepoint].judge()#距離判定
-                self.judgepoint+=1
-            else:
-                mjudge[self.judgepoint].judge()#旋回角度判定
-                self.judgepoint-=1
+            t=True
+            tes=self.timejudge.judge(20)
             
+            '''
+            self.Motor.set_param(40,0)
+            self.Motor.run()
+            '''
+            
+            while t:
 
-        #走法
-            #while self.walkerfirst:
-            if param[self.number1][self.N1]!=999:#walkerの配列がなくなったら終了
-                self.state=self.timejudge.judge(counter[self.countnum])#timejudgeにカウント数を送る
-                mwalker[self.number1].left_run(param[self.number1][self.N1])#走法にGo(曲線)
-                self.countnum+=1
-                self.N1+=1
-                self.Statment=True
-                
-                while self.Statment:
-                    print("待ち1")
-                    pass
-
-                    if self.state==False:
-                        self.Statment==False
-                        break
-
-                    #if self.state==False:
-                self.state=True
-                self.Statment==True
-                self.state=self.timejudge.judge(counter[self.countnum])
-                #mwalker[self.number2].set_run(param[self.number2][self.N2])#走法にGo(直線)
-                mwalker[self.number1].left_run(param[self.number2][self.N2])
-                self.N2+=1
-                self.countnum+=1
-
-                if counter[self.countnum]==999:
-                    print("秒数戻す")
-                    self.judgefirst=False
-                else:
-                    while self.Statment:
-                        print("待ち２")
-                            
-
-                        if self.state==False:
-                            self.Statment==False
-                            break
-
-                    self.state=True
-                    self.Statment=True
-                    #stateを戻す
-
-            else:
-                self.judgefirst=False
+                if tes==False:
+                    t=False
+                    break
+                print("まだ")
             
 
-            if self.judgefirst==False:
-                print("終了")
-                break
+        else:  
 
-        mwalker[self.number1].stop()
-        print("終了")
+        #mjudge.judge(pointer)#旋回角度判定
+            print("曲線のジャッジ",mjudge,"座標",pointer)  #self.CURVEは１
+        #mwalker.run(Walkeparam)
+            print("曲線のウォーカーパラメータ",mwalker)
+
+        
+            t=True
+            tes=self.timejudge.judge(10)
+            '''
+            self.Motor.set_param(60,0)
+            self.Motor.run()
+            '''
             
-    def request_Walker(self,walker):
+            while t:
+
+                if tes==False:
+                    t=False
+                    break
+                print("まだ2")
+
+        #self.JudgeFarst=False
+        #break
+        
+            
+    def request_Walker(self,number):
 
     #走法の生成依頼
 
-        if walker==self.CURVE:
+        if number==self.CURVE:
             #オブジェクト生成
-            self.mWalker=curveLineTrace.cuvreLineTrace()
-            #self.mWalker=0
+            #self.mWalker=curveLineTrace.cuvreLineTrace()
+
+            #_________↓デバッグ__________
+            self.mtest=b.b()    
+            #______________________
+
+            self.mWalker=0
             print("curve")
 
-        if walker==self.STRAIGHT:
+        if number==self.STRAIGHT:
             #オブジェクト生成
-            self.mWalker=VirtualLineTrace.VirtualLineTrace()
-            #self.mWalker=2
+            #self.mWalker=VirtualLineTrace.VirtualLineTrace()
+
+            #________↓デバッグ_________
+            self.mtest=b.b()
+            #______________________
+
+            self.mWalker=2
             print("straight")
-        
-        return self.mWalker
+            
+        #＿＿＿＿↓デバッグ＿＿＿
+        return self.mtest
+        #________＿＿＿＿＿＿＿＿
+
+        #return self.mWalker
 
     def request_judge(self,judge):
 
@@ -132,37 +125,32 @@ class SectionRun:
 
         if judge==self.DISTANCE:
             #オブジェクト生成
-            self.mJudge=DistanceJudge.DistanceJudge()
-            #self.mjudge-0
+            #self.mJudge=DistanceJudge.DistanceJudge()
+            #＿＿＿＿↓デバッグ＿＿＿
+            self.mtest=b.b()
+            #______________________
+
+            self.mjudge=0
             print("judge")
+
         if judge==self.ANGLE:
             #オブジェクト生成
-            self.mJudge=TurnAngleJudge.TurnAngleJudge()
-            #self.mjudge=1
+            #self.mJudge=TurnAngleJudge.TurnAngleJudge()
+
+            #＿＿＿＿↓デバッグ＿＿＿
+            self.mtest=b.b()
+            #______________________
+
+            self.mjudge=1
             print("mjudghe")
 
-        return self.mJudge
+        #_______↓デバッグ_______
+        return self.mtest
+        #______________________
 
-    def set_param(self,mnumber):#パラメータ設定
-        #曲線
-        if mnumber==0:
-            self.prm=self.param.Curve_set_param()
-            #[前進量、旋回量、P,I,D]
-            print("cuevever",self.prm)
-            #(ここで値を設定すると思っているs)
-        elif mnumber==1:
-        #直線
-            self.prm=self.param.Straight_set_param()
-            #[前進量、P,I,D]
-            print("straight",self.deb)
-        
-        return self.prm
+        #return self.mjudge
 
-    def count_set_param(self):
-
-        self.cnt=self.param.count_set_param()
-
-        return self.cnt
+    
 
 
 
@@ -175,3 +163,4 @@ def main():
 
 if __name__=="__main__":
     main()
+
