@@ -31,7 +31,7 @@ class SectionMgmt:
 
     def __init__(self):
 
-        self.Pointer=self.sectionprm.pointer_param()
+        #self.Pointer=self.sectionprm.pointer_param()
         
         print("座標",self.Pointer)
         print("initです")
@@ -176,7 +176,10 @@ class SectionMgmt:
 
         self.WalkeParam[self.CURVE]=self.sectionprm.Walkerset_param2(self.CURVE)
 
+        self.Pointer=self.sectionprm.pointer_param()
+
         print("walkerの中身",self.WalkeParam)
+        print("座標の中身",self.Pointer)
 
 
 
