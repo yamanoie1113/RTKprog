@@ -8,8 +8,9 @@ class Test3:
 
     def process(self):
         print('Run process')
-        self.count.value = 100 #countを書き換え
-        print(self.count.value)
+        if self.count.value==0:#countを書き換え
+            self.count.value=100
+        print("runです",self.count.value)
 
     def process2(self):
         print('Run process')

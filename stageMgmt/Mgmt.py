@@ -8,8 +8,9 @@ sys.path.append(str(current_dir) + '/../')
 from yamagapractice import Test
 from section import SectionMgmt
 from section import b
+from Sensors import MotorMgmt
 #import Timerset
-#import rpipwmtest
+import rpipwmtest
 import time
 
 # メインプロセスで動かす関数
@@ -17,11 +18,12 @@ import time
 class Mgmt:
 
     #signal=True
+    motormgmt=MotorMgmt.MotorMgmt()
 
     def __init__(self):
     
         print("プログラム開始")
-        self.count = Value('i', 0)
+        self.count = Value('i', 1) #初期値１
     
     def run(self):
         print('メインプロセスStart')
@@ -33,20 +35,33 @@ class Mgmt:
         counter=0
         state=True #ステートの設定
 
-        section.run()
+        if self.count.value==0:
+            self.end()
+        else:
+
+            section.run()#sectionの準備
 
         while state:
                 
-            state2=self.timejudge1(start_time)
+            state2=self.timejudge1(start_time)  #時間測定
 
-            if (state2>=100) or (self.count.value==1): #走行時間の設定
+            if self.count.value==0:
                 state=False
                 break
-                
-            counter+=1
-            print('tesuto')
-            section.execRun()
-            print(counter,"回目")
+
+            elif (state2>=100): #走行時間の設定 プロボの電源が入ると終了
+                state=False
+                #self.motormgmt.run(0,0)
+                break
+            
+            else:
+                counter+=1
+                print('tesuto')
+                section.execRun()#section実行
+                print(counter,"回目")
+        
+
+        self.GPS()
 
         print("終了")
 
@@ -59,18 +74,21 @@ class Mgmt:
             print("経過時間",end_time)
             return end_time
         
+    def end(self):
+        print("all end")
+        sys.exit()
 
 
 
     # 緊急停止
     def motor_stop(self):
-        print('サブプロセス2Start')
+        print('緊急停止待機状態Start')
         #statement=None
-        Motor=Test.Test()
-        #Motor=rpipwmtest.rpipwmtest.rpipwmtest()
-        self.count.value=Motor.Re()
-        print(self.count.value)
-
+        #Motor=Test.Test()
+        Motor=rpipwmtest.rpipwmtest()
+        #self.count.value=Motor.Re()
+        self.count.value=Motor.callb()
+        print(self.count.value) #valueを使用することで変数を共有することができる
 
         
         '''
@@ -83,7 +101,7 @@ class Mgmt:
     #GPS起動
     def GPS(self):
         print("GPS_Start")
-        for i in range(102):
+        for i in range(10):
             time.sleep(1)
             print(f'func_3 {i}')
         print('GPS_End')
@@ -92,12 +110,14 @@ class Mgmt:
 
     def main(self):
         
-        p2 = Process(target=self.motor_stop)
-        p1 = Process(target=self.run)
+        p1 = Process(target=self.motor_stop)
+        p2 = Process(target=self.run)
         #p3 = Process(target=self.GPS)
 
-        p2.start()
+        
         p1.start()
+        time.sleep(20)
+        p2.start()
         #p3.start()
 
 
