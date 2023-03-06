@@ -1,4 +1,5 @@
-from multiprocessing import Process,Value
+# coding:utf-8
+from multiprocessing import Process, Value,Manager
 #from concurrent.futures import ProcessPoolExecutor
 #import multiprocessing
 import sys
@@ -6,48 +7,28 @@ import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from yamagapractice import Test
-from section import SectionMgmt
 from section import b
 #import Timerset
-#import rpipwmtest
 import time
 
 # メインプロセスで動かす関数
 
-class Mgmt:
+class MTest:
 
     #signal=True
 
     def __init__(self):
-    
+        self.signal=Value('i', None)
         print("プログラム開始")
-        self.count = Value('i', 0)
+        pass
     
     def run(self):
         print('メインプロセスStart')
-        section=SectionMgmt.SectionMgmt()
-
-        start_time = time.perf_counter()
-
-        #timer=1
-        counter=0
-        state=True #ステートの設定
-
-        section.run()
-
-        while state:
-                
-            state2=self.timejudge1(start_time)
-
-            if (state2>=100) or (self.count.value==False): #走行時間の設定
-                state=False
-                break
-                
-            counter+=1
-            print('tesuto')
-            section.execRun()
-            print(counter,"回目")
-
+        print("GPS_Start")
+        for i in range(5):
+            time.sleep(1)
+            print(f'run {i}')
+        print(self.signal.value)
         print("終了")
 
     def timejudge1(self,start_time):
@@ -65,11 +46,12 @@ class Mgmt:
     # 緊急停止
     def motor_stop(self):
         print('サブプロセス2Start')
+        self.signal=None
         #statement=None
-        Motor=Test.Test()
-        self.count.value=Motor.Re()
-        print(self.count.value)
-
+        Ret=Test.Test()
+        self.signal.value=False
+        
+        #return Ret
 
         
         '''
@@ -91,8 +73,8 @@ class Mgmt:
 
     def main(self):
         
-        p2 = Process(target=self.motor_stop)
-        p1 = Process(target=self.run)
+        p1 = Process(target=self.motor_stop)
+        p2 = Process(target=self.run)
         #p3 = Process(target=self.GPS)
 
         p1.start()
@@ -103,5 +85,5 @@ class Mgmt:
 if __name__ == '__main__':
     #main()
 
-    m=Mgmt()
+    m=MTest()
     m.main()

@@ -46,13 +46,15 @@ class SectionRun:
         
             
             t=True
+            self.Motor.set_param(40,0)
+            self.Motor.run()
             tes=self.timejudge.judge(20)
             
             
-            self.Motor.set_param(40,0)
+            
             
             #mwalker.run(Walkeparam)
-            #self.Motor.run()
+            #
             
             while t:
 
@@ -71,10 +73,13 @@ class SectionRun:
 
         
             t=True
-            tes=self.timejudge.judge(10)
-            
+
             self.Motor.set_param(60,0)
             self.Motor.run()
+
+            tes=self.timejudge.judge(10)
+            
+        
             #mwalker.run(Walkeparam)
             #self.Motor.run()
             

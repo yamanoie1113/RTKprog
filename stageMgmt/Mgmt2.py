@@ -1,4 +1,4 @@
-from multiprocessing import Process,Value
+#from multiprocessing import Process
 #from concurrent.futures import ProcessPoolExecutor
 #import multiprocessing
 import sys
@@ -14,14 +14,13 @@ import time
 
 # メインプロセスで動かす関数
 
-class Mgmt:
+class Mgmt2:
 
     #signal=True
 
     def __init__(self):
     
         print("プログラム開始")
-        self.count = Value('i', 0)
     
     def run(self):
         print('メインプロセスStart')
@@ -39,7 +38,7 @@ class Mgmt:
                 
             state2=self.timejudge1(start_time)
 
-            if (state2>=100) or (self.count.value==False): #走行時間の設定
+            if (state2>=100): #走行時間の設定
                 state=False
                 break
                 
@@ -66,8 +65,8 @@ class Mgmt:
     def motor_stop(self):
         print('サブプロセス2Start')
         #statement=None
-        Motor=Test.Test()
-        self.count.value=Motor.Re()
+        #Motor=Test.Test()
+        #self.count.value=Motor.Re()
         print(self.count.value)
 
 
@@ -89,19 +88,19 @@ class Mgmt:
         
 
 
-    def main(self):
+def main():
         
-        p2 = Process(target=self.motor_stop)
-        p1 = Process(target=self.run)
+    mgmt=Mgmt2()
+    mgmt.run()
+
+        #p2 = Process(target=self.motor_stop)
+        #p1 = Process(target=self.run)
         #p3 = Process(target=self.GPS)
 
-        p1.start()
-        p2.start()
+        #p1.start()
+        #p2.start()
         #p3.start()
 
-
 if __name__ == '__main__':
-    #main()
+    main()
 
-    m=Mgmt()
-    m.main()
