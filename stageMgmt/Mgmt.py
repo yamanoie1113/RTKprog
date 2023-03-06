@@ -39,7 +39,7 @@ class Mgmt:
                 
             state2=self.timejudge1(start_time)
 
-            if (state2>=100) or (self.count.value==False): #走行時間の設定
+            if (state2>=100) or (self.count.value==1): #走行時間の設定
                 state=False
                 break
                 
@@ -67,6 +67,7 @@ class Mgmt:
         print('サブプロセス2Start')
         #statement=None
         Motor=Test.Test()
+        #Motor=rpipwmtest.rpipwmtest.rpipwmtest()
         self.count.value=Motor.Re()
         print(self.count.value)
 
@@ -95,8 +96,8 @@ class Mgmt:
         p1 = Process(target=self.run)
         #p3 = Process(target=self.GPS)
 
-        p1.start()
         p2.start()
+        p1.start()
         #p3.start()
 
 

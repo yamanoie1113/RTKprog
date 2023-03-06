@@ -5,5 +5,6 @@ class Test:
 
     def Re(self):
         print("returnします")
-        time.sleep(10)
-        return False
+        #time.sleep(10)
+        a=1
+        return 1

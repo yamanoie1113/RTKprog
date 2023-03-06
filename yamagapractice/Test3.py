@@ -15,7 +15,7 @@ class Test3:
         print('Run process')
         tes=Test.Test()
         self.count.value = tes.Re() #countを書き換え
-        print(self.count.value)
+        print("prosece2です",self.count.value)
 
 
     def main(self):

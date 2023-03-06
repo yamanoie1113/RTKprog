@@ -74,7 +74,7 @@ class SectionRun:
         
             t=True
 
-            self.Motor.set_param(60,0)
+            self.Motor.set_param(30,0)
             self.Motor.run()
 
             tes=self.timejudge.judge(10)
