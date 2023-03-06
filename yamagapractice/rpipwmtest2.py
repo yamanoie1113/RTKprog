@@ -24,7 +24,7 @@ class rpipwmtest2:
 
         statement=self.callb()
         if statement==1:
-            return statement
+            return 0
         
         
         
