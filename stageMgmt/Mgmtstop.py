@@ -88,6 +88,7 @@ class Mgmtstop:
     def motor_stop(self):
         print('緊急停止待機状態Start')
         #statement=None
+        #↓自分で作ったやつに変えてください
         Motor=Test.Test()
         #Motor=rpipwmtest.rpipwmtest()
         self.count.value=Motor.Re()
@@ -120,7 +121,7 @@ class Mgmtstop:
 
         
         p1.start()
-        time.sleep(20)
+        #time.sleep(20)
         p2.start()
         #p3.start()
 
