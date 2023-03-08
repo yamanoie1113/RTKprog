@@ -1,8 +1,6 @@
-from multiprocessing import get_start_method
+#from multiprocessing import get_start_method
 import sys
 import pathlib
-#import datetime
-
 
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
@@ -11,12 +9,12 @@ from Sensors import Sensor,GPS2xy,LogMgmt
 class PositionMgmt(Sensor.Sensor):
    # gps = GPS2xy()
     position: float
-    logfile ='GPS_log.txt'
+    logfile = None
     #pos_total: float
     def __init__(self):
         # クラス変数
         self.logfile = 'GPS_log.txt'
-        
+
         #GPSログの消去
         LogMgmt.clear(self.logfile)
 
@@ -30,7 +28,7 @@ class PositionMgmt(Sensor.Sensor):
         #GPSの更新
         self.update()
 
-        #GPSが見つかったらその値を、それ以外は1noneを返す
+        #GPSが見つかったらその値を、それ以外はnoneを返す
         if self.position != None:
             print(self.position)
 

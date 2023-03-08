@@ -7,4 +7,4 @@ def clear(path):
 def write(path,position):
     f = open(path,"a")
     f.write(str(datetime.datetime.now()) + ':')
-    f.write(position + ',\n')
+    f.write(str(position) + ',\n')

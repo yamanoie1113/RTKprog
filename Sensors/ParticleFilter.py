@@ -1,6 +1,7 @@
 import matplotlib as plt
 import numpy as np,random as rd
 
+#未完成
 class ParticleFilter(object):
     def __init__(self, y, n_particle, sigma_2, alpha_2):
         self.y = y

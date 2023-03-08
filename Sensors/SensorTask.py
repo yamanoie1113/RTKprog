@@ -1,3 +1,0 @@
-
-class SendorTask():
-    pass
