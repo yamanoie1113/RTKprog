@@ -8,9 +8,9 @@ from Sensors import MotorMgmt
 #from Walker import Run
 #from Walker import VirtualLineTrace
 #from Walker import curveLineTrace
-#from Judgement import DistanceJudge
+from Judgement import DistanceJudge
 from Judgement import TimeJudge
-#from Judgement import TurnAngleJudge
+from Judgement import TurnAngleJudge
 
 
 
@@ -38,7 +38,7 @@ class SectionRun:
         
         
         if state==0:
-        #mjudg.judge(mjudge,pointer)#距離判定
+            #mjudge.judge(pointer)#距離判定
             
             print("直進のジャッジ",mjudge,"座標",pointer)   #self.STRAIGHTは０
         
@@ -132,30 +132,30 @@ class SectionRun:
 
         if judge==self.DISTANCE:
             #オブジェクト生成
-            #self.mJudge=DistanceJudge.DistanceJudge()
+            self.mJudge=DistanceJudge.DistanceJudge()
             #＿＿＿＿↓デバッグ＿＿＿
-            self.mtest=b.b()
+            #self.mtest=b.b()
             #______________________
 
-            self.mjudge=0
+            #self.mjudge=0
             print("judge")
 
         if judge==self.ANGLE:
             #オブジェクト生成
-            #self.mJudge=TurnAngleJudge.TurnAngleJudge()
+            self.mJudge=TurnAngleJudge.TurnAngleJudge()
 
             #＿＿＿＿↓デバッグ＿＿＿
-            self.mtest=b.b()
+            #self.mtest=b.b()
             #______________________
 
-            self.mjudge=1
+            #self.mjudge=1
             print("mjudghe")
 
         #_______↓デバッグ_______
-        return self.mtest
+        #return self.mtest
         #______________________
 
-        #return self.mjudge
+        return self.mJudge
 
     
 

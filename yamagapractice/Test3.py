@@ -4,13 +4,12 @@ import Test
 
 class Test3:
     def __init__(self):
-        self.count = Value('i', 0)
+        self.count = Value('i', True)
 
     def process(self):
         print('Run process')
-        if self.count.value==0:#countを書き換え
-            self.count.value=100
-        print("runです",self.count.value)
+        if self.count.value==False:#countを書き換え
+            print("runです",self.count.value)
 
     def process2(self):
         print('Run process')

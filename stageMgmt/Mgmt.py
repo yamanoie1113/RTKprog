@@ -23,7 +23,7 @@ class Mgmt:
     def __init__(self):
     
         print("プログラム開始")
-        self.count = Value('i', 1) #初期値１
+        self.count = Value('i', True) #初期値１
     
     def run(self):
         print('メインプロセスStart')
@@ -35,7 +35,7 @@ class Mgmt:
         counter=0
         state=True #ステートの設定
 
-        if self.count.value==0:
+        if self.count.value==False:
             self.end()
 
         else:
@@ -46,7 +46,7 @@ class Mgmt:
                 
                 state2=self.timejudge1(start_time)  #時間測定
 
-                if self.count.value==0:
+                if self.count.value==False:
                     state=False
                     break
 
