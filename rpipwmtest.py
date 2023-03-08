@@ -36,7 +36,6 @@ class rpipwmtest:
         global ch1_in, ch2_in
         global ch1_out, ch2_out
         global on
-        mgmt = 0
         if gpio == ch1_in :
             if on == 0 :
                 rpipwmtest.mgmt(0)
@@ -64,7 +63,6 @@ class rpipwmtest:
     def mgmt(self):
         print("a")
         cmt.ant()
-        return 0
             
             
 def main():
