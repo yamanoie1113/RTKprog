@@ -28,7 +28,7 @@ class TurnAngleJudge(Judge.Judge):
 
         #sectionからstatusを渡す位置を考える initかsetparamか
         #とりあえずダミーを設置する
-        status = float(input("input_finish_angle?"))
+        #status = float(input("input_finish_angle?"))
 
         self.set_param(status)
 
@@ -63,10 +63,10 @@ class TurnAngleJudge(Judge.Judge):
         else :
 
             if self.angget.getvalue() <= self.finish_angle :
-                return True
+                return False
 
             else :
-                return False
+                return True
     """
     def judge(self):
         #X,Y座標を取得し、その値が基準値をこえていたらTrueを返す。それ以外はFalse
