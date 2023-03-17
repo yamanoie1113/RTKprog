@@ -56,9 +56,9 @@ class DistanceJudge(Judge.Judge):
 
         #X、Y座標を取得し、その値が基準値をこえていたらtrueを返す。それ以外はfalse
         if self.mlength <= 0:
-            return True
-        else :
             return False
+        else :
+            return True
 
     def getPosition(self):
         positionXY = self.pget.getvalue()
