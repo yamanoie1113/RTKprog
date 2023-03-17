@@ -30,7 +30,7 @@ class TurnAngleJudge(Judge.Judge):
         #とりあえずダミーを設置する
         #status = float(input("input_finish_angle?"))
 
-        self.set_param(status)
+        #self.set_param(status)
 
         self.start_angle = self.angget.getvalue()
         

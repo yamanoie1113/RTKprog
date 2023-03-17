@@ -46,7 +46,9 @@ class DistanceJudge(Judge.Judge):
     """
 
 
-    def judge(self,x,y):
+    def judge(self,XYpos):
+        x = XYpos[0]
+        y = XYpos[1]
 
         self.getPosition()
 
