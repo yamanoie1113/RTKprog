@@ -56,16 +56,16 @@ class VirtualLineTrace:
         def set_param(self):
         
             PM = PositionMgmt.PositionMgmt()
-            #para = PM.getvalue()
-            param = [500,500]
+            para = PM.getvalue()
+            #param = [500,500]
             return param
 
 
         def fast_param(self,a,b):
         
             #PM = PositionMgmt.PositionMgmt()
-            #para = self.PM.getvalue()
-            para = [500,500]
+            para = self.PM.getvalue()
+            #para = [500,500]
             x = para[0] #座標分け
             y = para[1]
             a = x+300 #中心点X
@@ -81,16 +81,17 @@ class VirtualLineTrace:
             #self.mPID=PID()
             #self.mPID.reset_param()
             #self.param = list()
-            param_list = [0]*5
-            for f in range(4):
-                param_list = paramlist[f:f+1]
-            
-            sp = param_list[0]
-            sv = param_list[1]
-            p = param_list[2]
-            i = param_list[3]
-            d = param_list[4]
-            param = VirtualLineTrace.set_param()
+            #param_list = [0]*4
+            #for f in range(4):
+                #param_list[f] = paramlist[f:f+1]
+            #print(param_list)
+            sp = paramlist[0]
+            print(sp)
+            sv = 0
+            p = paramlist[1]
+            i = paramlist[2]
+            d = paramlist[3]
+            param = VirtualLineTrace.set_param(0)
             self.startx = param[0]
             self.starty = param[1]  
             c = 0
@@ -150,8 +151,9 @@ class VirtualLineTrace:
 
 def main():
     #print (1)
+    param = [1,2,3,4]
     cuvre = VirtualLineTrace()
-    cuvre.set_run(1,100,0,0,0)
+    cuvre.set_run(param)
         
 if __name__ == '__main__':
     main()

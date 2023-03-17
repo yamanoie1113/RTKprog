@@ -82,8 +82,25 @@ class SectionMgmt:
         self.Cwalkerpointer=0 #2まで
         self.pointerset=0
         
-        self.mState=self.RUN
+        #self.mState=self.RUN
+    
         
+        
+    def test(self):
+        
+        print("testttttttttttttttttttttttttt")
+        print(self.WalkeParam[0][0])
+        
+        print("zahyo",self.Pointer[0])
+        #print(self.Walkerinstance[0],self.Judgeinstance[0],
+                                    #self.WalkeParam[0][0],self.Pointer[0])
+        
+        #mwalker,mjudge,Walkeparam,pointer
+        
+        self.sectionrun.test(self.Walkerinstance[0],self.Judgeinstance[0],
+                                    self.WalkeParam[0][0],self.Pointer[0])
+        print("ooooooooooooooooooooooooooooo")
+        self.mState=self.END
 
     def execRun(self):
         print("Walkerのオブジェクト",self.Walkerinstance)
@@ -138,7 +155,8 @@ class SectionMgmt:
     def end(self):
         
         print("END")
-
+        
+   
 
     def addSection(self):
 

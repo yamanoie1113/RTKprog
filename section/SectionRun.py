@@ -6,8 +6,8 @@ sys.path.append(str(current_dir) + '/../')
 from section import b
 from Sensors import MotorMgmt
 #from Walker import Run
-#from Walker import VirtualLineTrace
-#from Walker import curveLineTrace
+from Walker import VirtualLineTrace
+from Walker import curveLineTrace
 from Judgement import DistanceJudge
 from Judgement import TimeJudge
 from Judgement import TurnAngleJudge
@@ -25,7 +25,9 @@ class SectionRun:
     Motor=MotorMgmt.MotorMgmt()
 
     def init(self):
+        
         pass
+
 
     def run(self,mwalker,mjudge,Walkeparam,pointer,state):#走法、判定、パラメータ、座標
 
@@ -38,7 +40,7 @@ class SectionRun:
         
         
         if state==0:
-            #mjudge.judge(pointer)#距離判定
+            tes=mjudge.judge(pointer)#距離判定
             
             print("直進のジャッジ",mjudge,"座標",pointer)   #self.STRAIGHTは０
         
@@ -46,11 +48,9 @@ class SectionRun:
         
             
             t=True
-            self.Motor.set_param(40,0)
-            self.Motor.run()
-            tes=self.timejudge.judge(20)
-            
-            
+            mwalker.set_run(Walkeparam)
+            #mwalker.run()
+            #tes=self.timejudge.judge(20)
             
             
             #mwalker.run(Walkeparam)
@@ -66,18 +66,17 @@ class SectionRun:
 
         else:  
 
-        #mjudge.judge(pointer)#旋回角度判定
+            tes=mjudge.judge(pointer)#旋回角度判定
             print("曲線のジャッジ",mjudge,"座標",pointer)  #self.CURVEは１
-        #mwalker.run(Walkeparam)
+            #mwalker.run(Walkeparam)
             print("曲線のウォーカーパラメータ",mwalker)
 
         
             t=True
 
-            self.Motor.set_param(30,0)
-            self.Motor.run()
+            mwalker.run(Walkeparam)
 
-            tes=self.timejudge.judge(10)
+            #tes=self.timejudge.judge(10)
             
         
             #mwalker.run(Walkeparam)
@@ -92,6 +91,30 @@ class SectionRun:
 
         #self.JudgeFarst=False
         #break
+                
+    def test(self,mwalker,mjudge,Walkeparam,pointer):
+        list_num=([0,0,0,0,0])
+        T=True
+        print(Walkeparam)
+        print("debug",mwalker)
+        print("mjugedebug",mjudge)
+        
+        print(pointer)
+        
+        tes=mjudge.judge(pointer)
+        mwalker.set_run(Walkeparam)
+        #mwalker.run()
+        
+        while t:
+
+            if tes==False:
+                t=False
+                break
+                print("まだ2")
+        
+        #syuuryou
+        mwalker.set_run(list_num)
+        #mwalker.run()
         
             
     def request_Walker(self,number):
@@ -100,31 +123,31 @@ class SectionRun:
 
         if number==self.CURVE:
             #オブジェクト生成
-            #self.mWalker=curveLineTrace.cuvreLineTrace()
+            self.mWalker=curveLineTrace.cuvreLineTrace()
 
             #_________↓デバッグ__________
-            self.mtest=b.b()    
+            #self.mtest=b.b()    
             #______________________
 
-            self.mWalker=0
+            #self.mWalker=0
             print("curve")
 
         if number==self.STRAIGHT:
             #オブジェクト生成
-            #self.mWalker=VirtualLineTrace.VirtualLineTrace()
+            self.mWalker=VirtualLineTrace.VirtualLineTrace()
 
             #________↓デバッグ_________
-            self.mtest=b.b()
+            #self.mtest=b.b()
             #______________________
 
-            self.mWalker=2
+            #self.mWalker=2
             print("straight")
             
         #＿＿＿＿↓デバッグ＿＿＿
-        return self.mtest
+        #return self.mtest
         #________＿＿＿＿＿＿＿＿
 
-        #return self.mWalker
+        return self.mWalker
 
     def request_judge(self,judge):
 

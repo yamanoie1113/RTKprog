@@ -62,12 +62,12 @@ class Param:
 
     def pointer_set_param(self):
 
-        self.pointer=([0,0], #A
+        self.pointer=([17,8], #A
         [1,0],               #B
-        [2,0],               #C
+        [2,0],               #C chusin
         [3,0],               #D
         [4,0],               #E
-        [2,0])               #C
+        [2,0])               #C chusin
 
         return  self.pointer
 

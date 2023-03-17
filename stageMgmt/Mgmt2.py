@@ -40,7 +40,7 @@ class Mgmt2:
 
             if (state2>=100): #走行時間の設定
                 state=False
-                break
+                break.
                 
             counter+=1
             print('tesuto')
@@ -59,7 +59,11 @@ class Mgmt2:
             return end_time
         
 
-
+    def test(self):
+        section=SectionMgmt.SectionMgmt()
+        section.run()
+        section.test()
+         
 
     # 緊急停止
     def motor_stop(self):
@@ -91,10 +95,10 @@ class Mgmt2:
 def main():
         
     mgmt=Mgmt2()
-    mgmt.run()
+    mgmt.test()
+    #mgmt.run()
 
         #p2 = Process(target=self.motor_stop)
-        #p1 = Process(target=self.run)
         #p3 = Process(target=self.GPS)
 
         #p1.start()
