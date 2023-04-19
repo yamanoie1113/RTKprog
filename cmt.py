@@ -18,7 +18,7 @@ def main():
     
 def ant():
     print("d")
-    return False
+    return 0
         
 if __name__ == '__main__':
     main()
