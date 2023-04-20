@@ -96,11 +96,11 @@ class VirtualLineTrace():
             i = paramlist[2]
             d = paramlist[3]
             #print(self.goalx)
-            param = VirtualLineTrace.set_param(0)
+            param = VirtualLineTrace.set_param(self)
             self.startx = param[0]
             self.starty = param[1]  
             c = 0
-            print(sp,sv)
+            #print(sp,sv)
             #ループカウンタ
             
 
@@ -137,7 +137,7 @@ class VirtualLineTrace():
 
                     
                 self.MM.run()
-                param =VirtualLineTrace.set_param(0)
+                param =VirtualLineTrace.set_param(self)
                 r = VirtualLineTrace.set_distance(self,param)
                 time.sleep(0.1)
             """c += 1
