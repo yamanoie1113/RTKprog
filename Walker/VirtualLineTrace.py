@@ -104,42 +104,42 @@ class VirtualLineTrace():
             #ループカウンタ
             
 
-            #while True:
+            while True:
                 
                 #self.mPID.set_target(loca)
                 #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
                 #self.mPID.get_operation()
 
-            if self.turn == 'no':
+                if self.turn == 'no':
                      #print ('zennsin2')
-                self.MM.set_param(sp,sv)
-                        #self.MM.set_param(1,100)
-            elif r < 0:
-                    #中心点に近づく
-                if self.turn == 'right':
                     self.MM.set_param(sp,sv)
+                        #self.MM.set_param(1,100)
+                elif r < 0:
+                    #中心点に近づく
+                    if self.turn == 'right':
+                        self.MM.set_param(sp,sv)
                         #self.MM.set_param(1,-100)
                         #print ('zennsin')
-                elif self.turn == 'left':
+                    elif self.turn == 'left':
                         #print ('cousin')
-                    self.MM.set_param(sp,sv)
+                        self.MM.set_param(sp,sv)
                         #self.MM.set_param(10,100)
-            elif r > 0:
+                elif r > 0:
                     #中心点から離れる
-                if self.turn == 'right':
+                    if self.turn == 'right':
                         #print ('zennsin2')
-                    self.MM.set_param(sp,sv)
+                        self.MM.set_param(sp,sv)
                         #self.MM.set_param(1,-100)
-                elif self.turn == 'left':
+                    elif self.turn == 'left':
                         #self.MM.set_param(10,100)
-                    self.MM.set_param(sp,sv)
+                        self.MM.set_param(sp,sv)
                         #print ('cousin2')
 
                     
-            self.MM.run()
-            param =VirtualLineTrace.set_param(0)
-            r = VirtualLineTrace.set_distance(self,param)
-            time.sleep(0.1)
+                self.MM.run()
+                param =VirtualLineTrace.set_param(0)
+                r = VirtualLineTrace.set_distance(self,param)
+                time.sleep(0.1)
             """c += 1
                 if c == 100:
                     self.MM.set_param(0,0)
