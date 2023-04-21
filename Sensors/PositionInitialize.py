@@ -3,6 +3,7 @@ import numpy as np
 import PositionMgmt
 
 class PositionInitialize():
+    #A,B,C,D,E,C
     Point = [[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0]]
     start_point = [1.0,1.0] #ダミー
     x_moves = 0.0
@@ -44,11 +45,13 @@ class PositionInitialize():
         self.Point[5][0] = self.start_point[0]
         self.Point[5][1] = self.start_point[1]
 
+        return self.Point
+
 
 def main():
     test = PositionInitialize()
-    test.update()
-    print(test.Point)
+    a = test.update()
+    print(a)
 
 
 if __name__=="__main__":
