@@ -85,8 +85,8 @@ class Param:
     def Straight_set_param2(self):
 
         #速度、P,I,D　
-        self.prm1=([10,0,0,0],  #A
-        [10,1,1,1],             #B
+        self.prm1=([30,0,0,0],  #A
+        [0,1,1,1],             #B
         [10,2,1,1],             #C
         [10,3,1,1])             #D
 
