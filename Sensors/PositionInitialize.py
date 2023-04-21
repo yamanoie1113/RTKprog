@@ -38,7 +38,7 @@ class PositionInitialize():
 def main():
     test = PositionInitialize()
     test.update()
-    
+
 
 if __name__=="__main__":
     main()
