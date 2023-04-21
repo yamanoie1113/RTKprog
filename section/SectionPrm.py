@@ -6,12 +6,13 @@ import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from section import Param
-#from Sensors import MotorMgmt
+from Sensors import PositionInitialize
 class SectionPrm:
     #クラス変数
     curve=0
     straight=1
     param=Param.Param()
+    position=PositionInitialize.PositionInitialize()
 
 
     def __init__(self):
@@ -35,7 +36,7 @@ class SectionPrm:
 
     def pointer_param(self):
 
-        self.pointset=self.param.pointer_set_param()
+        self.pointset=self.position.update()
 
         print("座標です",self.pointset)
 
@@ -53,14 +54,14 @@ class SectionPrm:
 
         print("param",self.parameter)
 
-        return self.parameter
+        return self.parameter   
 
 def main():
     #param=Param2.Param2
     dd=SectionPrm()
     msectionIdx=1
-    dd.Walkerset_param(msectionIdx)
-    
+    #dd.Walkerset_param2(msectionIdx)
+    dd.pointer_param()
 
 
 if __name__=="__main__":
