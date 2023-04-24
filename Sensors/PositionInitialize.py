@@ -1,6 +1,11 @@
+import sys
+import pathlib
+current_dir = pathlib.Path(__file__).resolve().parent
+sys.path.append(str(current_dir) + '/../')
+
 import numpy as np
 
-import PositionMgmt
+from Sensors import PositionMgmt
 
 class PositionInitialize():
     #A,B,C,D,E,C
