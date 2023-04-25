@@ -116,7 +116,12 @@ class SectionRun:
         mwalker.set_run(list_num)
         #mwalker.run()
         
-            
+    def test2(self,mwalker,mjudge,Walkeparam,pointer):
+        
+        print("mwalker:",mwalker,"mjudge",mjudge,"Walkeparam:",Walkeparam,"pointer",pointer)
+        
+        
+        
     def request_Walker(self,number):
 
     #走法の生成依頼

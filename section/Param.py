@@ -88,19 +88,19 @@ class Param:
         self.prm1=([30,0,0,0],  #A
         [0,1,1,1],             #B
         [10,2,1,1],             #C
-        [10,3,1,1])             #D
+        [10,3,1,1])            #D
 
         self.deb=self.prm1
-        print("Straight",self.deb)
+        #print("Straight",self.deb)
         #self.number+=1
         return self.deb
 
     def Curve_set_param2(self):
         #self.number1=0
         self.prm2=([5,0,0,0],
-        [5,1,1,1])     #速度,P,I,D
+        [5,1,1,1])    #速度,P,I,D
         self.deb=self.prm2
-        print("Curve",self.deb)
+        #print("Curve",self.deb)
         #self.number1+=1
         return self.deb
 

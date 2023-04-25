@@ -48,20 +48,31 @@ class SectionPrm:
 
         
         if pointset==0:
-            self.parameter=self.param.Straight_set_param2()
+            self.parameter1=self.param.Straight_set_param2()
+            print("walkerset1")
+            return self.parameter1
+            
+            
         elif pointset==1:
-            self.parameter=self.param.Curve_set_param2()
+            self.parameter2=self.param.Curve_set_param2()
 
-        print("param",self.parameter)
+            print("param",self.parameter2)
 
-        return self.parameter   
+            return self.parameter2
+    
+    def test(self,pointset,pointset1,pointset2) :
+        pass
 
 def main():
     #param=Param2.Param2
     dd=SectionPrm()
-    msectionIdx=1
+    pointset=0
     #dd.Walkerset_param2(msectionIdx)
     dd.pointer_param()
+    dd.Walkerset_param2(pointset)
+    pointset=1
+    dd.Walkerset_param2(pointset)
+    
 
 
 if __name__=="__main__":
