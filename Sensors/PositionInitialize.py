@@ -17,6 +17,7 @@ class PositionInitialize():
     PMgmt = PositionMgmt.PositionMgmt()
 
     def __init__(self):
+        #初期値の取得
         #self.start_point=self.PMgmt.getvalue()
 
         #x,yの増分
