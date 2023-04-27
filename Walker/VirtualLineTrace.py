@@ -21,6 +21,7 @@ class VirtualLineTrace():
         starty = 0 #開始地点ｙ
         turn = 'no'
         MM = MotorMgmt.MotorMgmt()
+        PM = PositionMgmt.PositionMgmt()
         #test=0
 
         def init(self):
@@ -62,7 +63,7 @@ class VirtualLineTrace():
         def set_param(self):
         
             PM = PositionMgmt.PositionMgmt()
-            #para = PM.getvalue()
+            #para = self.PM.getvalue()
             param = [500,500]
             return param
 
@@ -70,7 +71,7 @@ class VirtualLineTrace():
         def fast_param(self,a,b):
         
             #PM = PositionMgmt.PositionMgmt()
-            #para = self.PM.getvalue()
+            #para = self.PM.getvalue(self)
             para = [500,500]
             x = para[0] #座標分け
             y = para[1]
@@ -90,6 +91,7 @@ class VirtualLineTrace():
             #param_list = [0]*5
             #for f in range(4):
                 #param_list = paramlist[f:f+1]
+            #self.PM.__init__(self)
             sp = paramlist[0]
             sv = 0
             p = paramlist[1]
