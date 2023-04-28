@@ -193,6 +193,7 @@ def main():
     sectionMgmt=SectionMgmt()
     #pointing=2
     sectionMgmt.run()
+    sectionMgmt.execRun()
     #sectionMgmt.test2()
     
 
