@@ -22,16 +22,17 @@ class VirtualLineTrace():
         turn = 'no'
         MM = MotorMgmt.MotorMgmt()
         PM = PositionMgmt.PositionMgmt()
+        param = [[0 for i in range(2)] for j in range(5)]
         #test=0
 
         def init(self):
             pass
 
-        def set_distance(self,para):
+        def set_distance(self,a):
             #print("test_value",self.test)
-            print(para)
-            x = para[0]
-            y = para[1]
+            print(self.param)
+            x = self.param[a][0]
+            y = self.param[a][1]
             #print(x)
             #print(self.goaly)
             x2 = (self.goaly - self.starty)/(self.goalx - self.startx)
@@ -60,21 +61,23 @@ class VirtualLineTrace():
                     self.turn = 'no'
 
 
-        def set_param(self):
+        def set_param(self,a):
         
             PM = PositionMgmt.PositionMgmt()
-            #para = self.PM.getvalue()
-            param = [500,500]
-            return param
+            #self.param[] = self.PM.getvalue()
+            self.param[a][0] = 500
+            self.param[a][1] = 500
+            return self.param
 
 
-        def fast_param(self,a,b):
+        def fast_param(self,a,b,c):
         
             #PM = PositionMgmt.PositionMgmt()
             #para = self.PM.getvalue(self)
-            para = [500,500]
-            x = para[0] #座標分け
-            y = para[1]
+            self.param[c][0] = 500
+            self.param[c][1] = 500
+            x = self.param[c][0] #座標分け
+            y = self.param[c][1]
             a = x+300 #中心点X
             b = y #中心点Y
 
@@ -83,7 +86,7 @@ class VirtualLineTrace():
             return r,a,b
 
 
-        def set_run(self,paramlist):
+        def set_run(self,paramlist,goaly):
 
             #self.mPID=PID()
             #self.mPID.reset_param()
@@ -97,11 +100,14 @@ class VirtualLineTrace():
             p = paramlist[1]
             i = paramlist[2]
             d = paramlist[3]
+            self.goalx = goaly[0]
+            self.goaly = goaly[1]
             #print(self.goalx)
-            param = VirtualLineTrace.set_param(self)
-            self.startx = param[0]
-            self.starty = param[1]  
             c = 0
+            param = VirtualLineTrace.set_param(self,c)
+            self.startx = self.param[0][0]
+            self.starty = self.param[0][1]  
+            
             #print(sp,sv)
             #ループカウンタ
             
@@ -119,29 +125,33 @@ class VirtualLineTrace():
                 elif r < 0:
                     #中心点に近づく
                     if self.turn == 'right':
-                        self.MM.set_param(sp,sv)
+                        self.MM.set_param(sp,-30)
                         #self.MM.set_param(1,-100)
                         #print ('zennsin')
                     elif self.turn == 'left':
                         #print ('cousin')
-                        self.MM.set_param(sp,sv)
+                        self.MM.set_param(sp,30)
                         #self.MM.set_param(10,100)
                 elif r > 0:
                     #中心点から離れる
                     if self.turn == 'right':
                         #print ('zennsin2')
-                        self.MM.set_param(sp,sv)
+                        self.MM.set_param(sp,-30)
                         #self.MM.set_param(1,-100)
                     elif self.turn == 'left':
                         #self.MM.set_param(10,100)
-                        self.MM.set_param(sp,sv)
+                        self.MM.set_param(sp,30)
                         #print ('cousin2')
 
                     
                 self.MM.run()
-                param =VirtualLineTrace.set_param(self)
-                r = VirtualLineTrace.set_distance(self,param)
+                c += 1
+                if c == 5:
+                    c = 2
+                param =VirtualLineTrace.set_param(self,c)
+                r = VirtualLineTrace.set_distance(self,c)
                 time.sleep(0.1)
+               
             """c += 1
                 if c == 100:
                     self.MM.set_param(0,0)
@@ -150,6 +160,7 @@ class VirtualLineTrace():
                     #self.mPID.reset_param()
                     break
                 #print (c)"""
+                
 
         def stop(self):
             self.MM.set_param(0,0)
