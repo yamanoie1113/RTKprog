@@ -48,7 +48,7 @@ class SectionRun:
         
             
             t=True
-            mwalker.set_run(Walkeparam)
+            mwalker.set_run(Walkeparam,pointer)
             #mwalker.run()
             #tes=self.timejudge.judge(20)
             
@@ -74,7 +74,7 @@ class SectionRun:
         
             t=True
 
-            mwalker.run(Walkeparam)
+            mwalker.set_run(Walkeparam.pointer)
 
             #tes=self.timejudge.judge(10)
             
