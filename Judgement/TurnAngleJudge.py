@@ -49,9 +49,10 @@ class TurnAngleJudge(Judge.Judge):
         self.my = 0
         
 
-    def judge(self):
-        print("judge")
-        
+    def judge(self,XYpos):
+        print("ANGLE_judge")
+        x = XYpos[0]
+        y = XYpos[1]
         if self.finish_angle >= self.start_angle :
 
             if self.angget.getvalue() >= self.finish_angle :
@@ -91,12 +92,32 @@ class TurnAngleJudge(Judge.Judge):
 
     """
 
+    #目標地点との角度の計算 return float
+    def CalcAng(goal_x,goal_y):
+        #現在地取得
+        start_x = 0.0
+        start_y = 0.0
+
+
+
+        x = (goal_x - start_x)
+        y = (goal_y - start_y)
+
+        r = math.atan2(y,x)
+
+        if r < 0 :
+            r = r + 2 * math.pi
+
+        angle = math.floor(r * 360 / (2 * math.pi))
+        return angle
+
+
     def set_param(self,status):
         self.start_angle = self.angget.getvalue()
         print(self.start_angle)
         #終了角度をセクションから受け取る場合
         self.finish_angle = status
-        
+
         #旋回したい角度をセクションから受け取る場合
         #self.finish_angle = self.start_angle + status
 
