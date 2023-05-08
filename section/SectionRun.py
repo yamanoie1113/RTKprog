@@ -55,7 +55,7 @@ class SectionRun:
             
             
             #mwalker.run(Walkeparam)
-            #
+            
             
             while t:
 
@@ -164,6 +164,7 @@ class SectionRun:
         #判定の生成依頼
 
         if judge==self.DISTANCE:
+            
             #オブジェクト生成
             self.mJudge=DistanceJudge.DistanceJudge()
             #＿＿＿＿↓デバッグ＿＿＿
