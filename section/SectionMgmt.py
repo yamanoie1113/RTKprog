@@ -7,8 +7,8 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from section import SectionRun
 from section import SectionPrm
-from yamagapractice import SRun
 #from Walker import Run
+
 class SectionMgmt:
     mState=1
     UNDEFINED=1
@@ -18,11 +18,10 @@ class SectionMgmt:
     WalkeParam=[0,0]
     Walkerinstance=[None,None]
     Judgeinstance=[None,None]
-    Pointer=[None]
+    Pointer=None
     
     sectionprm=SectionPrm.SectionPrm()
     sectionrun=SectionRun.SectionRun()
-    Srun=SRun.SRun()
     STRAIGHT = 0
     CURVE = 1           #0は直線、1は曲線
     counter=0
@@ -87,7 +86,10 @@ class SectionMgmt:
     
     def test2(self):
         #print("座標確認",self.Pointer)
-        pass
+        print("Walkerのオブジェクト",self.Walkerinstance)
+        print("Judgeのオブジェクト",self.Judgeinstance)
+        print("Walkerのパラメータ",self.WalkeParam)
+        print("座標",self.Pointer)
         
         
     def execRun(self):

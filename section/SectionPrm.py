@@ -1,6 +1,4 @@
 # coding:utf-8
-import time
-import os
 import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
