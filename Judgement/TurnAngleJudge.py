@@ -15,9 +15,10 @@ class TurnAngleJudge(Judge.Judge):
 
 
     last_angle = 0.0
-    mx=0.0
-    my=0.0
-
+    start_x = 0.0
+    start_y = 0.0
+    
+    #instance
     angget = TASensor.TurnAngleSensor()
 
 
@@ -31,28 +32,34 @@ class TurnAngleJudge(Judge.Judge):
         #status = float(input("input_finish_angle?"))
 
         #self.set_param(status)
+        self.get_Position()
 
         self.start_angle = self.angget.getvalue()
         
-        #XYから値取得
-
+    def get_Position(self):
+        #現在値取得メソッド
         
         self.pget = PMgmt.PositionMgmt()
         #positionXY = pget.getvalue()
         
-        #mx,myに座標をセット
-        #self.mx = positionXY[0]
-        #self.my = positionXY[1]
+        #start_x,start_yに座標をセット
+        #self.start_x = positionXY[0]
+        #self.start_y = positionXY[1]
         
         #test_position
-        self.mx = 1
-        self.my = 0
-        
+        self.start_x = 1
+        self.start_y = 0
 
     def judge(self,XYpos):
         print("ANGLE_judge")
-        x = XYpos[0]
-        y = XYpos[1]
+        
+        #目標地点goal_x,goal_yを設定
+        goal_x = XYpos[0]
+        goal_y = XYpos[1]
+        
+        #目標地点までの旋回角度を計算 finish_angleを更新
+        self.CalcAng(goal_x,goal_y)
+        
         if self.finish_angle >= self.start_angle :
 
             if self.angget.getvalue() >= self.finish_angle :
@@ -92,13 +99,12 @@ class TurnAngleJudge(Judge.Judge):
 
     """
 
-    #目標地点との角度の計算 return float
-    def CalcAng(goal_x,goal_y):
+    #目標地点との角度の計算 self.finish_angleに結果格納
+    def CalcAng(self,goal_x,goal_y):
         #現在地取得
+        self.get_Position()
         start_x = 0.0
         start_y = 0.0
-
-
 
         x = (goal_x - start_x)
         y = (goal_y - start_y)
@@ -108,8 +114,7 @@ class TurnAngleJudge(Judge.Judge):
         if r < 0 :
             r = r + 2 * math.pi
 
-        angle = math.floor(r * 360 / (2 * math.pi))
-        return angle
+        self.finish_angle = math.floor(r * 360 / (2 * math.pi))
 
 
     def set_param(self,status):
@@ -127,10 +132,17 @@ def main():
     testclass = TurnAngleJudge()
     judge_val = False
     
+    
+    #calc_Test
+    rtnAng = testclass.CalcAng(5,5)
+    print(rtnAng)
+    
+    #Judge_Test
+    """
     while judge_val == False:
         judge_val = testclass.judge()
         print(testclass.angget.getvalue(),":",testclass.finish_angle)
-
+    """
     print("-------------------------END-------------------------------")
 
 if __name__ == '__main__':
