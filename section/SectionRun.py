@@ -40,21 +40,13 @@ class SectionRun:
         
         
         if state==0:
+            
+            mwalker.set_run(Walkeparam,pointer)
+            
             tes=mjudge.judge(pointer)#距離判定
             print("判定中です")
             
-            print("直進のジャッジ",mjudge,"座標",pointer)   #self.STRAIGHTは０
-        
-            print("直線のウォーカーパラメータ",mwalker)
-        
-            
             t=True
-            mwalker.set_run(Walkeparam,pointer)
-            #mwalker.run()
-            #tes=self.timejudge.judge(20)
-            
-            
-            #mwalker.run(Walkeparam)
             
             
             while t:
@@ -65,26 +57,16 @@ class SectionRun:
                     break
                 print("まだ")
             
-
         else:  
 
+            mwalker.set_run(Walkeparam,pointer)
+            
             tes=mjudge.judge(pointer)#旋回角度判定
             
             print("判定中です")
-            print("曲線のジャッジ",mjudge,"座標",pointer)  #self.CURVEは１
-            #mwalker.run(Walkeparam)
-            print("曲線のウォーカーパラメータ",mwalker)
-
         
             t=True
 
-            mwalker.set_run(Walkeparam.pointer)
-
-            #tes=self.timejudge.judge(10)
-            
-        
-            #mwalker.run(Walkeparam)
-            #self.Motor.run()
             
             while t:
 
