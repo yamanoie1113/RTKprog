@@ -14,7 +14,7 @@ class TurnAngleJudge(Judge.Judge):
     baseline = 0.0
 
 
-    last_angle = 0.0
+    previos_angle = 0.0
     start_x = 0.0
     start_y = 0.0
     
@@ -75,29 +75,6 @@ class TurnAngleJudge(Judge.Judge):
 
             else :
                 return True
-    """
-    def judge(self):
-        #X,Y座標を取得し、その値が基準値をこえていたらTrueを返す。それ以外はFalse
-        #ここジャイロでやるからXY関係ない説ある?
-
-
-        if self.finish_angle >= self.start_angle :
-
-            if self.pget.getvalue() >= self.finish_angle :
-                return True
-
-            else :
-                return False
-
-        else :
-
-            if self.pget.getvalue() <= self.finish_angle :
-                return True
-
-            else :
-                return False
-
-    """
 
     #目標地点との角度の計算 self.finish_angleに結果格納
     def CalcAng(self,goal_x,goal_y):
@@ -115,7 +92,7 @@ class TurnAngleJudge(Judge.Judge):
             r = r + 2 * math.pi
 
         self.finish_angle = math.floor(r * 360 / (2 * math.pi))
-
+        
 
     def set_param(self,status):
         self.start_angle = self.angget.getvalue()
@@ -132,17 +109,18 @@ def main():
     testclass = TurnAngleJudge()
     judge_val = False
     
-    
+    """
     #calc_Test
     rtnAng = testclass.CalcAng(5,5)
     print(rtnAng)
+    """
     
     #Judge_Test
-    """
+    array=[5,5]
     while judge_val == False:
-        judge_val = testclass.judge()
+        judge_val = testclass.judge(array)
         print(testclass.angget.getvalue(),":",testclass.finish_angle)
-    """
+    
     print("-------------------------END-------------------------------")
 
 if __name__ == '__main__':
