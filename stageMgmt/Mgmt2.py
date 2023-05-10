@@ -40,7 +40,7 @@ class Mgmt2:
 
             if (state2>=100): #走行時間の設定
                 state=False
-                break.
+                break
                 
             counter+=1
             print('tesuto')
@@ -63,7 +63,6 @@ class Mgmt2:
         section=SectionMgmt.SectionMgmt()
         section.run()
         section.test()
-         
 
     # 緊急停止
     def motor_stop(self):

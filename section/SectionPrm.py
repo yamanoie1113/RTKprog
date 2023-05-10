@@ -37,14 +37,14 @@ class SectionPrm:
 
         self.pointset=self.position.update()
 
-        print("座標です",self.pointset)
+        print("座標です",self.pointset,"test",self.pointset[5])
 
         return self.pointset
     
     def pointer_paramtest(self):
         
         self.pointset=self.testing.update()
-        print("座標です２",self.pointset)
+        print("座標です２",self.pointset[0])
         
         return self.pointset
         
@@ -77,7 +77,7 @@ def main():
     pointset=0
     #dd.Walkerset_param2(msectionIdx)
     dd.pointer_param()
-    dd.pointer_paramtest()
+    #dd.pointer_paramtest()
     dd.Walkerset_param2(pointset)
     pointset=1
     dd.Walkerset_param2(pointset)
