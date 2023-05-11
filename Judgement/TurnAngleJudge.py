@@ -1,3 +1,4 @@
+# coding:utf-8
 import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
@@ -49,25 +50,33 @@ class TurnAngleJudge(Judge.Judge):
         self.start_x = 1
         self.start_y = 0
 
+    def get_ang(self):
+        self.current_angle = self.angget.getvalue()
+
     def judge(self,XYpos):
-        print("ANGLE_judge")
+        #print("ANGLE_judge")
 
         #目標地点goal_x,goal_yを設定
         goal_x = XYpos[0]
         goal_y = XYpos[1]
-
+        
         #目標地点までの旋回角度を計算 finish_angleを更新
         self.CalcAng(goal_x,goal_y)
+        
+        #現在地の更新
+        self.get_ang()
+        
 
+        
         #前回地と現在角度の差を求める
-        self.diff_angle = self.current_angle - self.previous_angle
-
+        self.diff_angle = abs(self.current_angle - self.previos_angle)
+        
+        
         #現在角度と差分を表示
-        sys.stdout.write("\r{current:}".format(self.current_angle))
-        sys.stdout.flush()
-        sys.stdout.write("\r{diff:}".format(self.diff_angle))
-        sys.stdout.flush()
-
+        print("current:" + str(self.current_angle) + "\n" + " diff:" + str(self.diff_angle)+ "\n" + "\033[2A",end='')
+        
+        #差分が180度を越えたか判定
+        
         if self.finish_angle >= self.current_angle :
 
             if self.angget.getvalue() >= self.finish_angle :
@@ -107,14 +116,15 @@ class TurnAngleJudge(Judge.Judge):
 
 
     def set_param(self,status):
-        self.current_angle = self.angget.getvalue()
-        print(self.current_angle)
+        #print(self.current_angle)
 
         #終了角度をセクションから受け取る場合
         self.finish_angle = status
 
         #旋回したい角度をセクションから受け取る場合
         #self.finish_angle = self.current_angle + status
+               
+
 
 
 #testrun
@@ -132,7 +142,7 @@ def main():
     array=[5,5]
     while judge_val == False:
         judge_val = testclass.judge(array)
-        print(testclass.angget.getvalue(),":",testclass.finish_angle)
+        #print(testclass.angget.getvalue(),":",testclass.finish_angle)
 
     print("-------------------------END-------------------------------")
 
