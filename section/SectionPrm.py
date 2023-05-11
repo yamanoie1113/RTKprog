@@ -86,20 +86,3 @@ def main():
 
 if __name__=="__main__":
     main()
-
-    #def set_Swalker():
-
-        
-
-        #pass
-
-
-    #def set_Cwalker():
-
-
-        #pass
-
-
-
-    
-        
