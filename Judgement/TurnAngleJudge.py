@@ -34,7 +34,7 @@ class TurnAngleJudge(Judge.Judge):
         #self.set_param(status)
         self.get_Position()
 
-        self.current_angle = self.angget.getvalue()
+        self.get_ang()
 
     def get_Position(self):
         #現在値取得メソッド
