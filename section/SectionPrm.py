@@ -72,7 +72,6 @@ class SectionPrm:
         pass
 
 def main():
-    #param=Param2.Param2
     dd=SectionPrm()
     pointset=0
     #dd.Walkerset_param2(msectionIdx)
