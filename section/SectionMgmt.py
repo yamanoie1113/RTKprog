@@ -108,7 +108,7 @@ class SectionMgmt:
             print("座標",self.Pointer[self.pointerset])
 
             self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
-                                    self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset],self.section)
+                                    self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset],self.section) 
 
             self.Swalkerpointer+=1
             if self.Swalkerpointer==4:

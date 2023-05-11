@@ -19,6 +19,7 @@ class SectionPrm:
 
 
         pass
+    
 
     def Walkerset_param(self,pointset,msectionIdx):#msectionIdxは区間管理のget_paramから
 
