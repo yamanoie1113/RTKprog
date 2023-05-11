@@ -5,7 +5,7 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from yamagapractice import Test
+#from yamagapractice import Test
 from section import SectionMgmt
 from section import b
 #import Timerset
