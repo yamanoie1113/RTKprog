@@ -5,7 +5,7 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from yamagapractice import Test
+#from yamagapractice import Test
 from section import SectionMgmt
 from section import b
 from Sensors import MotorMgmt
@@ -80,7 +80,7 @@ class Mgmt:
         
 
 
-
+'''
     # 緊急停止
     def motor_stop(self):
         print('緊急停止待機状態Start')
@@ -92,12 +92,12 @@ class Mgmt:
         print(self.count.value) #valueを使用することで変数を共有することができる
 
         
-        '''
+        
         for i in range(101):
             time.sleep(1)
             print(f'func_2 {i}')
         print('サブプロセス2End')
-        '''
+        
 
     #GPS起動
     def GPS(self):
@@ -106,20 +106,21 @@ class Mgmt:
             time.sleep(1)
             print(f'func_3 {i}')
         print('GPS_End')
-        
+    
+    '''
 
 
-    def main(self):
+def main(self):
         
-        p1 = Process(target=self.motor_stop)
-        p2 = Process(target=self.run)
-        #p3 = Process(target=self.GPS)
+    p1 = Process(target=self.motor_stop)
+    p2 = Process(target=self.run)
+    #p3 = Process(target=self.GPS)
 
         
-        p1.start()
-        time.sleep(20)
-        p2.start()
-        #p3.start()
+    p1.start()
+    time.sleep(20)
+    p2.start()
+    #p3.start()
 
 
 if __name__ == '__main__':

@@ -5,14 +5,14 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from section import Param
 from Sensors import PositionInitialize
-from yamagapractice import Test
+#from yamagapractice import Test
 class SectionPrm:
     #クラス変数
     curve=0
     straight=1
     param=Param.Param()
     position=PositionInitialize.PositionInitialize()
-    testing=Test.Test()
+    #testing=Test.Test()
 
     def __init__(self):
 
@@ -86,20 +86,3 @@ def main():
 
 if __name__=="__main__":
     main()
-
-    #def set_Swalker():
-
-        
-
-        #pass
-
-
-    #def set_Cwalker():
-
-
-        #pass
-
-
-
-    
-        

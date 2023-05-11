@@ -141,6 +141,10 @@ class SectionMgmt:
             
         print("おわり")
         self.mState=self.END
+        
+    def excecRun_R(self):
+        
+        pass
 
     def end(self):
         
