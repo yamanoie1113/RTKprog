@@ -9,15 +9,14 @@ from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
 
 class TurnAngleJudge(Judge.Judge):
 
-    start_angle=0.0
+    current_angle=0.0
     finish_angle=0.0
-    baseline = 0.0
 
-
+    diff_angle = 0.0
     previos_angle = 0.0
     start_x = 0.0
     start_y = 0.0
-    
+
     #instance
     angget = TASensor.TurnAngleSensor()
 
@@ -34,33 +33,42 @@ class TurnAngleJudge(Judge.Judge):
         #self.set_param(status)
         self.get_Position()
 
-        self.start_angle = self.angget.getvalue()
-        
+        self.current_angle = self.angget.getvalue()
+
     def get_Position(self):
         #現在値取得メソッド
-        
+
         self.pget = PMgmt.PositionMgmt()
         #positionXY = pget.getvalue()
-        
+
         #start_x,start_yに座標をセット
         #self.start_x = positionXY[0]
         #self.start_y = positionXY[1]
-        
+
         #test_position
         self.start_x = 1
         self.start_y = 0
 
     def judge(self,XYpos):
         print("ANGLE_judge")
-        
+
         #目標地点goal_x,goal_yを設定
         goal_x = XYpos[0]
         goal_y = XYpos[1]
-        
+
         #目標地点までの旋回角度を計算 finish_angleを更新
         self.CalcAng(goal_x,goal_y)
-        
-        if self.finish_angle >= self.start_angle :
+
+        #前回地と現在角度の差を求める
+        self.diff_angle = self.current_angle - self.previous_angle
+
+        #現在角度と差分を表示
+        sys.stdout.write("\r{current:}".format(self.current_angle))
+        sys.stdout.flush()
+        sys.stdout.write("\r{diff:}".format(self.diff_angle))
+        sys.stdout.flush()
+
+        if self.finish_angle >= self.current_angle :
 
             if self.angget.getvalue() >= self.finish_angle :
                 return True
@@ -78,6 +86,10 @@ class TurnAngleJudge(Judge.Judge):
 
     #目標地点との角度の計算 self.finish_angleに結果格納
     def CalcAng(self,goal_x,goal_y):
+        #前回の値を前回値として保存
+        self.previos_angle = self.finish_angle
+
+
         #現在地取得
         self.get_Position()
         start_x = 0.0
@@ -92,16 +104,17 @@ class TurnAngleJudge(Judge.Judge):
             r = r + 2 * math.pi
 
         self.finish_angle = math.floor(r * 360 / (2 * math.pi))
-        
+
 
     def set_param(self,status):
-        self.start_angle = self.angget.getvalue()
-        print(self.start_angle)
+        self.current_angle = self.angget.getvalue()
+        print(self.current_angle)
+
         #終了角度をセクションから受け取る場合
         self.finish_angle = status
 
         #旋回したい角度をセクションから受け取る場合
-        #self.finish_angle = self.start_angle + status
+        #self.finish_angle = self.current_angle + status
 
 
 #testrun
@@ -120,7 +133,7 @@ def main():
     while judge_val == False:
         judge_val = testclass.judge(array)
         print(testclass.angget.getvalue(),":",testclass.finish_angle)
-    
+
     print("-------------------------END-------------------------------")
 
 if __name__ == '__main__':
