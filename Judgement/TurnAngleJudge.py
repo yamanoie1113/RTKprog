@@ -74,26 +74,16 @@ class TurnAngleJudge(Judge.Judge):
         print("current:" + str(self.current_angle) + "\n" + " diff:" + str(self.diff_angle)+ "\n" + "\033[2A",end='')
         
         #差分が180度を越えたか判定
-
-        
-        
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if self.finish_angle >= self.current_angle :
-
-            if self.get_ang() >= self.finish_angle :
-=======
-        
-=======
->>>>>>> e8bf13557ebc2f50cc33eefbab5c4efd6a8c4a13
         if self.diff_angle < 180:
+            pass
             #通常の処理
+
+        if self.finish_angle >= self.current_angle :
+        
+
         
             if self.current_angle > self.finish_angle :
-<<<<<<< HEAD
 
-=======
->>>>>>> e8bf13557ebc2f50cc33eefbab5c4efd6a8c4a13
                 return True
 
             else :
