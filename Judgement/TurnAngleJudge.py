@@ -60,14 +60,12 @@ class TurnAngleJudge(Judge.Judge):
         goal_x = XYpos[0]
         goal_y = XYpos[1]
         
-        #目標地点までの旋回角度を計算 finish_angleを更新
-        self.CalcAng(goal_x,goal_y)
-        
         #現在地の更新
         self.get_ang()
         
-
-        
+        #目標地点までの旋回角度を計算 finish_angleを更新
+        self.CalcAng(goal_x,goal_y)
+                
         #前回地と現在角度の差を求める
         self.diff_angle = abs(self.current_angle - self.previos_angle)
         
@@ -77,21 +75,25 @@ class TurnAngleJudge(Judge.Judge):
         
         #差分が180度を越えたか判定
         
-        if self.finish_angle >= self.current_angle :
-
-            if self.angget.getvalue() >= self.finish_angle :
+        
+        if self.diff_angle < 180:
+            #通常の処理
+        
+            if self.current_angle > self.finish_angle :
                 return True
 
             else :
                 return False
+            
+            if self.current_angle < self.finish_angle :
+                return False
 
+            else :
+                return True
         else :
+            pass
+            #360度を超えていた時の処理
 
-            if self.angget.getvalue() <= self.finish_angle :
-                return False
-
-            else :
-                return True
 
     #目標地点との角度の計算 self.finish_angleに結果格納
     def CalcAng(self,goal_x,goal_y):

@@ -38,7 +38,7 @@ class Mgmt2:
                 
             state2=self.timejudge1(start_time)
 
-            if (state2>=100): #走行時間の設定
+            if (state2>=10): #走行時間の設定
                 state=False
                 break
                 
@@ -94,8 +94,8 @@ class Mgmt2:
 def main():
         
     mgmt=Mgmt2()
-    mgmt.test()
-    #mgmt.run()
+    #mgmt.test()
+    mgmt.run()
 
         #p2 = Process(target=self.motor_stop)
         #p3 = Process(target=self.GPS)
