@@ -76,8 +76,6 @@ class SectionRun:
                     break
                 print("まだ2")
 
-        #self.JudgeFarst=False
-        #break
                 
     def test(self,mwalker,mjudge,Walkeparam,pointer):
         list_num=([0,0,0,0,0])
@@ -117,28 +115,15 @@ class SectionRun:
             #オブジェクト生成
             self.mWalker=curveLineTrace.cuvreLineTrace()
 
-            #_________↓デバッグ__________
-            #self.mtest=b.b()    
-            #______________________
-
-            #self.mWalker=0
             print("curve")
 
         if number==self.STRAIGHT:
             #オブジェクト生成
             self.mWalker=VirtualLineTrace.VirtualLineTrace()
 
-            #________↓デバッグ_________
-            #self.mtest=b.b()
-            #______________________
-
-            #self.mWalker=2
-            print("straight")
             
-        #＿＿＿＿↓デバッグ＿＿＿
-        #return self.mtest
-        #________＿＿＿＿＿＿＿＿
-
+            print("straight")
+        
         return self.mWalker
 
     def request_judge(self,judge):
@@ -149,27 +134,14 @@ class SectionRun:
             
             #オブジェクト生成
             self.mJudge=DistanceJudge.DistanceJudge()
-            #＿＿＿＿↓デバッグ＿＿＿
-            #self.mtest=b.b()
-            #______________________
-
-            #self.mjudge=0
+            
             print("judge")
 
         if judge==self.ANGLE:
             #オブジェクト生成
             self.mJudge=TurnAngleJudge.TurnAngleJudge()
 
-            #＿＿＿＿↓デバッグ＿＿＿
-            #self.mtest=b.b()
-            #______________________
-
-            #self.mjudge=1
             print("mjudghe")
-
-        #_______↓デバッグ_______
-        #return self.mtest
-        #______________________
 
         return self.mJudge
 
