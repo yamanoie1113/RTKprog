@@ -88,6 +88,7 @@ class TurnAngleJudge(Judge.Judge):
         
             if self.current_angle > self.finish_angle :
 
+>>>>>>> e8bf13557ebc2f50cc33eefbab5c4efd6a8c4a13
                 return True
 
             else :
