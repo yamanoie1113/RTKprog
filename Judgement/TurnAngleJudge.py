@@ -78,16 +78,21 @@ class TurnAngleJudge(Judge.Judge):
         
         
 <<<<<<< HEAD
+<<<<<<< HEAD
         if self.finish_angle >= self.current_angle :
 
             if self.get_ang() >= self.finish_angle :
 =======
         
+=======
+>>>>>>> e8bf13557ebc2f50cc33eefbab5c4efd6a8c4a13
         if self.diff_angle < 180:
             #通常の処理
         
             if self.current_angle > self.finish_angle :
+<<<<<<< HEAD
 
+=======
 >>>>>>> e8bf13557ebc2f50cc33eefbab5c4efd6a8c4a13
                 return True
 
