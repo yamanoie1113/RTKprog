@@ -30,7 +30,7 @@ class VirtualLineTrace():
 
         def set_distance(self,a):
             #print("test_value",self.test)
-            print(self.param)
+            #print(self.param)
             x = self.param[a][0]
             y = self.param[a][1]
             #print(x)
