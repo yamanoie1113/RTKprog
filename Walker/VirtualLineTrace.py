@@ -30,7 +30,7 @@ class VirtualLineTrace():
 
         def set_distance(self,a):
             #print("test_value",self.test)
-            print(self.param)
+            #print(self.param)
             x = self.param[a][0]
             y = self.param[a][1]
             #print(x)
@@ -119,7 +119,7 @@ class VirtualLineTrace():
                 #self.mPID.get_operation()
 
                 if self.turn == 'no':
-                     #print ('zennsin2')
+                    #print ('zennsin2')
                     self.MM.set_param(sp,sv)
                         #self.MM.set_param(1,100)
                 elif r < 0:
@@ -151,8 +151,7 @@ class VirtualLineTrace():
                 param =VirtualLineTrace.set_param(self,c)
                 r = VirtualLineTrace.set_distance(self,c)
                 time.sleep(0.1)
-               
-            """c += 1
+                """c += 1
                 if c == 100:
                     self.MM.set_param(0,0)
                     self.MM.run()

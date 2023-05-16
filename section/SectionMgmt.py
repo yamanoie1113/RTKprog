@@ -87,7 +87,7 @@ class SectionMgmt:
         print("Walkerのオブジェクト",self.Walkerinstance)
         print("Judgeのオブジェクト",self.Judgeinstance)
         print("Walkerのパラメータ",self.WalkeParam)
-        print("座標",self.Pointer)
+        print("座標",self.Pointer[0])
         
         
     def execRun(self):
