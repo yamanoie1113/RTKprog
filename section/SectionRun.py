@@ -3,9 +3,7 @@ import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from section import b
 from Sensors import MotorMgmt
-#from Walker import Run
 from Walker import VirtualLineTrace
 from Walker import curveLineTrace
 from Judgement import DistanceJudge

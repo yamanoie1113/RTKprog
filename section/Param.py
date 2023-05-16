@@ -5,6 +5,27 @@ class Param:
 
         pass
 
+
+#_________________NEW______________________________
+
+    def Straight_set_param2(self):
+
+        #速度、P,I,D　
+        self.prm1=([30,0,0,0],  #A
+        [0,1,1,1],              #B
+        [10,2,1,1],             #C
+        [10,3,1,1])             #D
+        
+        return self.prm1
+
+    def Curve_set_param2(self):
+        
+        self.prm2=([5,0,0,0],[5,1,1,1])   #速度,P,I,D
+        
+
+        return self.prm2
+
+
 #_______________REIWA_______________________________
 
     def Reiwa_Straight(self):
@@ -51,37 +72,6 @@ class Param:
         [0,0],                      #H
         [0,0])                      #I
         
-
-#_________________NEW______________________________
-
-    def Straight_set_param2(self):
-
-        #速度、P,I,D　
-        self.prm1=([30,0,0,0],  #A
-        [0,1,1,1],              #B
-        [10,2,1,1],             #C
-        [10,3,1,1])             #D
-        
-        return self.prm1
-
-    def Curve_set_param2(self):
-        
-        self.prm2=([5,0,0,0],[5,1,1,1])   #速度,P,I,D
-        
-
-        return self.prm2
-
-    def Reiwa_straight_set_param(self):
-        
-        self.Rstraightprm=([])
-        
-        pass
-
-    def Reiwa_curve_set_param(self):
-
-        self.Lstraightparam=([])
-
-        pass
 
 def main():
     #param=Param2.Param2

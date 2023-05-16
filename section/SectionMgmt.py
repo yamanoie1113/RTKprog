@@ -1,6 +1,5 @@
 
 # coding:utf-8
-#from curses.ascii import NUL
 import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
@@ -82,7 +81,6 @@ class SectionMgmt:
         self.Cwalkerpointer=0 #2まで
         self.pointerset=0
         
-        #self.mState=self.RUN
     
     def test2(self):
         #print("座標確認",self.Pointer)
@@ -104,7 +102,6 @@ class SectionMgmt:
             print("Walkerinstance:",self.Walkerinstance[self.STRAIGHT])
             print("judgeinstance",self.Judgeinstance[self.STRAIGHT])
             print("WalkerParam",self.WalkeParam[self.STRAIGHT][self.Swalkerpointer])
-            #print("WalkerParam2",self.WalkeParam[1][2])
             print("座標",self.Pointer[self.pointerset])
 
             self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
@@ -182,8 +179,6 @@ class SectionMgmt:
 
     def get_Param(self):
         
-        #self.test0=None
-
         self.WalkeParam[self.STRAIGHT]=self.sectionprm.Walkerset_param2(self.STRAIGHT)
 
         self.WalkeParam[self.CURVE]=self.sectionprm.Walkerset_param2(self.CURVE)
@@ -197,7 +192,6 @@ class SectionMgmt:
 
 def main():
     sectionMgmt=SectionMgmt()
-    #pointing=2
     sectionMgmt.run()
     sectionMgmt.execRun()
     #sectionMgmt.test2()
