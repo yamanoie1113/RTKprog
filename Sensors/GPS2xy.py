@@ -23,7 +23,9 @@ class GPS2xy():
 
         #本番用コード
         self.latitude,self.longitude = nmea_get.get()
-        print(self.latitude,self.longitude)
+        
+        #debug
+        #print(self.latitude,self.longitude)
         
 
         #latitude = nmea_get.list_GGA[2]
@@ -75,7 +77,7 @@ class GPS2xy():
         #mを度に変換し足し合わせる
         longitude_m = longitude_m / 60
         longitude = longitude_d + longitude_m
-        print(longitude)
+        #print(longitude)
 
         # transform from grs80 to x-y
         #grs80 = pyproj.Proj(init='EPSG:6668')
@@ -85,12 +87,14 @@ class GPS2xy():
         transformer = pyproj.Transformer.from_crs('EPSG:4612','EPSG:2453',always_xy=True)
         x,y = transformer.transform(longitude,latitude)
     
-
+        #debug
+        """
         print("x:",end="")
         print(x)
         print("y:",end="")
         print(y)
         return x,y
+        """
 
 def main():
     testclass = GPS2xy()

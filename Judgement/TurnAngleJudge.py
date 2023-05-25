@@ -47,7 +47,7 @@ class TurnAngleJudge(Judge.Judge):
 
         positionXY = self.pget.getvalue()
 
-        start_x,start_yに座標をセット
+        #start_x,start_yに座標をセット
         self.start_x = positionXY[0]
         self.start_y = positionXY[1]
         

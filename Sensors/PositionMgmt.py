@@ -45,7 +45,8 @@ class PositionMgmt(Sensor.Sensor):
 
     #値の更新
     def update(self):
-        print("update position")
+        #debug
+        #print("update position")
         self.position = GPS2xy.GPS2xy.getvalue(self)
         print("updated position:")
 
