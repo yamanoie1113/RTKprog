@@ -15,11 +15,17 @@ class TurnAngleJudge(Judge.Judge):
 
     diff_angle = 0.0
     previos_angle = 0.0
+    
+    previos_diff = 999.9 #誤差の前回値
+    
+    std_angle = 0.5 #ジャッジの判定基準値
+    
     start_x = 0.0
     start_y = 0.0
 
     #instance
     angget = TASensor.TurnAngleSensor()
+    pget = PMgmt.PositionMgmt()
 
 
     def __init__(self):
@@ -39,16 +45,17 @@ class TurnAngleJudge(Judge.Judge):
     def get_Position(self):
         #現在値取得メソッド
 
-        self.pget = PMgmt.PositionMgmt()
-        #positionXY = pget.getvalue()
+        positionXY = self.pget.getvalue()
 
-        #start_x,start_yに座標をセット
-        #self.start_x = positionXY[0]
-        #self.start_y = positionXY[1]
-
+        start_x,start_yに座標をセット
+        self.start_x = positionXY[0]
+        self.start_y = positionXY[1]
+        
+        """
         #test_position
         self.start_x = 1
         self.start_y = 0
+        """
 
     def get_ang(self):
         self.current_angle = self.angget.getvalue()
@@ -61,6 +68,7 @@ class TurnAngleJudge(Judge.Judge):
         goal_y = XYpos[1]
         
         #現在地の更新
+        self.get_Position()
         self.get_ang()
         
         #目標地点までの旋回角度を計算 finish_angleを更新
@@ -71,33 +79,54 @@ class TurnAngleJudge(Judge.Judge):
         
         
         #現在角度と差分を表示
-        print("current:" + str(self.current_angle) + "\n" + " diff:" + str(self.diff_angle)+ "\n" + "\033[2A",end='')
+        #print("current:" + str(self.current_angle) + "\n" + " diff:" + str(self.diff_angle)+ "\n" + "\033[2A",end='')
+        print("current:" + str(self.current_angle))
+        print("diff:" + str(self.diff_angle))
         
+        #誤差が基準値(std_angle)以下になるか、増え始めたら終了
+        if self.diff_angle < self.std_angle or self.previos_diff < self.diff_angle:
+            return False
+            
+        else:
+            return True
+        
+        """ 一時保留
+
+        self.finish_angle = 250
         #差分が180度を越えたか判定
         if self.diff_angle < 180:
-            pass
+            
             #通常の処理
-
-        if self.finish_angle >= self.current_angle :
+            
+            if self.finish_angle >= self.current_angle :
         
+                if self.current_angle > self.finish_angle :
+                    return False
 
-        
-            if self.current_angle > self.finish_angle :
+                else :
+                    print(self.finish_angle)
+                    return True
+            
+            elif self.finish_angle < self.current_angle :
+                
+                if self.current_angle > self.finish_angle :
+                    return False
 
-                return True
+                else :
+                    print(self.finish_angle)
+                    return True                
 
-            else :
+        else :
+            print("other")
+            #360度を超えていた時の処理
+            if self.diff_angle < self.std_angle :
                 return False
             
-            if self.current_angle < self.finish_angle :
-                return False
-
             else :
                 return True
-        else :
-            pass
-            #360度を超えていた時の処理
-
+                
+        """
+            
 
     #目標地点との角度の計算 self.finish_angleに結果格納
     def CalcAng(self,goal_x,goal_y):
@@ -122,9 +151,10 @@ class TurnAngleJudge(Judge.Judge):
 
 
     def set_param(self,status):
+        #終了角度をセクションから受け取る場合のみ実行
         #print(self.current_angle)
 
-        #終了角度をセクションから受け取る場合
+
         self.finish_angle = status
 
         #旋回したい角度をセクションから受け取る場合
@@ -136,7 +166,7 @@ class TurnAngleJudge(Judge.Judge):
 #testrun
 def main():
     testclass = TurnAngleJudge()
-    judge_val = False
+    judge_val = True
     
     """
     #calc_Test
@@ -146,7 +176,7 @@ def main():
     
     #Judge_Test
     array=[5,5]
-    while judge_val == False:
+    while judge_val == True:
         judge_val = testclass.judge(array)
         #print(testclass.angget.getvalue(),":",testclass.finish_angle)
 
