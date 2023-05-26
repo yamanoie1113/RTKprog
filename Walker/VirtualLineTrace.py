@@ -64,10 +64,10 @@ class VirtualLineTrace():
         def set_param(self,a):
         
             PM = PositionMgmt.PositionMgmt()
-            self.param[] = self.PM.getvalue()
+            self.param = self.PM.getvalue()
             #self.param[a][0] = 500
             #self.param[a][1] = 500
-            return self.param
+            #return self.param
 
 
         def fast_param(self,a,b,c):
