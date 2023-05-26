@@ -11,9 +11,12 @@ class SectionPrm:
     curve=0
     straight=1
     param=Param.Param()
-    position=PosInit.PositionInitialize()
+    position=PosInit.PosInit()
 
     def __init__(self):
+        
+        #test
+        
 
         pass
     
