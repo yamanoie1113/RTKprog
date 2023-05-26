@@ -20,8 +20,9 @@ def get():
 
 
 #本番用
+    print("GPS_loading....")
     while True:
-        print("GPS_loading....")
+        
 
         while True:
             # ソケットから byte 形式でデータ受信
@@ -36,7 +37,8 @@ def get():
         data = sock_sv.recv(5)
         #print(data)
         if data==b'GNGGA':
-            print("getGGA")
+            #debug
+            #print("getGGA")
             GGA=data.decode('utf-8')
             while True:
                 tmp = sock_sv.recv(1)
