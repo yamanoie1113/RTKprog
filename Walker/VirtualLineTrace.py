@@ -64,9 +64,9 @@ class VirtualLineTrace():
         def set_param(self,a):
         
             PM = PositionMgmt.PositionMgmt()
-            #self.param[] = self.PM.getvalue()
-            self.param[a][0] = 500
-            self.param[a][1] = 500
+            self.param[] = self.PM.getvalue()
+            #self.param[a][0] = 500
+            #self.param[a][1] = 500
             return self.param
 
 
@@ -104,7 +104,7 @@ class VirtualLineTrace():
             self.goaly = goaly[1]
             #print(self.goalx)
             c = 0
-            param = VirtualLineTrace.set_param(self,c)
+            VirtualLineTrace.set_param(self,c)
             self.startx = self.param[0][0]
             self.starty = self.param[0][1]  
             
@@ -148,7 +148,7 @@ class VirtualLineTrace():
                 c += 1
                 if c == 5:
                     c = 2
-                param =VirtualLineTrace.set_param(self,c)
+                VirtualLineTrace.set_param(self,c)
                 r = VirtualLineTrace.set_distance(self,c)
                 time.sleep(0.1)
                 """c += 1
