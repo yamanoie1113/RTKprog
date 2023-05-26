@@ -4,14 +4,14 @@ import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from section import Param
-from Sensors import PositionInitialize
+from Sensors import PosInit
 
 class SectionPrm:
     #クラス変数
     curve=0
     straight=1
     param=Param.Param()
-    position=PositionInitialize.PositionInitialize()
+    position=PosInit.PositionInitialize()
 
     def __init__(self):
 

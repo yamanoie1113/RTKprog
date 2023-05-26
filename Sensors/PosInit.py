@@ -7,7 +7,7 @@ import numpy as np
 
 from Sensors import PositionMgmt
 
-class PositionInitialize():
+class PosInit():
     #A,B,C,D,E,C
     Point = [[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0]]
     start_point = [1.0,1.0] #ダミー
@@ -55,7 +55,7 @@ class PositionInitialize():
 
 
 def main():
-    test = PositionInitialize()
+    test = PosInit()
     a = test.update()
     print(a)
 
