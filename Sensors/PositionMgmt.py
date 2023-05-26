@@ -4,15 +4,14 @@ import pathlib
 
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from Sensors import Sensor,GPS2xy,LogMgmt,PosInit as Pinit
+from Sensors import Sensor,GPS2xy,LogMgmt
 
 class PositionMgmt(Sensor.Sensor):
-   # gps = GPS2xy()
+    #gps = GPS2xy()
     position: float
     logfile = None
     #pos_total: float
 
-    pinit=Pinit()
     def __init__(self):
         # クラス変数
         self.logfile = 'GPS_log.txt'
@@ -21,7 +20,6 @@ class PositionMgmt(Sensor.Sensor):
         LogMgmt.clear(self.logfile)
 
         #チェックポイントの初期化
-        self.pinit.update()
 
 
 
