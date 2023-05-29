@@ -26,7 +26,7 @@ class SectionRun:
     def __init__(self):
         
         #self.postitionI.update()
-        
+        pass
 
 
     def run(self,mwalker,mjudge,Walkeparam,pointer,state):#走法、判定、パラメータ、座標
