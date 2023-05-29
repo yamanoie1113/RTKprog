@@ -20,7 +20,7 @@ def get():
 
 
 #本番用
-    print("GPS_loading....")
+    #print("GPS_loading....")
     while True:
         
 

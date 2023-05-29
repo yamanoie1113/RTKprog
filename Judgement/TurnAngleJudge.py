@@ -18,6 +18,8 @@ class TurnAngleJudge(Judge.Judge):
     
     previos_diff = 999.9 #誤差の前回値
     
+    positionXY = None
+    
     std_angle = 0.5 #ジャッジの判定基準値
     
     start_x = 0.0
@@ -44,12 +46,13 @@ class TurnAngleJudge(Judge.Judge):
 
     def get_Position(self):
         #現在値取得メソッド
-
-        positionXY = self.pget.getvalue()
-
-        #start_x,start_yに座標をセット
-        self.start_x = positionXY[0]
-        self.start_y = positionXY[1]
+        
+        self.positionXY = self.pget.getvalue()
+        
+        if self.positionXY != None:
+            #start_x,start_yに座標をセット
+            self.start_x = self.positionXY[0]
+            self.start_y = self.positionXY[1]
         
         """
         #test_position

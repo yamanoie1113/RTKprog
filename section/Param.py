@@ -11,16 +11,16 @@ class Param:
     def Straight_set_param2(self):
 
         #速度、P,I,D　
-        self.prm1=([30,0,0,0],  #A
-        [0,1,1,1],              #B
-        [10,2,1,1],             #C
+        self.prm1=([20,0,0,0],  #A
+        [10,1,1,1],              #B
+        [20,2,1,1],             #C
         [10,3,1,1])             #D
         
         return self.prm1
 
     def Curve_set_param2(self):
         
-        self.prm2=([5,0,0,0],[5,1,1,1])   #速度,P,I,D
+        self.prm2=([20,0,0,0],[10,1,1,1])   #速度,P,I,D
         
 
         return self.prm2
