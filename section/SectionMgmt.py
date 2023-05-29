@@ -31,9 +31,7 @@ class SectionMgmt:
     def __init__(self):
 
         #self.Pointer=self.sectionprm.pointer_param()
-        
-        print("座標",self.Pointer)
-        print("initです")
+        pass
 
     def run(self):
         
@@ -91,19 +89,21 @@ class SectionMgmt:
         
         
     def execRun(self):
+        '''
         print("Walkerのオブジェクト",self.Walkerinstance)
         print("Judgeのオブジェクト",self.Judgeinstance)
         print("Walkerのパラメータ",self.WalkeParam)
         print("座標",self.Pointer)
-        
+        '''
 
         if self.section_set[self.pointerset]==0: #直線の場合
             self.section=0
+            '''
             print("Walkerinstance:",self.Walkerinstance[self.STRAIGHT])
             print("judgeinstance",self.Judgeinstance[self.STRAIGHT])
             print("WalkerParam",self.WalkeParam[self.STRAIGHT][self.Swalkerpointer])
             print("座標",self.Pointer[self.pointerset])
-
+            '''
             self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
                                     self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset],self.section) 
 
@@ -119,11 +119,13 @@ class SectionMgmt:
                 
         else: #曲線
             self.section=1
+            '''
             print("Walkerinstance:",self.Walkerinstance[self.CURVE])
             print("judgeinstance",self.Judgeinstance[self.CURVE])
             print("WalkerParam",self.WalkeParam[self.CURVE][self.Cwalkerpointer])
             print("座標",self.Pointer[self.pointerset])
-                
+            '''
+            
             self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
                                     self.WalkeParam[self.CURVE][self.Cwalkerpointer],self.Pointer[self.pointerset],self.section)
 
@@ -135,8 +137,6 @@ class SectionMgmt:
             if self.pointerset==6:
                 self.pointerset=0
 
-            
-        print("おわり")
         self.mState=self.END
         
     def excecRun_R(self):
@@ -145,7 +145,7 @@ class SectionMgmt:
 
     def end(self):
         
-        print("END")
+        pass
         
 
 
@@ -161,10 +161,7 @@ class SectionMgmt:
         self.Walkerinstance[self.STRAIGHT]=self.sectionrun.request_Walker(self.STRAIGHT)
 
         self.Walkerinstance[self.CURVE]=self.sectionrun.request_Walker(self.CURVE)
-        
 
-        print("Walkerinstanceです",self.Walkerinstance)
-        print("WalkerParamです",self.WalkeParam)
 
 
     def setJudge(self):
@@ -173,7 +170,7 @@ class SectionMgmt:
         
         self.Judgeinstance[self.CURVE]=self.sectionrun.request_judge(self.CURVE)
 
-        print("Judgeinstanceです",self.Judgeinstance)
+        
         
 
 
@@ -185,8 +182,7 @@ class SectionMgmt:
 
         self.Pointer=self.sectionprm.pointer_param()
 
-        print("walkerの中身",self.WalkeParam)
-        print("座標の中身",self.Pointer)
+        
 
 
 

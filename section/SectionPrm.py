@@ -25,7 +25,7 @@ class SectionPrm:
 
         self.pointset=self.position.update()
 
-        print("座標です",self.pointset,"\n""test",self.pointset[5])
+        
 
         return self.pointset
 
@@ -35,14 +35,13 @@ class SectionPrm:
         
         if pointset==0:
             self.parameter1=self.param.Straight_set_param2()
-            print("walkerset1",self.parameter1)
+            
             return self.parameter1
             
             
         elif pointset==1:
             self.parameter2=self.param.Curve_set_param2()
-
-            print("param",self.parameter2)
+        
 
             return self.parameter2
 
