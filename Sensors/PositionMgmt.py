@@ -7,16 +7,19 @@ sys.path.append(str(current_dir) + '/../')
 from Sensors import Sensor,GPS2xy,LogMgmt
 
 class PositionMgmt(Sensor.Sensor):
-   # gps = GPS2xy()
+    #gps = GPS2xy()
     position: float
     logfile = None
     #pos_total: float
+
     def __init__(self):
         # クラス変数
         self.logfile = 'GPS_log.txt'
 
         #GPSログの消去
         LogMgmt.clear(self.logfile)
+
+        #チェックポイントの初期化
 
 
 

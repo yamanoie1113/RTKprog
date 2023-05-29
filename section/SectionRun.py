@@ -9,7 +9,7 @@ from Walker import curveLineTrace
 from Judgement import DistanceJudge
 from Judgement import TimeJudge
 from Judgement import TurnAngleJudge
-
+from Sensors import PositionInitialize
 
 
 class SectionRun:
@@ -21,9 +21,11 @@ class SectionRun:
     JudgeFarst=True
     timejudge=TimeJudge.TimeJudge()
     Motor=MotorMgmt.MotorMgmt()
+    postitionI=PositionInitialize.PositionInitialize()
 
-    def init(self):
+    def __init__(self):
         
+        #self.postitionI.update()
         pass
 
 
@@ -46,7 +48,6 @@ class SectionRun:
             
             t=True
             
-            
             while t:
 
                 if tes==False:
@@ -65,7 +66,6 @@ class SectionRun:
         
             t=True
 
-            
             while t:
 
                 if tes==False:
