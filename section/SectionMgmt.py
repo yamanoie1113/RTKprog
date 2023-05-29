@@ -36,7 +36,7 @@ class SectionMgmt:
     def run(self):
         
         if self.mState == self.UNDEFINED:
-            print(self.mState)
+                #print(self.mState)
             self.execUndefined()
         else:
             pass
@@ -151,9 +151,9 @@ class SectionMgmt:
 
     def addSection(self):
 
-        self.get_Param()
-        self.setWalker()
-        self.setJudge()
+        self.get_Param()#座標
+        self.setWalker()#スピード、PID
+        self.setJudge()#判定
         
 
     def setWalker(self):

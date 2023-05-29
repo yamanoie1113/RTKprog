@@ -23,7 +23,7 @@ class Mgmt:
         print("プログラム開始")
     
     def run(self):
-        print('メインプロセスStart')
+        #print('メインプロセスStart')
         section=SectionMgmt.SectionMgmt()
 
         start_time = time.perf_counter()
@@ -43,9 +43,9 @@ class Mgmt:
                 break
                 
             counter+=1
-            print('tesuto')
+            #print('tesuto')
             section.execRun()
-            print(counter,"回目")
+            #print(counter,"回目")
 
         print("終了")
 
@@ -55,7 +55,7 @@ class Mgmt:
 
             # 経過時間を出力(秒)
             end_time = end_time - start_time
-            print("経過時間",end_time)
+            #print("経過時間",end_time)
             return end_time
         
 
