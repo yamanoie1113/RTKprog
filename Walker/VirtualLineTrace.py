@@ -3,6 +3,7 @@ import os
 import sys
 import time
 import pathlib
+import math
 #from Walker.PID import PID
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
@@ -35,12 +36,14 @@ class VirtualLineTrace():
             y = self.param[a][1]
             #print(x)
             #print(self.goaly)
-            x2 = (self.goaly - self.starty)/(self.goalx - self.startx)
-            x3 = y - self.starty - x2 * (-1 * (self.startx)) / x2 
+            slope = (self.goaly - self.starty)/(self.goalx - self.startx)
+            intercept = self.starty - slope * self.startx
+            x3 = (y - intercept)/slope
+            #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
             VirtualLineTrace.set_turn(self,x3,x)
-
-            r = abs(x2 * (x) + 1 * y) / np.sqrt(x2**2 + 1**2) #直線との最短距離            
-            return r
+            distance = abs(slope * (x) - y + intercept) / math.sqrt(slope**2 + 1)
+            #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離            
+            return distance
 
 
         def set_turn(self,mx,gx):
@@ -113,16 +116,17 @@ class VirtualLineTrace():
             
 
             while True:
-                
+
+                distance = VirtualLineTrace.set_distance(self,c)
                 #self.mPID.set_target(loca)
                 #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
                 #self.mPID.get_operation()
-
+                print(self.turn)
                 if self.turn == 'no':
                     #print ('zennsin2')
                     self.MM.set_param(sp,sv)
                         #self.MM.set_param(1,100)
-                elif r < 0:
+                elif distance < 0:
                     #中心点に近づく
                     if self.turn == 'right':
                         self.MM.set_param(sp,-30)
@@ -132,7 +136,7 @@ class VirtualLineTrace():
                         #print ('cousin')
                         self.MM.set_param(sp,30)
                         #self.MM.set_param(10,100)
-                elif r > 0:
+                elif distance > 0:
                     #中心点から離れる
                     if self.turn == 'right':
                         #print ('zennsin2')
@@ -149,8 +153,7 @@ class VirtualLineTrace():
                 if c == 5:
                     c = 2
                 VirtualLineTrace.set_param(self,c)
-                r = VirtualLineTrace.set_distance(self,c)
-                time.sleep(0.1)
+                time.sleep(1)
                 """c += 1
                 if c == 100:
                     self.MM.set_param(0,0)
