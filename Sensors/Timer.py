@@ -18,16 +18,16 @@ class Timer(Sensor.Sensor):
     startflag = True
 
     def __init__(self):
-        print("Timer_init")
+        #print("Timer_init")
         #タイマ初期化
         self.count2=0
         self.thread1 = threading.Thread(target=self.count)
 
         #タイマが機能停止する時間
-        self.end_time = 100
+        self.end_time = 50
 
         #self.thread2 = threading.Thread(target=self.getvalue)
-        print("end_Timer_init")
+        #print("end_Timer_init")
 
     def exec_thread(self):
         if self.startflag == True:
@@ -55,18 +55,17 @@ class Timer(Sensor.Sensor):
 
     def count(self):
 
-        print("count")
+        #print("count")
         #カウントダウン
         try:
+            print("count_loop")
             while True:#直接数字じゃなくて引数をいれるかも
-                print("count_loop")
                 self.start = time.perf_counter()
                 time.sleep(1)
 
                 self.count2+=round(time.perf_counter() - self.start)
                 self.time_master += 1
-                print("lm=",end="")
-                print(self.timelimit)
+                print("limit=" + str(self.timelimit))
                 print(self.time_master)
                 
                 """

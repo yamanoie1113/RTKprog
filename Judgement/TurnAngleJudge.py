@@ -162,7 +162,7 @@ class TurnAngleJudge(Judge.Judge):
 
         #旋回したい角度をセクションから受け取る場合
         #self.finish_angle = self.current_angle + status
-               
+
 
 
 

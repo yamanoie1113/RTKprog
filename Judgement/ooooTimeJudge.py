@@ -16,20 +16,27 @@ class TimeJudge():
     timelimit = 0.0
     timer = oooTimer.Timer()
     def __init__(self):
-        print("judge_init")
+        #print("judge_init")
         #self.set_param()
-        print("end_judge_init")
+        #print("end_judge_init")
+        pass
 
     def judge(self,limit):
         time = 0
         self.timelimit = limit
+
+        """
         print("timelimit:",end="")
         print(self.timelimit)
+        """
+
         self.timer.set_param(limit)
+        """
         print("tjudge_flag_reset")
         print(time)
         print(self.timelimit)
         print(self.timer.getvalue())
+        """
         self.timer.exec_thread()
         
         flag =True
@@ -37,11 +44,10 @@ class TimeJudge():
 
         while flag :
             print("_________________________________")
-            
+
             time = self.timer.getvalue()
 
-            print("gettime:",end="")
-            print(time)
+            print("gettime:" + str(time))
 
             if time >= self.timelimit :
                 print("timejudge_return_False")
@@ -58,8 +64,8 @@ class TimeJudge():
     def set_param(self,limit):
         #ここで時間を設定できるようにしなければならないけどまだ
         self.timelimit = limit
-        print("limit:",end="")
-        print(limit)
+        print("limit:" + str(limit))
+
 
 
     #テスト用関数 10秒ごとにTrueとFalseを交互に返す

@@ -16,34 +16,36 @@ class TimeJudge():
     timelimit = 0.0
     timer = Timer.Timer()
     def __init__(self):
+        """
         print("judge_init")
         #self.set_param()
         print("end_judge_init")
+        """
+        pass
 
     def judge(self,limit):
-        print("judge_enter￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥")
+        #print("judge_enter￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥")
         #time.sleep(1)
         mtime = 0
         self.timelimit = limit
-        print("timelimit:",end="")
-        print(self.timelimit)
+        print("timelimit:" + str(self.timelimit))
+        
         self.timer.set_param(limit)
-        print("tjudge_flag_reset")
+        #print("tjudge_flag_reset")
         #print(mtime)
-        print(self.timelimit)
-        print(self.timer.getvalue())
+        #print(self.timelimit)
+        #print(self.timer.getvalue())
         self.timer.exec_thread()
         
         flag =True
         #スレッドでカウントを開始する。
 
         while flag :
-            print("--------------------------------------------------------------")
+            #print("--------------------------------------------------------------")
             
             mtime = self.timer.getvalue()
 
-            print("gettime:",end="")
-            print(mtime)
+            #print("gettime:" + str(mtime))
 
             if mtime >= self.timelimit :
                 print("timejudge_return_False")
@@ -61,8 +63,8 @@ class TimeJudge():
     def set_param(self,limit):
         #ここで時間を設定できるようにしなければならないけどまだ
         self.timelimit = limit
-        print("limit:",end="")
-        print(limit)
+        print("limit:",str(limit))
+        
 
 
     #テスト用関数 10秒ごとにTrueとFalseを交互に返す
