@@ -8,7 +8,7 @@ from Sensors import Sensor,GPS2xy,LogMgmt
 
 class PositionMgmt(Sensor.Sensor):
     #gps = GPS2xy()
-    position: float
+    position = None
     logfile = None
     #pos_total: float
 
@@ -50,8 +50,10 @@ class PositionMgmt(Sensor.Sensor):
     def update(self):
         #debug
         #print("update position")
-        self.position = GPS2xy.GPS2xy.getvalue(self)
-        print("updated position:")
+        temp = GPS2xy.GPS2xy.getvalue(self)
+        if temp != None:
+            self.position = temp
+            print("updated position:")
 
 
 

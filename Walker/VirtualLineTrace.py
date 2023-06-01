@@ -42,7 +42,9 @@ class VirtualLineTrace():
             #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
             VirtualLineTrace.set_turn(self,x3,x)
             distance = abs(slope * (x) - y + intercept) / math.sqrt(slope**2 + 1)
-            #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離            
+            #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
+            print(x,y)
+            p
             return distance
 
 
