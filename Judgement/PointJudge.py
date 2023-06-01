@@ -19,6 +19,9 @@ class PointJudge(Judge.Judge):
     mxlength = 0.0  #x座標の距離
     mylength = 0.0  #y座標の距離
 
+    x_frag = False
+    y_frag = False
+
     def __init__(self):
         self.pget = PMgmt.PositionMgmt()
 
@@ -28,10 +31,10 @@ class PointJudge(Judge.Judge):
         self.getPosition()
 
         #x座標の判定
-        if self.mxlength <= 0:
+        if self.mxlength <= 0 and self.x_frag == False:
             #y座標の判定
 
-            if self.mylength <= 0:
+            if self.mylength <= 0 and self.y_frag == False:
                 return True
             else :
                 return False
