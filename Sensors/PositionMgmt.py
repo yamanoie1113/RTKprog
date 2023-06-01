@@ -41,8 +41,10 @@ class PositionMgmt(Sensor.Sensor):
             return self.position
 
         else:
+            #ここで何かしら返さないとバグる
             print("None_GPS")
             print(self.position)
+            return 0,0
 
         f.close()
 
