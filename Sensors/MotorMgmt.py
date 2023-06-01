@@ -51,7 +51,7 @@ class MotorMgmt():
         self.pi.set_PWM_frequency(19,200)
         flog = 0
         self.duty = self.duty - 1
-        print(self.cycle,self.duty)
+        #print(self.cycle,self.duty)
         try:
 
             while True:

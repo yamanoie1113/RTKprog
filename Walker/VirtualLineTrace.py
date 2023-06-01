@@ -32,24 +32,23 @@ class VirtualLineTrace():
         def set_distance(self,a):
             #print("test_value",self.test)
             #print(self.param)
-            x = self.param[a][0]
-            y = self.param[a][1]
+            x = float(self.param[0])
+            y = float(self.param[1])
             #print(x)
             #print(self.goaly)
             slope = (self.goaly - self.starty)/(self.goalx - self.startx)
+            #print(slope)
             intercept = self.starty - slope * self.startx
-            x3 = (y - intercept)/slope
+            if slope == 0:
+                x3 = x
+            else:
+                x3 = (y - intercept)/slope
             #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
-            VirtualLineTrace.set_turn(self,x3,x)
             distance = abs(slope * (x) - y + intercept) / math.sqrt(slope**2 + 1)
-<<<<<<< HEAD
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
-            print(x,y)
-            p
-=======
-            #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離            
-            print(x,y)
->>>>>>> 4f728e9dce1856b21a1b26b1057e52ed5a027643
+            VirtualLineTrace.set_turn(self,x3,x)
+            #print(self.goalx,self.goaly)
+            #print(x,y)
             return distance
 
 
@@ -110,15 +109,23 @@ class VirtualLineTrace():
             p = paramlist[1]
             i = paramlist[2]
             d = paramlist[3]
-            self.goalx = goaly[0]
-            self.goaly = goaly[1]
+            #self.goalx = goaly[0]
+            #self.goaly = goaly[1]
             #print(self.goalx)
             c = 0
             VirtualLineTrace.set_param(self,c)
-            self.startx = self.param[0][0]
-            self.starty = self.param[0][1]  
+            gy = float(goaly[0])
+            gx = float(goaly[1])
+            #print("param")
+            #print(self.param)
             
-            #print(sp,sv)
+            self.startx = float(self.param[0])
+            self.starty = float(self.param[1])  
+            self.goalx = self.startx + gx
+            self.goaly = self.starty + gy
+            #
+            print(self.goalx,self.goaly)
+            print(self.startx,self.starty)
             #ループカウンタ
             
 
@@ -128,7 +135,7 @@ class VirtualLineTrace():
                 #self.mPID.set_target(loca)
                 #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
                 #self.mPID.get_operation()
-                print(self.turn)
+                #print(self.turn)
                 if self.turn == 'no':
                     #print ('zennsin2')
                     self.MM.set_param(sp,sv)
@@ -174,14 +181,14 @@ class VirtualLineTrace():
         def stop(self):
             self.MM.set_param(0,0)
             self.MM.run()
-            self.MM.stop()
+            #self.MM.stop()
                 
 
 def main():
     #print (1)
     pa=[1,2,3,4]
     cuvre = VirtualLineTrace()
-    cuvre.set_run(pa)
+    cuvre.stop()
         
 if __name__ == '__main__':
     main()

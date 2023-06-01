@@ -25,6 +25,7 @@ class PositionMgmt(Sensor.Sensor):
 
     #値の取得
     def getvalue(self):
+        #print("pos_get")
         #ログファイルオープン
         f = open(self.logfile, 'a')
 
@@ -33,16 +34,17 @@ class PositionMgmt(Sensor.Sensor):
 
         #GPSが見つかったらその値を、それ以外はnoneを返す
         if self.position != None:
-            print(self.position)
+            #print(self.position)
 
             #logに書きこみ
             LogMgmt.write(self.logfile,self.position)
-            print("log_saved")
+            #print("log_saved")
             return self.position
 
         else:
-            print("None_GPS")
-            print(self.position)
+            #print("None_GPS")
+            #print(self.position)
+            nonepos = [0,0]
 
         f.close()
 
@@ -53,7 +55,13 @@ class PositionMgmt(Sensor.Sensor):
         temp = GPS2xy.GPS2xy.getvalue(self)
         if temp != None:
             self.position = temp
-            print("updated position:")
+            #print("updated position:")
+        
+        """
+        else :
+            print("none_update")
+        """
+            
 
 
 

@@ -53,7 +53,7 @@ class GPS2xy():
         #mを度に変換し足し合わせる
         latitude_m = latitude_m / 60
         latitude = latitude_d+ latitude_m
-        print(latitude)
+        #print(latitude)
 
         #経度 dddmm.mmmmmmm
         #longitude = "13945.6411751"
@@ -93,8 +93,8 @@ class GPS2xy():
         print(x)
         print("y:",end="")
         print(y)
-        return x,y
         """
+        return x,y
 
 def main():
     testclass = GPS2xy()
