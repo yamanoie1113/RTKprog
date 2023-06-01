@@ -82,11 +82,14 @@ class SectionMgmt:
     
     def test2(self):
         #print("座標確認",self.Pointer)
+        '''
         print("Walkerのオブジェクト",self.Walkerinstance)
         print("Judgeのオブジェクト",self.Judgeinstance)
         print("Walkerのパラメータ",self.WalkeParam)
         print("座標",self.Pointer[0])
-        
+        '''
+        self.sectionrun.test2(self.Walkerinstance[0],self.Judgeinstance[0],
+                                    self.WalkeParam[0][0],self.Pointer[0],self.section) 
         
     def execRun(self):
         '''

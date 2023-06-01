@@ -54,7 +54,6 @@ class SectionRun:
                     t=False
                     print("判定しました")
                     break
-                print("まだ")
             
         else:  
 
@@ -72,7 +71,6 @@ class SectionRun:
                     t=False
                     print("判定しました")
                     break
-                print("まだ2")
 
                 
     def test(self,mwalker,mjudge,Walkeparam,pointer):
@@ -101,7 +99,21 @@ class SectionRun:
         
     def test2(self,mwalker,mjudge,Walkeparam,pointer):
         
-        print("mwalker:",mwalker,"mjudge",mjudge,"Walkeparam:",Walkeparam,"pointer",pointer)
+        mwalker.set_run(Walkeparam,pointer)
+            
+        tes=mjudge.judge(pointer)#旋回角度判定
+            
+        print("判定中です")
+        
+        t=True
+
+        while t:
+
+            if tes==False:
+                t=False
+                print("判定しました")
+                break
+        
         
         
         

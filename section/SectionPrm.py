@@ -25,7 +25,7 @@ class SectionPrm:
 
         self.pointset=self.position.update()
 
-        
+        #print(self.pointset[0])
 
         return self.pointset
 
@@ -35,7 +35,7 @@ class SectionPrm:
         
         if pointset==0:
             self.parameter1=self.param.Straight_set_param2()
-            
+            #print(self.parameter1[0])
             return self.parameter1
             
             
