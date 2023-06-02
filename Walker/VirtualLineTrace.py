@@ -21,6 +21,9 @@ class VirtualLineTrace():
         startx = 0 #開始地点ｘ
         starty = 0 #開始地点ｙ
         turn = 'no'
+        save_turn = 'no'
+        saitan = 0
+        save_saitan = 0
         MM = MotorMgmt.MotorMgmt()
         PM = PositionMgmt.PositionMgmt()
         param = [[0 for i in range(2)] for j in range(5)]
@@ -46,17 +49,18 @@ class VirtualLineTrace():
             #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
             distance = abs(slope * (x) - y + intercept) / math.sqrt(slope**2 + 1)
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
-            VirtualLineTrace.set_turn(self,x3,x)
+            VirtualLineTrace.set_turn(self,x3,x,distance)
+            self.saitan = distance
             #print(self.goalx,self.goaly)
             #print(x,y)
             return distance
 
 
-        def set_turn(self,mx,gx):
-            
+        def set_turn(self,mx,gx,distance):
             if self.goaly > self.starty:
                 if mx > gx:
                     self.turn = 'left' #左
+                    
                 elif mx < gx:
                     self.turn = 'right' #右
                 else:
@@ -68,6 +72,20 @@ class VirtualLineTrace():
                     self.turn = 'left' #左
                 else:
                     self.turn = 'no'
+            VirtualLineTrace.save_saitan(self,distance)
+        
+        def set_saitan(self,distance):
+            distance = self.saitan - distance
+            if self.save_saitan < distance:
+                if self.save_turn == self.turn:
+                    if self.turn == 'left':
+                        self.turn = 'right'
+                    elif self.turn == 'right':
+                        self.turn = 'left'
+                    else:
+                        self.turn = 'right'
+            self.save_saitan = distance
+            self.save_turn = self.turn
 
 
         def set_param(self,a):
@@ -140,27 +158,14 @@ class VirtualLineTrace():
                     #print ('zennsin2')
                     self.MM.set_param(sp,sv)
                         #self.MM.set_param(1,100)
-                elif distance < 0:
-                    #中心点に近づく
-                    if self.turn == 'right':
-                        self.MM.set_param(sp,-30)
-                        #self.MM.set_param(1,-100)
-                        #print ('zennsin')
-                    elif self.turn == 'left':
-                        #print ('cousin')
-                        self.MM.set_param(sp,30)
-                        #self.MM.set_param(10,100)
-                elif distance > 0:
-                    #中心点から離れる
-                    if self.turn == 'right':
-                        #print ('zennsin2')
-                        self.MM.set_param(sp,-30)
-                        #self.MM.set_param(1,-100)
-                    elif self.turn == 'left':
-                        #self.MM.set_param(10,100)
-                        self.MM.set_param(sp,30)
-                        #print ('cousin2')
-
+                if self.turn == 'right':
+                    self.MM.set_param(sp,-10)
+                    #self.MM.set_param(1,-100)
+                    #print ('zennsin')
+                elif self.turn == 'left':
+                    #print ('cousin')
+                    self.MM.set_param(sp,10)
+                    #self.MM.set_param(10,100)
                     
                 self.MM.run()
                 c += 1
