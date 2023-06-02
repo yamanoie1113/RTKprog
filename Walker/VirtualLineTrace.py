@@ -50,7 +50,7 @@ class VirtualLineTrace():
             distance = abs(slope * (x) - y + intercept) / math.sqrt(slope**2 + 1)
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
             VirtualLineTrace.set_turn(self,x3,x,distance)
-            self.saitan = distance
+            
             #print(self.goalx,self.goaly)
             #print(x,y)
             return distance
@@ -72,20 +72,26 @@ class VirtualLineTrace():
                     self.turn = 'left' #左
                 else:
                     self.turn = 'no'
-            VirtualLineTrace.save_saitan(self,distance)
+            VirtualLineTrace.set_saitan(self,distance)
         
         def set_saitan(self,distance):
             distance = self.saitan - distance
-            if self.save_saitan < distance:
+            if 0 != distance:
                 if self.save_turn == self.turn:
                     if self.turn == 'left':
-                        self.turn = 'right'
+                        if self.save_saitan < distance:
+                            self.save_turn = self.turn
+                            self.turn = 'right'
                     elif self.turn == 'right':
-                        self.turn = 'left'
+                        if self.save_saitan < distance:
+                            self.save_turn = self.turn
+                            self.turn = 'left'
                     else:
+                        self.save_turn = self.turn
                         self.turn = 'right'
             self.save_saitan = distance
-            self.save_turn = self.turn
+            
+            #print(self.turn)
 
 
         def set_param(self,a):
