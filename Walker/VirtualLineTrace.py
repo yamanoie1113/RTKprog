@@ -78,16 +78,14 @@ class VirtualLineTrace():
             distance = self.saitan - distance
             if 0 != distance:
                 if self.save_turn == self.turn:
+                    self.save_turn = self.turn
                     if self.turn == 'left':
                         if self.save_saitan < distance:
-                            self.save_turn = self.turn
                             self.turn = 'right'
                     elif self.turn == 'right':
                         if self.save_saitan < distance:
-                            self.save_turn = self.turn
                             self.turn = 'left'
                     else:
-                        self.save_turn = self.turn
                         self.turn = 'right'
             self.save_saitan = distance
             
