@@ -42,16 +42,16 @@ class PositionMgmt(Sensor.Sensor):
             return self.position
 
         else:
-<<<<<<< HEAD
+
             #print("None_GPS")
             #print(self.position)
             nonepos = [0,0]
-=======
+
             #ここで何かしら返さないとバグる
             print("None_GPS")
             print(self.position)
             return 0,0
->>>>>>> fb45101d161baede5cba0abfd55f5eb920d5a674
+
 
         f.close()
 
