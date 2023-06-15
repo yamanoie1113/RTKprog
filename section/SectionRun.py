@@ -18,6 +18,7 @@ class SectionRun:
     CURVE=1
     DISTANCE=0
     ANGLE=1
+    STOP=[0,0,0,0]
     JudgeFarst=True
     timejudge=TimeJudge.TimeJudge()
     Motor=MotorMgmt.MotorMgmt()
@@ -115,6 +116,8 @@ class SectionRun:
                 break
         
         
+        
+        mwalker.set_run(self.STOP,pointer)
         
         
     def request_Walker(self,number):

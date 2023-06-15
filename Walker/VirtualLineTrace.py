@@ -172,12 +172,12 @@ class VirtualLineTrace():
                     self.MM.set_param(sp,sv)
                         #self.MM.set_param(1,100)
                 if self.turn == 'right':
-                    self.MM.set_param(sp,-10)
+                    self.MM.set_param(sp,-70)
                     #self.MM.set_param(1,-100)
                     #print ('zennsin')
                 elif self.turn == 'left':
                     #print ('cousin')
-                    self.MM.set_param(sp,10)
+                    self.MM.set_param(sp,70)
                     #self.MM.set_param(10,100)
                     
                 self.MM.run()

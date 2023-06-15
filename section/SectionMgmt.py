@@ -192,8 +192,8 @@ class SectionMgmt:
 def main():
     sectionMgmt=SectionMgmt()
     sectionMgmt.run()
-    sectionMgmt.execRun()
-    #sectionMgmt.test2()
+    #sectionMgmt.execRun()
+    sectionMgmt.test2()
     
 
 if __name__=="__main__":
