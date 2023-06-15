@@ -63,12 +63,12 @@ class PositionMgmt(Sensor.Sensor):
         if temp != None:
             self.position = temp
             #print("updated position:")
-        
+
         """
         else :
             print("none_update")
         """
-            
+
 
 
 

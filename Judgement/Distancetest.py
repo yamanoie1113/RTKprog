@@ -7,12 +7,11 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Judgement import Judge
 
-from Sensors import PositionMgmt as PMgmt,TurnAngleSensor as TASensor
-
+from Sensors import PositionMgmt as PMgmt
 #室外用インポート
 #from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
 
-class DistanceJudge(Judge.Judge):
+class Distancetest(Judge.Judge):
 
     start_x=0.0    #X座標系　オブジェクト
     start_y=0.0   #Y座標系　オブジェクト
@@ -69,7 +68,7 @@ class DistanceJudge(Judge.Judge):
         self.start_x = positionXY[0]
         self.start_y = positionXY[1]
 
-
+    """
     #現在角度の取得
     def getangle(self):
         angget = TASensor.TurnAngleSensor()
@@ -77,6 +76,7 @@ class DistanceJudge(Judge.Judge):
         #ジャイロから旋回角度抽出
         tmp = angget.getvalue()
         self.mdir = tmp['yaw']
+    """
 
 
     def calc_dist(self,sx,sy,gx,gy):
@@ -122,11 +122,12 @@ class DistanceJudge(Judge.Judge):
         self.finishlength=judgevalue
 
 def main():
-    mdisjudge = DistanceJudge()
+    mdisjudge = Distancetest()
 
     goal_XY = [0.0,0.0]
 
     #判定テスト
     mdisjudge.judge(goal_XY)
+
 if __name__ == '__main__':
     main()
