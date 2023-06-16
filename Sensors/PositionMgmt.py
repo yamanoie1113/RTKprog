@@ -18,6 +18,7 @@ class PositionMgmt(Sensor.Sensor):
 
         #GPSログの消去
         LogMgmt.clear(self.logfile)
+        LogMgmt.write(self.logfile,"loading...")
 
         #チェックポイントの初期化
 
@@ -63,12 +64,12 @@ class PositionMgmt(Sensor.Sensor):
         if temp != None:
             self.position = temp
             #print("updated position:")
-        
+
         """
         else :
             print("none_update")
         """
-            
+
 
 
 
