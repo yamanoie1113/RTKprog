@@ -30,26 +30,26 @@ class SectionPrm:
         return self.pointset
 
 
-    def Walkerset_param2(self,pointset):#msectionIdxは区間管理のget_paramから
+    def Walkerset_param(self,pointset):#msectionIdxは区間管理のget_paramから
 
         
         if pointset==0:
-            self.parameter1=self.param.Straight_set_param2()
-            #print(self.parameter1[0])
+            self.parameter1=self.param.Straight_set_param()
+            
             return self.parameter1
             
             
-        elif pointset==1:
-            self.parameter2=self.param.Curve_set_param2()
+        else:
+            self.parameter2=self.param.Curve_set_param()
         
-
             return self.parameter2
+        
 
 def main():
     dd=SectionPrm()
     dd.pointer_param()
-    dd.Walkerset_param2(0)
-    dd.Walkerset_param2(1)
+    dd.Walkerset_param(0)
+    dd.Walkerset_param(1)
     
 
 

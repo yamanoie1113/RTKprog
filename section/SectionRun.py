@@ -116,8 +116,7 @@ class SectionRun:
                 break
         
         
-        
-        mwalker.set_run(self.STOP,pointer)
+        self.Motor.stop()
         
         
     def request_Walker(self,number):

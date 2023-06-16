@@ -30,7 +30,6 @@ class SectionMgmt:
 
     def __init__(self):
 
-        #self.Pointer=self.sectionprm.pointer_param()
         pass
 
     def run(self):
@@ -81,23 +80,12 @@ class SectionMgmt:
         
     
     def test2(self):
-        #print("座標確認",self.Pointer)
-        '''
-        print("Walkerのオブジェクト",self.Walkerinstance)
-        print("Judgeのオブジェクト",self.Judgeinstance)
-        print("Walkerのパラメータ",self.WalkeParam)
-        print("座標",self.Pointer[0])
-        '''
+        
         self.sectionrun.test2(self.Walkerinstance[0],self.Judgeinstance[0],
                                     self.WalkeParam[0][0],self.Pointer[0],self.section) 
         
     def execRun(self):
-        '''
-        print("Walkerのオブジェクト",self.Walkerinstance)
-        print("Judgeのオブジェクト",self.Judgeinstance)
-        print("Walkerのパラメータ",self.WalkeParam)
-        print("座標",self.Pointer)
-        '''
+        
 
         if self.section_set[self.pointerset]==0: #直線の場合
             self.section=0
@@ -179,9 +167,9 @@ class SectionMgmt:
 
     def get_Param(self):
         
-        self.WalkeParam[self.STRAIGHT]=self.sectionprm.Walkerset_param2(self.STRAIGHT)
+        self.WalkeParam[self.STRAIGHT]=self.sectionprm.Walkerset_param(self.STRAIGHT)
 
-        self.WalkeParam[self.CURVE]=self.sectionprm.Walkerset_param2(self.CURVE)
+        self.WalkeParam[self.CURVE]=self.sectionprm.Walkerset_param(self.CURVE)
 
         self.Pointer=self.sectionprm.pointer_param()
 

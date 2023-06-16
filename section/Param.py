@@ -1,35 +1,42 @@
 
 
 class Param:
+    
     def init(self):
 
         pass
 
 
-#_________________NEW______________________________
+#_________________PARAMETER______________________________
 
-    def Straight_set_param2(self):
+#直進 （速度、P,I,D）
+
+    def Straight_set_param(self):
 
         #速度、P,I,D　
-        self.prm1=([20,0,0,0],  #A
-        [10,1,1,1],              #B
-        [20,2,1,1],             #C
-        [10,3,1,1])             #D
+        self.prm1=([40,0,0,0],  #C-A 1
+        [30,1,1,1],             #B-C 3
+        [30,2,1,1],             #C-D 4
+        [30,3,1,1])             #E-C 6
         
         return self.prm1
 
-    def Curve_set_param2(self):
+#曲線　（速度、P,I,D）
+
+    def Curve_set_param(self):
         
-        self.prm2=([20,0,0,0],[10,1,1,1])   #速度,P,I,D
-        
+        self.prm2=([20,0,0,0], #A-B 2
+                [20,1,1,1])    #D-E 5
 
         return self.prm2
 
 
-#_______________REIWA_______________________________
+#_______________REIWA_PARAMETER_______________________________
+
+#直線
 
     def Reiwa_Straight(self):
-
+        
         self.Rprm_straight=([5,0,0,0],
         [5,0,0,0],
         [5,0,0,0],
@@ -40,6 +47,7 @@ class Param:
 
         return self.Rprm_straight
 
+#曲線
 
     def Reiwa_Curve(self):
 
@@ -48,6 +56,7 @@ class Param:
 
         return self.Rprm_curve
 
+#_______________test_pointer_______________________________
 
 
     def pointer_set_param(self):
@@ -61,6 +70,10 @@ class Param:
 
         return  self.pointer
 
+
+#_______________test_REIWA_pointer_______________________________
+
+
     def Reiwa_pointer_set_param(self):
         self.Reiwa_pointetr=([0,0], #A
         [0,0],                      #B
@@ -71,6 +84,11 @@ class Param:
         [0,0],                      #G
         [0,0],                      #H
         [0,0])                      #I
+
+        return self.Reiwa_pointetr
+
+
+#__________________________________________________________
         
 
 def main():
