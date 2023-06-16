@@ -18,6 +18,7 @@ class PositionMgmt(Sensor.Sensor):
 
         #GPSログの消去
         LogMgmt.clear(self.logfile)
+        LogMgmt.write(self.logfile,"loading...")
 
         #チェックポイントの初期化
 

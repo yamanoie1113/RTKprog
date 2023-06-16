@@ -124,10 +124,14 @@ class Distancetest(Judge.Judge):
 def main():
     mdisjudge = Distancetest()
 
-    goal_XY = [0.0,0.0]
+    goal_XY = [70764,-171735]
 
+    TF = True
     #判定テスト
-    mdisjudge.judge(goal_XY)
+    while TF:
+        TF=mdisjudge.judge(goal_XY)
+    
+    print("SUCCESS!!")
 
 if __name__ == '__main__':
     main()
