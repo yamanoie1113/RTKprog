@@ -21,6 +21,7 @@ class PosInit():
         #self.start_point=self.PMgmt.getvalue()
 
         #x,yの増分
+
         self.x_moves = 1.0
         self.y_moves = 3.0
 

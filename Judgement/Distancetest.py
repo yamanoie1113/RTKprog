@@ -3,11 +3,13 @@ import math
 
 import sys
 import pathlib
+
+
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Judgement import Judge
 
-from Sensors import PositionMgmt as PMgmt
+from Sensors import PositionMgmt as PMgmt ,LogMgmt
 #室外用インポート
 #from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
 
@@ -18,9 +20,17 @@ class Distancetest(Judge.Judge):
     mdir=0.0  #方位計   オブジェクト
     mlength =0.0
     finishlength = 0.0
+    logfile = ""
 
     def __init__(self):
         self.pget = PMgmt.PositionMgmt()
+
+        # クラス変数
+        self.logfile = 'Distance_log.txt'
+
+        #GPSログの消去
+        LogMgmt.clear(self.logfile)
+        LogMgmt.write(self.logfile,"NONE_DISTANCE")
 
     """
     #座標計算 これいらんかも
@@ -80,6 +90,8 @@ class Distancetest(Judge.Judge):
 
 
     def calc_dist(self,sx,sy,gx,gy):
+        #LOGファイルオープン
+        f = open(self.logfile, 'a')
 
         #与えられた４点の距離を計算する
 
@@ -92,6 +104,9 @@ class Distancetest(Judge.Judge):
         #2点間の距離計算
         length = math.sqrt(( gx- sx)**2 + ( gy - sy)**2)
         #self.mlength = math.sqrt(( self.goal_x- self.start_x)**2 + ( self.goal_y - self.start_y)**2)
+
+        #ログファイルに書き込み
+        LogMgmt.write(self.logfile,length)
 
 
         print("距離return:",length)
@@ -124,13 +139,14 @@ class Distancetest(Judge.Judge):
 def main():
     mdisjudge = Distancetest()
 
+    #目標地点を設定
     goal_XY = [70764,-171735]
 
     TF = True
     #判定テスト
     while TF:
         TF=mdisjudge.judge(goal_XY)
-    
+
     print("SUCCESS!!")
 
 if __name__ == '__main__':
