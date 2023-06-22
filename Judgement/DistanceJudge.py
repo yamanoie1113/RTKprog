@@ -7,7 +7,7 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Judgement import Judge
 
-from Sensors import PositionMgmt as PMgmt,TurnAngleSensor as TASensor
+from Sensors import LogMgmt,PositionMgmt as PMgmt,TurnAngleSensor as TASensor
 
 #室外用インポート
 #from Sensors import TurnAngleSensor as TASensor,PositionMgmt as PMgmt
@@ -19,9 +19,17 @@ class DistanceJudge(Judge.Judge):
     mdir=0.0  #方位計   オブジェクト
     mlength =0.0
     finishlength = 0.0
+    logfile = ''
 
     def __init__(self):
         self.pget = PMgmt.PositionMgmt()
+
+        # クラス変数
+        self.logfile = 'Distance_log.txt'
+
+        #GPSログの消去
+        LogMgmt.clear(self.logfile)
+        LogMgmt.write(self.logfile,"NONE_DISTANCE")
 
     """
     #座標計算 これいらんかも
@@ -93,8 +101,10 @@ class DistanceJudge(Judge.Judge):
         length = math.sqrt(( gx- sx)**2 + ( gy - sy)**2)
         #self.mlength = math.sqrt(( self.goal_x- self.start_x)**2 + ( self.goal_y - self.start_y)**2)
 
+        #ログファイルに書き込み
+        LogMgmt.write(self.logfile,length)
 
-        print("距離return:",length)
+        #print("距離return:",length)
 
         return length
 
