@@ -32,6 +32,7 @@ class PositionMgmt(Sensor.Sensor):
         LogMgmt.write(self.logfile,"GPS_loading...")
 
         while self.origin == None:
+            print("update_origin...")
             self.origin = self.update()
 
         #x,yの増分
