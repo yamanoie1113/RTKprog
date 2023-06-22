@@ -18,7 +18,7 @@ class PosInit():
 
     def __init__(self):
         #初期値の取得
-        #self.start_point=self.PMgmt.getvalue()
+        self.start_point=self.PMgmt.getvalue()
 
         #x,yの増分
 
@@ -27,6 +27,7 @@ class PosInit():
 
 
     def update(self):
+        self.PMgmt.getvalue()
 
         #左上 A
         self.Point[0][0] = self.start_point[0] - self.x_moves

@@ -10,6 +10,7 @@ class PositionMgmt(Sensor.Sensor):
     #gps = GPS2xy()
     position = None
     logfile = None
+
     #pos_total: float
 
     def __init__(self):
