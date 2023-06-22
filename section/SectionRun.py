@@ -76,7 +76,7 @@ class SectionRun:
                 
     def test(self,mwalker,mjudge,Walkeparam,pointer):
         list_num=([0,0,0,0,0])
-        T=True
+        t=True
         print(Walkeparam)
         print("debug",mwalker)
         print("mjugedebug",mjudge)
