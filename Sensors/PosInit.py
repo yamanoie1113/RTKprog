@@ -10,11 +10,9 @@ from Sensors import PositionMgmt
 class PosInit():
     #A,B,C,D,E,C
     Point = [[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0]]
-    start_point = [1.0,1.0] #ダミー
+    #start_point = [1.0,1.0] #ダミー
     x_moves = 0.0
     y_moves = 0.0
-
-    PMgmt = PositionMgmt.PositionMgmt()
 
     def __init__(self):
         #初期値の取得

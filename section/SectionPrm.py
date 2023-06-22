@@ -4,14 +4,14 @@ import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from section import Param
-from Sensors import PosInit
+from Sensors import PositionMgmt as PMgmt
 
 class SectionPrm:
     #クラス変数
     curve=0
     straight=1
     param=Param.Param()
-    position=PosInit.PosInit()
+    position=PMgmt.PositionMgmt()
 
     def __init__(self):
         
@@ -23,7 +23,7 @@ class SectionPrm:
 
     def pointer_param(self):
 
-        self.pointset=self.position.update()
+        self.pointset=self.position.PosInit()
 
         #print(self.pointset[0])
 

@@ -11,18 +11,25 @@ class PositionMgmt(Sensor.Sensor):
     position = None
     logfile = None
 
+    x_moves = 0.0
+    y_moves = 0.0
+
+    #A,B,C,D,E,C
+    Point = [[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0]]
+
     #pos_total: float
 
     def __init__(self):
         # クラス変数
         self.logfile = 'GPS_log.txt'
 
-        #GPSログの消去
+        #GPSログの初期化
         LogMgmt.clear(self.logfile)
         LogMgmt.write(self.logfile,"GPS_loading...")
 
-        #チェックポイントの初期化
-
+        #x,yの増分
+        self.x_moves = 1.0
+        self.y_moves = 3.0
 
 
     #値の取得
@@ -56,6 +63,37 @@ class PositionMgmt(Sensor.Sensor):
 
 
         f.close()
+
+
+    def PosInit(self):
+        self.update()
+
+        #左上 A
+        self.Point[0][0] = self.position[0] - self.x_moves
+        self.Point[0][1] = self.position[1] + self.y_moves
+
+        #左下 B
+        self.Point[1][0] = self.position[0] - self.x_moves
+        self.Point[1][1] = self.position[1] - self.y_moves
+
+        #真ん中 C
+        self.Point[2][0] = self.position[0]
+        self.Point[2][1] = self.position[1]
+
+        #右上 D
+        self.Point[3][0] = self.position[0] + self.x_moves
+        self.Point[3][1] = self.position[1] + self.y_moves
+
+        #右下 E
+        self.Point[4][0] = self.position[0] + self.x_moves
+        self.Point[4][1] = self.position[1] - self.y_moves
+
+        #真ん中 C
+        self.Point[5][0] = self.position[0]
+        self.Point[5][1] = self.position[1]
+
+        return self.Point
+
 
     #値の更新
     def update(self):
