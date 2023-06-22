@@ -11,8 +11,12 @@ class PositionMgmt(Sensor.Sensor):
     position = None
     logfile = None
 
+    origin = None
+
     x_moves = 0.0
     y_moves = 0.0
+
+
 
     #A,B,C,D,E,C
     Point = [[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0]]
@@ -26,6 +30,9 @@ class PositionMgmt(Sensor.Sensor):
         #GPSログの初期化
         LogMgmt.clear(self.logfile)
         LogMgmt.write(self.logfile,"GPS_loading...")
+
+        while self.origin == None:
+            self.origin = self.update()
 
         #x,yの増分
         self.x_moves = 1.0
@@ -59,7 +66,7 @@ class PositionMgmt(Sensor.Sensor):
             #ここで何かしら返さないとバグる
             print("None_GPS")
             print(self.position)
-            return 0,0
+            return None
 
 
         f.close()
@@ -69,28 +76,28 @@ class PositionMgmt(Sensor.Sensor):
         self.update()
 
         #左上 A
-        self.Point[0][0] = self.position[0] - self.x_moves
-        self.Point[0][1] = self.position[1] + self.y_moves
+        self.Point[0][0] = self.origin[0] - self.x_moves
+        self.Point[0][1] = self.origin[1] + self.y_moves
 
         #左下 B
-        self.Point[1][0] = self.position[0] - self.x_moves
-        self.Point[1][1] = self.position[1] - self.y_moves
+        self.Point[1][0] = self.origin[0] - self.x_moves
+        self.Point[1][1] = self.origin[1] - self.y_moves
 
         #真ん中 C
-        self.Point[2][0] = self.position[0]
-        self.Point[2][1] = self.position[1]
+        self.Point[2][0] = self.origin[0]
+        self.Point[2][1] = self.origin[1]
 
         #右上 D
-        self.Point[3][0] = self.position[0] + self.x_moves
-        self.Point[3][1] = self.position[1] + self.y_moves
+        self.Point[3][0] = self.origin[0] + self.x_moves
+        self.Point[3][1] = self.origin[1] + self.y_moves
 
         #右下 E
-        self.Point[4][0] = self.position[0] + self.x_moves
-        self.Point[4][1] = self.position[1] - self.y_moves
+        self.Point[4][0] = self.origin[0] + self.x_moves
+        self.Point[4][1] = self.origin[1] - self.y_moves
 
         #真ん中 C
-        self.Point[5][0] = self.position[0]
-        self.Point[5][1] = self.position[1]
+        self.Point[5][0] = self.origin[0]
+        self.Point[5][1] = self.origin[1]
 
         return self.Point
 
