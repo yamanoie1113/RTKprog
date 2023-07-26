@@ -76,7 +76,7 @@ class SectionRun:
                 
     def test(self,mwalker,mjudge,Walkeparam,pointer):
         list_num=([0,0,0,0,0])
-        t=True
+        T=True
         print(Walkeparam)
         print("debug",mwalker)
         print("mjugedebug",mjudge)
@@ -98,7 +98,7 @@ class SectionRun:
         mwalker.set_run(list_num)
         #mwalker.run()
         
-    def test2(self,mwalker,mjudge,Walkeparam,pointer):
+    def test2(self,mwalker,mjudge,Walkeparam,pointer,state):
         
         mwalker.set_run(Walkeparam,pointer)
             
@@ -116,7 +116,8 @@ class SectionRun:
                 break
         
         
-        self.Motor.stop()
+        print("STOP!!!!!!!!!!!!!!!")
+        mwalker.set_run(self.STOP,pointer)
         
         
     def request_Walker(self,number):
