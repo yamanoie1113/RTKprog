@@ -1,4 +1,4 @@
-#coding:utf-8
+print#coding:utf-8
 import socket
 import time
 
@@ -9,7 +9,9 @@ def get():
     PORT = 2101
     
     # AF_INET：IPv4形式でソケット作成(省略可)
+
     sock_sv = socket.socket(socket.AF_INET)
+    
     # IPアドレスとポート番号でバインド、タプルで指定
     sock_sv.connect((IPADDR, PORT))
     # 接続・受信の無限ループ

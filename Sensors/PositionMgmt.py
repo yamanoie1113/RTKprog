@@ -33,8 +33,11 @@ class PositionMgmt(Sensor.Sensor):
 
         while self.origin == None:
             print("update_origin...")
-            self.origin = self.update()
+            self.update()
+            self.origin = self.position
+            
         print(self.origin)
+        
 
         #x,yの増分
         self.x_moves = 1.0
