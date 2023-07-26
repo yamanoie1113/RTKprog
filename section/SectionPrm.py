@@ -37,6 +37,9 @@ class SectionPrm:
             self.parameter1=self.param.Straight_set_param()
             
             return self.parameter1
+        
+        
+        
             
             
         else:
