@@ -56,6 +56,7 @@ class Timer(Sensor.Sensor):
     def count(self):
 
         #print("count")
+        
         #カウントダウン
         try:
             print("count_loop")
