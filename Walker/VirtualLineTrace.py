@@ -83,7 +83,7 @@ class VirtualLineTrace():
             self.saitan = distance
             #VirtualLineTrace.set_saitan(self,distance)
         
-        def set_saitan(self,distance):
+        def set_saitan(self,distance): #今使ってない
             distance = self.saitan - distance
             if 0 != distance:
                 if self.save_turn == self.turn:
