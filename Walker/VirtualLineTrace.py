@@ -12,6 +12,7 @@ from Sensors import PositionMgmt
 from section import SectionRun
 from tkinter import W
 import numpy as np
+from Sensors import LogMgmt
 
 
 class VirtualLineTrace():
@@ -29,8 +30,15 @@ class VirtualLineTrace():
         param = [[0 for i in range(2)] for j in range(5)]
         #test=0
 
-        def init(self):
-            pass
+        def __init__(self):
+            
+
+            # クラス変数
+            self.logfile = 'VirtualLine_log.txt'
+
+            #GPSログの消去
+            LogMgmt.clear(self.logfile)
+            LogMgmt.write(self.logfile,"NONE_DISTANCE")
 
         def set_distance(self,a):
             #print("test_value",self.test)
@@ -103,7 +111,7 @@ class VirtualLineTrace():
 
         def set_param(self,a):
         
-            PM = PositionMgmt.PositionMgmt()
+            #PM = PositionMgmt.PositionMgmt()
             self.param = self.PM.getvalue()
             #self.param[a][0] = 500
             #self.param[a][1] = 500
