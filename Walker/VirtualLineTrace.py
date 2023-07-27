@@ -56,6 +56,7 @@ class VirtualLineTrace():
                 x3 = (y - intercept)/slope'''
             #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
             distance = abs(slope * (x) - y + intercept) / math.sqrt(slope**2 + 1)
+            LogMgmt.write(self.logfile,distance)
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
             VirtualLineTrace.set_turn(self,distance)
             #print(self.goalx,self.goaly)
