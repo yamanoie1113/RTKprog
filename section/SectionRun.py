@@ -115,9 +115,8 @@ class SectionRun:
                 print("判定しました")
                 break
         
-        
         print("STOP!!!!!!!!!!!!!!!")
-        mwalker.set_run(self.STOP,pointer)
+        self.Motor.stop()
         
         
     def request_Walker(self,number):
