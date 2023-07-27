@@ -3,7 +3,7 @@ import sys
 import pathlib
 
 dir = pathlib.Path(__file__).resolve().parent
-dir = (str(dir) + '/../LOG')
+dir = (str(dir) + '/../LOG/')
 
 #ログの内容を消去する
 def clear(filename):
