@@ -32,9 +32,10 @@ class PositionMgmt(Sensor.Sensor):
         LogMgmt.write(self.logfile,"GPS_loading...")
 
         while self.origin == None:
-            print("update_origin...")
+            print("updating_origin...")
             self.update()
             self.origin = self.position
+            print("done")
             
         print(self.origin)
         
@@ -104,7 +105,7 @@ class PositionMgmt(Sensor.Sensor):
         self.Point[5][0] = self.origin[0]
         self.Point[5][1] = self.origin[1]
         
-        print("ORIGIN_UPDATED!!")
+        print("GOAL_UPDATED!!")
 
         return self.Point
 
