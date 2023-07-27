@@ -66,6 +66,7 @@ class DistanceJudge(Judge.Judge):
 
         #X、Y座標を取得し、その値が基準値をこえていたらtrueを返す。それ以外はfalse
         if self.mlength <= 0:
+            LogMgmt.write(self.logfile,"reached")
             return False
         else :
             return True
@@ -109,7 +110,9 @@ class DistanceJudge(Judge.Judge):
         return length
 
 
+    #旋回角度の計算
     def calc_ang(self,x,y):
+
 
         #現在地の更新 しないといけないのかは考え中
         self.getPosition()
