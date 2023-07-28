@@ -33,7 +33,7 @@ class DistanceJudge(Judge.Judge):
         LogMgmt.write(self.logfile,"NONE_DISTANCE")
 
         LogMgmt.clear(self.judgelog)
-        LogMgmt.write(self.judgelog,"NONE_DISTANCE")
+        LogMgmt.write(self.judgelog,"NONE_JUDGED")
 
     """
     #座標計算 これいらんかも
