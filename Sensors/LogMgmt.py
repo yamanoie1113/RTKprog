@@ -12,5 +12,5 @@ def clear(filename):
 
 def write(filename,param):
     f = open(dir + filename,"a")
-    f.write(str(datetime.datetime.now()) + ':')
+    f.write(str(datetime.datetime.now()) + ':::::')
     f.write(str(param) + ',\n')

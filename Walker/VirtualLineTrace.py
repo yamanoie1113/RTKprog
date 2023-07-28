@@ -37,8 +37,8 @@ class VirtualLineTrace():
             self.logfile = 'VirtualLine_log.txt'
 
             #GPSログの消去
-            LogMgmt.clear(self.logfile)
-            LogMgmt.write(self.logfile,"NONE_DISTANCE")
+            #LogMgmt.clear(self.logfile)
+            #LogMgmt.write(self.logfile,"NONE_DISTANCE")
 
         def set_distance(self,a):
             #print("test_value",self.test)
@@ -47,6 +47,7 @@ class VirtualLineTrace():
             y = float(self.param[1])
             #print(x)
             #print(self.goaly)
+            print('distance')
             slope = (self.goaly - self.starty)/(self.goalx - self.startx)
             #print(slope)
             intercept = self.starty - slope * self.startx
@@ -57,6 +58,7 @@ class VirtualLineTrace():
             #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
             distance = abs(slope * (x) - y + intercept) / math.sqrt(slope**2 + 1)
             LogMgmt.write(self.logfile,distance)
+            print('distance2')
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
             VirtualLineTrace.set_turn(self,distance)
             #print(self.goalx,self.goaly)
