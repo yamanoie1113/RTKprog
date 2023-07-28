@@ -26,10 +26,14 @@ class DistanceJudge(Judge.Judge):
 
         # クラス変数
         self.logfile = 'Distance_log.txt'
+        self.judgelog = 'DisJudge_log.txt'
 
         #GPSログの消去
         LogMgmt.clear(self.logfile)
         LogMgmt.write(self.logfile,"NONE_DISTANCE")
+
+        LogMgmt.clear(self.judgelog)
+        LogMgmt.write(self.judgelog,"NONE_DISTANCE")
 
     """
     #座標計算 これいらんかも
@@ -66,9 +70,10 @@ class DistanceJudge(Judge.Judge):
 
         #X、Y座標を取得し、その値が基準値をこえていたらtrueを返す。それ以外はfalse
         if self.mlength <= 0:
-            LogMgmt.write(self.logfile,"reached")
+            LogMgmt.write(self.judgelog,"reached")
             return False
         else :
+            LogMgmt.write(self.judgelog,"UN_reached")
             return True
 
     def getPosition(self):
