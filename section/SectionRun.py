@@ -104,9 +104,9 @@ class SectionRun:
         t=True
         print("SECTION_RUN_TEST2")
         
+        mwalker.set_run(Walkeparam,pointer)
+        
         while t:
-            
-            mwalker.set_run(Walkeparam,pointer)
             
 
             tes=mjudge.judge(pointer)#kyori判定
@@ -120,7 +120,8 @@ class SectionRun:
                 break
         
         print("STOP!!!!!!!!!!!!!!!")
-        self.Motor.stop()
+        #self.Motor.stop()
+        mwalker.set_run(self.STOP,pointer)
         
         
     def request_Walker(self,number):
