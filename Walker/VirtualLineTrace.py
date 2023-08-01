@@ -56,14 +56,14 @@ class VirtualLineTrace():
             else:
                 x3 = (y - intercept)/slope'''
             #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
-            distance = abs(slope * (x) - y + intercept) / math.sqrt(slope**2 + 1)
-            LogMgmt.write(self.logfile,distance)
+            self.distance = abs(slope * (x) - y + intercept) / math.sqrt(slope**2 + 1)
+            LogMgmt.write(self.logfile,self.distance)
             print('distance2')
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
-            VirtualLineTrace.set_turn(self,distance)
+            VirtualLineTrace.set_turn(self,self.distance)
             #print(self.goalx,self.goaly)
             #print(x,y)
-            return distance
+            return self.distance
 
 
         def set_turn(self,distance):
@@ -169,42 +169,40 @@ class VirtualLineTrace():
             print(self.goalx,self.goaly)
             print(self.startx,self.starty)
             #ループカウンタ
-            
 
-            while True:
 
-                distance = VirtualLineTrace.set_distance(self,c)
-                #self.mPID.set_target(loca)
-                #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
-                #self.mPID.get_operation()
-                #print(self.turn)
-                if self.turn == 'no':
-                    #print ('zennsin2')
-                    self.MM.set_param(sp,sv)
-                        #self.MM.set_param(1,100)
-                if self.turn == 'right':
-                    self.MM.set_param(sp,-30)
-                    #self.MM.set_param(1,-100)
-                    #print ('zennsin')
-                elif self.turn == 'left':
-                    #print ('cousin')
-                    self.MM.set_param(sp,30)
-                    #self.MM.set_param(10,100)
+            distance = VirtualLineTrace.set_distance(self,c)
+            #self.mPID.set_target(loca)
+            #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
+            #self.mPID.get_operation()
+            #print(self.turn)
+            if self.turn == 'no':
+                #print ('zennsin2')
+                self.MM.set_param(sp,sv)
+                    #self.MM.set_param(1,100)
+            if self.turn == 'right':
+                self.MM.set_param(sp,-30)
+                #self.MM.set_param(1,-100)
+                #print ('zennsin')
+            elif self.turn == 'left':
+                #print ('cousin')
+                self.MM.set_param(sp,30)
+                #self.MM.set_param(10,100)
                     
+            self.MM.run()
+            c += 1
+            if c == 5:
+                c = 2
+            VirtualLineTrace.set_param(self,c)
+            time.sleep(0.1)
+            """c += 1
+            if c == 100:
+                self.MM.set_param(0,0)
                 self.MM.run()
-                c += 1
-                if c == 5:
-                    c = 2
-                VirtualLineTrace.set_param(self,c)
-                time.sleep(0.1)
-                """c += 1
-                if c == 100:
-                    self.MM.set_param(0,0)
-                    self.MM.run()
-                    self.MM.stop()
-                    #self.mPID.reset_param()
-                    break
-                #print (c)"""
+                self.MM.stop()
+                #self.mPID.reset_param()
+                break
+            #print (c)"""
                 
 
         def stop(self):

@@ -100,16 +100,20 @@ class SectionRun:
         
     def test2(self,mwalker,mjudge,Walkeparam,pointer,state):
         
-        mwalker.set_run(Walkeparam,pointer)
-            
-        tes=mjudge.judge(pointer)#旋回角度判定
-            
-        print("判定中です")
         
         t=True
-
+        print("SECTION_RUN_TEST2")
+        
         while t:
+            
+            mwalker.set_run(Walkeparam,pointer)
+            
 
+            tes=mjudge.judge(pointer)#kyori判定
+            print("判定中です")
+                
+
+        
             if tes==False:
                 t=False
                 print("判定しました")

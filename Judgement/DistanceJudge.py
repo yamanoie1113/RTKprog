@@ -29,10 +29,10 @@ class DistanceJudge(Judge.Judge):
         self.judgelog = 'DisJudge_log.txt'
 
         #GPSログの消去
-        LogMgmt.clear(self.logfile)
+        
         LogMgmt.write(self.logfile,"NONE_DISTANCE")
 
-        LogMgmt.clear(self.judgelog)
+        
         LogMgmt.write(self.judgelog,"NONE_JUDGED")
 
     """
