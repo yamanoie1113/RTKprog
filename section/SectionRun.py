@@ -4,7 +4,7 @@ import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import MotorMgmt
-from Walker import VirtualLineTrace222
+from Walker import VirtualLineTrace
 from Walker import curveLineTrace
 from Judgement import DistanceJudge
 from Judgement import TimeJudge
@@ -104,11 +104,12 @@ class SectionRun:
         t=True
         print("SECTION_RUN_TEST2")
         
-        mwalker.set_run(Walkeparam,pointer)
+        #mwalker.set_run(Walkeparam,pointer)
         
         while t:
             
-
+            mwalker.set_run(Walkeparam,pointer)
+            
             tes=mjudge.judge(pointer)#kyori判定
             print("判定中です")
                 
@@ -136,7 +137,7 @@ class SectionRun:
 
         if number==self.STRAIGHT:
             #オブジェクト生成
-            self.mWalker=VirtualLineTrace222.VirtualLineTrace()
+            self.mWalker=VirtualLineTrace.VirtualLineTrace()
 
             
             print("straight")
