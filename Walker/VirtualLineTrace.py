@@ -113,7 +113,7 @@ class VirtualLineTrace():
                             self.turn = 'left'
                     else:
                         self.turn = 'right'
-            self.save_saitan = distance
+            #self.save_saitan = distance
             
             #print(self.turn)
 
