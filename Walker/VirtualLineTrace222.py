@@ -40,7 +40,6 @@ class VirtualLineTrace():
 
             # クラス変数
             self.logfile = 'VirtualLine_log.txt'
-            self.thread1 = threading.Thread(target=self.run)
             #GPSログの消去
             #LogMgmt.clear(self.logfile)
             #LogMgmt.write(self.logfile,"NONE_DISTANCE")
@@ -175,6 +174,7 @@ class VirtualLineTrace():
             #print(self.startx,self.starty)
             #ループカウンタ
             cuvre = VirtualLineTrace()
+            self.thread1 = threading.Thread(target =cuvre.run)
             if self.cancel == 0:
                 cuvre.thread1.start()
                 self.cancel = 1
