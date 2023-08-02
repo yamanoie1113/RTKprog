@@ -117,7 +117,7 @@ class VirtualLineTrace():
             #print(self.turn)
 
 
-        def set_param(self,a):
+        def set_param(self):
         
             #PM = PositionMgmt.PositionMgmt()
             self.param = self.PM.getvalue()
@@ -213,7 +213,7 @@ class VirtualLineTrace():
                     c += 1
                     if c == 5:
                         c = 2
-                    VirtualLineTrace.set_param(self,c)
+                    VirtualLineTrace.set_param(self)
                     time.sleep(0.1)
                     """c += 1
                     if c == 100:
