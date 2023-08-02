@@ -4,7 +4,6 @@ import sys
 import time
 import pathlib
 import math
-import threading
 #from Walker.PID import PID
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
@@ -25,14 +24,10 @@ class VirtualLineTrace():
         turn = 'no'
         save_turn = 'no'
         saitan = 0
-        #save_saitan = 0
+        save_saitan = 0
         MM = MotorMgmt.MotorMgmt()
         PM = PositionMgmt.PositionMgmt()
         param = [[0 for i in range(2)] for j in range(5)]
-        sp = 0
-        sv = 0
-        cancel = 0
-
         #test=0
 
         def __init__(self):
@@ -40,7 +35,7 @@ class VirtualLineTrace():
 
             # クラス変数
             self.logfile = 'VirtualLine_log.txt'
-            self.thread1 = threading.Thread(target =self.run)
+
             #GPSログの消去
             #LogMgmt.clear(self.logfile)
             #LogMgmt.write(self.logfile,"NONE_DISTANCE")
@@ -48,7 +43,6 @@ class VirtualLineTrace():
         def set_distance(self,a):
             #print("test_value",self.test)
             #print(self.param)
-            self.param = self.PM.getvalue()
             x = float(self.param[0])
             y = float(self.param[1])
             #print(x)
@@ -62,14 +56,14 @@ class VirtualLineTrace():
             else:
                 x3 = (y - intercept)/slope'''
             #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
-            distance = abs(slope * (x) - y + intercept) / math.sqrt(slope**2 + 1)
-            LogMgmt.write(self.logfile,distance)
+            self.distance = abs(slope * (x) - y + intercept) / math.sqrt(slope**2 + 1)
+            LogMgmt.write(self.logfile,self.distance)
             print('distance2')
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
-            VirtualLineTrace.set_turn(self,distance)
+            VirtualLineTrace.set_turn(self,self.distance)
             #print(self.goalx,self.goaly)
             #print(x,y)
-            return distance
+            return self.distance
 
 
         def set_turn(self,distance):
@@ -118,7 +112,7 @@ class VirtualLineTrace():
             #print(self.turn)
 
 
-        def set_param(self):
+        def set_param(self,a):
         
             #PM = PositionMgmt.PositionMgmt()
             self.param = self.PM.getvalue()
@@ -152,8 +146,8 @@ class VirtualLineTrace():
             #for f in range(4):
                 #param_list = paramlist[f:f+1]
             #self.PM.__init__(self)
-            self.sp = paramlist[0]
-            self.sv = 0
+            sp = paramlist[0]
+            sv = 0
             p = paramlist[1]
             i = paramlist[2]
             d = paramlist[3]
@@ -161,7 +155,7 @@ class VirtualLineTrace():
             #self.goaly = goaly[1]
             #print(self.goalx)
             c = 0
-            VirtualLineTrace.set_param(self)
+            VirtualLineTrace.set_param(self,c)
             gy = float(goaly[0])
             gx = float(goaly[1])
             #print("param")
@@ -172,60 +166,43 @@ class VirtualLineTrace():
             self.goalx = self.startx + gx
             self.goaly = self.starty + gy
             #
-            #print(self.goalx,self.goaly)
-            #print(self.startx,self.starty)
+            print(self.goalx,self.goaly)
+            print(self.startx,self.starty)
             #ループカウンタ
-            if self.cancel == 0:
-                self.thread1.start()
-                self.cancel = 1
-            if self.sp == 0: 
-                self.cancel = 2
-                self.thread1.join()
-                self.cancel = 0
 
 
-        def run(self):
-            try:
-                c = 0
-                while True:
-
-                    distance = VirtualLineTrace.set_distance(self,c)
-                    #self.mPID.set_target(loca)
-                    #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
-                    #self.mPID.get_operation()
-                    #print(self.turn)
-                    if self.turn == 'no':
-                        #print ('zennsin2')
-                        self.MM.set_param(self.sp,self.sv)
-                            #self.MM.set_param(1,100)
-                    if self.turn == 'right':
-                        self.MM.set_param(self.sp,-30)
-                        #self.MM.set_param(1,-100)
-                        #print ('zennsin')
-                    elif self.turn == 'left':
-                        #print ('cousin')
-                        self.MM.set_param(self.sp,30)
-                        #self.MM.set_param(10,100)
-                    
-                    self.MM.run()
-                    if self.cancel == 2:
-                        break
-                    c += 1
-                    if c == 5:
-                        c = 2
-                    #VirtualLineTrace.set_param(self)
-                    time.sleep(0.1)
-                    """c += 1
-                    if c == 100:
-                        self.MM.set_param(0,0)
-                        self.MM.run()
-                        self.MM.stop()
-                        #self.mPID.reset_param()
-                        break
-                    #print (c)"""
-            except KeyboardInterrupt:
-                print("complet")
-
+            distance = VirtualLineTrace.set_distance(self,c)
+            #self.mPID.set_target(loca)
+            #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
+            #self.mPID.get_operation()
+            #print(self.turn)
+            if self.turn == 'no':
+                #print ('zennsin2')
+                self.MM.set_param(sp,sv)
+                    #self.MM.set_param(1,100)
+            if self.turn == 'right':
+                self.MM.set_param(sp,-30)
+                #self.MM.set_param(1,-100)
+                #print ('zennsin')
+            elif self.turn == 'left':
+                #print ('cousin')
+                self.MM.set_param(sp,30)
+                #self.MM.set_param(10,100)        
+            self.MM.run()
+            c += 1
+            if c == 5:
+                c = 2
+            VirtualLineTrace.set_param(self,c)
+            time.sleep(0.1)
+            """c += 1
+            if c == 100:
+                self.MM.set_param(0,0)
+                self.MM.run()
+                self.MM.stop()
+                #self.mPID.reset_param()
+                break
+            #print (c)"""
+                
 
         def stop(self):
             self.MM.set_param(0,0)
@@ -241,7 +218,5 @@ def main():
         
 if __name__ == '__main__':
     main()
-
-
 
 

@@ -3,6 +3,7 @@ import os
 import sys
 import time
 import pathlib
+import math
 #from Walker.PID import PID
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
@@ -18,7 +19,30 @@ class cuvreLineTrace:
         MM = MotorMgmt.MotorMgmt()
         PM = PositionMgmt.PositionMgmt()
         
-
+        def set_distance(self,a):
+            #print("test_value",self.test)
+            #print(self.param)
+            x = float(self.param[0])
+            y = float(self.param[1])
+            #print(x)
+            #print(self.goaly)
+            print('distance')
+            slope = (self.goaly - self.starty)/(self.goalx - self.startx)
+            #print(slope)
+            intercept = self.starty - slope * self.startx
+            '''if slope == 0:
+                x3 = x
+            else:
+                x3 = (y - intercept)/slope'''
+            #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
+            self.distance = abs(slope * (x) - y + intercept) / math.sqrt(slope**2 + 1)
+            #LogMgmt.write(self.logfile,self.distance)
+            print('distance2')
+            #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
+            VirtualLineTrace.set_turn(self,self.distance)
+            #print(self.goalx,self.goaly)
+            #print(x,y)
+            return self.distance
 
 
         def set_param(self,a,b):
