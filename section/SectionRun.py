@@ -10,7 +10,7 @@ from Judgement import DistanceJudge
 from Judgement import TimeJudge
 from Judgement import TurnAngleJudge
 from Sensors import PosInit
-
+import threading
 
 class SectionRun:
 
@@ -104,11 +104,11 @@ class SectionRun:
         t=True
         print("SECTION_RUN_TEST2")
         
-        #mwalker.set_run(Walkeparam,pointer)
+        mwalker.set_run(Walkeparam,pointer)
         
         while t:
             
-            mwalker.set_run(Walkeparam,pointer)
+            #mwalker.set_run(Walkeparam,pointer)
             
             tes=mjudge.judge(pointer)#kyori判定
             print("判定中です")
