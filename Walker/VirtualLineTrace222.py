@@ -25,12 +25,14 @@ class VirtualLineTrace():
         turn = 'no'
         save_turn = 'no'
         saitan = 0
-        save_saitan = 0
+        #save_saitan = 0
         MM = MotorMgmt.MotorMgmt()
         PM = PositionMgmt.PositionMgmt()
         param = [[0 for i in range(2)] for j in range(5)]
         sp = 0
         sv = 0
+        cancel = 0
+
         #test=0
 
         def __init__(self):
@@ -173,8 +175,14 @@ class VirtualLineTrace():
             #print(self.startx,self.starty)
             #ループカウンタ
             cuvre = VirtualLineTrace()
-            cuvre.thread1.start()
-            cuvre.thread1.join()
+            if self.cancel == 0:
+                cuvre.thread1.start()
+                self.cancel = 1
+            if self.sp == 0: 
+                self.cancel = 2
+                cuvre.thread1.join()
+                self.cancel = 0
+
 
         def run(self):
             try:
@@ -200,7 +208,7 @@ class VirtualLineTrace():
                         #self.MM.set_param(10,100)
                     
                     self.MM.run()
-                    if self.sp == 0:
+                    if self.cancel == 2:
                         break
                     c += 1
                     if c == 5:
