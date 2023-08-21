@@ -45,7 +45,7 @@ class VirtualLineTrace():
             #LogMgmt.clear(self.logfile)
             #LogMgmt.write(self.logfile,"NONE_DISTANCE")
 
-        def set_distance(self,a):
+        def set_distance(self):
             #print("test_value",self.test)
             #print(self.param)
             self.param = self.PM.getvalue()
@@ -189,7 +189,7 @@ class VirtualLineTrace():
                 c = 0
                 while True:
 
-                    distance = VirtualLineTrace.set_distance(self,c)
+                    VirtualLineTrace.set_distance(self)
                     #self.mPID.set_target(loca)
                     #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
                     #self.mPID.get_operation()
