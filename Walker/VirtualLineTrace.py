@@ -235,12 +235,13 @@ class VirtualLineTrace():
 
 def main():
     #print (1)
-    pa=[1,2,3,4]
+    pa=[0,0,0,0]
     cuvre = VirtualLineTrace()
     cuvre.stop()
         
 if __name__ == '__main__':
     main()
+
 
 
 

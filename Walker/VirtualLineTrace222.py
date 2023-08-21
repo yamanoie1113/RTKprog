@@ -40,6 +40,7 @@ class VirtualLineTrace():
 
             # クラス変数
             self.logfile = 'VirtualLine_log.txt'
+            self.thread1 = threading.Thread(target =self.run)
             #GPSログの消去
             #LogMgmt.clear(self.logfile)
             #LogMgmt.write(self.logfile,"NONE_DISTANCE")
@@ -47,6 +48,7 @@ class VirtualLineTrace():
         def set_distance(self,a):
             #print("test_value",self.test)
             #print(self.param)
+            self.param = self.PM.getvalue()
             x = float(self.param[0])
             y = float(self.param[1])
             #print(x)
@@ -173,14 +175,13 @@ class VirtualLineTrace():
             #print(self.goalx,self.goaly)
             #print(self.startx,self.starty)
             #ループカウンタ
-            cuvre = VirtualLineTrace()
-            self.thread1 = threading.Thread(target =cuvre.run)
+            
             if self.cancel == 0:
-                cuvre.thread1.start()
+                self.thread1.start()
                 self.cancel = 1
             if self.sp == 0: 
                 self.cancel = 2
-                cuvre.thread1.join()
+                self.cuvre.thread1.join()
                 self.cancel = 0
 
 
@@ -213,7 +214,7 @@ class VirtualLineTrace():
                     c += 1
                     if c == 5:
                         c = 2
-                    VirtualLineTrace.set_param(self)
+                    #VirtualLineTrace.set_param(self)
                     time.sleep(0.1)
                     """c += 1
                     if c == 100:
