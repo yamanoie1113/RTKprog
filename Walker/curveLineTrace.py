@@ -4,6 +4,7 @@ import sys
 import time
 import pathlib
 import math
+import threading
 #from Walker.PID import PID
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
@@ -18,6 +19,30 @@ class cuvreLineTrace:
 
         MM = MotorMgmt.MotorMgmt()
         PM = PositionMgmt.PositionMgmt()
+        goalx = 1000 #目標地点ｘ
+        goaly = 1000 #目標地点ｙ
+        startx = 0 #開始地点ｘ
+        starty = 0 #開始地点ｙ
+        turn = 'no'
+        save_turn = 'no'
+        saitan = 0
+        #save_saitan = 0
+        MM = MotorMgmt.MotorMgmt()
+        PM = PositionMgmt.PositionMgmt()
+        param = [[0 for i in range(2)] for j in range(5)]
+        sp = 0
+        sv = 0
+        cancel = 0
+
+        def __init__(self):
+            
+
+            # クラス変数
+            self.logfile = 'VirtualLine_log.txt'
+            self.thread1 = threading.Thread(target =self.run)
+            #GPSログの消去
+            #LogMgmt.clear(self.logfile)
+            #LogMgmt.write(self.logfile,"NONE_DISTANCE")
         
         def set_distance(self,a):
             #print("test_value",self.test)
@@ -36,6 +61,7 @@ class cuvreLineTrace:
                 x3 = (y - intercept)/slope'''
             #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
             self.distance = abs(slope * (x) - y + intercept) / math.sqrt(slope**2 + 1)
+            self.distance = self.distance/2
             #LogMgmt.write(self.logfile,self.distance)
             print('distance2')
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
