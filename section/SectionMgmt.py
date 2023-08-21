@@ -187,8 +187,8 @@ def main():
     sectionMgmt=SectionMgmt()
     sectionMgmt.run()
     #sectionMgmt.execRun()
-    #sectionMgmt.test1()
-    sectionMgmt.test2()
+    sectionMgmt.test1()
+    #sectionMgmt.test2()
     
 
 if __name__=="__main__":
