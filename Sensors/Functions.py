@@ -27,4 +27,19 @@ def calc_circ(diameter):
 def draw_circle():
     pass
 
+#ライントレースP制御のみ スロットルとステアリング値を返す 引数：現在地と目標地との距離,仮想ラインとの距離
+#未完成
+def P_LineTrace(dis_goal,dis_Vline):
+    throttle = dis_goal
+    steering = dis_Vline
 
+    return throttle,steering
+
+
+#ライントレースPID制御 スロットルとステアリング値を返す 引数：現在地と目標地との距離,仮想ラインとの距離
+#未完成
+def PID_LineTrace(dis_goal,dis_Vline):
+    throttle = dis_goal
+    steering = dis_Vline
+
+    return throttle,steering
