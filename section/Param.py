@@ -52,7 +52,7 @@ class Param:
     def Reiwa_Curve(self):
 
         self.Rprm_curve=([5,60,0,0,0],
-        [5,-60,0,0,0])
+        [5,50,0,0,0])
 
         return self.Rprm_curve
 

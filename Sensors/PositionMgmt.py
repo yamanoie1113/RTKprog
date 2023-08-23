@@ -41,8 +41,8 @@ class PositionMgmt(Sensor.Sensor):
         
 
         #x,yの増分
-        self.x_moves = 1.0
-        self.y_moves = 3.0
+        self.x_moves = 10.0
+        self.y_moves = 30.0
 
 
     #値の取得
