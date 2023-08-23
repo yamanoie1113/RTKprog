@@ -70,7 +70,7 @@ class TurnAngleJudge(Judge.Judge):
         goal_x = XYpos[0]
         goal_y = XYpos[1]
         
-        #現在地の更新
+        #現在地,角度の更新
         self.get_Position()
         self.get_ang()
         
@@ -83,8 +83,8 @@ class TurnAngleJudge(Judge.Judge):
         
         #現在角度と差分を表示
         #print("current:" + str(self.current_angle) + "\n" + " diff:" + str(self.diff_angle)+ "\n" + "\033[2A",end='')
-        print("current:" + str(self.current_angle))
-        print("diff:" + str(self.diff_angle))
+        print("ANGcurrent:" + str(self.current_angle))
+        print("ANGdiff:" + str(self.diff_angle))
         
         #誤差が基準値(std_angle)以下になるか、増え始めたら終了
         if self.diff_angle < self.std_angle or self.previos_diff < self.diff_angle:
