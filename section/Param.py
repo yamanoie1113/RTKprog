@@ -25,8 +25,8 @@ class Param:
 
     def Curve_set_param(self):
         
-        self.prm2=([20,0,0,0], #A-B 2
-                [20,1,1,1])    #D-E 5
+        self.prm2=([20,20,0,0,0], #A-B 2
+                [20,20,1,1,1])    #D-E 5
 
         return self.prm2
 
