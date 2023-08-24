@@ -147,6 +147,7 @@ class cuvreLineTrace:
                     #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
                     #self.mPID.get_operation()
                     #print(self.turn)
+                    print(self.turn)
                     if self.turn == 'no':
                         #print ('zennsin2')
                         self.MM.set_param(self.sp,self.sv)
