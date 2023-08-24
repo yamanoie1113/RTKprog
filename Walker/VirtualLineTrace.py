@@ -62,9 +62,10 @@ class VirtualLineTrace():
             else:
                 x3 = (y - intercept)/slope'''
             #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
-            distance = abs(slope * (x) - y + intercept) / math.sqrt(slope**2 + 1)
+            distance = abs(slope * (x) - (y) + intercept) / math.sqrt(slope**2 + 1)
             LogMgmt.write(self.logfile,distance)
-            print('distance2')
+            tyokusen = np.sqrt((self.goalx - x)**2+(self.goaly - y)**2)
+            print(tyokusen)
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
             VirtualLineTrace.set_turn(self,distance)
             #print(self.goalx,self.goaly)
@@ -169,8 +170,8 @@ class VirtualLineTrace():
             
             self.startx = float(self.param[0])
             self.starty = float(self.param[1])  
-            self.goalx = gx
-            self.goaly = gy
+            self.goalx = self.startx+gx
+            self.goaly = self.starty+gy
             #
             #print(self.goalx,self.goaly)
             #print(self.startx,self.starty)
