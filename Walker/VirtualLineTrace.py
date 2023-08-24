@@ -169,8 +169,8 @@ class VirtualLineTrace():
             
             self.startx = float(self.param[0])
             self.starty = float(self.param[1])  
-            self.goalx = gx
-            self.goaly = gy
+            self.goalx = self.startx+gx
+            self.goaly = self.starty+gy
             #
             #print(self.goalx,self.goaly)
             #print(self.startx,self.starty)

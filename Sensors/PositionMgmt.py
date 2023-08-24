@@ -35,14 +35,14 @@ class PositionMgmt(Sensor.Sensor):
             print("updating_origin...")
             self.update()
             self.origin = self.position
-            print("done")
+        print("done")
             
         print(self.origin)
         
 
         #x,yの増分
-        self.x_moves = 10.0
-        self.y_moves = 30.0
+        self.x_moves = 3.0
+        self.y_moves = 1.0
 
 
     #値の取得
