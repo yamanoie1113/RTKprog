@@ -69,7 +69,7 @@ class DistanceJudge(Judge.Judge):
         self.mlength = round(self.mlength)
 
         #X、Y座標を取得し、その値が基準値をこえていたらtrueを返す。それ以外はfalse
-        if self.mlength <= 0:
+        if self.mlength <= 2.0:
             LogMgmt.write(self.judgelog,"reached")
             return False
         else :
