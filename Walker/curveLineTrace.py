@@ -54,7 +54,7 @@ class cuvreLineTrace:
             #print(x)
             #print(self.goaly)
             if self.standard == 0:
-                self.tyusin = (self.startx + self.goalx)/2
+                self.tyusinx = (self.startx + self.goalx)/2
                 self.tyusiny = (self.starty + self.goaly)/2
             self.distance = np.sqrt((self.tyusinx-x)**2 + (self.tyusiny-y)**2) 
             if self.standard == 0:
