@@ -90,7 +90,7 @@ class VirtualLineTrace():
                 else:
                     self.turn = 'no'
             '''
-            if 0 != distance:
+            if 1 <= distance:
                 #distance = self.saitan - distance
                 self.turn = 'right'
                 if self.saitan < distance and self.save_turn == 'right':
@@ -191,7 +191,7 @@ class VirtualLineTrace():
                 while True:
 
                     VirtualLineTrace.set_distance(self)
-                    #self.mPID.set_target(loca)
+                    #self.mPID.set_target(0)
                     #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
                     #self.mPID.get_operation()
                     #print(self.turn)
