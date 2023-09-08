@@ -59,6 +59,8 @@ class cuvreLineTrace:
             self.distance = np.sqrt((self.tyusinx-x)**2 + (self.tyusiny-y)**2) 
             if self.standard == 0:
                 self.standard = self.distance
+            print("基準",self.standard)
+            print("現在",self.distance)
             #LogMgmt.write(self.logfile,self.distance)
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
             cuvreLineTrace.set_turn(self,self.distance)
@@ -147,7 +149,7 @@ class cuvreLineTrace:
                     #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
                     #self.mPID.get_operation()
                     #print(self.turn)
-                    print(self.turn)
+                    #print(self.turn)
                     if self.turn == 'no':
                         #print ('zennsin2')
                         self.MM.set_param(self.sp,self.sv)
