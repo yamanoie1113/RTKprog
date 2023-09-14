@@ -46,6 +46,21 @@ class cuvreLineTrace:
             #LogMgmt.clear(self.logfile)
             #LogMgmt.write(self.logfile,"NONE_DISTANCE")
         
+        def set_first(self):
+            #print("test_value",self.test)
+            #print(self.param)
+            x = float(self.param[0])
+            y = float(self.param[1])
+            #print(x)
+            #print(self.goaly)            
+            self.tyusinx = (self.startx + self.goalx)/2
+            self.tyusiny = (self.starty + self.goaly)/2
+            self.standard = np.sqrt((self.tyusinx-x)**2 + (self.tyusiny-y)**2) 
+            #LogMgmt.write(self.logfile,self.distance)
+            #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
+            #print(self.goalx,self.goaly)
+            #print(x,y)
+        
         def set_distance(self):
             #print("test_value",self.test)
             #print(self.param)
@@ -53,12 +68,9 @@ class cuvreLineTrace:
             y = float(self.param[1])
             #print(x)
             #print(self.goaly)
-            if self.standard == 0:
-                self.tyusinx = (self.startx + self.goalx)/2
-                self.tyusiny = (self.starty + self.goaly)/2
+            self.tyusinx = (self.startx + self.goalx)/2
+            self.tyusiny = (self.starty + self.goaly)/2
             self.distance = np.sqrt((self.tyusinx-x)**2 + (self.tyusiny-y)**2) 
-            if self.standard == 0:
-                self.standard = self.distance
             print("基準",self.standard)
             print("現在",self.distance)
             #LogMgmt.write(self.logfile,self.distance)
@@ -69,20 +81,17 @@ class cuvreLineTrace:
             return self.distance
 
         def set_turn(self,distance):
-            if self.standard != distance:
-                #distance = self.saitan - distance
-                if self.save_turn == 'right':
-                    if self.standard < distance :
-                        self.turn = 'right'
-                    else:
-                        self.turn = 'left'
-                elif self.save_turn == 'left':
-                    if self.standard < distance :
-                        self.turn = 'left'
-                    else:
-                        self.turn = 'right'
-            else:
-                self.turn = 'no'
+            #distance = self.saitan - distance
+            if self.save_turn == 'right':
+                if self.standard < distance :
+                    self.turn = 'right'
+                else:
+                    self.turn = 'left'
+            elif self.save_turn == 'left':
+                if self.standard < distance :
+                    self.turn = 'left'
+                else:
+                    self.turn = 'right'
             self.save_turn = self.turn
             #VirtualLineTrace.set_saitan(self,distance)
 
@@ -126,6 +135,7 @@ class cuvreLineTrace:
             self.starty = float(self.param[1])  
             self.goalx = gx
             self.goaly = gy
+            cuvreLineTrace.set_first(self)
             #
             #print(self.goalx,self.goaly)
             #print(self.startx,self.starty)
