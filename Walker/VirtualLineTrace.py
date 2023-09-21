@@ -10,7 +10,7 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import MotorMgmt
 from Sensors import PositionMgmt
-from section import SectionRun
+from Walker import PID2
 from tkinter import W
 import numpy as np
 from Sensors import LogMgmt
@@ -25,13 +25,21 @@ class VirtualLineTrace():
         turn = 'no'
         save_turn = 'no'
         saitan = 0
+        save_saitan = 0
         #save_saitan = 0
         MM = MotorMgmt.MotorMgmt()
         PM = PositionMgmt.PositionMgmt()
+        mPID = PID2.PID()
         param = [[0 for i in range(2)] for j in range(5)]
         sp = 0
         sv = 0
         cancel = 0
+        p = 0
+        i = 0
+        d = 0
+        error_sum = 0
+        error_pre = 0
+
 
         #test=0
 
@@ -90,11 +98,13 @@ class VirtualLineTrace():
                 else:
                     self.turn = 'no'
             '''
-            if 1 <= distance:
+            if 0 <= distance:
                 #distance = self.saitan - distance
                 self.turn = 'right'
+                self.save_saitan = distance
                 if self.saitan < distance and self.save_turn == 'right':
                     self.turn = 'left'
+                    self.save_saitan = self.save_saitan * (-1)
             else:
                 self.turn = 'no'
             self.save_turn = self.turn
@@ -194,18 +204,19 @@ class VirtualLineTrace():
                     #self.mPID.set_target(0)
                     #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
                     #self.mPID.get_operation()
+                    self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
                     #print(self.turn)
                     if self.turn == 'no':
                         #print ('zennsin2')
                         self.MM.set_param(self.sp,self.sv)
                             #self.MM.set_param(1,100)
                     if self.turn == 'right':
-                        self.MM.set_param(self.sp,-30)
+                        self.MM.set_param(self.sp,self.sv)
                         #self.MM.set_param(1,-100)
                         #print ('zennsin')
                     elif self.turn == 'left':
                         #print ('cousin')
-                        self.MM.set_param(self.sp,30)
+                        self.MM.set_param(self.sp,self.sv)
                         #self.MM.set_param(10,100)
                     
                     self.MM.run()
