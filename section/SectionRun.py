@@ -60,7 +60,7 @@ class SectionRun:
 
             mwalker.set_run(Walkeparam,pointer)
             
-            tes=mjudge.judge(pointer)#旋回角度判定
+            tes=mjudge.judge(pointer)#距離判定
             
             print("判定中です")
         
@@ -158,7 +158,8 @@ class SectionRun:
 
         if judge==self.ANGLE:
             #オブジェクト生成
-            self.mJudge=TurnAngleJudge.TurnAngleJudge()
+            #後日コードを短く修正しておく
+            self.mJudge=DistanceJudge.DistanceJudge()
 
             print("mjudghe")
 

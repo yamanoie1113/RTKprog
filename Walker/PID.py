@@ -6,9 +6,9 @@ from math import nan
 
 class PID:
         
-        def __init__(self,delta):
+        def __init__(self):
             self.resetFlg=True
-            KPID={"kp":nan,"ki":nan,"kd":nan}#辞書型
+            self.KPID={"kp":nan,"ki":nan,"kd":nan}#辞書型
             self.limit=100
             self.diff = [nan for i in range(2)]
             self.diff[0]=self.diff[1]=0.0
@@ -94,7 +94,7 @@ class PID:
 
             #if (self.debug):
 
-                #self.printf(self.buf,"pid:(float(%3.1),self.diff:float(%4.2) d:float(%4.2) i:float(%4.2) op:float(%5.3)",self.target,value,self.diff[1],self.delta,self.integral,self.val)
+            #print(self.buf,"pid:(float(%3.1),self.diff:float(%4.2) d:float(%4.2) i:float(%4.2) op:float(%5.3)",self.target,value,self.diff[1],self.delta,self.integral,self.val)
                 #self.msg_log (self.buf)
 
             if (self.val>self.limit):
@@ -103,6 +103,7 @@ class PID:
             if (self.val<-self.limit):
                 self.val=-self.limit
 
+            print(self.val)
             return self.val#これ！！！！
 
 
@@ -154,7 +155,11 @@ class PID:
 
 def main():
     mPID=PID()
-
+    i=7
+    n=3
+    mPID.set_Kpid(3,5,7)
+    mPID.set_target(i)
+    mPID.get_operation(n)
 
 
 if __name__=="__main__":

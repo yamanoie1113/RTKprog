@@ -24,6 +24,8 @@ class SectionPrm:
     def pointer_param(self):
 
         self.pointset=self.position.PosInit()
+        
+        #self.pointset=self.position.REIWA()
 
         #print(self.pointset[0])
 
