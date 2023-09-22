@@ -26,9 +26,9 @@ class PID:
     		
             m = (kp * error) + (ki * error_sum) + (kd*error_diff) # 操作量を計算
             m = math.floor(m)
-            if m <= 100:
+            if m >= 100:
                 m = 100
-            elif m > -100:
+            elif m <= -100:
                 m = -100
 
             return m, error_sum, error
