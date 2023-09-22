@@ -1,4 +1,45 @@
-from matplotlib import pyplot as plt
+# coding:utf-8
+import math
+from ast import Num
+#from curses import KEY_DC, qiflush
+from math import nan
+
+
+class PID:
+		
+        def __init__(self):
+            a = 0
+		
+        def PID(kp,ki,kd,theta_goal,theta_current,error_sum,error_pre):
+            
+            if theta_current < 1 and theta_current > 0:
+                theta_current = theta_current *100
+            elif theta_current > -1 and theta_current < 0:
+                theta_current = theta_current *100
+
+
+            error = theta_goal - (theta_current)# 偏差（error）を計算
+            
+            error_sum += error # 偏差の総和（積分）を計算
+    		
+            error_diff = error-error_pre # PI制御からの追加：1時刻前の偏差と現在の偏差の差分（微分）を計算
+    		
+            m = (kp * error) + (ki * error_sum) + (kd*error_diff) # 操作量を計算
+            m = math.floor(m)
+            if m >= 100:
+                m = 100
+            elif m <= -100:
+                m = -100
+
+            return m, error_sum, error
+	
+def main():
+    mPID=PID()
+
+
+
+if __name__=="__main__":
+    main()
 
 '''# 係数などの設定 --------------------
 kp = 0.1 # 比例ゲイン
@@ -15,17 +56,6 @@ error_pre = 0.0 # 1時刻前の偏差
 # PI制御の時の数値を初期化
 theta_start = 0.0; theta_current = theta_start; error_sum = 0.0; time_list = [0]; theta_list = [theta_start] 
 '''
-
-# ------------------------------- PID制御関連 -------------------------------
-# 関数の定義 ---------------------
-# PID制御
-def PID(kp, ki, kd, theta_goal, theta_current, error_sum, error_pre):
-    error = theta_goal - theta_current# 偏差（error）を計算
-    error_sum += error # 偏差の総和（積分）を計算
-    error_diff = error-error_pre # PI制御からの追加：1時刻前の偏差と現在の偏差の差分（微分）を計算
-    m = (kp * error) + (ki * error_sum) + (kd*error_diff) # 操作量を計算
-    
-    return m, error_sum, error
 
 '''
 # PID制御 -----------------------
