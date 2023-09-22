@@ -12,9 +12,9 @@ class PID:
 		
         def PID(kp,ki,kd,theta_goal,theta_current,error_sum,error_pre):
             
-            if theta_current < 1:
+            if theta_current < 1 and theta_current > 0:
                 theta_current = theta_current *100
-            elif theta_current > -1:
+            elif theta_current > -1 and theta_current < 0:
                 theta_current = theta_current *100
 
 
