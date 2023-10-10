@@ -21,7 +21,7 @@ class PositionMgmt(Sensor.Sensor):
 
 
     #A,B,C,D,E,C
-    Point = [[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0]]
+    Point = [[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0]]
 
     #pos_total: float
 
@@ -42,7 +42,7 @@ class PositionMgmt(Sensor.Sensor):
         print(self.origin)
 
 
-        #x,yの増分
+        #x,yの増分 要検討
         self.x_moves = 7.0
         self.y_moves = 16.0
 
@@ -116,6 +116,8 @@ class PositionMgmt(Sensor.Sensor):
 
         #中点を返す C:[0] G:[1]
         mid_point = self.set_mid()
+        print("中点")
+        print(mid_point)
 
 
 
@@ -146,7 +148,7 @@ class PositionMgmt(Sensor.Sensor):
         #中点 G
         self.Point[6][0] = mid_point[1]
         self.Point[6][1] = self.origin[1]
-        
+
         #右上 H
         self.Point[7][0] = mid_point[0] - 2    #中点G後の直線 2mスタート地点に寄せる
         self.Point[7][1] = self.origin[1] + self.y_moves
@@ -177,6 +179,9 @@ class PositionMgmt(Sensor.Sensor):
 
         G_mid = (G_main + G_sub)/2
 
+        print("C_MAIN")
+        print(C_main)
+
         return C_mid,G_mid
 
 
@@ -204,7 +209,11 @@ class PositionMgmt(Sensor.Sensor):
 def main():
     tesclass = PositionMgmt()
     tesclass.update()
-    tesclass.getvalue()
+    init = tesclass.REIWAInit()
+    print(init)
+
+    print(tesclass.origin[0])
+
 
 if __name__ == '__main__':
     main()

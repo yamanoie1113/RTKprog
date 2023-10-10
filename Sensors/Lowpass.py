@@ -3,17 +3,21 @@ class Lowpass():
     sampling = 240  #サンプリング周波数
     time_constant = 0.5 #時定数
 
-    lastLPF = 0.0   #LPFの前回値
+    lastLPF_X = 0.0   #LPF_Xの前回値
+    lastLPF_Y = 0.0   #LPF_Yの前回値
 
-    rate = 0.6  #減衰率
+    rate = 0.2  #減衰率
 
     def __init__(self):
         pass
 
     def filtering(self,input_val):
-        LPF = (1 - self.rate)* input_val + self.rate *self.lastLPF
-        self.lastLPF = LPF
-        return LPF       
+        LPF_X = (1 - self.rate)* input_val[0] + self.rate *self.lastLPF_X
+        LPF_Y = (1 - self.rate)* input_val[1] + self.rate *self.lastLPF_X
+
+        self.lastLPF_X = LPF_X
+        self.lastLPF_Y = LPF_Y
+        return LPF_X,LPF_Y       
 
 
 
