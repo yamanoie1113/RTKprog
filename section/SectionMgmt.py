@@ -141,16 +141,16 @@ class SectionMgmt:
         
         if self.section_set_Reiwa[self.pointerset]==0: #直線の場合
             '''
-            print("Walkerinstance:",self.Walkerinstance[self.STRAIGHT])
-            print("judgeinstance",self.Judgeinstance[self.STRAIGHT])
-            print("WalkerParam",self.WalkeParam[self.STRAIGHT][self.Swalkerpointer])
+            print("走行インスタンス",self.Walkerinstance[self.STRAIGHT])
+            print("判定インスタンス",self.Judgeinstance[self.STRAIGHT])
+            print("パラメータ",self.WalkeParam[self.STRAIGHT][self.Swalkerpointer])
             print("座標",self.Pointer[self.pointerset])
             '''
             self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
                                     self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset],self.section_set_Reiwa[self.pointerset]) 
 
             self.Swalkerpointer+=1
-            if self.Swalkerpointer==6:
+            if self.Swalkerpointer==6:  
                 self.Swalkerpointer=0
 
             self.pointerset+=1
@@ -178,19 +178,39 @@ class SectionMgmt:
 
     def end(self):
         
+        self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
+                                    self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset],self.section_set_Reiwa[self.pointerset]) 
         
         
         
         
-        pass
+    
+    def end_REIWA(self):
+        
+        
+        self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
+                                    self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset],self.section_set_Reiwa[self.pointerset]) 
+        
+        
+        
+        
         
 
 
     def addSection(self):
 
-        self.get_Param()#座標
-        self.setWalker()#スピード、PID
+        self.get_Param()#座標、パラメータ
+        self.setWalker()#instaance
         self.setJudge()#判定
+        
+    
+    def addSection_R(self):
+        
+        self.get_Param_R()#座標、パラメータ
+        self.setWalker()#instance
+        self.setJudge()#判定
+        
+        pass
         
 
     def setWalker(self):
@@ -220,6 +240,15 @@ class SectionMgmt:
         self.Pointer=self.sectionprm.pointer_param()
 
         
+    def get_Param_R(self):
+        
+        self.WalkeParam[self.STRAIGHT]=self.sectionprm.walkerset_param_R(self.STRAIGHT)
+
+        self.WalkeParam[self.CURVE]=self.sectionprm.walkerset_param_R(self.CURVE)
+
+        self.Pointer=self.sectionprm.pointer_param_R()
+
+
 
 
 
