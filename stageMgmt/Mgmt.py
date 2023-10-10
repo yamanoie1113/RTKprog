@@ -46,6 +46,8 @@ class Mgmt:
             #print('tesuto')
             section.execRun()
             #print(counter,"回目")
+            
+        section.end_REIWA()
 
         print("終了")
 

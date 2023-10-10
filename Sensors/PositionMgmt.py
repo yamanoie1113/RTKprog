@@ -21,7 +21,7 @@ class PositionMgmt(Sensor.Sensor):
 
 
     #A,B,C,D,E,C
-    Point = [[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0]]
+    Point = [[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0]]
 
     #pos_total: float
 
@@ -42,7 +42,7 @@ class PositionMgmt(Sensor.Sensor):
         print(self.origin)
 
 
-        #x,yの増分
+        #x,yの増分 要検討
         self.x_moves = 7.0
         self.y_moves = 16.0
 
@@ -111,6 +111,81 @@ class PositionMgmt(Sensor.Sensor):
 
         return self.Point
 
+    def REIWAInit(self):
+        self.update()
+
+        #中点を返す C:[0] G:[1]
+        mid_point = self.set_mid()
+        print("中点")
+        print(mid_point)
+
+
+
+        #左上 A
+        self.Point[0][0] = self.origin[0] - self.x_moves
+        self.Point[0][1] = self.origin[1] + self.y_moves
+
+        #左下 B
+        self.Point[1][0] = self.origin[0] - self.x_moves - 1    #中点Cを通るため1m寄せる
+        self.Point[1][1] = self.origin[1] - self.y_moves
+
+        #中点 C 
+        self.Point[2][0] = mid_point[0]
+        self.Point[2][1] = self.origin[1]
+
+        #左上 D 
+        self.Point[3][0] = mid_point[0] + 2     #中点C後の直線 2mスタート地点に寄せる
+        self.Point[3][1] = self.origin[1] + self.y_moves
+
+        #右上 E aaa
+        self.Point[4][0] = self.origin[0] + self.x_moves
+        self.Point[4][1] = self.origin[1] + self.y_moves
+
+        #右下 F
+        self.Point[5][0] = self.origin[0] + self.x_moves - 1 #中点Gを通るため1m寄せる
+        self.Point[5][1] = self.origin[1] - self.y_moves
+
+        #中点 G
+        self.Point[6][0] = mid_point[1]
+        self.Point[6][1] = self.origin[1]
+
+        #右上 H
+        self.Point[7][0] = mid_point[0] - 2    #中点G後の直線 2mスタート地点に寄せる
+        self.Point[7][1] = self.origin[1] + self.y_moves
+
+        print("REIWA_UPDATED!!")
+
+        return self.Point
+
+
+    def set_mid(self):
+
+        #C付近のメインパイロンxポイント
+        C_main = self.origin[0] - 10
+        #C付近のサブパイロンxポイント
+        C_sub = C_main + 1
+
+
+
+
+        #G付近のメインパイロンxポイント
+        G_main = self.origin[0] + 10
+        #G付近のサブパイロンxポイント
+        G_sub = G_main - 1
+
+
+        C_mid = (C_main + C_sub)/2
+        
+
+        G_mid = (G_main + G_sub)/2
+
+        print("C_MAIN")
+        print(C_main)
+
+        return C_mid,G_mid
+
+
+
 
     #値の更新
     def update(self):
@@ -134,7 +209,11 @@ class PositionMgmt(Sensor.Sensor):
 def main():
     tesclass = PositionMgmt()
     tesclass.update()
-    tesclass.getvalue()
+    init = tesclass.REIWAInit()
+    print(init)
+
+    print(tesclass.origin[0])
+
 
 if __name__ == '__main__':
     main()
