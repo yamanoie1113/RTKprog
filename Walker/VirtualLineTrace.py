@@ -111,7 +111,7 @@ class VirtualLineTrace():
                 else:
                     self.turn = 'no'
             '''
-            #ONOFF回路
+            #ONOFF回路の
             '''
             if 0 <= distance:
                 #distance = self.saitan - distance
