@@ -38,9 +38,9 @@ class PositionMgmt(Sensor.Sensor):
             self.update()
             self.origin = self.position
         print("done")
-            
+
         print(self.origin)
-        
+
 
         #x,yの増分
         self.x_moves = 7.0
