@@ -39,6 +39,7 @@ class VirtualLineTrace():
         d = 0
         error_sum = 0
         error_pre = 0
+        bunp = 0
 
 
         #test=0
@@ -72,29 +73,28 @@ class VirtualLineTrace():
             #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
             distance = abs(slope * (x) - (y) + intercept) / math.sqrt(slope**2 + 1)
             LogMgmt.write(self.logfile,distance)
+            t = (-1*slope * x - intercept * y - intercept) / (slope * slope + intercept * intercept)
+            nx = x + slope * t
+            ny = y + intercept * t
             tyokusen = np.sqrt((self.goalx - x)**2+(self.goaly - y)**2)
             print(tyokusen)
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
-            VirtualLineTrace.set_turn(self,distance)
+            VirtualLineTrace.set_turn(self,distance,x,y,nx,ny)
             #print(self.goalx,self.goaly)
             #print(x,y)
             return distance
 
         def set_bunp(self):
             if self.startx <= self.goalx and self.starty <= self.startx:
-                bunpx = 1
-                bunpy = 1
-            if self.startx >= self.goalx and self.starty <= self.startx:
-                bunpx = -1
-                bunpy = 1
-            if self.startx >= self.goalx and self.starty >= self.startx:
-                bunpx = -1
-                bunpy = -1
-            if self.startx <= self.goalx and self.starty >= self.startx:
-                bunpx = 1
-                bunpy = -1
+                self.bunp = 1
+            elif self.startx >= self.goalx and self.starty <= self.startx:
+                self.bunp = 2
+            elif self.startx >= self.goalx and self.starty >= self.startx:
+                self.bunp = 3
+            elif self.startx <= self.goalx and self.starty >= self.startx:
+                self.bunp = 4
 
-        def set_turn(self,distance):
+        def set_turn(self,distance,x,y,nx,ny):
             '''if self.goaly > self.starty:
                 if mx > gx:
                     self.turn = 'left' #左
@@ -111,6 +111,8 @@ class VirtualLineTrace():
                 else:
                     self.turn = 'no'
             '''
+            #ONOFF回路
+            '''
             if 0 <= distance:
                 #distance = self.saitan - distance
                 self.turn = 'right'
@@ -123,6 +125,23 @@ class VirtualLineTrace():
             self.save_turn = self.turn
             self.saitan = distance
             #VirtualLineTrace.set_saitan(self,distance)
+            '''
+            if 0 <= distance:
+                if self.bunp ==1 or self.bunp ==2:
+                    if nx <= x:
+                        self.turn = 'left'
+                        self.save_saitan = self.save_saitan * (-1)
+                    else:
+                        self.turn = 'right'
+                if self.bunp ==3 or self.bunp ==4:
+                    if nx <= x:
+                        self.turn = 'right'
+                    else:
+                        self.turn = 'left'
+                        self.save_saitan = self.save_saitan * (-1)
+
+            
+            
         
         def set_saitan(self,distance): #今使ってない
             distance = self.saitan - distance
@@ -178,9 +197,9 @@ class VirtualLineTrace():
             #self.PM.__init__(self)
             self.sp = paramlist[0]
             self.sv = 0
-            p = paramlist[1]
-            i = paramlist[2]
-            d = paramlist[3]
+            self.p = paramlist[1]
+            self.i = paramlist[2]
+            self.d = paramlist[3]
             #self.goalx = goaly[0]
             #self.goaly = goaly[1]
             #print(self.goalx)
@@ -195,6 +214,7 @@ class VirtualLineTrace():
             self.starty = float(self.param[1])  
             self.goalx = gx
             self.goaly = gy
+            VirtualLineTrace.set_bunp(self)
             #
             #print(self.goalx,self.goaly)
             #print(self.startx,self.starty)
