@@ -4,7 +4,7 @@ import pathlib
 
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from Sensors import Sensor,GPS2xy,LogMgmt
+from Sensors import Sensor,GPS2xy,LogMgmt,Lowpass
 
 class PositionMgmt(Sensor.Sensor):
     #gps = GPS2xy()
@@ -15,6 +15,8 @@ class PositionMgmt(Sensor.Sensor):
 
     x_moves = 0.0
     y_moves = 0.0
+    last_pos = 0.0
+    lowpass = Lowpass.Lowpass()
 
 
 
@@ -116,7 +118,9 @@ class PositionMgmt(Sensor.Sensor):
         #print("update position")
         temp = GPS2xy.GPS2xy.getvalue(self)
         if temp != None:
-            self.position = temp
+            self.last_pos = temp
+            filtered_pos = self.lowpass.filtering(temp)
+            self.position = filtered_pos
             #print("updated position:")
 
         """
