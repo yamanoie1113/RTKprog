@@ -80,6 +80,19 @@ class VirtualLineTrace():
             #print(x,y)
             return distance
 
+        def set_bunp(self):
+            if self.startx <= self.goalx and self.starty <= self.startx:
+                bunpx = 1
+                bunpy = 1
+            if self.startx >= self.goalx and self.starty <= self.startx:
+                bunpx = -1
+                bunpy = 1
+            if self.startx >= self.goalx and self.starty >= self.startx:
+                bunpx = -1
+                bunpy = -1
+            if self.startx <= self.goalx and self.starty >= self.startx:
+                bunpx = 1
+                bunpy = -1
 
         def set_turn(self,distance):
             '''if self.goaly > self.starty:
