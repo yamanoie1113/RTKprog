@@ -24,12 +24,21 @@ class SectionPrm:
     def pointer_param(self):
 
         self.pointset=self.position.PosInit()
-        
-        #self.pointset=self.position.REIWA()
 
         #print(self.pointset[0])
 
         return self.pointset
+    
+    def pointer_param_R(self):
+
+        
+        self.pointset=self.position.REIWA()
+
+        #print(self.pointset[0])
+
+        return self.pointset
+    
+    
 
 
     def Walkerset_param(self,pointset):#msectionIdxは区間管理のget_paramから
@@ -49,6 +58,23 @@ class SectionPrm:
         
             return self.parameter2
         
+    
+    def walkerset_param_R(self,pointset):
+        
+        if pointset==0:
+            self.parameter1=self.param.Reiwa_Straight()
+            
+            return self.parameter1
+        
+            
+            
+        else:
+            self.parameter2=self.param.Reiwa_Curve()
+        
+            return self.parameter2
+        
+        
+    
 
 def main():
     dd=SectionPrm()
