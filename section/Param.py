@@ -14,7 +14,7 @@ class Param:
     def Straight_set_param(self):
 
         #速度、P,I,D　
-        self.prm1=([20,0,0,0],  #C-A 1
+        self.prm1=([20,0.8,0.2,0.2],  #C-A 1
         [30,1,1,1],             #B-C 3
         [30,2,1,1],             #C-D 4
         [30,3,1,1])             #E-C 6
@@ -44,7 +44,6 @@ class Param:
         [5,0,0,0],                     #G
         [5,0,0,0],                     #H
         [5,0,0,0])                     #S
-
         return self.Rprm_straight
 
 #曲線
