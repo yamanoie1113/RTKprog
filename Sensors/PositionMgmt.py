@@ -153,6 +153,10 @@ class PositionMgmt(Sensor.Sensor):
         self.Point[7][0] = mid_point[0] - 2    #中点G後の直線 2mスタート地点に寄せる
         self.Point[7][1] = self.origin[1] + self.y_moves
 
+        #原点 S
+        self.Point[8][0] = self.origin[0]
+        self.Point[8][1] = self.origin[1]
+
         print("REIWA_UPDATED!!")
 
         return self.Point
