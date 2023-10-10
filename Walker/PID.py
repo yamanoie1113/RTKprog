@@ -55,7 +55,7 @@ class PID:
             self.prev_i=self.integral
 
             self.delta=(self.diff[1]-self.diff[0])/self.DELTAT
-            #self.integral+=(self.diff[0]+self.diff[1])/2.0*self.DELTAT
+            self.integral+=(self.diff[0]+self.diff[1])/2.0*self.DELTAT
             self.last_integral[self.cnt]=(self.diff[0]+self.diff[1])/2.0*self.DELTAT
             self.integral+=self.last_integral[self.cnt]
             self.integral-=self.last_integral[(self.cnt+1)%self.sec]
@@ -143,17 +143,17 @@ class PID:
 
             self.DELTAT=delta
 
-#p=PID()
-#i=7
-#n=3
-#p.set_target(i)
-#p.get_operation(n)
+p=PID(10)
+i=7
+n=3
+p.set_target(i)
+p.get_operation(n)
 
 
-#print("a")
+print("a")
 
 def main():
-    mPID=PID()
+    mPID=PID(10)
 
 
 
