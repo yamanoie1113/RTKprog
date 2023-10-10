@@ -26,6 +26,7 @@ class SectionMgmt:
     counter=0
     test0=None
     section_set=[0,1,0,0,1,0]    #0が直線　1が曲線
+    section_set_Reiwa=[0,1,0,0,0,1,0,0,0]
     
 
     def __init__(self):
@@ -138,9 +139,48 @@ class SectionMgmt:
         
     def excecRun_R(self):
         
+        if self.section_set_Reiwa[self.pointerset]==0: #直線の場合
+            '''
+            print("Walkerinstance:",self.Walkerinstance[self.STRAIGHT])
+            print("judgeinstance",self.Judgeinstance[self.STRAIGHT])
+            print("WalkerParam",self.WalkeParam[self.STRAIGHT][self.Swalkerpointer])
+            print("座標",self.Pointer[self.pointerset])
+            '''
+            self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
+                                    self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset],self.section_set_Reiwa[self.pointerset]) 
+
+            self.Swalkerpointer+=1
+            if self.Swalkerpointer==6:
+                self.Swalkerpointer=0
+
+            self.pointerset+=1
+            if self.pointerset==8:
+                self.pointerset=0
+                
+
+                
+        else: #曲線
+            
+            self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
+                                    self.WalkeParam[self.CURVE][self.Cwalkerpointer],self.Pointer[self.pointerset],self.section_set_Reiwa[self.pointerset])
+
+            self.Cwalkerpointer+=1
+            if self.Cwalkerpointer==2:
+                self.Cwalkerpointer=0
+
+            self.pointerset+=1
+            if self.pointerset==8:
+                self.pointerset=0
+
+        self.mState=self.END
+        
         pass
 
     def end(self):
+        
+        
+        
+        
         
         pass
         
