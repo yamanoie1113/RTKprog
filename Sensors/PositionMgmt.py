@@ -179,7 +179,7 @@ class PositionMgmt(Sensor.Sensor):
 
 
         C_mid = (C_main + C_sub)/2
-        
+
 
         G_mid = (G_main + G_sub)/2
 
