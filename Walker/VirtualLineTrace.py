@@ -62,7 +62,7 @@ class VirtualLineTrace():
             y = float(self.param[1])
             #print(x)
             #print(self.goaly)
-            print('distance')
+            #print('distance')
             slope = (self.goaly - self.starty)/(self.goalx - self.startx)
             #print(slope)
             intercept = self.starty - slope * self.startx
@@ -73,17 +73,17 @@ class VirtualLineTrace():
             #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
             distance = abs(slope * (x) - (y) + intercept) / math.sqrt(slope**2 + 1)
             LogMgmt.write(self.logfile,distance)
-            
+            #nx = (y-intercept)/slope
+            #最短座標
             t = (-1*slope * x - (-1) * y - intercept) / (slope * slope + (-1) * (-1))
             nx = x + slope * t
             ny = y + (-1) * t
-            tyokusen = np.sqrt((self.goalx - x)**2+(self.goaly - y)**2)
-            print(tyokusen)
+            #tyokusen = np.sqrt((self.goalx - x)**2+(self.goaly - y)**2)
+            #print(tyokusen)
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
-            VirtualLineTrace.set_turn(self,distance,x,y,nx,ny)
+            VirtualLineTrace.set_turn(self,distance,x,y,nx)
             #print(self.goalx,self.goaly)
             #print(x,y)
-            return distance
 
         def set_bunp(self):
             if self.startx <= self.goalx and self.starty <= self.startx:
@@ -128,6 +128,8 @@ class VirtualLineTrace():
             #VirtualLineTrace.set_saitan(self,distance)
             '''
             if 0 <= distance:
+                print('distance',distance)
+                print('self.save_saitan',self.save_saitan)
                 self.save_saitan = distance
                 if self.bunp ==1 or self.bunp ==2:
                     if nx <= x:
@@ -141,6 +143,7 @@ class VirtualLineTrace():
                     else:
                         self.turn = 'left'
                         self.save_saitan = self.save_saitan * (-1)
+            print(self.turn)
             
 
             

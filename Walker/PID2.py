@@ -12,11 +12,13 @@ class PID:
 		
         def PID(kp,ki,kd,theta_goal,theta_current,error_sum,error_pre):
             
+            #pidが小さい時
+            '''
             if theta_current < 1 and theta_current > 0:
                 theta_current = theta_current *100
             elif theta_current > -1 and theta_current < 0:
                 theta_current = theta_current *100
-
+            '''
 
             error = theta_goal - (theta_current)# 偏差（error）を計算
             
@@ -27,9 +29,11 @@ class PID:
             m = (kp * error) + (ki * error_sum) + (kd*error_diff) # 操作量を計算
             m = math.floor(m)
             if m >= 100:
-                m = 100
+                m = 90
             elif m <= -100:
-                m = -100
+                m = -90
+            
+            print('m',m)
 
             return m, error_sum, error
 	
