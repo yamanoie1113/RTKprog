@@ -17,7 +17,7 @@ class Lowpass():
 
         self.lastLPF_X = LPF_X
         self.lastLPF_Y = LPF_Y
-        return LPF_X,LPF_Y       
+        return LPF_X,LPF_Y
 
 
 
