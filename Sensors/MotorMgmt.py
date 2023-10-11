@@ -27,7 +27,7 @@ class MotorMgmt():
             if sv > 0:
                 svduty = 7.25 + sv*0.0475
             else:
-                svduty = 7.25 + sv*0.0475
+                svduty = 8.25 + sv*0.0475
         self.cycle = int((svduty * 1000000 / 100))        
         
         if sp == 0:
@@ -46,6 +46,7 @@ class MotorMgmt():
 
     def run(self):
         
+        #print('kiteruyo')
         self.pi.hardware_PWM(18, 50, self.cycle)
         up_flag = True
         self.pi.set_PWM_frequency(19,200)

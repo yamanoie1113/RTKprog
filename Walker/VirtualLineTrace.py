@@ -81,7 +81,7 @@ class VirtualLineTrace():
             #tyokusen = np.sqrt((self.goalx - x)**2+(self.goaly - y)**2)
             #print(tyokusen)
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
-            VirtualLineTrace.set_turn(self,distance,x,y,nx)
+            VirtualLineTrace.set_turn(self,distance,x,y,nx,ny)
             #print(self.goalx,self.goaly)
             #print(x,y)
 
