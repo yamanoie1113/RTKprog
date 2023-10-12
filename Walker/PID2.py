@@ -23,7 +23,7 @@ class PID:
             error = theta_goal - (theta_current)# 偏差（error）を計算
             
             error_sum += error # 偏差の総和（積分）を計算
-            #error_sum = error + error_pre
+            error_sum = error + error_pre
     		
             error_diff = error-error_pre # PI制御からの追加：1時刻前の偏差と現在の偏差の差分（微分）を計算
     		
@@ -34,7 +34,7 @@ class PID:
             elif m <= -100:
                 m = -90
             
-            print('m',m)
+            print('m',m)    
 
             return m, error_sum, error
 	
