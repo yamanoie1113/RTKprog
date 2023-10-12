@@ -87,7 +87,7 @@ class SectionRun:
             
             
             tes=mjudge.judge(pointer)#距離判定
-            print("判定中です")
+            #print("判定中です")
                 
 
         

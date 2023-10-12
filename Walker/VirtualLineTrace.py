@@ -69,15 +69,18 @@ class VirtualLineTrace():
             '''if slope == 0:
                 x3 = x
             else:
-                x3 = (y - intercept)/slope'''
+                x3 = (y - intercept)/slope
+            '''
             #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
             distance = abs(slope * (x) - (y) + intercept) / math.sqrt(slope**2 + 1)
             LogMgmt.write(self.logfile,distance)
             #nx = (y-intercept)/slope
             #最短座標
+            #'''
             t = (-1*slope * x - (-1) * y - intercept) / (slope * slope + (-1) * (-1))
             nx = x + slope * t
             ny = y + (-1) * t
+            #'''
             #tyokusen = np.sqrt((self.goalx - x)**2+(self.goaly - y)**2)
             #print(tyokusen)
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
@@ -113,7 +116,7 @@ class VirtualLineTrace():
                     self.turn = 'no'
             '''
             #ONOFF回路の
-            '''
+            ''' 
             if 0 <= distance:
                 #distance = self.saitan - distance
                 self.turn = 'right'
@@ -128,8 +131,8 @@ class VirtualLineTrace():
             #VirtualLineTrace.set_saitan(self,distance)
             '''
             if 0 <= distance:
-                print('distance',distance)
-                print('self.save_saitan',self.save_saitan)
+                #print('distance',distance)
+                #print('self.save_saitan',self.save_saitan)
                 self.save_saitan = distance
                 if self.bunp ==1 or self.bunp ==2:
                     if nx <= x:
@@ -143,7 +146,8 @@ class VirtualLineTrace():
                     else:
                         self.turn = 'left'
                         self.save_saitan = self.save_saitan * (-1)
-            print(self.turn)
+            #print(self.turn)
+            #'''
             
 
             
@@ -248,10 +252,10 @@ class VirtualLineTrace():
                     if self.turn == 'no':
                         #print ('zennsin2')
                         self.MM.set_param(self.sp,self.sv)
-                            #self.MM.set_param(1,100)
+                        #self.MM.set_param(self.sp,50)
                     if self.turn == 'right':
                         self.MM.set_param(self.sp,self.sv)
-                        #self.MM.set_param(1,-100)
+                        #self.MM.set_param(self.sp,-50)
                         #print ('zennsin')
                     elif self.turn == 'left':
                         #print ('cousin')
@@ -265,7 +269,7 @@ class VirtualLineTrace():
                     if c == 5:
                         c = 2
                     #VirtualLineTrace.set_param(self)
-                    time.sleep(0.1)
+                    time.sleep(0.05)
                     """c += 1
                     if c == 100:
                         self.MM.set_param(0,0)
