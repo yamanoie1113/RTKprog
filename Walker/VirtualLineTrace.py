@@ -49,7 +49,7 @@ class VirtualLineTrace():
 
             # クラス変数
             self.logfile = 'VirtualLine_log.txt'
-            self.thread1 = threading.Thread(target =self.run)
+            #self.thread1 = threading.Thread(target =self.run)
             #GPSログの消去
             #LogMgmt.clear(self.logfile)
             #LogMgmt.write(self.logfile,"NONE_DISTANCE")
@@ -72,7 +72,7 @@ class VirtualLineTrace():
                 x3 = (y - intercept)/slope'''
             #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
             distance = abs(slope * (x) - (y) + intercept) / math.sqrt(slope**2 + 1)
-            LogMgmt.write(self.logfile,distance)
+            #LogMgmt.write(self.logfile,distance)
             #nx = (y-intercept)/slope
             #最短座標
             t = (-1*slope * x - (-1) * y - intercept) / (slope * slope + (-1) * (-1))
