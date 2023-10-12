@@ -10,7 +10,7 @@ class PID:
         def __init__(self):
             a = 0
 		
-        def PID(kp,ki,kd,theta_goal,theta_current,error_sum,error_pre):
+        def PID(self,kp,ki,kd,theta_goal,theta_current,error_sum,error_pre):
             
             #pidが小さい時
             '''
@@ -23,18 +23,18 @@ class PID:
             error = theta_goal - (theta_current)# 偏差（error）を計算
             
             error_sum += error # 偏差の総和（積分）を計算
-            #error_sum = error + error_pre
+            #ki = 0
+    
     		
             error_diff = error-error_pre # PI制御からの追加：1時刻前の偏差と現在の偏差の差分（微分）を計算
     		
             m = (kp * error) + (ki * error_sum) + (kd*error_diff) # 操作量を計算
             m = math.floor(m)
+            print('m',m)
             if m >= 100:
                 m = 90
             elif m <= -100:
                 m = -90
-            
-            print('m',m)    
 
             return m, error_sum, error
 	

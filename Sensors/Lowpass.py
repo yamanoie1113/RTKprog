@@ -13,11 +13,11 @@ class Lowpass():
 
     def filtering(self,input_val):
         LPF_X = (1 - self.rate)* input_val[0] + self.rate *self.lastLPF_X
-        LPF_Y = (1 - self.rate)* input_val[1] + self.rate *self.lastLPF_X
+        LPF_Y = (1 - self.rate)* input_val[1] + self.rate *self.lastLPF_Y
 
         self.lastLPF_X = LPF_X
         self.lastLPF_Y = LPF_Y
-        return LPF_X,LPF_Y       
+        return LPF_X,LPF_Y
 
 
 
