@@ -231,6 +231,7 @@ class VirtualLineTrace():
             #ループカウンタ
             if self.cancel == 0:
                 self.thread1.start()
+                #self.thread1.join()
                 self.cancel = 1
             if self.sp == 0: 
                 self.cancel = 2

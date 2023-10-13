@@ -43,8 +43,8 @@ class PositionMgmt(Sensor.Sensor):
 
 
         #x,yの増分 要検討
-        self.x_moves = 3.0
-        self.y_moves = 4.0
+        self.x_moves = 5.0
+        self.y_moves = 5.0
         
         
     def Origin_update(self):
