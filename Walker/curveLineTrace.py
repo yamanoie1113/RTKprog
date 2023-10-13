@@ -42,10 +42,9 @@ class cuvreLineTrace:
 
         def __init__(self):
             
-
+            pass
             # クラス変数
             #self.logfile = 'cuvreLine_log.txt'
-            self.thread1 = threading.Thread(target =self.run)
             #GPSログの消去
             #LogMgmt.clear(self.logfile)
             #LogMgmt.write(self.logfile,"NONE_DISTANCE")
@@ -142,12 +141,10 @@ class cuvreLineTrace:
             #print(self.startx,self.starty)
             #ループカウンタ
             if self.cancel == 0:
-                self.thread1.start()
+                self.run()
                 self.cancel = 1
             if self.sp == 0: 
-                self.cancel = 2
-                self.thread1.join()
-                self.cancel = 0
+                self.stop()
 
 
         def run(self):
