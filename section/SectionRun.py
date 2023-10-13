@@ -33,8 +33,8 @@ class SectionRun:
         mwalker = None
         Walkeparam = None
         pointer = None
-        self.walker_thread=threading.Thread(target=self.exec_run, args=(mwalker,Walkeparam,pointer))
-        self.judge_thread=threading.Thread(target=self.exec_judge)
+        #self.walker_thread=threading.Thread(target=self.exec_run, args=(mwalker,Walkeparam,pointer))
+        #self.judge_thread=threading.Thread(target=self.exec_judge)
         
         
 
@@ -50,12 +50,12 @@ class SectionRun:
         print("walkeparam",Walkeparam)
         print("座標",pointer)
         
-        #walker_thread = threading.Thread(target=self.exec_run, args=(mwalker,Walkeparam,pointer))
-        #judge_thread = threading.Thread(target=self.exec_judge)
-        self.walker_thread.start()
-        self.judge_thread.start()
-        self.walker_thread.join()
-        self.judge_thread.join()  
+        walker_thread = threading.Thread(target=self.exec_run, args=(mwalker,Walkeparam,pointer))
+        judge_thread = threading.Thread(target=self.exec_judge, args=(mjudge,pointer))
+        walker_thread.start()
+        judge_thread.start()
+        walker_thread.join()
+        judge_thread.join()  
         
     def exec_run(self,mwalker,Walkeparam,pointer):
         mwalker.set_run(Walkeparam,pointer)

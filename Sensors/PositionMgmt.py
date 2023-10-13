@@ -95,7 +95,9 @@ class PositionMgmt(Sensor.Sensor):
 
     def PosInit(self):
         self.update()
-
+        
+        
+        """
         #左上 A
         self.Point[0][0] = self.origin[0] - self.x_moves
         self.Point[0][1] = self.origin[1] + self.y_moves
@@ -120,6 +122,32 @@ class PositionMgmt(Sensor.Sensor):
         self.Point[5][0] = self.origin[0]
         self.Point[5][1] = self.origin[1]
         
+        """
+
+        #左上 A
+        self.Point[0][0] = 70693.0
+        self.Point[0][1] = -171683.0
+
+        #左下 B
+        self.Point[1][0] = 70688.0
+        self.Point[1][1] = -171684.0
+
+        #真ん中 C
+        self.Point[2][0] = self.origin[0]
+        self.Point[2][1] = self.origin[1]
+
+        #右上 D
+        self.Point[3][0] = 70702.0
+        self.Point[3][1] = -171688.0
+
+        #右下 E
+        self.Point[4][0] = 70697.0
+        self.Point[4][1] = -171689.0
+
+        #真ん中 C
+        self.Point[5][0] = self.origin[0]
+        self.Point[5][1] = self.origin[1]
+
         #print("GOAL_UPDATED!!")
         
         LogMgmt.write(self.logfile,str(self.Point[0][0]) + ":" + str(self.Point[0][1]))
@@ -227,9 +255,13 @@ class PositionMgmt(Sensor.Sensor):
 
 def main():
     tesclass = PositionMgmt()
-    tesclass.update()
-    init = tesclass.PosInit()
-    print(init)
+    pos = tesclass.getvalue()
+    print("now")
+    print(pos)
+    
+    #tesclass.update()
+    #init = tesclass.PosInit()
+    #print(init)
 
     #print(tesclass.origin[0])
 
