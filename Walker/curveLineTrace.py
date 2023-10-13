@@ -10,6 +10,7 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import MotorMgmt
 from Sensors import PositionMgmt
+from Walker import PID2
 from section import SectionRun
 from tkinter import W
 import numpy as np
@@ -29,6 +30,7 @@ class cuvreLineTrace:
         tyusiny = 0
         standard = 0
         #save_saitan = 0
+        mPID = PID2.PID()
         MM = MotorMgmt.MotorMgmt()
         PM = PositionMgmt.PositionMgmt()
         param = [[0 for i in range(2)] for j in range(5)]
@@ -40,7 +42,7 @@ class cuvreLineTrace:
             
 
             # クラス変数
-            self.logfile = 'cuvreLine_log.txt'
+            #self.logfile = 'cuvreLine_log.txt'
             self.thread1 = threading.Thread(target =self.run)
             #GPSログの消去
             #LogMgmt.clear(self.logfile)
@@ -68,14 +70,12 @@ class cuvreLineTrace:
             y = float(self.param[1])
             #print(x)
             #print(self.goaly)
-            self.tyusinx = (self.startx + self.goalx)/2
-            self.tyusiny = (self.starty + self.goaly)/2
             self.distance = np.sqrt((self.tyusinx-x)**2 + (self.tyusiny-y)**2) 
-            print("基準",self.standard)
-            print("現在",self.distance)
+            #print("基準",self.standard)
+            #print("現在",self.distance)
             #LogMgmt.write(self.logfile,self.distance)
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
-            cuvreLineTrace.set_turn(self,self.distance)
+            #cuvreLineTrace.set_turn(self,self.distance)
             #print(self.goalx,self.goaly)
             #print(x,y)
             return self.distance
@@ -113,14 +113,10 @@ class cuvreLineTrace:
                 #param_list = paramlist[f:f+1]
             #self.PM.__init__(self)
             self.sp = paramlist[0]
-            self.sv = paramlist[1]
-            p = paramlist[2]
-            i = paramlist[3]
-            d = paramlist[4]
-            if self.sv > 0:
-                self.save_turn = 'right'
-            elif self.sv < 0:
-                self.save_turn = 'left'
+            self.sv = 0
+            self.p = paramlist[1]
+            self.i = paramlist[2]
+            self.d = paramlist[3]
             #self.goalx = goaly[0]
             #self.goaly = goaly[1]
             #print(self.goalx)
@@ -157,6 +153,7 @@ class cuvreLineTrace:
                     cuvreLineTrace.set_distance(self)
                     #self.mPID.set_target(loca)
                     #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
+                    self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
                     #self.mPID.get_operation()
                     #print(self.turn)
                     #print(self.turn)
@@ -165,17 +162,17 @@ class cuvreLineTrace:
                         self.MM.set_param(self.sp,self.sv)
                             #self.MM.set_param(1,100)
                     if self.turn == 'right':
-                        self.sv = self.sv + 30
-                        if self.sv > 100:
-                            self.sv = 100
+                        #self.sv = self.sv + 30
+                        #if self.sv > 100:
+                        #    self.sv = 100
                         self.MM.set_param(self.sp,self.sv)
                         #self.MM.set_param(1,-100)
                         #print ('zennsin')
                     elif self.turn == 'left':
                         #print ('cousin')
-                        self.sv = self.sv - 30
-                        if self.sv < -100:
-                            self.sv = -100
+                        #self.sv = self.sv - 30
+                        #if self.sv < -100:
+                        #    self.sv = -100
                         self.MM.set_param(self.sp,self.sv)
                         #self.MM.set_param(10,100)
                     
@@ -202,13 +199,13 @@ class cuvreLineTrace:
         def stop(self):
             self.MM.set_param(0,0)
             self.MM.run()
-            self.MM.stop()
+            #self.MM.stop()
                 
 
 def main():
     #print (1)
     cuvre = cuvreLineTrace()
-    cuvre.set_run(1,100,0,0,0)
+    cuvre.stop()
         
 if __name__ == '__main__':
     main()
