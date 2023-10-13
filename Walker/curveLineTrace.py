@@ -29,7 +29,7 @@ class cuvreLineTrace:
         tyusinx = 0
         tyusiny = 0
         standard = 0
-        #save_saitan = 0
+        save_saitan = 0
         mPID = PID2.PID()
         MM = MotorMgmt.MotorMgmt()
         PM = PositionMgmt.PositionMgmt()
@@ -37,6 +37,8 @@ class cuvreLineTrace:
         sp = 0
         sv = 0
         cancel = 0
+        error_sum = 0
+        error_pre = 0
 
         def __init__(self):
             
@@ -64,6 +66,7 @@ class cuvreLineTrace:
             #print(x,y)
         
         def set_distance(self):
+            self.param = self.PM.getvalue()
             #print("test_value",self.test)
             #print(self.param)
             x = float(self.param[0])
@@ -122,8 +125,10 @@ class cuvreLineTrace:
             #print(self.goalx)
             c = 0
             cuvreLineTrace.set_param(self)
-            gy = float(goaly[0])
-            gx = float(goaly[1])
+            print("curve_goal")
+            print(goaly)
+            gx = float(goaly[0])
+            gy = float(goaly[1])
             #print("param")
             #print(self.param)
             
@@ -153,7 +158,7 @@ class cuvreLineTrace:
                     cuvreLineTrace.set_distance(self)
                     #self.mPID.set_target(loca)
                     #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
-                    self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
+                    self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
                     #self.mPID.get_operation()
                     #print(self.turn)
                     #print(self.turn)
@@ -183,7 +188,7 @@ class cuvreLineTrace:
                     if c == 5:
                         c = 2
                     #VirtualLineTrace.set_param(self)
-                    time.sleep(0.1)
+                    #time.sleep(0.1)
                     """c += 1
                     if c == 100:
                         self.MM.set_param(0,0)

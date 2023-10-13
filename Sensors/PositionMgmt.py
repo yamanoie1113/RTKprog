@@ -101,8 +101,8 @@ class PositionMgmt(Sensor.Sensor):
         self.Point[0][1] = self.origin[1] + self.y_moves
 
         #左下 B
-        self.Point[1][0] = self.origin[0] - self.x_moves
-        self.Point[1][1] = self.origin[1] - self.y_moves
+        self.Point[1][0] = self.origin[0] + self.x_moves
+        self.Point[1][1] = self.origin[1] + self.y_moves
 
         #真ん中 C
         self.Point[2][0] = self.origin[0]
@@ -110,10 +110,10 @@ class PositionMgmt(Sensor.Sensor):
 
         #右上 D
         self.Point[3][0] = self.origin[0] + self.x_moves
-        self.Point[3][1] = self.origin[1] + self.y_moves
+        self.Point[3][1] = self.origin[1] - self.y_moves
 
         #右下 E
-        self.Point[4][0] = self.origin[0] + self.x_moves
+        self.Point[4][0] = self.origin[0] - self.x_moves
         self.Point[4][1] = self.origin[1] - self.y_moves
 
         #真ん中 C
@@ -228,10 +228,10 @@ class PositionMgmt(Sensor.Sensor):
 def main():
     tesclass = PositionMgmt()
     tesclass.update()
-    init = tesclass.REIWAInit()
+    init = tesclass.PosInit()
     print(init)
 
-    print(tesclass.origin[0])
+    #print(tesclass.origin[0])
 
 
 if __name__ == '__main__':
