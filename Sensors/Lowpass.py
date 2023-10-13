@@ -6,8 +6,12 @@ class Lowpass():
     lastLPF_X = 0.0   #LPF_Xの前回値
     lastLPF_Y = 0.0   #LPF_Yの前回値
 
+<<<<<<< HEAD
     X_rate = 0.2  #X減衰率
     Y_rate = 0.4  #Y減衰率
+=======
+    rate = 0.2645 #減衰率
+>>>>>>> fcdefbfc76c33bd90ef0ace1f35a15761b929cbc
 
     def __init__(self):
         pass
