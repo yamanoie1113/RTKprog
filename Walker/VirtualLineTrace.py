@@ -269,7 +269,7 @@ class VirtualLineTrace():
                     if c == 5:
                         c = 2
                     #VirtualLineTrace.set_param(self)
-                    time.sleep(0.05)
+                    time.sleep(0.1)
                     """c += 1
                     if c == 100:
                         self.MM.set_param(0,0)

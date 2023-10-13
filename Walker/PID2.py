@@ -19,6 +19,7 @@ class PID:
             elif theta_current > -1 and theta_current < 0:
                 theta_current = theta_current *100
             '''
+            theta_current = theta_current*10
 
             error = theta_goal - (theta_current)# 偏差（error）を計算
             
