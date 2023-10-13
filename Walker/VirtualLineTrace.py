@@ -49,7 +49,7 @@ class VirtualLineTrace():
 
             # クラス変数
             self.logfile = 'VirtualLine_log.txt'
-            #self.thread1 = threading.Thread(target =self.run)
+            self.thread1 = threading.Thread(target =self.run)
             #GPSログの消去
             #LogMgmt.clear(self.logfile)
             #LogMgmt.write(self.logfile,"NONE_DISTANCE")
@@ -269,7 +269,7 @@ class VirtualLineTrace():
                     if c == 5:
                         c = 2
                     #VirtualLineTrace.set_param(self)
-                    time.sleep(0.1)
+                    #time.sleep(0.1)
                     """c += 1
                     if c == 100:
                         self.MM.set_param(0,0)
