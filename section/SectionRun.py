@@ -58,7 +58,10 @@ class SectionRun:
         judge_thread.join()  
         
     def exec_run(self,mwalker,Walkeparam,pointer):
+        
+        print("exec_run_start")
         mwalker.set_run(Walkeparam,pointer)
+        print("exec_run_END")
 
     def exec_judge(self, mjudge,pointer):
         tes=mjudge.judge(pointer)#距離判定
@@ -68,6 +71,7 @@ class SectionRun:
             if tes==False:
                 t=False
                 print("判定しました")
+                break
         
     def test_straight(self,mwalker,mjudge,Walkeparam,pointer):
         
@@ -75,6 +79,7 @@ class SectionRun:
         print("SECTION_RUN_TEST_straight")
         
         mwalker.set_run(Walkeparam,pointer)
+        
         while t:
             tes=mjudge.judge(pointer)#距離判定
             print("判定中です")
@@ -83,6 +88,7 @@ class SectionRun:
                 print("STOP!!!!!!!!!!!!!!!")
                 mwalker.set_run(self.STOP,pointer)
                 print("判定しました")
+                break
 
         
         
