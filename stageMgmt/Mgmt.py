@@ -26,33 +26,43 @@ class Mgmt:
         #print('メインプロセスStart')
         section=SectionMgmt.SectionMgmt()
 
-        start_time = time.perf_counter()
+        
 
         #timer=1
-        counter=0
+        #counter=0
         state=True #ステートの設定
 
         section.run()
 
         while state:
-                
-            get_start_time = time.perf_counter()
+            
+            start_time = time.perf_counter()
+            
             state2=self.timejudge1(start_time)
-
+            
             if (state2>=50): #走行時間の設定
                 state=False
                 break
-                #
-            counter+=1
-            #print('tesuto')
+                
             section.execRun()
-            get_goal_time=time.perf_counter()-get_start_time
-            print("時間",get_goal_time)
-            #print(counter,"回目")
+
+            #周期の秒数
+            print("秒数",time.perf_counter()-start_time)
             
-        #section.end_REIWA()
+            #秒数の計算
+            if (time.perf_counter()-start_time)>= 0.5:
+                
+                time.sleep((time.perf_counter()-start_time)-0.5)
+            
+            else:
+                
+                pass
+            
+                
 
         print("終了")
+        
+        
 
     def timejudge1(self,start_time):
 
@@ -62,6 +72,10 @@ class Mgmt:
             end_time = end_time - start_time
             #print("経過時間",end_time)
             return end_time
+        
+    def timejudge2(self,start_set_time):
+        
+        pass
         
 
     def test(self):
