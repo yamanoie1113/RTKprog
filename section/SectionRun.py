@@ -44,22 +44,26 @@ class SectionRun:
 
     def run(self,mwalker,mjudge,Walkeparam,pointer):#走法、判定、パラメータ、座標
 
-        #中身確認
+        
+        '''#中身確認
         print("mjudgeのオブジェクト",mjudge)
         print("mwalkerのオブジェクト",mwalker)
         print("walkeparam",Walkeparam)
         print("座標",pointer)
-        
+        '''
         walker_thread = threading.Thread(target=self.exec_run, args=(mwalker,Walkeparam,pointer))
         judge_thread = threading.Thread(target=self.exec_judge, args=(mjudge,pointer))
         walker_thread.start()
         judge_thread.start()
-        walker_thread.join()
-        judge_thread.join()  
+        
+        #judge_thread.join()  
+        #walker_thread.join()
         
     def exec_run(self,mwalker,Walkeparam,pointer):
+        print("setrun_start")
         mwalker.set_run(Walkeparam,pointer)
-
+        print("setrun_end")
+        
     def exec_judge(self, mjudge,pointer):
         tes=mjudge.judge(pointer)#距離判定
         print("判定中です")

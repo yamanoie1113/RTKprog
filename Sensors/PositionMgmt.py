@@ -28,6 +28,7 @@ class PositionMgmt(Sensor.Sensor):
     def __init__(self):
         # クラス変数
         self.logfile = 'GPS_log.txt'
+        
 
         #GPSログの初期化
         #LogMgmt.clear(self.logfile)
