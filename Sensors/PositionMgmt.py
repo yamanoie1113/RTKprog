@@ -1,6 +1,6 @@
 #from multiprocessing import get_start_method
 import sys
-import pathlib
+import pathlib,time
 
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
@@ -31,7 +31,7 @@ class PositionMgmt(Sensor.Sensor):
 
         #GPSログの初期化
         #LogMgmt.clear(self.logfile)
-        LogMgmt.write(self.logfile,"GPS_loading...")
+        #LogMgmt.write(self.logfile,"GPS_loading...")
 
         while self.origin == None:
             #print("updating_origin...")
@@ -62,6 +62,9 @@ class PositionMgmt(Sensor.Sensor):
 
     #値の取得
     def getvalue(self):
+        #実行速度の計算
+        start_time = time.time()
+
         #print("pos_get")
         #ログファイルオープン
         #f = open(self.logfile, 'a')
@@ -76,6 +79,8 @@ class PositionMgmt(Sensor.Sensor):
             #logに書きこみ
             #LogMgmt.write(self.logfile,self.position)
             #print("log_saved")
+            print("実行時間_GPSアリ")
+            print(time.time() - start_time)
             return self.position
 
         else:
@@ -85,8 +90,11 @@ class PositionMgmt(Sensor.Sensor):
             nonepos = [0,0]
 
             #ここで何かしら返さないとバグる
-            print("None_GPS")
-            print(self.position)
+            #print("None_GPS")
+           # print(self.position)
+
+            print(print("実行時間_GPSアリ"))
+            print(time.time() - start_time)
             return None
 
 
@@ -150,7 +158,7 @@ class PositionMgmt(Sensor.Sensor):
 
         #print("GOAL_UPDATED!!")
         
-        LogMgmt.write(self.logfile,str(self.Point[0][0]) + ":" + str(self.Point[0][1]))
+        #LogMgmt.write(self.logfile,str(self.Point[0][0]) + ":" + str(self.Point[0][1]))
         return self.Point
 
     def REIWAInit(self):
