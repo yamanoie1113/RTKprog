@@ -36,15 +36,18 @@ class Mgmt:
 
         while state:
                 
+            get_start_time = time.perf_counter()
             state2=self.timejudge1(start_time)
 
             if (state2>=50): #走行時間の設定
                 state=False
                 break
-                
+                #
             counter+=1
             #print('tesuto')
             section.execRun()
+            get_goal_time=time.perf_counter()-state2
+            print("時間",get_goal_time)
             #print(counter,"回目")
             
         #section.end_REIWA()
@@ -54,7 +57,7 @@ class Mgmt:
     def timejudge1(self,start_time):
 
             end_time = time.perf_counter()
-
+            #
             # 経過時間を出力(秒)
             end_time = end_time - start_time
             #print("経過時間",end_time)

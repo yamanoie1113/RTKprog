@@ -1,21 +1,45 @@
-import logging
-import time
-from concurrent.futures import ThreadPoolExecutor
-logging.basicConfig(level=logging.DEBUG, format="%(threadName)s: %(message)s")
-def myworker(x: int, y: int):
-    logging.debug("start")
-    result = x + y
-    time.sleep(5)
-    logging.debug(f"end: {result}")
-    return result
-def main():
-    logging.debug("start")
-    # max_workersでスレッド数を指定
-    with ThreadPoolExecutor(max_workers=5) as executor:
-        f1 = executor.submit(myworker, 2, 3)
-        f2 = executor.submit(myworker, 5, 10)
-        logging.debug(f1.result())
-        logging.debug(f2.result())
-    logging.debug("end")
+import concurrent
+import concurrent.futures
+
+class Calc:
+    def __init__(self, a):
+        self.a = a
+
+    def calc(self, n):
+        return self.a + n
+
+class Process:
+    def __init__(self):
+        self.process_list = []
+        self.executor = concurrent.futures.ProcessPoolExecutor(max_workers=4)
+        # self.executor = concurrent.futures.ThreadPoolExecutor(max_workers=4)
+        self.calc = Calc(10)  # 処理を行うクラスのインスタンス
+        self.hoge = 3  # インスタンス変数
+
+    def _process_bad(self, n):
+        res = self.calc.calc(n) * self.hoge
+        return res
+
+    @staticmethod
+    def _process(calc, n, hoge):
+        res = calc.calc(n) * hoge
+        return res
+
+    def start_process(self, n):
+        # 実行部
+        # self.process_list.append(self.executor.submit(self._process_bad, n))  # NG
+        self.process_list.append(self.executor.submit(self._process, self.calc, n, self.hoge))  # OK
+
+    def get_result(self):
+    # 省略
+
+
+
+
+
 if __name__ == "__main__":
-    main()
+    process = Process()
+    for i in range(10):
+        process.start_process(i)
+    result = process.get_result()
+    print(result)
