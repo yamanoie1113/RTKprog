@@ -220,9 +220,8 @@ class VirtualLineTrace():
 
         def run(self):
             try:
-                c = 0
                 while True:
-
+                    start = time.perf_counter()
                     VirtualLineTrace.set_distance(self)
                     #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
                     self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
@@ -247,6 +246,7 @@ class VirtualLineTrace():
                     #if c == 5:
                     #    c = 2
                     #time.sleep(0.1)
+                    print(time.perf_counter() - start)
             except KeyboardInterrupt:
                 print("complet")
 

@@ -131,7 +131,6 @@ class cuvreLineTrace:
             return m, error_sum, error
         
         def set_run(self,paramlist,goaly):
-
             #self.mPID=PID()
             #self.mPID.reset_param()
             #self.param = list()
@@ -176,7 +175,7 @@ class cuvreLineTrace:
             try:
                 c = 0
                 while True:
-
+                    start = time.perf_counter()
                     cuvreLineTrace.set_distance(self)
                     #self.mPID.set_target(loca)
                     #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
@@ -211,14 +210,7 @@ class cuvreLineTrace:
                         c = 2
                     #VirtualLineTrace.set_param(self)
                     #time.sleep(0.1)
-                    """c += 1
-                    if c == 100:
-                        self.MM.set_param(0,0)
-                        self.MM.run()
-                        self.MM.stop()
-                        #self.mPID.reset_param()
-                        break
-                    #print (c)"""
+                    print(time.perf_counter() - start)
             except KeyboardInterrupt:
                 print("complet")
 
