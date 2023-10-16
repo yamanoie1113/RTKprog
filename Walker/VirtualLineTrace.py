@@ -4,7 +4,6 @@ import sys
 import time
 import pathlib
 import math
-import threading
 #from Walker.PID import PID
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
@@ -13,7 +12,6 @@ from Sensors import PositionMgmt
 from Walker import PID2
 from tkinter import W
 import numpy as np
-from Sensors import LogMgmt
 
 
 class VirtualLineTrace():
@@ -98,22 +96,6 @@ class VirtualLineTrace():
                 self.bunp = 4
 
         def set_turn(self,distance,x,y,nx,ny):
-            '''if self.goaly > self.starty:
-                if mx > gx:
-                    self.turn = 'left' #左
-                    
-                elif mx < gx:
-                    self.turn = 'right' #右
-                else:
-                    self.turn = 'no'
-            elif self.goaly < self.starty: 
-                if mx > gx:
-                    self.turn = 'right' #右
-                elif mx < gx:
-                    self.turn = 'left' #左
-                else:
-                    self.turn = 'no'
-            '''
             #ONOFF回路の
             ''' 
             if 0 <= distance:
@@ -147,28 +129,6 @@ class VirtualLineTrace():
                         self.save_saitan = self.save_saitan * (-1)
             #print(self.turn)
             #'''
-            
-
-            
-            
-        
-        def set_saitan(self,distance): #今使ってない
-            distance = self.saitan - distance
-            if 0 != distance:
-                if self.save_turn == self.turn:
-                    self.save_turn = self.turn
-                    if self.turn == 'left':
-                        if self.save_saitan < distance:
-                            self.turn = 'right'
-                    elif self.turn == 'right':
-                        if self.save_saitan < distance:
-                            self.turn = 'left'
-                    else:
-                        self.turn = 'right'
-            #self.save_saitan = distance
-            
-            #print(self.turn)
-
 
         def set_param(self):
         
@@ -194,6 +154,30 @@ class VirtualLineTrace():
             #print('x:',x,'y:',y) 
             return r,a,b
 
+        def PID(self,kp,ki,kd,theta_goal,theta_current,error_sum,error_pre):
+            
+            #pidが小さい時
+            '''
+            if theta_current < 1 and theta_current > 0:
+                theta_current = theta_current *100
+            elif theta_current > -1 and theta_current < 0:
+                theta_current = theta_current *10
+            '''
+            theta_current = theta_current*10
+            error = theta_goal - (theta_current)# 偏差（error）を計算            
+            error_sum += error*0.01 # 偏差の総和（積分）を計算
+            #ki = 0       		
+            error_diff = (error-error_pre)/0.01 # PI制御からの追加：1時刻前の偏差と現在の偏差の差分（微分）を計算    		
+            m = (kp * error) + (ki * error_sum) + (kd * error_diff) # 操作量を計算             
+            m = m/12
+            #print("m",m)
+            m = math.floor(m)
+            if m >= 100:
+                m = 90
+            elif m <= -100:
+                m = -90
+            #print("m",m)
+            return m, error_sum, error
 
         def set_run(self,paramlist,goaly):
 
@@ -212,7 +196,6 @@ class VirtualLineTrace():
             #self.goalx = goaly[0]
             #self.goaly = goaly[1]
             #print(self.goalx)
-            c = 0
             VirtualLineTrace.set_param(self)
             gy = float(goaly[0])
             gx = float(goaly[1])
@@ -241,9 +224,7 @@ class VirtualLineTrace():
                 while True:
 
                     VirtualLineTrace.set_distance(self)
-                    #self.mPID.set_target(0)
                     #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
-                    #self.mPID.get_operation()
                     self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
                     #print(self.turn)
                     if self.turn == 'no':
@@ -262,19 +243,10 @@ class VirtualLineTrace():
                     self.MM.run()
                     if self.cancel == 2:
                         break
-                    c += 1
-                    if c == 5:
-                        c = 2
-                    #VirtualLineTrace.set_param(self)
+                    #c += 1
+                    #if c == 5:
+                    #    c = 2
                     #time.sleep(0.1)
-                    """c += 1
-                    if c == 100:
-                        self.MM.set_param(0,0)
-                        self.MM.run()
-                        self.MM.stop()
-                        #self.mPID.reset_param()
-                        break
-                    #print (c)"""
             except KeyboardInterrupt:
                 print("complet")
 
