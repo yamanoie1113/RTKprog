@@ -43,8 +43,8 @@ class PositionMgmt(Sensor.Sensor):
 
 
         #x,yの増分 要検討
-        self.x_moves = 5.0
-        self.y_moves = 5.0
+        self.x_moves = 0.0
+        self.y_moves = 0.0
         
         
     def Origin_update(self):
@@ -63,7 +63,7 @@ class PositionMgmt(Sensor.Sensor):
     #値の取得
     def getvalue(self):
         #実行速度の計算
-        start_time = time.perf_counter()
+        #start_time = time.perf_counter()
 
         #print("pos_get")
         #ログファイルオープン
@@ -79,8 +79,8 @@ class PositionMgmt(Sensor.Sensor):
             #logに書きこみ
             #LogMgmt.write(self.logfile,self.position)
             #print("log_saved")
-            print("実行時間_GPSアリ")
-            print(time.perf_counter() - start_time)
+            #print("実行時間_GPSアリ")
+            #print(time.perf_counter() - start_time)
             return self.position
 
         else:
@@ -105,7 +105,7 @@ class PositionMgmt(Sensor.Sensor):
         self.update()
         
         
-        """
+        
         #左上 A
         self.Point[0][0] = self.origin[0] - self.x_moves
         self.Point[0][1] = self.origin[1] + self.y_moves
@@ -155,7 +155,8 @@ class PositionMgmt(Sensor.Sensor):
         #真ん中 C
         self.Point[5][0] = self.origin[0]
         self.Point[5][1] = self.origin[1]
-
+        """
+        
         #print("GOAL_UPDATED!!")
         
         #LogMgmt.write(self.logfile,str(self.Point[0][0]) + ":" + str(self.Point[0][1]))
@@ -263,9 +264,17 @@ class PositionMgmt(Sensor.Sensor):
 
 def main():
     tesclass = PositionMgmt()
+    
+    #実行速度の計算
+    start_time = time.perf_counter()
+    
     pos = tesclass.getvalue()
+    
     print("now")
     print(pos)
+    
+    print("実行時間")
+    print(time.perf_counter() - start_time)
     
     #tesclass.update()
     #init = tesclass.PosInit()
