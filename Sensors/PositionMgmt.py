@@ -1,6 +1,6 @@
 #from multiprocessing import get_start_method
 import sys
-import pathlib,time
+import pathlib,time,threading
 
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
@@ -13,6 +13,7 @@ class PositionMgmt(Sensor.Sensor):
 
     origin = None
 
+    prev_position = None
     x_moves = 0.0
     y_moves = 0.0
     last_pos = 0.0
@@ -27,27 +28,26 @@ class PositionMgmt(Sensor.Sensor):
 
     def __init__(self):
         # クラス変数
-        self.logfile = 'GPS_log.txt'
-        
+        #self.logfile = 'GPS_log.txt'
+
+        while self.origin == None:
+            print("updating_origin...")
+            self.Origin_update()
+            self.origin = self.position
+        print("done")
+
+        self.thread1 = threading.Thread(target=self.update)
 
         #GPSログの初期化
         #LogMgmt.clear(self.logfile)
         #LogMgmt.write(self.logfile,"GPS_loading...")
 
-        while self.origin == None:
-            #print("updating_origin...")
-            self.Origin_update()
-            self.origin = self.position
-        #print("done")
-
         #print(self.origin)
-
 
         #x,yの増分 要検討
         self.x_moves = 0.0
         self.y_moves = 0.0
-        
-        
+
     def Origin_update(self):
         temp = GPS2xy.GPS2xy.getvalue(self)
         if temp != None:
@@ -71,7 +71,7 @@ class PositionMgmt(Sensor.Sensor):
         #f = open(self.logfile, 'a')
 
         #GPSの更新
-        self.update()
+        #self.update()
 
         #GPSが見つかったらその値を、それ以外はnoneを返す
         if self.position != None:
@@ -82,8 +82,11 @@ class PositionMgmt(Sensor.Sensor):
             #print("log_saved")
             #print("実行時間_GPSアリ")
             #print(time.perf_counter() - start_time)
+            self.prev_position = self.position
+
             return self.position
 
+        #GPSが取得出来ていなかった時の処理
         else:
 
             #print("None_GPS")
@@ -94,9 +97,9 @@ class PositionMgmt(Sensor.Sensor):
             #print("None_GPS")
            # print(self.position)
 
-            print(print("実行時間_GPSアリ"))
+            print(print("実行時間_GPSナシ"))
             print(time.time() - start_time)
-            return None
+            return self.prev_position
 
 
         f.close()
@@ -266,16 +269,18 @@ class PositionMgmt(Sensor.Sensor):
 def main():
     tesclass = PositionMgmt()
     
-    #実行速度の計算
-    start_time = time.perf_counter()
-    
-    pos = tesclass.getvalue()
-    
-    print("now")
-    print(pos)
-    
-    print("実行時間")
-    print(time.perf_counter() - start_time)
+    tesclass.thread1.start()
+    while True:
+        #実行速度の計算
+        start_time = time.perf_counter()
+        pos = tesclass.getvalue()
+        
+        print("now")
+        print(pos)
+        
+        print("実行時間")
+        print(time.perf_counter() - start_time)
+
     
     #tesclass.update()
     #init = tesclass.PosInit()
