@@ -47,7 +47,7 @@ class Mgmt:
             counter+=1
             #print('tesuto')
             section.execRun()
-            get_goal_time=time.perf_counter()-state2
+            get_goal_time=time.perf_counter()-get_start_time
             print("時間",get_goal_time)
             #print(counter,"回目")
             
