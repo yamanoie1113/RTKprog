@@ -69,7 +69,7 @@ class SectionRun:
                 t=False
                 print("判定しました")
         
-    def test_straight(self,mwalker,mjudge,Walkeparam,pointer,state):
+    def test_straight(self,mwalker,mjudge,Walkeparam,pointer):
         
         t=True
         print("SECTION_RUN_TEST_straight")
@@ -86,7 +86,7 @@ class SectionRun:
 
         
         
-    def test_curve(self,mwalker,mjudge,Walkeparam,pointer,state):
+    def test_curve(self,mwalker,mjudge,Walkeparam,pointer):
         
         t=True
         print("SECTION_RUN_TEST_curve")
@@ -94,7 +94,6 @@ class SectionRun:
         mwalker.set_run(Walkeparam,pointer)
         #self.pointer=pointer
         #self.walker_thread.start()
-        mwalker.set_run(Walkeparam,pointer)
         while t:
             tes=mjudge.judge(pointer)#距離判定
             print("判定中です")
