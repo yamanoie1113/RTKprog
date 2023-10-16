@@ -63,7 +63,7 @@ class PositionMgmt(Sensor.Sensor):
     #値の取得
     def getvalue(self):
         #実行速度の計算
-        start_time = time.time()
+        start_time = time.perf_counter()
 
         #print("pos_get")
         #ログファイルオープン
@@ -80,7 +80,7 @@ class PositionMgmt(Sensor.Sensor):
             #LogMgmt.write(self.logfile,self.position)
             #print("log_saved")
             print("実行時間_GPSアリ")
-            print(time.time() - start_time)
+            print(time.perf_counter() - start_time)
             return self.position
 
         else:
