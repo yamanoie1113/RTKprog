@@ -83,12 +83,12 @@ class SectionMgmt:
     def test1(self):#直進テスト
         
         #prin("test")
-        self.sectionrun.run(self.Walkerinstance[0],self.Judgeinstance[0],
+        self.sectionrun.test_straight(self.Walkerinstance[0],self.Judgeinstance[0],
                                     self.WalkeParam[0][0],self.Pointer[0]) 
         
     def test2(self):#曲線テスト
         
-        self.sectionrun.run(self.Walkerinstance[1],self.Judgeinstance[1],self.WalkeParam[1][0],self.Pointer[1])
+        self.sectionrun.test_curve(self.Walkerinstance[1],self.Judgeinstance[1],self.WalkeParam[1][0],self.Pointer[1])
         #print("curvetest",self.WalkeParam[1][0],self.Pointer[1])
         
     def execRun(self):
