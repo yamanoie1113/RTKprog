@@ -83,15 +83,18 @@ class SectionMgmt:
     def test1(self):#直進テスト
         
         #prin("test")
-        self.sectionrun.test_straight(self.Walkerinstance[0],self.Judgeinstance[0],
-                                    self.WalkeParam[0][0],self.Pointer[0],self.section) 
+        self.sectionrun.run(self.Walkerinstance[0],self.Judgeinstance[0],
+                                    self.WalkeParam[0][0],self.Pointer[0]) 
         
     def test2(self):#曲線テスト
         
-        self.sectionrun.test_curve(self.Walkerinstance[1],self.Judgeinstance[1],self.WalkeParam[1][0],self.Pointer[1],self.testsection)
+        self.sectionrun.run(self.Walkerinstance[1],self.Judgeinstance[1],self.WalkeParam[1][0],self.Pointer[1])
         #print("curvetest",self.WalkeParam[1][0],self.Pointer[1])
         
     def execRun(self):
+        
+        #パラメータの配列を最初に戻すのを繰り返す
+        
         if self.section_set[self.pointerset]==0: #直線の場合
             self.section=0
             '''
@@ -249,13 +252,15 @@ class SectionMgmt:
 
 
 
+
+
 def main():
     print("teststart")
     sectionMgmt=SectionMgmt()
     sectionMgmt.run()
     #sectionMgmt.execRun()
-    #sectionMgmt.test1()
-    sectionMgmt.test2()
+    sectionMgmt.test1()
+    #sectionMgmt.test2()
     
 
 if __name__=="__main__":
