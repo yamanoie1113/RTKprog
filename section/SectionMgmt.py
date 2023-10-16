@@ -82,18 +82,16 @@ class SectionMgmt:
     
     def test1(self):#直進テスト
         
+        #prin("test")
         self.sectionrun.test_straight(self.Walkerinstance[0],self.Judgeinstance[0],
                                     self.WalkeParam[0][0],self.Pointer[0],self.section) 
         
     def test2(self):#曲線テスト
         
-        self.sectionrun.test_curve(self.Walkerinstance[1],self.Judgeinstance[1],
-                                    self.WalkeParam[1][0],self.Pointer[1],self.testsection)
+        self.sectionrun.test_curve(self.Walkerinstance[1],self.Judgeinstance[1],self.WalkeParam[1][0],self.Pointer[1],self.testsection)
         #print("curvetest",self.WalkeParam[1][0],self.Pointer[1])
         
     def execRun(self):
-        
-
         if self.section_set[self.pointerset]==0: #直線の場合
             self.section=0
             '''
@@ -103,7 +101,7 @@ class SectionMgmt:
             print("座標",self.Pointer[self.pointerset])
             '''
             self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
-                                    self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset],self.section) 
+                                    self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset]) 
 
             self.Swalkerpointer+=1
             if self.Swalkerpointer==4:
@@ -116,7 +114,6 @@ class SectionMgmt:
 
                 
         else: #曲線
-            self.section=1
             '''
             print("Walkerinstance:",self.Walkerinstance[self.CURVE])
             print("judgeinstance",self.Judgeinstance[self.CURVE])
@@ -125,7 +122,7 @@ class SectionMgmt:
             '''
             
             self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
-                                    self.WalkeParam[self.CURVE][self.Cwalkerpointer],self.Pointer[self.pointerset],self.section)
+                                    self.WalkeParam[self.CURVE][self.Cwalkerpointer],self.Pointer[self.pointerset])
 
             self.Cwalkerpointer+=1
             if self.Cwalkerpointer==2:
@@ -253,11 +250,12 @@ class SectionMgmt:
 
 
 def main():
+    print("teststart")
     sectionMgmt=SectionMgmt()
     sectionMgmt.run()
     #sectionMgmt.execRun()
-    sectionMgmt.test1()
-    #sectionMgmt.test2()
+    #sectionMgmt.test1()
+    sectionMgmt.test2()
     
 
 if __name__=="__main__":

@@ -38,7 +38,7 @@ class Mgmt:
                 
             state2=self.timejudge1(start_time)
 
-            if (state2>=180): #走行時間の設定
+            if (state2>=50): #走行時間の設定
                 state=False
                 break
                 
@@ -47,7 +47,7 @@ class Mgmt:
             section.execRun()
             #print(counter,"回目")
             
-        section.end_REIWA()
+        #section.end_REIWA()
 
         print("終了")
 
@@ -75,8 +75,8 @@ def main():
     mgmt=Mgmt()
     #mgmt.test()
     mgmt.run()
-
-        #p2 = Process(target=self.motor_stop)
+        #p1 = threading(target=self.run)
+        #p2 = threading(target=self.motor_stop)
         #p3 = Process(target=self.GPS)
 
         #p1.start()

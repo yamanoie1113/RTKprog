@@ -6,14 +6,18 @@ class Lowpass():
     lastLPF_X = 0.0   #LPF_Xの前回値
     lastLPF_Y = 0.0   #LPF_Yの前回値
 
-    rate = 0.2645 #減衰率
+
+    X_rate = 0.2  #X減衰率
+    Y_rate = 0.4  #Y減衰率
+
+
 
     def __init__(self):
         pass
 
     def filtering(self,input_val):
-        LPF_X = (1 - self.rate)* input_val[0] + self.rate *self.lastLPF_X
-        LPF_Y = (1 - self.rate)* input_val[1] + self.rate *self.lastLPF_Y
+        LPF_X = (1 - self.X_rate)* input_val[0] + self.X_rate *self.lastLPF_X
+        LPF_Y = (1 - self.Y_rate)* input_val[1] + self.Y_rate *self.lastLPF_Y
 
         self.lastLPF_X = LPF_X
         self.lastLPF_Y = LPF_Y

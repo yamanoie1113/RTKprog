@@ -30,28 +30,41 @@ class PositionMgmt(Sensor.Sensor):
         self.logfile = 'GPS_log.txt'
 
         #GPSログの初期化
-        LogMgmt.clear(self.logfile)
+        #LogMgmt.clear(self.logfile)
         LogMgmt.write(self.logfile,"GPS_loading...")
 
         while self.origin == None:
-            print("updating_origin...")
-            self.update()
+            #print("updating_origin...")
+            self.Origin_update()
             self.origin = self.position
-        print("done")
+        #print("done")
 
-        print(self.origin)
+        #print(self.origin)
 
 
         #x,yの増分 要検討
-        self.x_moves = 7.0
-        self.y_moves = 16.0
-
+        self.x_moves = 5.0
+        self.y_moves = 5.0
+        
+        
+    def Origin_update(self):
+        temp = GPS2xy.GPS2xy.getvalue(self)
+        if temp != None:
+            i = 0
+            while i < 7:
+                self.last_pos = temp
+                filtered_pos = self.lowpass.filtering(temp)
+                self.position = filtered_pos
+                i += 1
+                #print("updated position:")
+        
+        
 
     #値の取得
     def getvalue(self):
         #print("pos_get")
         #ログファイルオープン
-        f = open(self.logfile, 'a')
+        #f = open(self.logfile, 'a')
 
         #GPSの更新
         self.update()
@@ -61,7 +74,7 @@ class PositionMgmt(Sensor.Sensor):
             #print(self.position)
 
             #logに書きこみ
-            LogMgmt.write(self.logfile,self.position)
+            #LogMgmt.write(self.logfile,self.position)
             #print("log_saved")
             return self.position
 
@@ -82,14 +95,16 @@ class PositionMgmt(Sensor.Sensor):
 
     def PosInit(self):
         self.update()
-
+        
+        
+        """
         #左上 A
         self.Point[0][0] = self.origin[0] - self.x_moves
         self.Point[0][1] = self.origin[1] + self.y_moves
 
         #左下 B
-        self.Point[1][0] = self.origin[0] - self.x_moves
-        self.Point[1][1] = self.origin[1] - self.y_moves
+        self.Point[1][0] = self.origin[0] + self.x_moves
+        self.Point[1][1] = self.origin[1] + self.y_moves
 
         #真ん中 C
         self.Point[2][0] = self.origin[0]
@@ -97,18 +112,45 @@ class PositionMgmt(Sensor.Sensor):
 
         #右上 D
         self.Point[3][0] = self.origin[0] + self.x_moves
-        self.Point[3][1] = self.origin[1] + self.y_moves
+        self.Point[3][1] = self.origin[1] - self.y_moves
 
         #右下 E
-        self.Point[4][0] = self.origin[0] + self.x_moves
+        self.Point[4][0] = self.origin[0] - self.x_moves
         self.Point[4][1] = self.origin[1] - self.y_moves
 
         #真ん中 C
         self.Point[5][0] = self.origin[0]
         self.Point[5][1] = self.origin[1]
         
-        print("GOAL_UPDATED!!")
+        """
 
+        #左上 A
+        self.Point[0][0] = 70693.0
+        self.Point[0][1] = -171683.0
+
+        #左下 B
+        self.Point[1][0] = 70688.0
+        self.Point[1][1] = -171684.0
+
+        #真ん中 C
+        self.Point[2][0] = self.origin[0]
+        self.Point[2][1] = self.origin[1]
+
+        #右上 D
+        self.Point[3][0] = 70702.0
+        self.Point[3][1] = -171688.0
+
+        #右下 E
+        self.Point[4][0] = 70697.0
+        self.Point[4][1] = -171689.0
+
+        #真ん中 C
+        self.Point[5][0] = self.origin[0]
+        self.Point[5][1] = self.origin[1]
+
+        #print("GOAL_UPDATED!!")
+        
+        LogMgmt.write(self.logfile,str(self.Point[0][0]) + ":" + str(self.Point[0][1]))
         return self.Point
 
     def REIWAInit(self):
@@ -116,8 +158,8 @@ class PositionMgmt(Sensor.Sensor):
 
         #中点を返す C:[0] G:[1]
         mid_point = self.set_mid()
-        print("中点")
-        print(mid_point)
+        #print("中点")
+        #print(mid_point)
 
 
 
@@ -157,7 +199,7 @@ class PositionMgmt(Sensor.Sensor):
         self.Point[8][0] = self.origin[0]
         self.Point[8][1] = self.origin[1]
 
-        print("REIWA_UPDATED!!")
+        #print("REIWA_UPDATED!!")
 
         return self.Point
 
@@ -183,8 +225,8 @@ class PositionMgmt(Sensor.Sensor):
 
         G_mid = (G_main + G_sub)/2
 
-        print("C_MAIN")
-        print(C_main)
+        #print("C_MAIN")
+        #print(C_main)
 
         return C_mid,G_mid
 
@@ -201,6 +243,7 @@ class PositionMgmt(Sensor.Sensor):
             filtered_pos = self.lowpass.filtering(temp)
             self.position = filtered_pos
             #print("updated position:")
+            #print(self.position)
 
         """
         else :
@@ -212,11 +255,15 @@ class PositionMgmt(Sensor.Sensor):
 
 def main():
     tesclass = PositionMgmt()
-    tesclass.update()
-    init = tesclass.REIWAInit()
-    print(init)
+    pos = tesclass.getvalue()
+    print("now")
+    print(pos)
+    
+    #tesclass.update()
+    #init = tesclass.PosInit()
+    #print(init)
 
-    print(tesclass.origin[0])
+    #print(tesclass.origin[0])
 
 
 if __name__ == '__main__':
