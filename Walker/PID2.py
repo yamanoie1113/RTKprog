@@ -8,7 +8,7 @@ from math import nan
 class PID:
 		
         def __init__(self):
-            a = 0
+            pass
 		
         def PID(self,kp,ki,kd,theta_goal,theta_current,error_sum,error_pre):
             
