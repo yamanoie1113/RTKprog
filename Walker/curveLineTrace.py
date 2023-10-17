@@ -210,7 +210,12 @@ class cuvreLineTrace:
                         c = 2
                     #VirtualLineTrace.set_param(self)
                     #time.sleep(0.1)
-                    print(time.perf_counter() - start)
+                    stop = time.perf_counter() - start
+                    if stop <= 0.5:
+                        stop = 0.5 - stop
+                        time.sleep(stop)
+                    print("tyokusen",stop)
+                    #print(time.perf_counter() - start)
             except KeyboardInterrupt:
                 print("complet")
 
