@@ -21,6 +21,10 @@ class Mgmt:
     def __init__(self):
     
         print("プログラム開始")
+        
+    def run2(self):
+        p1 = threading(target=self.counter)
+        p2 = threading(target=self.exec_run)
     
     def run(self):
         print('メインプロセスStart')
@@ -29,30 +33,37 @@ class Mgmt:
         
 
         #timer=1
-        #counter=0
+        counter=0
         state=True #ステートの設定
 
         section.run()
-        print("While_ago")
+        #print("While_ago")
+
+        start_program = time.perf_counter()
         while state:
             #print("sectionloop")
             start_time = time.perf_counter()
             
-            state2=self.timejudge1(start_time)
-            
-            if (state2>=50): #走行時間の設定
+            state2=self.timejudge1(start_program)
+            #print("byou_su",state2)
+            if (state2>=180): #走行時間の設定
                 state=False
                 break
-            
+            counter+=1
             section.execRun()
 
             #周期の秒数
-            print("秒数",time.perf_counter()-start_time)
+            #print("秒数",time.perf_counter()-start_time)
             
             #秒数の計算
-            if (time.perf_counter()-start_time)<= 0.5:
+            stop = time.perf_counter() - start_time
+            if stop <= 0.5:
                 
-                time.sleep(0.5-(time.perf_counter()-start_time))
+                print("秒数",time.perf_counter()-start_time)
+                stop = 0.5-stop
+                time.sleep(stop)
+                
+                
             
             else:
                 
@@ -74,10 +85,13 @@ class Mgmt:
             #print("経過時間",end_time)
             return end_time
         
-    def timejudge2(self,start_set_time):
+    def counter(self):
         
-        pass
+        start_program = time.perf_counter()
         
+        
+        
+        return start_program
 
     def test(self):
         section=SectionMgmt.SectionMgmt()

@@ -250,7 +250,7 @@ class VirtualLineTrace():
                     if stop <= 0.5:
                         stop = 0.5 - stop
                         time.sleep(stop)
-                    print("tyokusen",stop)
+                    #print("tyokusen",stop)
             except KeyboardInterrupt:
                 print("complet")
 

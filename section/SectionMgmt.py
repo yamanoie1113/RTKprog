@@ -34,7 +34,7 @@ class SectionMgmt:
         pass
 
     def run(self):
-        print("runcheck")
+        #print("runcheck")
         if self.mState == self.UNDEFINED:
             #print(self.mState)
             self.execUndefined()
@@ -49,7 +49,7 @@ class SectionMgmt:
             pass
         
         if self.mState == self.RUN:
-            print("execRuncheck")
+            #print("execRuncheck")
             self.execRun()
         
         else:
@@ -242,7 +242,7 @@ class SectionMgmt:
         self.WalkeParam[self.CURVE]=self.sectionprm.Walkerset_param(self.CURVE)
 
         self.Pointer=self.sectionprm.pointer_param()
-        print("pointer")
+        #print("pointer")
         
     def get_Param_R(self):
         
@@ -259,7 +259,7 @@ class SectionMgmt:
 
 
 def main():
-    print("teststart")
+    #print("teststart")
     sectionMgmt=SectionMgmt()
     sectionMgmt.run()
     #sectionMgmt.execRun()

@@ -12,6 +12,7 @@ from Judgement import TurnAngleJudge
 from Sensors import PosInit
 import threading
 import time
+import concurrent.futures import TreadPoolExecutor
 
 class SectionRun:
 
@@ -51,28 +52,33 @@ class SectionRun:
         print("walkeparam",Walkeparam)
         print("座標",pointer)
         '''
-        walker_thread = threading.Thread(target=self.exec_run, args=(mwalker,Walkeparam,pointer))
-        judge_thread = threading.Thread(target=self.exec_judge, args=(mjudge,pointer))
-        walker_thread.start()
-        judge_thread.start()
-        
+        #walker_thread = threading.Thread(target=self.exec_run, args=(mwalker,Walkeparam,pointer))
+        #judge_thread = threading.Thread(target=self.exec_judge, args=(mjudge,pointer))
+        #walker_thread.start()
+        #judge_thread.start()
+        with concurrent.futures.TreadPoolExecutor(max_works=2) as executor:
+            #walker_thread=executor.submit(target=self.exec_run,args=(mwalker,Walkeparam,poinrer))
+            #judge_thread=executor.submit(target=self.exec_judge,args=(mjudge,poinrer))
+            exucuter.submit(self.exec_run,mwalker,Walkeparam,pointer)
+            exucuter.submit(self.exec_judge,mwalker,Walkeparam,pointer)
+            #judge_thread()
         #judge_thread.join()  
         #walker_thread.join()
         
     def exec_run(self,mwalker,Walkeparam,pointer):
         
-        print("exec_run_start")
+        #print("exec_run_start")
         mwalker.set_run(Walkeparam,pointer)
-        print("exec_run_END")
+        #print("exec_run_END")
 
     def exec_judge(self, mjudge,pointer):
         tes=mjudge.judge(pointer)#距離判定
-        print("判定中です")
+        #print("判定中です")
         t=True
         while t:
             if tes==False:
                 t=False
-                print("判定しました")
+                #print("判定しました")
                 break
         
     def test_straight(self,mwalker,mjudge,Walkeparam,pointer):
