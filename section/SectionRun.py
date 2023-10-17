@@ -94,6 +94,24 @@ class SectionRun:
         #self.stop()
         #time.sleep(1)
         
+        
+    def run2(self,mwalker,mjudge,Walkeparam,pointer):
+        
+        tes=True
+        t=True
+        print("SECTION_RUN_TEST_straight")
+        
+        mwalker.set_run(Walkeparam,pointer)
+        
+        while t:
+            tes=mjudge.judge(pointer)#距離判定
+            print("判定中です")
+            if tes==False:
+                t=False
+                #mwalker.set_run(self.STOP,pointer)
+                print("判定しました")
+                break
+        
     def test_straight(self,mwalker,mjudge,Walkeparam,pointer):
         
         t=True
