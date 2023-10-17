@@ -8,12 +8,12 @@ from Sensors import Sensor,GPS2xy,LogMgmt,Lowpass
 
 class PositionMgmt(Sensor.Sensor):
     #gps = GPS2xy()
-    position = None
+    position = 5.0,5.0
     logfile = None
 
     origin = 0.0,0.0
 
-    prev_position = None
+    prev_position = 0.0,0.0
     x_moves = 0.0
     y_moves = 0.0
     last_pos = 0.0
