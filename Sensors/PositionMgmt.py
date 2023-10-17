@@ -11,7 +11,7 @@ class PositionMgmt(Sensor.Sensor):
     position = None
     logfile = None
 
-    origin = None
+    origin = 0.0,0.0
 
     prev_position = None
     x_moves = 0.0
@@ -30,11 +30,14 @@ class PositionMgmt(Sensor.Sensor):
         # クラス変数
         #self.logfile = 'GPS_log.txt'
 
+        """
+        #初期値の登録
         while self.origin == None:
             print("updating_origin...")
             self.Origin_update()
             self.origin = self.position
         print("done")
+        """
 
         self.thread1 = threading.Thread(target=self.update)
 
