@@ -9,8 +9,9 @@ class test2:
     
     def run(self,pointer,po):
         #self.pointerset=pointer
-        with ThreadPoolExecutor(max_workers=5) as executor:
+        with ThreadPoolExecutor(max_workers=2) as executor:
             future = executor.submit(self.exec_run, pointer,po)
+            future2= executor.submit(self.exec_judge, pointer,po)
         #walker_thread = threading.Thread(target=self.exec_run, args=(pointer,po))
         #judge_thread = threading.Thread(target=self.exec_judge, args=(pointer,po))
         #walker_thread = threading.Thread(target=self.exec_run)

@@ -56,11 +56,11 @@ class SectionRun:
         #judge_thread = threading.Thread(target=self.exec_judge, args=(mjudge,pointer))
         #walker_thread.start()
         #judge_thread.start()
-        with ThreadPoolExecutor(max_workers=2) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
             #walker_thread=executor.submit(target=self.exec_run,args=(mwalker,Walkeparam,poinrer))
             #judge_thread=executor.submit(target=self.exec_judge,args=(mjudge,poinrer))
-            exucuter.submit(exec_run,mwalker,Walkeparam,pointer)
-            exucuter.submit(exec_judge,mjudge,pointer)
+            executor.submit(self.exec_run,mwalker,Walkeparam,pointer)
+            executor.submit(self.exec_judge,mjudge,pointer)
             #judge_thread()
         #judge_thread.join()  
         #walker_thread.join()
