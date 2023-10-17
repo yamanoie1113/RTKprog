@@ -12,7 +12,7 @@ from Judgement import TurnAngleJudge
 from Sensors import PosInit
 import threading
 import time
-import concurrent.futures import TreadPoolExecutor
+import concurrent.futures 
 
 class SectionRun:
 
@@ -56,11 +56,11 @@ class SectionRun:
         #judge_thread = threading.Thread(target=self.exec_judge, args=(mjudge,pointer))
         #walker_thread.start()
         #judge_thread.start()
-        with concurrent.futures.TreadPoolExecutor(max_works=2) as executor:
+        with ThreadPoolExecutor(max_workers=2) as executor:
             #walker_thread=executor.submit(target=self.exec_run,args=(mwalker,Walkeparam,poinrer))
             #judge_thread=executor.submit(target=self.exec_judge,args=(mjudge,poinrer))
-            exucuter.submit(self.exec_run,mwalker,Walkeparam,pointer)
-            exucuter.submit(self.exec_judge,mwalker,Walkeparam,pointer)
+            exucuter.submit(exec_run,mwalker,Walkeparam,pointer)
+            exucuter.submit(exec_judge,mjudge,pointer)
             #judge_thread()
         #judge_thread.join()  
         #walker_thread.join()
