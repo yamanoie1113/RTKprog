@@ -1,7 +1,7 @@
 from cgitb import lookup
 import pyproj
 import sys
-import pathlib
+import pathlib,time
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import nmea_get
@@ -13,6 +13,8 @@ class GPS2xy():
 
 
     def getvalue(self):
+        #実行速度の計算
+        #start_time = time.perf_counter()
         """
         #テスト用コード
         print("gps2xy.getvalue")
@@ -97,8 +99,11 @@ class GPS2xy():
         return x,y
 
 def main():
+    start_time = time.perf_counter()
     testclass = GPS2xy()
     testclass.getvalue()
+    print("GPS2xy_実行時間")
+    print(time.perf_counter() - start_time)
     #testclass.return_position()
 
 if __name__ == '__main__':

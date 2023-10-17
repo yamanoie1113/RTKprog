@@ -22,9 +22,9 @@ class SectionPrm:
     
 
     def pointer_param(self):
-
+        #print("param")
         self.pointset=self.position.PosInit()
-
+        #print("print_OK")
         #print(self.pointset[0])
 
         return self.pointset

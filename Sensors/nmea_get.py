@@ -3,6 +3,7 @@ import socket
 import time
 
 def get():
+    
     # サーバーIPとポート番号
 
     IPADDR = "localhost"
@@ -24,6 +25,8 @@ def get():
 #本番用
     #print("GPS_loading....")
     while True:
+        #実行速度の計算
+        #start_time = time.perf_counter()
         
 
         while True:
@@ -54,13 +57,18 @@ def get():
 
             if list_GGA[2] != '' and list_GGA[4] !='':
                 #print(list_GGA[2],list_GGA[4])
+                #print("NMEA_実行時間")
+                #print(time.perf_counter() - start_time)
                 return list_GGA[2],list_GGA[4]
 
 
 def main():
     while True:
+        start_time = time.perf_counter()        
         #print("enter1")
         get()
+        print("NMEA_実行時間")
+        print(time.perf_counter() - start_time)
 
 
 if __name__ == '__main__':
