@@ -246,10 +246,11 @@ class VirtualLineTrace():
                     #c += 1
                     #if c == 5:
                     #    c = 2
-                    if start <= 0.5:
-                        stop = 0.5 - (time.perf_counter() - start)
+                    stop = time.perf_counter() - start
+                    if stop <= 0.5:
+                        stop = 0.5 - stop
                         time.sleep(stop)
-                    #print("tyokusen",time.perf_counter() - start)
+                    print("tyokusen",stop)
             except KeyboardInterrupt:
                 print("complet")
 

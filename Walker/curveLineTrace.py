@@ -179,7 +179,7 @@ class cuvreLineTrace:
                     cuvreLineTrace.set_distance(self)
                     #self.mPID.set_target(loca)
                     #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
-                    self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
+                    self.sv,self.error_sum,self.error_pre = self.mPID.PID(self,self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
                     #self.mPID.get_operation()
                     #print(self.turn)
                     #print(self.turn)
@@ -210,7 +210,12 @@ class cuvreLineTrace:
                         c = 2
                     #VirtualLineTrace.set_param(self)
                     #time.sleep(0.1)
-                    print(time.perf_counter() - start)
+                    stop = time.perf_counter() - start
+                    if stop <= 0.5:
+                        stop = 0.5 - stop
+                        time.sleep(stop)
+                    print("tyokusen",stop)
+                    #print(time.perf_counter() - start)
             except KeyboardInterrupt:
                 print("complet")
 
