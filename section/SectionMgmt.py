@@ -34,21 +34,22 @@ class SectionMgmt:
         pass
 
     def run(self):
-        
+        print("runcheck")
         if self.mState == self.UNDEFINED:
-                #print(self.mState)
+            #print(self.mState)
             self.execUndefined()
         else:
             pass
 
         if self.mState == self.INIT:
-            
+            #print("SECTION_INIT")
             self.init()
 
         else:
             pass
         
         if self.mState == self.RUN:
+            print("execRuncheck")
             self.execRun()
         
         else:
@@ -62,8 +63,9 @@ class SectionMgmt:
 
 
     def execUndefined(self):
-
-            self.mState=self.INIT
+        #print("UNDEF")
+            
+        self.mState=self.INIT
 
 
     def init(self):
@@ -198,11 +200,12 @@ class SectionMgmt:
 
 
     def addSection(self):
-
+        #print("addsection1")
         self.get_Param()#座標、パラメータ
         self.setWalker()#instaance
+        #print("addsection2")
         self.setJudge()#判定
-        
+        #print("addsection3")
     
     def addSection_R(self):
         
@@ -215,6 +218,7 @@ class SectionMgmt:
 
     def setWalker(self):
         
+        #print("walkeinstance")
         self.Walkerinstance[self.STRAIGHT]=self.sectionrun.request_Walker(self.STRAIGHT)
 
         self.Walkerinstance[self.CURVE]=self.sectionrun.request_Walker(self.CURVE)
@@ -232,13 +236,13 @@ class SectionMgmt:
 
 
     def get_Param(self):
-        
+        #print("get_walkeparam")
         self.WalkeParam[self.STRAIGHT]=self.sectionprm.Walkerset_param(self.STRAIGHT)
 
         self.WalkeParam[self.CURVE]=self.sectionprm.Walkerset_param(self.CURVE)
 
         self.Pointer=self.sectionprm.pointer_param()
-
+        print("pointer")
         
     def get_Param_R(self):
         

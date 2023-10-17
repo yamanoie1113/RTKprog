@@ -23,7 +23,7 @@ class Mgmt:
         print("プログラム開始")
     
     def run(self):
-        #print('メインプロセスStart')
+        print('メインプロセスStart')
         section=SectionMgmt.SectionMgmt()
 
         
@@ -33,9 +33,9 @@ class Mgmt:
         state=True #ステートの設定
 
         section.run()
-
+        print("While_ago")
         while state:
-            
+            #print("sectionloop")
             start_time = time.perf_counter()
             
             state2=self.timejudge1(start_time)
@@ -43,20 +43,21 @@ class Mgmt:
             if (state2>=50): #走行時間の設定
                 state=False
                 break
-                
+            
             section.execRun()
 
             #周期の秒数
             print("秒数",time.perf_counter()-start_time)
             
             #秒数の計算
-            if (time.perf_counter()-start_time)>= 0.5:
+            if (time.perf_counter()-start_time)<= 0.5:
                 
-                time.sleep((time.perf_counter()-start_time)-0.5)
+                time.sleep(0.5-(time.perf_counter()-start_time))
             
             else:
                 
-                pass
+                
+                print("counter",time.perf_counter()-start_time)
             
                 
 

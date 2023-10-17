@@ -31,12 +31,14 @@ class PositionMgmt(Sensor.Sensor):
         #self.logfile = 'GPS_log.txt'
 
         while self.origin == None:
-            print("updating_origin...")
+            #print("updating_origin...")
             self.Origin_update()
             self.origin = self.position
-        print("done")
+            #print(self.origin)
+        #print("done")
 
         self.thread1 = threading.Thread(target=self.update)
+        self.thread1.start()
 
         #GPSログの初期化
         #LogMgmt.clear(self.logfile)
@@ -95,20 +97,18 @@ class PositionMgmt(Sensor.Sensor):
 
             #ここで何かしら返さないとバグる
             #print("None_GPS")
-           # print(self.position)
+            #print(self.position)
 
-            print(print("実行時間_GPSナシ"))
-            print(time.time() - start_time)
-            return self.prev_position
+            #print(print("実行時間_GPSナシ"))
+            #print(time.time() - start_time)
+            #return self.prev_position
+            return None
 
 
         f.close()
 
 
-    def PosInit(self):
-        self.update()
-        
-        
+    def PosInit(self):        
         
         #左上 A
         self.Point[0][0] = self.origin[0] - self.x_moves
@@ -248,38 +248,45 @@ class PositionMgmt(Sensor.Sensor):
 
     #値の更新
     def update(self):
-        #debug
-        #print("update position")
-        temp = GPS2xy.GPS2xy.getvalue(self)
-        if temp != None:
-            self.last_pos = temp
-            filtered_pos = self.lowpass.filtering(temp)
-            self.position = filtered_pos
-            #print("updated position:")
-            #print(self.position)
+        while True:
+            #実行速度の計算
+            #start_time = time.perf_counter()
+            #debug
+            #print("update position")
+            
+            
+            temp = GPS2xy.GPS2xy.getvalue(self)
+            if temp != None:
+                self.last_pos = temp
+                filtered_pos = self.lowpass.filtering(temp)
+                self.position = filtered_pos
+                #print("updated position:")
+                #print(self.position)
 
-        """
-        else :
-            print("none_update")
-        """
-
+            """
+            else :
+                print("none_update")
+            """
+            #print("UPDATE_実行時間")
+            #print(time.perf_counter() - start_time)
 
 
 
 def main():
     tesclass = PositionMgmt()
+    tesclass.update()
     
-    tesclass.thread1.start()
+    #tesclass.thread1.start()
     while True:
         #実行速度の計算
-        start_time = time.perf_counter()
+        #start_time = time.perf_counter()
         pos = tesclass.getvalue()
         
-        print("now")
-        print(pos)
+        #print("now")
+        #print(pos)
         
-        print("実行時間")
-        print(time.perf_counter() - start_time)
+        #print("実行時間")
+        #print(time.perf_counter() - start_time)
 
     
     #tesclass.update()
