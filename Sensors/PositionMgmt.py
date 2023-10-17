@@ -52,8 +52,8 @@ class PositionMgmt(Sensor.Sensor):
         #print(self.origin)
 
         #x,yの増分 要検討
-        self.x_moves = 7.0
-        self.y_moves = 5.0
+        self.x_moves = 700.0
+        self.y_moves = 500.0
 
     def Origin_update(self):
         temp = GPS2xy.GPS2xy.getvalue(self)

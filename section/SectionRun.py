@@ -84,11 +84,11 @@ class SectionRun:
         tes=True
         while t:
             tes=mjudge.judge(pointer)#距離判定
-            
+            #Sprint("判定中です")
             if tes==False:
-                print(tes)
+                #print(tes)
                 t=False
-                #print("判定しました")
+                print("判定しました")
                 break
         
         #self.stop()
