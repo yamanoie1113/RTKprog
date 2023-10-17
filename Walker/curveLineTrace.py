@@ -179,7 +179,7 @@ class cuvreLineTrace:
                     cuvreLineTrace.set_distance(self)
                     #self.mPID.set_target(loca)
                     #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
-                    self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
+                    self.sv,self.error_sum,self.error_pre = self.mPID.PID(self,self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
                     #self.mPID.get_operation()
                     #print(self.turn)
                     #print(self.turn)
