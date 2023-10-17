@@ -148,7 +148,7 @@ class cuvreLineTrace:
             #print(self.goalx)
             c = 0
             cuvreLineTrace.set_param(self)
-            print("curve_goal")
+            #print("curve_goal")
             print(goaly)
             gx = float(goaly[0])
             gy = float(goaly[1])

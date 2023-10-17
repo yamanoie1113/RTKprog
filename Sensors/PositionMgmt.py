@@ -8,10 +8,10 @@ from Sensors import Sensor,GPS2xy,LogMgmt,Lowpass
 
 class PositionMgmt(Sensor.Sensor):
     #gps = GPS2xy()
-    position = 5.0,5.0
+    position = 0.0,0.0
     logfile = None
 
-    origin = 0.0,0.0
+    origin = None
 
     prev_position = 0.0,0.0
     x_moves = 0.0
@@ -30,19 +30,20 @@ class PositionMgmt(Sensor.Sensor):
         # クラス変数
         #self.logfile = 'GPS_log.txt'
 
-        """
+        
         #初期値の登録
         while self.origin == None:
-            #print("updating_origin...")
+            print("updating_origin...")
             self.Origin_update()
             self.origin = self.position
             #print(self.origin)
         #print("done")
-        """
+        
 
 
         self.thread1 = threading.Thread(target=self.update)
-        #self.thread1.start()
+        self.thread1.start()
+        
 
         #GPSログの初期化
         #LogMgmt.clear(self.logfile)
@@ -51,8 +52,8 @@ class PositionMgmt(Sensor.Sensor):
         #print(self.origin)
 
         #x,yの増分 要検討
-        self.x_moves = 0.0
-        self.y_moves = 0.0
+        self.x_moves = 7.0
+        self.y_moves = 5.0
 
     def Origin_update(self):
         temp = GPS2xy.GPS2xy.getvalue(self)
@@ -60,8 +61,8 @@ class PositionMgmt(Sensor.Sensor):
             i = 0
             while i < 7:
                 self.last_pos = temp
-                filtered_pos = self.lowpass.filtering(temp)
-                self.position = filtered_pos
+                #temp = self.lowpass.filtering(temp)
+                self.position = temp
                 i += 1
                 #print("updated position:")
         
@@ -109,7 +110,7 @@ class PositionMgmt(Sensor.Sensor):
             return None
 
 
-        f.close()
+        #f.close()
 
 
     def PosInit(self):        
@@ -262,15 +263,16 @@ class PositionMgmt(Sensor.Sensor):
             temp = GPS2xy.GPS2xy.getvalue(self)
             if temp != None:
                 self.last_pos = temp
-                filtered_pos = self.lowpass.filtering(temp)
-                self.position = filtered_pos
+                #---lowpass
+                #temp = self.lowpass.filtering(temp)
+                self.position = temp
                 #print("updated position:")
                 #print(self.position)
 
-            """
-            else :
-                print("none_update")
-            """
+            
+            #else :
+                #print("none_update")
+            
             #print("UPDATE_実行時間")
             #print(time.perf_counter() - start_time)
 
@@ -278,23 +280,24 @@ class PositionMgmt(Sensor.Sensor):
 
 def main():
     tesclass = PositionMgmt()
-    tesclass.update()
+    #tesclass.update()
+    #print(tesclass.position)
     
     #tesclass.thread1.start()
     while True:
+        
         #実行速度の計算
         #start_time = time.perf_counter()
         pos = tesclass.getvalue()
         
         #print("now")
-        #print(pos)
+        print(pos)
         
         #print("実行時間")
         #print(time.perf_counter() - start_time)
 
-    
     #tesclass.update()
-    #init = tesclass.PosInit()
+    init = tesclass.PosInit()
     #print(init)
 
     #print(tesclass.origin[0])

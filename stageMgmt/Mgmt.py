@@ -46,7 +46,7 @@ class Mgmt:
             
             state2=self.timejudge1(start_program)
             #print("byou_su",state2)
-            if (state2>=180): #走行時間の設定
+            if (state2>=180): #.................走行時間の設定
                 state=False
                 break
             counter+=1
@@ -59,7 +59,7 @@ class Mgmt:
             stop = time.perf_counter() - start_time
             if stop <= 0.5:
                 
-                print("秒数",time.perf_counter()-start_time)
+                #print("秒数",time.perf_counter()-start_time)
                 stop = 0.5-stop
                 time.sleep(stop)
                 
@@ -67,8 +67,8 @@ class Mgmt:
             
             else:
                 
-                
-                print("counter",time.perf_counter()-start_time)
+                pass
+                #print("counter",time.perf_counter()-start_time)
             
                 
 

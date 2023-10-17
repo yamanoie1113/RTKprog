@@ -89,8 +89,11 @@ class SectionMgmt:
                                     self.WalkeParam[0][0],self.Pointer[0]) 
         
     def test2(self):#曲線テスト
-        
-        self.sectionrun.test_curve(self.Walkerinstance[1],self.Judgeinstance[1],self.WalkeParam[1][0],self.Pointer[1])
+            print("Walkerinstance:",self.Walkerinstance[self.STRAIGHT])
+            print("judgeinstance",self.Judgeinstance[self.STRAIGHT])
+            print("WalkerParam",self.WalkeParam)
+            print("座標",self.Pointer)
+        #self.sectionrun.test_curve(self.Walkerinstance[1],self.Judgeinstance[1],self.WalkeParam[1][0],self.Pointer[1])
         #print("curvetest",self.WalkeParam[1][0],self.Pointer[1])
         
     def execRun(self):
@@ -263,8 +266,8 @@ def main():
     sectionMgmt=SectionMgmt()
     sectionMgmt.run()
     #sectionMgmt.execRun()
-    sectionMgmt.test1()
-    #sectionMgmt.test2()
+    #sectionMgmt.test1()
+    sectionMgmt.test2()
     
 
 if __name__=="__main__":

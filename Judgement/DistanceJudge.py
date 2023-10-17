@@ -27,12 +27,12 @@ class DistanceJudge(Judge.Judge):
                 
 
         # クラス変数
-        self.logfile = 'Distance_log.txt'
+        #self.logfile = 'Distance_log.txt'
         #self.judgelog = 'DisJudge_log.txt'
 
         #GPSログの消去
         
-        LogMgmt.write(self.logfile,"NONE_DISTANCE")
+        #LogMgmt.write(self.logfile,"NONE_DISTANCE")
 
         
         #LogMgmt.write(self.judgelog,"NONE_JUDGED")
@@ -61,6 +61,7 @@ class DistanceJudge(Judge.Judge):
 
 
     def judge(self,XYpos):
+        #print(XYpos)
         x = XYpos[0]
         y = XYpos[1]
 
@@ -69,13 +70,19 @@ class DistanceJudge(Judge.Judge):
         self.mlength = self.calc_dist(self.start_x,self.start_y,x,y)
         #誤差補正のために切り捨てているが、もっと良い方法があるかも
         self.mlength = round(self.mlength)
+        
+        #print("dis",self.mlength)
 
         #X、Y座標を取得し、その値が基準値をこえていたらtrueを返す。それ以外はfalse
         if self.mlength <= 2.0:
             #LogMgmt.write(self.judgelog,"reached")
+            #print("AAAAAAAAA")
+            #print(self.mlength)
             return False
         else :
             #LogMgmt.write(self.judgelog,"UN_reached")
+            #print("UN_REACHED")
+            #print(self.mlength)
             return True
 
     def getPosition(self):
@@ -84,6 +91,7 @@ class DistanceJudge(Judge.Judge):
         #start_x ,start_yに座標をセット
         self.start_x = positionXY[0]
         self.start_y = positionXY[1]
+        #print(self.start_x,self.start_y)
 
 
     #現在角度の取得
@@ -110,7 +118,7 @@ class DistanceJudge(Judge.Judge):
         #self.mlength = math.sqrt(( self.goal_x- self.start_x)**2 + ( self.goal_y - self.start_y)**2)
 
         #ログファイルに書き込み
-        LogMgmt.write(self.logfile,length)
+        #LogMgmt.write(self.logfile,length)
 
         #print("距離return:",length)
 
@@ -134,7 +142,13 @@ class DistanceJudge(Judge.Judge):
 
         ang = math.asin(sideb_len/sidea_len)*180/math.pi
         return ang
-
+    
+    def get_Goal(self):
+        
+        goal_x = self.pget.Point[0][0]
+        goal_y = self.pget.Point[0][1]
+        
+        return goal_x,goal_y
 
 
     #目標となる値をここで設定したい(進みたい距離)
@@ -142,11 +156,19 @@ class DistanceJudge(Judge.Judge):
         self.finishlength=judgevalue
 
 def main():
+    goal_XY = [[0,0],[0,0]]
     mdisjudge = DistanceJudge()
+    
+    goal_x,goal_y = mdisjudge.get_Goal()
+    goal_XY[0] = goal_x
+    goal_XY[1] = goal_y
 
-    goal_XY = [0.0,0.0]
-
+    Flag = True
     #判定テスト
-    mdisjudge.judge(goal_XY)
+    while Flag:
+        Flag = mdisjudge.judge(goal_XY)
+        #print(Flag)
+        
+    print("aaa")
 if __name__ == '__main__':
     main()
