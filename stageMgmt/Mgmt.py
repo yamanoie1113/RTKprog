@@ -7,6 +7,7 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 #from yamagapractice import Test
 from section import SectionMgmt
+import threading
 
 #import Timerset
 #import rpipwmtest
@@ -22,7 +23,7 @@ class Mgmt:
     
         print("プログラム開始")
         
-    def run2(self):
+    def run2(self):#未使用
         p1 = threading(target=self.counter)
         p2 = threading(target=self.exec_run)
     

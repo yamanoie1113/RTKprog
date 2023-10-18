@@ -97,7 +97,7 @@ class SectionMgmt:
         #print("curvetest",self.WalkeParam[1][0],self.Pointer[1])
         
     def execRun(self):
-        
+        state=None
         #パラメータの配列を最初に戻すのを繰り返す
         
         if self.section_set[self.pointerset]==0: #直線の場合
@@ -108,17 +108,18 @@ class SectionMgmt:
             print("WalkerParam",self.WalkeParam[self.STRAIGHT][self.Swalkerpointer])
             print("座標",self.Pointer[self.pointerset])
             '''
-            self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
+            state=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
                                     self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset]) 
+            if state==True:
+            
+                self.Swalkerpointer+=1
+                if self.Swalkerpointer==4:
+                    self.Swalkerpointer=0
 
-            self.Swalkerpointer+=1
-            if self.Swalkerpointer==4:
-                self.Swalkerpointer=0
-
-            self.pointerset+=1
-            print("pointer_count",self.pointerset)
-            if self.pointerset==6:
-                self.pointerset=0
+                self.pointerset+=1
+                    #print("pointer_count",self.pointerset)
+                if self.pointerset==6:
+                    self.pointerset=0
                 
 
                 
@@ -130,16 +131,16 @@ class SectionMgmt:
             print("座標",self.Pointer[self.pointerset])
             '''
             
-            self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
+            state=self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
                                     self.WalkeParam[self.CURVE][self.Cwalkerpointer],self.Pointer[self.pointerset])
+            if state==True:
+                self.Cwalkerpointer+=1
+                if self.Cwalkerpointer==2:
+                    self.Cwalkerpointer=0
 
-            self.Cwalkerpointer+=1
-            if self.Cwalkerpointer==2:
-                self.Cwalkerpointer=0
-
-            self.pointerset+=1
-            if self.pointerset==6:
-                self.pointerset=0
+                self.pointerset+=1
+                if self.pointerset==6:
+                    self.pointerset=0
 
         self.mState=self.END
         
@@ -152,10 +153,10 @@ class SectionMgmt:
             print("パラメータ",self.WalkeParam[self.STRAIGHT][self.Swalkerpointer])
             print("座標",self.Pointer[self.pointerset])
             '''
-            stete=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
+            self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
                                     self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset],self.section_set_Reiwa[self.pointerset]) 
             
-        
+            
             self.Swalkerpointer+=1
             if self.Swalkerpointer==6:  
                 self.Swalkerpointer=0
