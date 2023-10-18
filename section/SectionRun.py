@@ -46,16 +46,17 @@ class SectionRun:
     def run(self,mwalker,mjudge,Walkeparam,pointer):#走法、判定、パラメータ、座標
 
         
-        '''#中身確認
-        print("mjudgeのオブジェクト",mjudge)
-        print("mwalkerのオブジェクト",mwalker)
-        print("walkeparam",Walkeparam)
+        #中身確認
+        #print("mjudgeのオブジェクト",mjudge)
+        #print("mwalkerのオブジェクト",mwalker)
+        #print("walkeparam",Walkeparam)
         print("座標",pointer)
-        '''
+        
         walker_thread = threading.Thread(target=self.exec_run, args=(mwalker,Walkeparam,pointer))
-        judge_thread = threading.Thread(target=self.exec_judge, args=(mjudge,pointer))
+        #judge_thread = threading.Thread(target=self.exec_judge, args=(mjudge,pointer))
         walker_thread.start()
-        judge_thread.start()
+        #judge_thread.start()
+        self.exec_judge(mjudge,pointer)
         #print("threadtest1")
         #with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
             #print("threadtest2")
@@ -82,18 +83,32 @@ class SectionRun:
         #print(counter)
         t=True
         tes=True
+        
         while t:
+            start_time = time.perf_counter()
+            
             tes=mjudge.judge(pointer)#距離判定
-            #Sprint("判定中です")
+            
+            
+            
+            
+            #print("判定中です")
             if tes==False:
                 #print(tes)
                 t=False
                 print("判定しました")
+                
+                
+                #self.stop()
                 break
+            stop = time.perf_counter() - start_time
+            #print("SectionRun_loop_time",stop)
         
         #self.stop()
         #time.sleep(1)
+    def timer(self,start_time):
         
+        pass
         
     def run2(self,mwalker,mjudge,Walkeparam,pointer):
         
@@ -102,10 +117,10 @@ class SectionRun:
         print("SECTION_RUN_TEST_straight")
         
         mwalker.set_run(Walkeparam,pointer)
-        
+        print("aaaa")
         while t:
             tes=mjudge.judge(pointer)#距離判定
-            print("判定中です")
+#             print("判定中です")
             if tes==False:
                 t=False
                 #mwalker.set_run(self.STOP,pointer)
@@ -113,7 +128,7 @@ class SectionRun:
                 break
         
     def test_straight(self,mwalker,mjudge,Walkeparam,pointer):
-        
+        tes=True
         t=True
         print("SECTION_RUN_TEST_straight")
         
@@ -132,7 +147,7 @@ class SectionRun:
         
         
     def test_curve(self,mwalker,mjudge,Walkeparam,pointer):
-        
+        tes=true
         t=True
         print("SECTION_RUN_TEST_curve")
         
@@ -195,6 +210,7 @@ class SectionRun:
             print("STOP!!!!!!!!!!!!!!!")
         #self.Motor.stop()
             mwalker.set_run(self.STOP,self.pointer)
+            time.sleep(1)
     
             print("判定しました")
             #break

@@ -22,7 +22,7 @@ class PositionMgmt(Sensor.Sensor):
 
 
     #A,B,C,D,E,C
-    Point = [[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0]]
+    Point = [[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0],[0.0,0.0]]
 
     #pos_total: float
 
@@ -32,12 +32,14 @@ class PositionMgmt(Sensor.Sensor):
 
         
         #初期値の登録
+        
         while self.origin == None:
             print("updating_origin...")
             self.Origin_update()
             self.origin = self.position
             #print(self.origin)
         #print("done")
+        
         
 
 
@@ -52,8 +54,8 @@ class PositionMgmt(Sensor.Sensor):
         #print(self.origin)
 
         #x,yの増分 要検討
-        self.x_moves = 700.0
-        self.y_moves = 500.0
+        self.x_moves = 5.0
+        self.y_moves = 8.0
 
     def Origin_update(self):
         temp = GPS2xy.GPS2xy.getvalue(self)
@@ -120,8 +122,8 @@ class PositionMgmt(Sensor.Sensor):
         self.Point[0][1] = self.origin[1] + self.y_moves
 
         #左下 B
-        self.Point[1][0] = self.origin[0] + self.x_moves
-        self.Point[1][1] = self.origin[1] + self.y_moves
+        self.Point[1][0] = self.origin[0] - self.x_moves
+        self.Point[1][1] = self.origin[1] - self.y_moves
 
         #真ん中 C
         self.Point[2][0] = self.origin[0]
@@ -129,10 +131,10 @@ class PositionMgmt(Sensor.Sensor):
 
         #右上 D
         self.Point[3][0] = self.origin[0] + self.x_moves
-        self.Point[3][1] = self.origin[1] - self.y_moves
+        self.Point[3][1] = self.origin[1] + self.y_moves
 
         #右下 E
-        self.Point[4][0] = self.origin[0] - self.x_moves
+        self.Point[4][0] = self.origin[0] + self.x_moves
         self.Point[4][1] = self.origin[1] - self.y_moves
 
         #真ん中 C
@@ -284,6 +286,7 @@ def main():
     #print(tesclass.position)
     
     #tesclass.thread1.start()
+
     while True:
         
         #実行速度の計算
@@ -295,10 +298,11 @@ def main():
         
         #print("実行時間")
         #print(time.perf_counter() - start_time)
-
+    
+    
     #tesclass.update()
     init = tesclass.PosInit()
-    #print(init)
+    print(init)
 
     #print(tesclass.origin[0])
 
