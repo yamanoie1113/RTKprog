@@ -50,7 +50,7 @@ class Mgmt:
             if (state2>=180): #.................走行時間の設定
                 state=False
                 break
-            counter+=1
+            #counter+=1
             section.execRun()
 
             #周期の秒数

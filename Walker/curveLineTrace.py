@@ -19,7 +19,7 @@ import numpy as np
 class cuvreLineTrace:
 
         MM = MotorMgmt.MotorMgmt()
-        PM = PositionMgmt.PositionMgmt()
+        PM = None
         goalx = 1000 #目標地点ｘ
         goaly = 1000 #目標地点ｙ
         startx = 0 #開始地点ｘ
@@ -31,8 +31,6 @@ class cuvreLineTrace:
         standard = 0
         save_saitan = 0
         mPID = PID2.PID()
-        MM = MotorMgmt.MotorMgmt()
-        PM = PositionMgmt.PositionMgmt()
         param = [[0 for i in range(2)] for j in range(5)]
         sp = 0
         sv = 0
@@ -133,7 +131,7 @@ class cuvreLineTrace:
         def init_state(self):
             self.cancel = 0
         
-        def set_run(self,paramlist,goaly):
+        def set_run(self,paramlist,goaly,Positionmgmt):
             #self.mPID=PID()
             #self.mPID.reset_param()
             #self.param = list()
@@ -141,6 +139,7 @@ class cuvreLineTrace:
             #for f in range(4):
                 #param_list = paramlist[f:f+1]
             #self.PM.__init__(self)
+            self.PM=Positionmgmt
             self.sp = paramlist[0]
             self.sv = 0
             self.p = paramlist[1]

@@ -43,7 +43,7 @@ class SectionRun:
         
 
 
-    def run(self,mwalker,mjudge,Walkeparam,pointer):#走法、判定、パラメータ、座標
+    def run(self,mwalker,mjudge,Walkeparam,pointer,PositionMgmt):#走法、判定、パラメータ、座標
 
         
         '''#中身確認
@@ -52,11 +52,14 @@ class SectionRun:
         print("walkeparam",Walkeparam)
         print("座標",pointer)
         '''
-        walker_thread = threading.Thread(target=self.exec_run, args=(mwalker,Walkeparam,pointer))
-        judge_thread = threading.Thread(target=self.exec_judge, args=(mjudge,pointer))
-        walker_thread.start()
-        judge_thread.start()
+        walker_thread = threading.Thread(target=self.exec_run, args=(mwalker,Walkeparam,pointer,PositionMgmt))
+        #judge_thread = threading.Thread(target=self.exec_judge, args=(mjudge,pointer))
+        walker_thread.start(mjudge,pointer,PositionMgmt)
+        #judge_thread.start()
         #print("threadtest1")
+        return self.exec_judge()
+        
+        
         #with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
             #print("threadtest2")
             #walker_thread=executor.submit(target=self.exec_run,args=(mwalker,Walkeparam,poinrer))
@@ -67,13 +70,13 @@ class SectionRun:
         #judge_thread.join()  
         #walker_thread.join()
         
-    def exec_run(self,mwalker,Walkeparam,pointer):
+    def exec_run(self,mwalker,Walkeparam,pointer,PositionMgmt):
         
         #print("exec_run_start")
-        mwalker.set_run(Walkeparam,pointer)
+        mwalker.set_run(Walkeparam,pointer,PositionMgmt)
         #print("exec_run_END")
 
-    def exec_judge(self, mjudge,pointer):
+    def exec_judge(self, mjudge,pointer,PositionMgmt):
         #print("exec_judge_start")
         counter=0
         #tes=mjudge.judge(pointer)#距離判定
@@ -83,7 +86,7 @@ class SectionRun:
         #t=True
         tes=True
         #while t:
-        tes=mjudge.judge(pointer)#距離判定
+        tes=mjudge.judge(pointer,PositionMgmt)#距離判定
             
         if tes==False:
         

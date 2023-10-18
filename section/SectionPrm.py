@@ -29,7 +29,7 @@ class SectionPrm:
         #print("print_OK")
         #print(self.pointset[0])
 
-        return self.pointset
+        return self.pointset,self.position
     
     def pointer_param_R(self):
 
