@@ -112,6 +112,7 @@ class SectionMgmt:
                                     self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset]) 
             if state==True:
             
+                self.Walkerinstance[self.STRAIGHT].init_state()
                 self.Swalkerpointer+=1
                 if self.Swalkerpointer==4:
                     self.Swalkerpointer=0
@@ -134,6 +135,8 @@ class SectionMgmt:
             state=self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
                                     self.WalkeParam[self.CURVE][self.Cwalkerpointer],self.Pointer[self.pointerset])
             if state==True:
+                
+                self.Walkerinstance[self.CURVE].init_state()
                 self.Cwalkerpointer+=1
                 if self.Cwalkerpointer==2:
                     self.Cwalkerpointer=0
