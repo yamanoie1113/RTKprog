@@ -151,9 +151,10 @@ class SectionMgmt:
             print("パラメータ",self.WalkeParam[self.STRAIGHT][self.Swalkerpointer])
             print("座標",self.Pointer[self.pointerset])
             '''
-            self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
+            stete=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
                                     self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset],self.section_set_Reiwa[self.pointerset]) 
-
+            
+        
             self.Swalkerpointer+=1
             if self.Swalkerpointer==6:  
                 self.Swalkerpointer=0
