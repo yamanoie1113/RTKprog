@@ -63,14 +63,19 @@ class DistanceJudge(Judge.Judge):
     """
        
 
-    def judge(self,XYpos):
+    def judge(self,XYpos,PMgmt):
         #print(XYpos)
         start_time = time.perf_counter()
         
         x = XYpos[0]
         y = XYpos[1]
 
-        self.getPosition()
+        #受け取ったインスタンスで現在地を取得
+        positionXY=PMgmt.getvalue()
+
+        #スライス
+        self.start_x = positionXY[0]
+        self.start_y = positionXY[1]
 
         self.mlength = self.calc_dist(self.start_x,self.start_y,x,y)
         #誤差補正のために切り捨てているが、もっと良い方法があるかも
@@ -93,6 +98,7 @@ class DistanceJudge(Judge.Judge):
         stop = time.perf_counter() - start_time
         print("DIS_JUDGE_time",stop)
 
+    #本番では使わない
     def getPosition(self):
         positionXY = self.pget.getvalue()
 
