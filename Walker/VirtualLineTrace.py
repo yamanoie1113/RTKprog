@@ -180,7 +180,7 @@ class VirtualLineTrace():
             return m, error_sum, error
 
         def set_run(self,paramlist,goaly):
-            print("dete")
+            #print("dete")
             #self.mPID=PID()
             #self.mPID.reset_param()
             #self.param = list()
