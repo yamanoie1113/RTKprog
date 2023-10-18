@@ -59,7 +59,7 @@ class VirtualLineTrace():
             x = float(self.param[0])
             y = float(self.param[1])
             
-            #print(x,y)
+            print(x,y)
             #print(self.goaly)
             #print('distance')
             
@@ -138,7 +138,7 @@ class VirtualLineTrace():
         def set_param(self):
         
             #PM = PositionMgmt.PositionMgmt()
-            print("kite")
+            #print("kite")
             self.param = self.PM.getvalue()
             #self.param[a][0] = 500
             #self.param[a][1] = 500
@@ -184,6 +184,9 @@ class VirtualLineTrace():
                 m = -90
             #print("m",m)
             return m, error_sum, error
+        
+        def init_state(self):
+            self.cancel = 0
 
         def set_run(self,paramlist,goaly):
             #print("dete")
@@ -203,30 +206,25 @@ class VirtualLineTrace():
             #self.goaly = goaly[1]
             #print(self.goalx)
             VirtualLineTrace.set_param(self)
-            gx = float(goaly[0])
-            gy = float(goaly[1])
             #print("param")
-            #print(self.param)
-            
-            self.startx = float(self.param[0])
-            self.starty = float(self.param[1])  
-            self.goalx = gx
-            self.goaly = gy
+            #print(self.param)            
             VirtualLineTrace.set_bunp(self)
             #
             #print(self.goalx,self.goaly)
             #print(self.startx,self.starty)
             #ループカウンタ
             if self.cancel == 0:
-                self.run()
-                self.cancel = 1
-            if self.sp == 0: 
-                self.stop()
+                self.goalx = float(goaly[0])
+                self.goaly = float(goaly[1])
+                self.startx = float(self.param[0])
+                self.starty = float(self.param[1])
+                self.cancel = 1                
+            self.run()            
 
 
         def run(self):
             try:
-                '''
+                
                 VirtualLineTrace.set_distance(self)
                 self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
                 self.MM.set_param(self.sp,self.sv)
@@ -264,6 +262,7 @@ class VirtualLineTrace():
                         stop = 0.5 - stop
                         time.sleep(stop)
                     #print("tyokusen",stop)
+                    '''
             except KeyboardInterrupt:
                 print("complet")
 

@@ -77,15 +77,16 @@ class SectionRun:
         #print("exec_judge_start")
         counter=0
         #tes=mjudge.judge(pointer)#距離判定
-        #print("判定中です")
+        print("判定中です")
         #counter+=1
         #print(counter)
-        t=True
+        #t=True
         tes=True
         #while t:
         tes=mjudge.judge(pointer)#距離判定
             
         if tes==False:
+        
                 #print(tes)
                 #t=False
             print("判定しました")
@@ -93,7 +94,7 @@ class SectionRun:
         
         #self.stop()
         #time.sleep(1)
-        return True
+        return not tes
         
     def run2(self,mwalker,mjudge,Walkeparam,pointer):
         

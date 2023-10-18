@@ -2,7 +2,7 @@ import numpy as np
 import math
 
 import sys
-import pathlib,time
+import pathlib,time,threading
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Judgement import Judge
@@ -22,7 +22,10 @@ class DistanceJudge(Judge.Judge):
     logfile = ''
 
     def __init__(self):
-        self.pget = PMgmt.PositionMgmt()
+        pass
+        #self.pget = PMgmt.PositionMgmt()
+        #self.pget.PosMgmt_init()
+        #self.PositionMgmt_init()
         
                 
 
@@ -58,7 +61,7 @@ class DistanceJudge(Judge.Judge):
         print("done.endpoint:",end="")
         print(self.endpoint)
     """
-
+       
 
     def judge(self,XYpos):
         #print(XYpos)

@@ -27,24 +27,24 @@ class PositionMgmt(Sensor.Sensor):
     #pos_total: float
 
     def __init__(self):
+        pass
+        """
         # クラス変数
         #self.logfile = 'GPS_log.txt'
 
         
         #初期値の登録
         
-        while self.origin == None:
-            print("updating_origin...")
-            self.Origin_update()
-            self.origin = self.position
-            #print(self.origin)
+        
+        #while self.origin == None:
+        print("updating_origin...")
+        self.Origin_update()
+        self.origin = self.position
+        #print(self.origin)
         #print("done")
         
-        
-
-
-        self.thread1 = threading.Thread(target=self.update)
-        self.thread1.start()
+        #self.thread1 = threading.Thread(target=self.update)
+        #self.thread1.start()
         
 
         #GPSログの初期化
@@ -56,12 +56,28 @@ class PositionMgmt(Sensor.Sensor):
         #x,yの増分 要検討
         self.x_moves = 5.0
         self.y_moves = 8.0
-
+        
+        """
+        
+    def PosMgmt_init(self):
+        
+        self.thread1 = threading.Thread(target=self.update)
+        self.thread1.start()
+        self.Origin_update()
+        self.origin = self.position
+        #print(self.origin)        
+        
+        
+        #x,yの増分 要検討
+        self.x_moves = 5.0
+        self.y_moves = 8.0
+        
+    
     def Origin_update(self):
         temp = GPS2xy.GPS2xy.getvalue(self)
         if temp != None:
             i = 0
-            while i < 7:
+            while i < 1:
                 self.last_pos = temp
                 #temp = self.lowpass.filtering(temp)
                 self.position = temp
@@ -100,7 +116,7 @@ class PositionMgmt(Sensor.Sensor):
 
             #print("None_GPS")
             #print(self.position)
-            nonepos = [0,0]
+            #nonepos = [0,0]
 
             #ここで何かしら返さないとバグる
             #print("None_GPS")
@@ -282,6 +298,7 @@ class PositionMgmt(Sensor.Sensor):
 
 def main():
     tesclass = PositionMgmt()
+    tesclass.PosMgmt_init()
     #tesclass.update()
     #print(tesclass.position)
     
@@ -301,8 +318,8 @@ def main():
     
     
     #tesclass.update()
-    init = tesclass.PosInit()
-    print(init)
+    #init = tesclass.PosInit()
+    #print(init)
 
     #print(tesclass.origin[0])
 

@@ -130,6 +130,9 @@ class cuvreLineTrace:
             #print("m",m)
             return m, error_sum, error
         
+        def init_state(self):
+            self.cancel = 0
+        
         def set_run(self,paramlist,goaly):
             #self.mPID=PID()
             #self.mPID.reset_param()
@@ -149,31 +152,31 @@ class cuvreLineTrace:
             c = 0
             cuvreLineTrace.set_param(self)
             #print("curve_goal")
-            print(goaly)
-            gx = float(goaly[0])
-            gy = float(goaly[1])
+            #print(goaly)
+            
             #print("param")
             #print(self.param)
-            
-            self.startx = float(self.param[0])
-            self.starty = float(self.param[1])  
-            self.goalx = gx
-            self.goaly = gy
             cuvreLineTrace.set_first(self)
             #
             #print(self.goalx,self.goaly)
             #print(self.startx,self.starty)
-            #ループカウンタ
+            #ループカウンタ           
             if self.cancel == 0:
-                self.run()
-                self.cancel = 1
-            if self.sp == 0: 
-                self.stop()
-
+                self.goalx = float(goaly[0])
+                self.goaly = float(goaly[1])
+                self.startx = float(self.param[0])
+                self.starty = float(self.param[1])
+                self.cancel = 1                
+            self.run()
 
         def run(self):
             try:
-                c = 0
+                
+                cuvreLineTrace.set_distance(self)
+                self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
+                self.MM.set_param(self.sp,self.sv)
+                self.MM.run()
+                '''
                 while True:
                     start = time.perf_counter()
                     cuvreLineTrace.set_distance(self)
@@ -216,6 +219,7 @@ class cuvreLineTrace:
                         time.sleep(stop)
                     #print("tyokusen",stop)
                     #print(time.perf_counter() - start)
+                    '''
             except KeyboardInterrupt:
                 print("complet")
 
