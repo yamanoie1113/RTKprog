@@ -53,13 +53,16 @@ class VirtualLineTrace():
 
         def set_distance(self):
             #print("test_value",self.test)
-            #print(self.param)
+            #print("startx,y",self.startx,self.starty)
+            #print("goalx,y",self.goalx,self.goaly)
             self.param = self.PM.getvalue()
             x = float(self.param[0])
             y = float(self.param[1])
-            #print(x)
+            
+            #print(x,y)
             #print(self.goaly)
             #print('distance')
+            
             slope = (self.goaly - self.starty)/(self.goalx - self.startx)
             #print(slope)
             intercept = self.starty - slope * self.startx
@@ -68,8 +71,10 @@ class VirtualLineTrace():
             else:
                 x3 = (y - intercept)/slope
             '''
+            
             #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
             distance = abs(slope * (x) - (y) + intercept) / math.sqrt(slope**2 + 1)
+            #print(distance)
             #LogMgmt.write(self.logfile,distance)
             #nx = (y-intercept)/slope
             #最短座標
@@ -133,6 +138,7 @@ class VirtualLineTrace():
         def set_param(self):
         
             #PM = PositionMgmt.PositionMgmt()
+            print("kite")
             self.param = self.PM.getvalue()
             #self.param[a][0] = 500
             #self.param[a][1] = 500
@@ -180,7 +186,7 @@ class VirtualLineTrace():
             return m, error_sum, error
 
         def set_run(self,paramlist,goaly):
-            print("dete")
+            #print("dete")
             #self.mPID=PID()
             #self.mPID.reset_param()
             #self.param = list()
@@ -197,8 +203,8 @@ class VirtualLineTrace():
             #self.goaly = goaly[1]
             #print(self.goalx)
             VirtualLineTrace.set_param(self)
-            gy = float(goaly[0])
-            gx = float(goaly[1])
+            gx = float(goaly[0])
+            gy = float(goaly[1])
             #print("param")
             #print(self.param)
             
@@ -220,9 +226,16 @@ class VirtualLineTrace():
 
         def run(self):
             try:
+                '''
+                VirtualLineTrace.set_distance(self)
+                self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
+                self.MM.set_param(self.sp,self.sv)
+                self.MM.run()
+                '''
                 while True:
                     start = time.perf_counter()
                     VirtualLineTrace.set_distance(self)
+                    #print(self.save_saitan)
                     #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
                     self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
                     #self.sv,self.error_sum,self.error_pre = VirtualLineTrace.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)

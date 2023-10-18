@@ -116,6 +116,7 @@ class SectionMgmt:
                 self.Swalkerpointer=0
 
             self.pointerset+=1
+            print("pointer_count",self.pointerset)
             if self.pointerset==6:
                 self.pointerset=0
                 

@@ -2,7 +2,7 @@ import numpy as np
 import math
 
 import sys
-import pathlib
+import pathlib,time
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Judgement import Judge
@@ -62,6 +62,8 @@ class DistanceJudge(Judge.Judge):
 
     def judge(self,XYpos):
         #print(XYpos)
+        start_time = time.perf_counter()
+        
         x = XYpos[0]
         y = XYpos[1]
 
@@ -84,6 +86,9 @@ class DistanceJudge(Judge.Judge):
             #print("UN_REACHED")
             #print(self.mlength)
             return True
+        
+        stop = time.perf_counter() - start_time
+        print("DIS_JUDGE_time",stop)
 
     def getPosition(self):
         positionXY = self.pget.getvalue()
@@ -159,9 +164,9 @@ def main():
     goal_XY = [[0,0],[0,0]]
     mdisjudge = DistanceJudge()
     
-    goal_x,goal_y = mdisjudge.get_Goal()
-    goal_XY[0] = goal_x
-    goal_XY[1] = goal_y
+    #goal_x,goal_y = mdisjudge.get_Goal()
+    goal_XY[0] = 1.0
+    goal_XY[1] = 1.0
 
     Flag = True
     #判定テスト
