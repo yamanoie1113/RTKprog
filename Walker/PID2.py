@@ -32,7 +32,7 @@ class PID:
             m = (kp * error) + (ki * error_sum) + (kd * error_diff) # 操作量を計算
              
             m = m/12
-            print("m",m)
+            #print("m",m)
             m = math.floor(m)
             if m >= 100:
                 m = 90

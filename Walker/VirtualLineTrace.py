@@ -59,7 +59,7 @@ class VirtualLineTrace():
             x = float(self.param[0])
             y = float(self.param[1])
             
-            print(x,y)
+            #print(x,y)
             #print(self.goaly)
             #print('distance')
             

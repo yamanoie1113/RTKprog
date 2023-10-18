@@ -54,11 +54,13 @@ class SectionRun:
         '''
         walker_thread = threading.Thread(target=self.exec_run, args=(mwalker,Walkeparam,pointer,PositionMgmt))
         #judge_thread = threading.Thread(target=self.exec_judge, args=(mjudge,pointer))
-        walker_thread.start(mjudge,pointer,PositionMgmt)
+        walker_thread.start()
         #judge_thread.start()
         #print("threadtest1")
-        return self.exec_judge()
-        
+        statement=None
+        statment=self.exec_judge(mjudge,pointer,PositionMgmt)
+        print("return",statement)
+        return statement
         
         #with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
             #print("threadtest2")
@@ -80,7 +82,7 @@ class SectionRun:
         #print("exec_judge_start")
         counter=0
         #tes=mjudge.judge(pointer)#距離判定
-        print("判定中です")
+        #print("判定中です")
         #counter+=1
         #print(counter)
         #t=True
@@ -97,7 +99,7 @@ class SectionRun:
         
         #self.stop()
         #time.sleep(1)
-        return not tes
+        return not(tes)
         
     def run2(self,mwalker,mjudge,Walkeparam,pointer):
         

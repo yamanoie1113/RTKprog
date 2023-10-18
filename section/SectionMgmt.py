@@ -103,6 +103,7 @@ class SectionMgmt:
         
         if self.section_set[self.pointerset]==0: #直線の場合
             self.section=0
+            print("Straight_start")
             '''
             print("Walkerinstance:",self.Walkerinstance[self.STRAIGHT])
             print("judgeinstance",self.Judgeinstance[self.STRAIGHT])
@@ -112,7 +113,7 @@ class SectionMgmt:
             state=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
                                     self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset],self.PositionMgmt) 
             if state==True:
-            
+                print("straight_OK")
                 self.Walkerinstance[self.STRAIGHT].init_state()
                 self.Swalkerpointer+=1
                 if self.Swalkerpointer==4:
@@ -132,11 +133,12 @@ class SectionMgmt:
             print("WalkerParam",self.WalkeParam[self.CURVE][self.Cwalkerpointer])
             print("座標",self.Pointer[self.pointerset])
             '''
+            print("Curve_start")
             
             state=self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
                                     self.WalkeParam[self.CURVE][self.Cwalkerpointer],self.Pointer[self.pointerset],self.PositionMgmt)
             if state==True:
-                
+                print("Curve_OK")
                 self.Walkerinstance[self.CURVE].init_state()
                 self.Cwalkerpointer+=1
                 if self.Cwalkerpointer==2:
