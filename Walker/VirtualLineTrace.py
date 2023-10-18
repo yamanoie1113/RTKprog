@@ -26,7 +26,7 @@ class VirtualLineTrace():
         save_saitan = 0
         #save_saitan = 0
         MM = MotorMgmt.MotorMgmt()
-        PM = PositionMgmt.PositionMgmt()
+        PM = None
         mPID = PID2.PID()
         param = [[0 for i in range(2)] for j in range(5)]
         sp = 0
@@ -188,7 +188,7 @@ class VirtualLineTrace():
         def init_state(self):
             self.cancel = 0
 
-        def set_run(self,paramlist,goaly):
+        def set_run(self,paramlist,goaly,Positionmgmt):
             #print("dete")
             #self.mPID=PID()
             #self.mPID.reset_param()
@@ -197,6 +197,7 @@ class VirtualLineTrace():
             #for f in range(4):
                 #param_list = paramlist[f:f+1]
             #self.PM.__init__(self)
+            self.PM=Positionmgmt
             self.sp = paramlist[0]
             self.sv = 0
             self.p = paramlist[1]
