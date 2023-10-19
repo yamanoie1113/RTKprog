@@ -61,16 +61,27 @@ class PositionMgmt(Sensor.Sensor):
         
     def PosMgmt_init(self):
         
+        """
         self.thread1 = threading.Thread(target=self.update)
         self.thread1.start()
         self.Origin_update()
         self.origin = self.position
-        #print(self.origin)        
-        
-        
+        #print(self.origin)
+    
         #x,yの増分 要検討
         self.x_moves = 5.0
         self.y_moves = 8.0
+        """
+        
+        #------for debug---------
+        debug_X = 5.0
+        debug_Y = 7.0
+        self.origin = debug_X,debug_Y
+        self.x_moves = debug_X + 0.1
+        self.y_moves = debug_Y + 0.1
+        #------for debug -------
+        
+
         
     
     def Origin_update(self):
