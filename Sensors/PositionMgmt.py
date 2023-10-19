@@ -76,9 +76,10 @@ class PositionMgmt(Sensor.Sensor):
         #------for debug---------
         debug_X = 5.0
         debug_Y = 7.0
+        self.position = debug_X,debug_Y
         self.origin = debug_X,debug_Y
-        self.x_moves = debug_X + 0.1
-        self.y_moves = debug_Y + 0.1
+        self.x_moves =  1.0
+        self.y_moves =  1.0
         #------for debug -------
         
 
