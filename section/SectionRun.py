@@ -58,7 +58,7 @@ class SectionRun:
         #judge_thread.start()
         #print("threadtest1")
         statement=None
-        statment=self.exec_judge(mjudge,pointer,PositionMgmt)
+        statement=self.exec_judge(mjudge,pointer,PositionMgmt)
         print("return",statement)
         return statement
         
