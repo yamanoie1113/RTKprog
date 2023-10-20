@@ -8,7 +8,6 @@ class test3:
     def run(self):
     
         t=False
-        print(not t)
         print(not(t))
         
 
