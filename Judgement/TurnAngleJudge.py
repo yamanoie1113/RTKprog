@@ -43,11 +43,13 @@ class TurnAngleJudge(Judge.Judge):
         self.get_Position()
 
         self.get_ang()
+    
 
+    
     def get_Position(self):
         #現在値取得メソッド
         
-        self.positionXY = self.pget.getvalue()
+        #self.positionXY = self.pget.getvalue()
         
         if self.positionXY != None:
             #start_x,start_yに座標をセット
