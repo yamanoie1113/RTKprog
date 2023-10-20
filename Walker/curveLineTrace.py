@@ -29,6 +29,7 @@ class cuvreLineTrace:
         tyusinx = 0
         tyusiny = 0
         standard = 0
+        distance = 0 
         save_saitan = 0
         mPID = PID2.PID()
         param = [[0 for i in range(2)] for j in range(5)]
@@ -37,6 +38,9 @@ class cuvreLineTrace:
         cancel = 0
         error_sum = 0
         error_pre = 0
+        p = 0
+        i = 0
+        d = 0
 
         def __init__(self):
             
@@ -50,13 +54,15 @@ class cuvreLineTrace:
         def set_first(self):
             #print("test_value",self.test)
             #print(self.param)
-            x = float(self.param[0])
-            y = float(self.param[1])
-            #print(x)
+            #x = float(self.param[0])
+            #y = float(self.param[1])
+            #print("x,y",x,y)
             #print(self.goaly)            
             self.tyusinx = (self.startx + self.goalx)/2
             self.tyusiny = (self.starty + self.goaly)/2
-            self.standard = np.sqrt((self.tyusinx-x)**2 + (self.tyusiny-y)**2) 
+            print(self.tyusinx,"  ",self.tyusiny)
+            self.standard = (np.sqrt((self.tyusinx-self.goalx)**2 + (self.tyusiny-self.goaly)**2))
+            #print("standard",self.standard)
             #LogMgmt.write(self.logfile,self.distance)
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
             #print(self.goalx,self.goaly)
@@ -70,7 +76,7 @@ class cuvreLineTrace:
             y = float(self.param[1])
             #print(x)
             #print(self.goaly)
-            self.distance = np.sqrt((self.tyusinx-x)**2 + (self.tyusiny-y)**2) 
+            self.distance = (np.sqrt((self.tyusinx-x)**2 + (self.tyusiny-y)**2)) 
             #print("基準",self.standard)
             #print("現在",self.distance)
             #LogMgmt.write(self.logfile,self.distance)
@@ -78,7 +84,7 @@ class cuvreLineTrace:
             #cuvreLineTrace.set_turn(self,self.distance)
             #print(self.goalx,self.goaly)
             #print(x,y)
-            return self.distance
+            #return self.distance
 
         def set_turn(self,distance):
             #distance = self.saitan - distance
@@ -116,9 +122,9 @@ class cuvreLineTrace:
             error = theta_goal - (theta_current)# 偏差（error）を計算            
             error_sum += error*0.01 # 偏差の総和（積分）を計算
             #ki = 0       		
-            error_diff = (error-error_pre)/0.01 # PI制御からの追加：1時刻前の偏差と現在の偏差の差分（微分）を計算    		
+            error_diff = (error-error_pre)/0.5 # PI制御からの追加：1時刻前の偏差と現在の偏差の差分（微分）を計算    		
             m = (kp * error) + (ki * error_sum) + (kd * error_diff) # 操作量を計算             
-            m = m/12
+            m = m
             #print("m",m)
             m = math.floor(m)
             if m >= 100:
@@ -139,7 +145,7 @@ class cuvreLineTrace:
             #for f in range(4):
                 #param_list = paramlist[f:f+1]
             #self.PM.__init__(self)
-            self.PM=Positionmgmt
+            
             self.sp = paramlist[0]
             self.sv = 0
             self.p = paramlist[1]
@@ -148,23 +154,25 @@ class cuvreLineTrace:
             #self.goalx = goaly[0]
             #self.goaly = goaly[1]
             #print(self.goalx)
-            c = 0
-            cuvreLineTrace.set_param(self)
             #print("curve_goal")
             #print(goaly)
             
             #print("param")
             #print(self.param)
-            cuvreLineTrace.set_first(self)
             #
             #print(self.goalx,self.goaly)
             #print(self.startx,self.starty)
             #ループカウンタ           
             if self.cancel == 0:
+                self.PM=Positionmgmt
+                cuvreLineTrace.set_param(self)
                 self.goalx = float(goaly[0])
                 self.goaly = float(goaly[1])
                 self.startx = float(self.param[0])
                 self.starty = float(self.param[1])
+                cuvreLineTrace.set_first(self)
+                print("goalx,y",self.goalx,self.goaly)
+                print("1kaime")
                 self.cancel = 1                
             self.run()
 

@@ -60,10 +60,12 @@ class PositionMgmt(Sensor.Sensor):
         """
         
     def PosMgmt_init(self):
+        #print("PosMgmt_init")
         
-        """
         self.thread1 = threading.Thread(target=self.update)
         self.thread1.start()
+        
+        #print("origin_update")
         self.Origin_update()
         self.origin = self.position
         #print(self.origin)
@@ -71,8 +73,9 @@ class PositionMgmt(Sensor.Sensor):
         #x,yの増分 要検討
         self.x_moves = 5.0
         self.y_moves = 8.0
-        """
         
+        
+        """
         #------for debug---------
         debug_X = 5.0
         debug_Y = 7.0
@@ -81,12 +84,14 @@ class PositionMgmt(Sensor.Sensor):
         self.x_moves =  1.0
         self.y_moves =  1.0
         #------for debug -------
+        """
         
 
         
     
     def Origin_update(self):
         temp = GPS2xy.GPS2xy.getvalue(self)
+        print(None)
         if temp != None:
             i = 0
             while i < 1:
@@ -94,7 +99,7 @@ class PositionMgmt(Sensor.Sensor):
                 #temp = self.lowpass.filtering(temp)
                 self.position = temp
                 i += 1
-                #print("updated position:")
+                print("updated position:")
         
         
 
@@ -148,18 +153,18 @@ class PositionMgmt(Sensor.Sensor):
         #左上 A
         self.Point[0][0] = self.origin[0] - self.x_moves
         self.Point[0][1] = self.origin[1] + self.y_moves
-
-        #左下 B
-        self.Point[1][0] = self.origin[0] - self.x_moves
-        self.Point[1][1] = self.origin[1] - self.y_moves
-
+        
+        #右上 D
+        self.Point[1][0] = self.origin[0] + self.x_moves
+        self.Point[1][1] = self.origin[1] + self.y_moves
+        
         #真ん中 C
         self.Point[2][0] = self.origin[0]
         self.Point[2][1] = self.origin[1]
 
-        #右上 D
-        self.Point[3][0] = self.origin[0] + self.x_moves
-        self.Point[3][1] = self.origin[1] + self.y_moves
+        #左下 B
+        self.Point[3][0] = self.origin[0] - self.x_moves
+        self.Point[3][1] = self.origin[1] - self.y_moves
 
         #右下 E
         self.Point[4][0] = self.origin[0] + self.x_moves
@@ -168,6 +173,10 @@ class PositionMgmt(Sensor.Sensor):
         #真ん中 C
         self.Point[5][0] = self.origin[0]
         self.Point[5][1] = self.origin[1]
+
+        
+
+        
         
         """
 

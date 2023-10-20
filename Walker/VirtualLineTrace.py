@@ -91,13 +91,13 @@ class VirtualLineTrace():
             #print(x,y)
 
         def set_bunp(self):
-            if self.startx <= self.goalx and self.starty <= self.startx:
+            if self.startx <= self.goalx and self.starty <= self.goaly:
                 self.bunp = 1
-            elif self.startx >= self.goalx and self.starty <= self.startx:
+            elif self.startx >= self.goalx and self.starty <= self.goaly:
                 self.bunp = 2
-            elif self.startx >= self.goalx and self.starty >= self.startx:
+            elif self.startx >= self.goalx and self.starty >= self.goaly:
                 self.bunp = 3
-            elif self.startx <= self.goalx and self.starty >= self.startx:
+            elif self.startx <= self.goalx and self.starty >= self.goaly:
                 self.bunp = 4
 
         def set_turn(self,distance,x,y,nx,ny):
@@ -219,6 +219,7 @@ class VirtualLineTrace():
                 self.goaly = float(goaly[1])
                 self.startx = float(self.param[0])
                 self.starty = float(self.param[1])
+                print("goalx,y",self.goalx,self.goaly)
                 self.cancel = 1                
             self.run()            
 
@@ -286,4 +287,4 @@ if __name__ == '__main__':
 
 
 
-
+                                                                
