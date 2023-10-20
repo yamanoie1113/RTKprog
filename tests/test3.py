@@ -9,6 +9,7 @@ class test3:
     
         t=False
         print(not t)
+        print(not(t))
         
 
 def main():

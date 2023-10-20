@@ -72,7 +72,7 @@ class Mgmt:
                 #print("counter",time.perf_counter()-start_time)
             
                 
-
+        section.end()
         print("終了")
         
         

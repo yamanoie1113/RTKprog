@@ -200,8 +200,8 @@ class SectionRun:
     def stop(self):
         
             print("STOP!!!!!!!!!!!!!!!")
-        #self.Motor.stop()
-            mwalker.set_run(self.STOP,self.pointer)
+            self.Motor.stop()
+            #mwalker.set_run(self.STOP,self.pointer)
     
             print("判定しました")
             #break
