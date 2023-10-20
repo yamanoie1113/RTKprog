@@ -129,9 +129,10 @@ class VirtualLineTrace():
                 if self.bunp ==3 or self.bunp ==4:
                     if nx <= x:
                         self.turn = 'right'
+                        self.save_saitan = self.save_saitan * (-1)
                     else:
                         self.turn = 'left'
-                        self.save_saitan = self.save_saitan * (-1)
+                        
             #print(self.turn)
             #'''
 
@@ -209,7 +210,7 @@ class VirtualLineTrace():
             VirtualLineTrace.set_param(self)
             #print("param")
             #print(self.param)            
-            VirtualLineTrace.set_bunp(self)
+            
             #
             #print(self.goalx,self.goaly)
             #print(self.startx,self.starty)
@@ -219,7 +220,11 @@ class VirtualLineTrace():
                 self.goaly = float(goaly[1])
                 self.startx = float(self.param[0])
                 self.starty = float(self.param[1])
+                VirtualLineTrace.set_bunp(self)
+                print("byup:",self.bunp)
                 print("goalx,y",self.goalx,self.goaly)
+                self.error_sum = 0
+                self.error_pre = 0
                 self.cancel = 1                
             self.run()            
 
