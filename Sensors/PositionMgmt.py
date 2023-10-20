@@ -211,7 +211,7 @@ class PositionMgmt(Sensor.Sensor):
         return self.Point
 
     def REIWAInit(self):
-        self.update()
+        #self.update()
 
         #中点を返す C:[0] G:[1]
         mid_point = self.set_mid()
