@@ -61,7 +61,8 @@ class PositionMgmt(Sensor.Sensor):
         
     def PosMgmt_init(self):
         #print("PosMgmt_init")
-        
+        with open(path, mode='r') as f:
+            self.angle = f.read()
         self.thread1 = threading.Thread(target=self.update)
         self.thread1.start()
         
@@ -151,6 +152,7 @@ class PositionMgmt(Sensor.Sensor):
     def PosInit(self):        
         
         #左上 A
+        x,y = A(-xm, ym)
         self.Point[0][0] = self.origin[0] - self.x_moves
         self.Point[0][1] = self.origin[1] + self.y_moves
         

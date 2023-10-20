@@ -33,14 +33,12 @@ class SectionPrm:
     
     def pointer_param_R(self):
 
-        
+        self.position.PosMgmt_init()
         self.pointset=self.position.REIWA()
 
         #print(self.pointset[0])
 
-        return self.pointset
-    
-    
+        return self.pointset,self.position
 
 
     def Walkerset_param(self,pointset):#msectionIdxは区間管理のget_paramから
