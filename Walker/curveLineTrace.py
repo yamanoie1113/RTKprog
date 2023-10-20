@@ -183,50 +183,7 @@ class cuvreLineTrace:
                 self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
                 self.MM.set_param(self.sp,self.sv)
                 self.MM.run()
-                '''
-                while True:
-                    start = time.perf_counter()
-                    cuvreLineTrace.set_distance(self)
-                    #self.mPID.set_target(loca)
-                    #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
-                    self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
-                    #self.mPID.get_operation()
-                    #print(self.turn)
-                    #print(self.turn)
-                    if self.turn == 'no':
-                        #print ('zennsin2')
-                        self.MM.set_param(self.sp,self.sv)
-                            #self.MM.set_param(1,100)
-                    if self.turn == 'right':
-                        #self.sv = self.sv + 30
-                        #if self.sv > 100:
-                        #    self.sv = 100
-                        self.MM.set_param(self.sp,self.sv)
-                        #self.MM.set_param(1,-100)
-                        #print ('zennsin')
-                    elif self.turn == 'left':
-                        #print ('cousin')
-                        #self.sv = self.sv - 30
-                        #if self.sv < -100:
-                        #    self.sv = -100
-                        self.MM.set_param(self.sp,self.sv)
-                        #self.MM.set_param(10,100)
-                    
-                    self.MM.run()
-                    if self.cancel == 2:
-                        break
-                    c += 1
-                    if c == 5:
-                        c = 2
-                    #VirtualLineTrace.set_param(self)
-                    #time.sleep(0.1)
-                    stop = time.perf_counter() - start
-                    if stop <= 0.5:
-                        stop = 0.5 - stop
-                        time.sleep(stop)
-                    #print("tyokusen",stop)
-                    #print(time.perf_counter() - start)
-                    '''
+                
             except KeyboardInterrupt:
                 print("complet")
 

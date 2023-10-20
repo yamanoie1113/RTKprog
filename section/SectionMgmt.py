@@ -18,7 +18,7 @@ class SectionMgmt:
     Walkerinstance=[None,None]
     Judgeinstance=[None,None]
     Pointer=None
-    
+    pointerset = 0
     sectionprm=SectionPrm.SectionPrm()
     sectionrun=SectionRun.SectionRun()
     STRAIGHT = 0
@@ -29,6 +29,11 @@ class SectionMgmt:
     section_set_Reiwa=[0,1,0,0,0,1,0,0,0]
     position=None
     PositionMgmt=None
+    sectionpoint=0
+    instancepoint=0
+    Swalkerpointer=0 #6まで
+    Cwalkerpointer=0 #2まで
+    testsection=1
     
     def __init__(self):
 
@@ -75,35 +80,14 @@ class SectionMgmt:
         
         self.addSection()
 
-        self.section=0
-        self.sectionpoint=0
-        self.instancepoint=0
-        self.Swalkerpointer=0 #6まで
-        self.Cwalkerpointer=0 #2まで
-        self.pointerset=0
-        self.testsection=1
-    
-    def test1(self):#直進テスト
         
-        #prin("test")
-        self.sectionrun.test_straight(self.Walkerinstance[0],self.Judgeinstance[0],
-                                    self.WalkeParam[0][0],self.Pointer[0]) 
-        
-    def test2(self):#曲線テスト
-            print("Walkerinstance:",self.Walkerinstance[self.STRAIGHT])
-            print("judgeinstance",self.Judgeinstance[self.STRAIGHT])
-            print("WalkerParam",self.WalkeParam)
-            print("座標",self.Pointer)
-        #self.sectionrun.test_curve(self.Walkerinstance[1],self.Judgeinstance[1],self.WalkeParam[1][0],self.Pointer[1])
-        #print("curvetest",self.WalkeParam[1][0],self.Pointer[1])
         
     def execRun(self):
         state=None
         #パラメータの配列を最初に戻すのを繰り返す
         
         if self.section_set[self.pointerset]==0: #直線の場合
-            self.section=0
-            #print("Straight_start")
+            print("straight:", self.pointerset)
             '''
             print("Walkerinstance:",self.Walkerinstance[self.STRAIGHT])
             print("judgeinstance",self.Judgeinstance[self.STRAIGHT])
@@ -127,6 +111,7 @@ class SectionMgmt:
 
                 
         else: #曲線
+            print("curve:", self.pointerset)
             '''
             print("Walkerinstance:",self.Walkerinstance[self.CURVE])
             print("judgeinstance",self.Judgeinstance[self.CURVE])

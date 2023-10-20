@@ -75,7 +75,6 @@ class SectionRun:
     def exec_run(self,mwalker,Walkeparam,pointer,PositionMgmt):
         
         #print("exec_run_start")
-        time.sleep(1)
         mwalker.set_run(Walkeparam,pointer,PositionMgmt)
         #print("exec_run_END")
 
