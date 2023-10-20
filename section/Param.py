@@ -14,7 +14,7 @@ class Param:
     def Straight_set_param(self):
 
         #速度、P,I,D
-        self.prm1=([25,1,0.4,1],  #C-A 1
+        self.prm1=([15,1,0.4,1],  #C-A 1
         [25,1,0.4,1],             #B-C 3
         [25,1,0.4,1],             #C-D 4
         [25,1,0.4,1])             #E-C 6
@@ -25,7 +25,7 @@ class Param:
 
     def Curve_set_param(self):
         
-        self.prm2=([20,1,0.4,1], #A-B 2
+        self.prm2=([15,1,0.4,1], #A-B 2
                 [20,1,0.4,1])    #D-E 5
 
         return self.prm2

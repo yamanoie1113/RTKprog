@@ -59,7 +59,7 @@ class SectionRun:
         #print("threadtest1")
         statement=None
         statement=self.exec_judge(mjudge,pointer,PositionMgmt)
-        print("return",statement)
+        #print("return",statement)
         return statement
         
         #with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
@@ -75,6 +75,7 @@ class SectionRun:
     def exec_run(self,mwalker,Walkeparam,pointer,PositionMgmt):
         
         #print("exec_run_start")
+        time.sleep(1)
         mwalker.set_run(Walkeparam,pointer,PositionMgmt)
         #print("exec_run_END")
 
