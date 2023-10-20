@@ -192,8 +192,7 @@ class SectionMgmt:
 
     def end(self):
         
-        self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
-                                    self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset],self.section_set_Reiwa[self.pointerset]) 
+        self.sectionrun.stop()
         
         
         
