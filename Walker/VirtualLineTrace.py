@@ -101,21 +101,7 @@ class VirtualLineTrace():
                 self.bunp = 4
 
         def set_turn(self,distance,x,y,nx,ny):
-            #ONOFF回路の
-            ''' 
-            if 0 <= distance:
-                #distance = self.saitan - distance
-                self.turn = 'right'
-                self.save_saitan = distance
-                if self.saitan < distance and self.save_turn == 'right':
-                    self.turn = 'left'
-                    self.save_saitan = self.save_saitan * (-1)
-            else:
-                self.turn = 'no'
-            self.save_turn = self.turn
-            self.saitan = distance
-            #VirtualLineTrace.set_saitan(self,distance)
-            '''
+            
             if 0 <= distance:
                 #print('distance',distance)
                 #print('self.save_saitan',self.save_saitan)
@@ -129,9 +115,10 @@ class VirtualLineTrace():
                 if self.bunp ==3 or self.bunp ==4:
                     if nx <= x:
                         self.turn = 'right'
-                        self.save_saitan = self.save_saitan * (-1)
+                        
                     else:
                         self.turn = 'left'
+                        self.save_saitan = self.save_saitan * (-1)
                         
             #print(self.turn)
             #'''

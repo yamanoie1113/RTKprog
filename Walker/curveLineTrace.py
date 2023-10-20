@@ -41,6 +41,7 @@ class cuvreLineTrace:
         p = 0
         i = 0
         d = 0
+        exec_count = 0
 
         def __init__(self):
             
@@ -173,7 +174,8 @@ class cuvreLineTrace:
                 cuvreLineTrace.set_first(self)
                 print("goalx,y",self.goalx,self.goaly)
                 print("1kaime")
-                self.cancel = 1                
+                self.cancel = 1
+                self.exec_count += 1
             self.run()
 
         def run(self):
@@ -181,6 +183,9 @@ class cuvreLineTrace:
                 
                 cuvreLineTrace.set_distance(self)
                 self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
+                if self.exec_count % 2 == 0:
+                    self.sv *= -1
+                
                 self.MM.set_param(self.sp,self.sv)
                 self.MM.run()
                 

@@ -87,7 +87,7 @@ class SectionMgmt:
         #パラメータの配列を最初に戻すのを繰り返す
         
         if self.section_set[self.pointerset]==0: #直線の場合
-            print("straight:", self.pointerset)
+            #print("straight:", self.pointerset)
             '''
             print("Walkerinstance:",self.Walkerinstance[self.STRAIGHT])
             print("judgeinstance",self.Judgeinstance[self.STRAIGHT])
@@ -111,7 +111,7 @@ class SectionMgmt:
 
                 
         else: #曲線
-            print("curve:", self.pointerset)
+            #print("curve:", self.pointerset)
             '''
             print("Walkerinstance:",self.Walkerinstance[self.CURVE])
             print("judgeinstance",self.Judgeinstance[self.CURVE])
