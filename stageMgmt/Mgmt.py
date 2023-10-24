@@ -1,3 +1,5 @@
+
+# coding: utf-8 
 #from multiprocessing import Process
 #from concurrent.futures import ProcessPoolExecutor
 #import multiprocessing
@@ -47,7 +49,7 @@ class Mgmt:
             
             state2=self.timejudge1(start_program)
             #print("byou_su",state2)
-            if (state2>=180): #.................走行時間の設定
+            if (state2>=170): #.................走行時間の設定
                 state=False
                 break
             #counter+=1

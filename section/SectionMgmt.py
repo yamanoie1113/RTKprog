@@ -26,7 +26,7 @@ class SectionMgmt:
     counter=0
     test0=None
     section_set=[0,1,0,0,1,0]    #0が直線　1が曲線
-    section_set_Reiwa=[0,1,0,0,0,1,0,0,0]
+    section_set_Reiwa=[0,1,0,0,1,0]
     position=None
     PositionMgmt=None
     sectionpoint=0
@@ -66,13 +66,48 @@ class SectionMgmt:
             
         else:
             pass
+        
+        
+    def run_R(self):
+        #print("runcheck")
+        if self.mState == self.UNDEFINED:
+            #print(self.mState)
+            self.execUndefined_R()
+        else:
+            pass
+
+        if self.mState == self.INIT:
+            #print("SECTION_INIT")
+            self.init_R()
+
+        else:
+            pass
+        
+        if self.mState == self.RUN:
+            #print("execRuncheck")
+            self.execRun_R()
+        
+        else:
+            pass
+
+        if self.mState==self.END:
+            self.end()
+            
+        else:
+            pass
+        
+
 
 
     def execUndefined(self):
         #print("UNDEF")
             
         self.mState=self.INIT
-
+    
+    def execUndefined_R(self):
+        #print("UNDEF")
+            
+        self.mState=self.INIT
 
     def init(self):
         
@@ -80,7 +115,11 @@ class SectionMgmt:
         
         self.addSection()
 
+    def init_R(self):
         
+        self.flag=True
+        
+        self.addSection()   
         
     def execRun(self):
         state=None
@@ -144,32 +183,32 @@ class SectionMgmt:
             print("パラメータ",self.WalkeParam[self.STRAIGHT][self.Swalkerpointer])
             print("座標",self.Pointer[self.pointerset])
             '''
-            self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
-                                    self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset],self.section_set_Reiwa[self.pointerset]) 
+            state=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
+                                    self.WalkeParam[self.STRAIGHT][self.Swalkerpointer],self.Pointer[self.pointerset],self.PositionMgmt) 
             
-            
-            self.Swalkerpointer+=1
-            if self.Swalkerpointer==6:  
-                self.Swalkerpointer=0
+            if state==True:
+                self.Swalkerpointer+=1
+                if self.Swalkerpointer==4:  
+                    self.Swalkerpointer=0
 
-            self.pointerset+=1
-            if self.pointerset==8:
-                self.pointerset=0
+                self.pointerset+=1
+                if self.pointerset==6:
+                    self.pointerset=0
                 
 
                 
         else: #曲線
             
-            self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
-                                    self.WalkeParam[self.CURVE][self.Cwalkerpointer],self.Pointer[self.pointerset],self.section_set_Reiwa[self.pointerset])
+            state=self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
+                                    self.WalkeParam[self.CURVE][self.Cwalkerpointer],self.Pointer[self.pointerset],self.PositionMgmt)
+            if state==True:
+                self.Cwalkerpointer+=1
+                if self.Cwalkerpointer==2:
+                    self.Cwalkerpointer=0
 
-            self.Cwalkerpointer+=1
-            if self.Cwalkerpointer==2:
-                self.Cwalkerpointer=0
-
-            self.pointerset+=1
-            if self.pointerset==8:
-                self.pointerset=0
+                self.pointerset+=1
+                if self.pointerset==6:
+                    self.pointerset=0
 
         self.mState=self.END
         
@@ -246,7 +285,7 @@ class SectionMgmt:
 
         self.WalkeParam[self.CURVE]=self.sectionprm.walkerset_param_R(self.CURVE)
 
-        self.Pointer=self.sectionprm.pointer_param_R()
+        self.Pointer,self.PositionMgmt=self.sectionprm.pointer_param_R()
 
 
 

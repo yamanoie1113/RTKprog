@@ -33,12 +33,12 @@ class SectionPrm:
     
     def pointer_param_R(self):
 
-        
-        self.pointset=self.position.REIWA()
+        self.position.PosMgmt_init()
+        self.pointset=self.position.REIWAinit()
 
         #print(self.pointset[0])
 
-        return self.pointset
+        return self.pointset,self.position
     
     
 

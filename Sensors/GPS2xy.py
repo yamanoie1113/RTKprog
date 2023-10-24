@@ -1,3 +1,4 @@
+# coding: utf-8
 from cgitb import lookup
 import pyproj
 import sys
@@ -88,15 +89,15 @@ class GPS2xy():
         #transformer = pyproj.Transformer.from_crs('EPSG:2453','EPSG:6680',always_xy=True)
 
         #日本測地系における地理座標系から平面直角座標系の11系(北海道の登別等)に変換
-        transformer = pyproj.Transformer.from_crs('EPSG:4612','EPSG:2453',always_xy=True)
+        #transformer = pyproj.Transformer.from_crs('EPSG:4612','EPSG:2453',always_xy=True)
 
 
         #---------東京用変換
-        """
+
         #日本測地系における地理座標系から平面直角座標系の9系(東京)に変換
         transformer = pyproj.Transformer.from_crs('EPSG:4612','EPSG:2451',always_xy=True)
 
-        """
+
         #---------東京用変換
 
         x,y = transformer.transform(longitude,latitude)
@@ -111,11 +112,15 @@ class GPS2xy():
         return x,y
 
 def main():
-    start_time = time.perf_counter()
-    testclass = GPS2xy()
-    testclass.getvalue()
-    print("GPS2xy_実行時間")
-    print(time.perf_counter() - start_time)
+    transformer = pyproj.Transformer.from_crs('EPSG:4612','EPSG:2451',always_xy=True)
+    
+    
+    longitude = 139.7940025
+    latitude = 35.6681053
+    
+    x,y = transformer.transform(longitude,latitude)
+    print("x,y:",x,y)
+    
     #testclass.return_position()
 
 if __name__ == '__main__':

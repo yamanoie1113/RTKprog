@@ -14,10 +14,10 @@ class Param:
     def Straight_set_param(self):
 
         #速度、P,I,D
-        self.prm1=([25,1,0.4,1],  #C-A 1
-        [25,1,0.4,1],             #B-C 3
-        [25,1,0.4,1],             #C-D 4
-        [25,1,0.4,1])             #E-C 6
+        self.prm1=([35,1,0.4,1],  #C-A 1
+        [35,1,0.4,1],             #B-C 3
+        [35,1,0.4,1],             #C-D 4
+        [35,1,0.4,1])             #E-C 6
         
         return self.prm1
 
@@ -25,8 +25,8 @@ class Param:
 
     def Curve_set_param(self):
         
-        self.prm2=([20,1,0.4,1], #A-B 2
-                [20,1,0.4,1])    #D-E 5
+        self.prm2=([40,1,0.4,1], #A-B 2
+                [40,1,0.4,1])    #D-E 5
 
         return self.prm2
 
@@ -37,21 +37,18 @@ class Param:
 
     def Reiwa_Straight(self):
         
-        self.Rprm_straight=([5,0,0,0], #A
-        [5,0,0,0],                     #C
-        [5,0,0,0],                     #D
-        [5,0,0,0],                     #E
-        [5,0,0,0],                     #G
-        [5,0,0,0],                     #H
-        [5,0,0,0])                     #S
+        self.Rprm_straight=([35,1,0.4,1], #A
+        [35,1,0.4,1],                     #C
+        [35,1,0.4,1],                     #D                     #E                    #G
+        [35,1,0.4,1],)                     #S
         return self.Rprm_straight
 
 #曲線
 
     def Reiwa_Curve(self):
 
-        self.Rprm_curve=([5,60,0,0,0], #B
-        [5,50,0,0,0])                  #F
+        self.Rprm_curve=([40,1,0.4,1], #B
+        [40,1,0.4,1])                  #F
 
         return self.Rprm_curve
 
