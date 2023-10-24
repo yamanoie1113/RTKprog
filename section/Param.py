@@ -14,10 +14,17 @@ class Param:
     def Straight_set_param(self):
 
         #速度、P,I,D
+<<<<<<< HEAD
         self.prm1=([35,1,0.4,1],  #C-A 1
         [35,1,0.4,1],             #B-C 3
         [35,1,0.4,1],             #C-D 4
         [35,1,0.4,1])             #E-C 6
+=======
+        self.prm1=([30,1,0.4,1],  #C-A 1
+        [30,1,0.4,1],             #B-C 3
+        [30,1,0.4,1],             #C-D 4
+        [30,1,0.4,1])             #E-C 6
+>>>>>>> origin
         
         return self.prm1
 
