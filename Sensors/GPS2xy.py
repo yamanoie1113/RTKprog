@@ -89,13 +89,13 @@ class GPS2xy():
         #transformer = pyproj.Transformer.from_crs('EPSG:2453','EPSG:6680',always_xy=True)
 
         #日本測地系における地理座標系から平面直角座標系の11系(北海道の登別等)に変換
-        #transformer = pyproj.Transformer.from_crs('EPSG:4612','EPSG:2453',always_xy=True)
+        transformer = pyproj.Transformer.from_crs('EPSG:4612','EPSG:2453',always_xy=True)
 
 
         #---------東京用変換
 
         #日本測地系における地理座標系から平面直角座標系の9系(東京)に変換
-        transformer = pyproj.Transformer.from_crs('EPSG:4612','EPSG:2451',always_xy=True)
+        #transformer = pyproj.Transformer.from_crs('EPSG:4612','EPSG:2451',always_xy=True)
 
 
         #---------東京用変換

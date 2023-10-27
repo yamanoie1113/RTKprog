@@ -69,8 +69,8 @@ class PositionMgmt(Sensor.Sensor):
         
     def PosMgmt_init(self):
         #print("PosMgmt_init")
-        with open(path, mode='r') as f:
-            self.angle = f.read()
+        #with open(path, mode='r') as f:
+            #self.angle = f.read()
         self.thread1 = threading.Thread(target=self.update)
         self.thread1.start()
         

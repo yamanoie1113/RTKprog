@@ -17,6 +17,7 @@ class nmea2xy():
     nmea = None
     latitude = None
     longitude = None
+    start_time = None
     
 
     def __init__(self) -> None:
@@ -27,8 +28,10 @@ class nmea2xy():
         self.thread1.start()
 
 
+
     #threadで動かしてもいいかも
     def nmea_update(self):
+
         # サーバーIPとポート番号
 
         IPADDR = "localhost"
@@ -46,7 +49,7 @@ class nmea2xy():
         #print("GPS_loading....")
         while True:
             #実行速度の計算
-            #start_time = time.perf_counter()
+            #self.start_time = time.perf_counter()
 
             while True:
                 # ソケットから byte 形式でデータ受信
@@ -186,6 +189,9 @@ class nmea2xy():
         print(y)
         """
         self.position = x,y
+        
+        #print(time.perf_counter() - self.start_time)
+
 
 
     #他クラスがGPSを取得するときに実行する関数
@@ -198,8 +204,11 @@ def main():
     test.nmea_init()
 
     while True:
+        #実行速度の計算
+        #start_time = time.perf_counter()
         pos = test.getvalue()
-        print(pos)
+        #print(time.perf_counter() - start_time)
+        #print(pos)
 
 
 if __name__ == '__main__' :
