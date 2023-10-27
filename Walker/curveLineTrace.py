@@ -74,15 +74,10 @@ class cuvreLineTrace:
             #print("現在",self.distance)
             #print(self.goalx,self.goaly)
             #print(x,y)
-            #return self.distance
 
         def set_param(self):
-        
-            #PM = PositionMgmt.PositionMgmt()
+
             self.param = self.PM.getvalue()
-            #self.param[a][0] = 500
-            #self.param[a][1] = 500
-            #return self.param
         
         def init_state(self):
             self.cancel = 0
