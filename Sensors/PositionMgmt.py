@@ -5,7 +5,7 @@ import pathlib,time,threading
 
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from Sensors import Sensor,GPS2xy,LogMgmt,Lowpass
+from Sensors import Sensor,GPS2xy,LogMgmt,Lowpass,nmea2xy
 
 class PositionMgmt(Sensor.Sensor):
     #gps = GPS2xy()
@@ -18,7 +18,10 @@ class PositionMgmt(Sensor.Sensor):
     x_moves = 0.0
     y_moves = 0.0
     last_pos = 0.0
+
+    #インスタンス
     lowpass = Lowpass.Lowpass()
+    nmea2xy = nmea2xy.nmea2xy()
     
     #pyion_position
     A_pylon_X = -3575.364588034064
@@ -73,6 +76,8 @@ class PositionMgmt(Sensor.Sensor):
             #self.angle = f.read()
         self.thread1 = threading.Thread(target=self.update)
         self.thread1.start()
+
+        self.nmea2xy.nmea_init()
         
         #print("origin_update")
         self.Origin_update()
@@ -285,7 +290,7 @@ class PositionMgmt(Sensor.Sensor):
             #print("update position")
             
             
-            temp = GPS2xy.GPS2xy.getvalue(self)
+            temp = self.nmea2xy.getvalue()
             if temp != None:
                 self.last_pos = temp
                 #---lowpass
@@ -314,14 +319,14 @@ def main():
     while True:
         
         #実行速度の計算
-        #start_time = time.perf_counter()
+        start_time = time.perf_counter()
         pos = tesclass.getvalue()
         
         #print("now")
         print(pos)
         
         #print("実行時間")
-        #print(time.perf_counter() - start_time)
+        print(time.perf_counter() - start_time)
     
     
     #tesclass.update()
