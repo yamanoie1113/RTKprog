@@ -72,8 +72,6 @@ class PositionMgmt(Sensor.Sensor):
         
     def PosMgmt_init(self):
         #print("PosMgmt_init")
-        #with open(path, mode='r') as f:
-            #self.angle = f.read()
         self.thread1 = threading.Thread(target=self.update)
         self.thread1.start()
 
@@ -81,7 +79,7 @@ class PositionMgmt(Sensor.Sensor):
         
         #print("origin_update")
         self.Origin_update()
-        self.origin = self.position
+        
         #print(self.origin)
     
         #x,yの増分 要検討
@@ -117,6 +115,7 @@ class PositionMgmt(Sensor.Sensor):
                 self.position = temp
                 i += 1
                 print("updated position:")
+            self.origin = self.position
         
         
 
