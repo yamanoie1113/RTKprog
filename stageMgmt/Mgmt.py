@@ -75,9 +75,6 @@ class Mgmt:
             
                 
         section.end()
-        print("終了")
-        
-        
 
     def timejudge1(self,start_time):
 

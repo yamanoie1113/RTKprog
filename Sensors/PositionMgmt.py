@@ -85,8 +85,8 @@ class PositionMgmt(Sensor.Sensor):
         #print(self.origin)
     
         #x,yの増分 要検討
-        self.x_moves = 2.0
-        self.y_moves = 2.0
+        self.x_moves = 4.0
+        self.y_moves = 6.0
         
 
         
@@ -165,8 +165,33 @@ class PositionMgmt(Sensor.Sensor):
         #f.close()
 
 
-    def PosInit(self):        
+    def PosInit(self):
+        #左sita A
+        self.Point[0][0] = self.origin[0] - self.x_moves
+        self.Point[0][1] = self.origin[1] + self.y_moves
         
+        #右ue D
+        self.Point[1][0] = self.origin[0] + self.x_moves
+        self.Point[1][1] = self.origin[1] + self.y_moves
+        
+        #真ん中 C
+        self.Point[2][0] = self.origin[0]
+        self.Point[2][1] = self.origin[1]
+
+        #migi下 B
+        self.Point[3][0] = self.origin[0] - self.x_moves
+        self.Point[3][1] = self.origin[1] - self.y_moves
+
+        #右下 E
+        self.Point[4][0] = self.origin[0] + self.x_moves
+        self.Point[4][1] = self.origin[1] - self.y_moves
+
+        #真ん中 C
+        self.Point[5][0] = self.origin[0]
+        self.Point[5][1] = self.origin[1]
+        
+        """
+        #---For Tokyo
         #左sita A
         self.Point[0][0] = -3563.9378317051733
         self.Point[0][1] = -36817.67859515735
@@ -190,6 +215,7 @@ class PositionMgmt(Sensor.Sensor):
         #真ん中 C
         self.Point[5][0] = self.origin[0]
         self.Point[5][1] = self.origin[1]
+        """
 
         
         #print("GOAL_UPDATED!!")

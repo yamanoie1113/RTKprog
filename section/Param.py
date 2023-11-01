@@ -1,4 +1,4 @@
-
+# coding: utf-8 
 
 class Param:
     
@@ -13,18 +13,10 @@ class Param:
 
     def Straight_set_param(self):
 
-        #速度、P,I,D
-<<<<<<< HEAD
-        self.prm1=([35,1,0.4,1],  #C-A 1
-        [35,1,0.4,1],             #B-C 3
-        [35,1,0.4,1],             #C-D 4
-        [35,1,0.4,1])             #E-C 6
-=======
-        self.prm1=([30,1,0.4,1],  #C-A 1
-        [30,1,0.4,1],             #B-C 3
-        [30,1,0.4,1],             #C-D 4
-        [30,1,0.4,1])             #E-C 6
->>>>>>> origin
+        self.prm1=([25,1,0.4,1],  #C-A 1
+        [25,1,0.4,1],             #B-C 3
+        [25,1,0.4,1],             #C-D 4
+        [25,1,0.4,1])             #E-C
         
         return self.prm1
 
@@ -32,8 +24,8 @@ class Param:
 
     def Curve_set_param(self):
         
-        self.prm2=([40,1,0.4,1], #A-B 2
-                [40,1,0.4,1])    #D-E 5
+        self.prm2=([20,1,0.4,1], #A-B 2
+                [20,1,0.4,1])    #D-E 5
 
         return self.prm2
 
