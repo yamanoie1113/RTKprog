@@ -322,7 +322,7 @@ class PositionMgmt(Sensor.Sensor):
                 #temp = self.lowpass.filtering(temp)
                 self.position = temp
                 #print("updated position:")
-                #print(self.position)
+                print(self.position)
 
             
             #else :
