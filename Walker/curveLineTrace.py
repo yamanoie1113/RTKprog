@@ -70,8 +70,8 @@ class cuvreLineTrace:
             #print(x)
             #print(self.goaly)
             self.distance = (np.sqrt((self.tyusinx-x)**2 + (self.tyusiny-y)**2)) 
-            #print("基準",self.standard)
-            #print("現在",self.distance)
+            print("基準",self.standard)
+            print("現在",self.distance)
             #print(self.goalx,self.goaly)
             #print(x,y)
 
