@@ -23,7 +23,7 @@ class PositionMgmt(Sensor.Sensor):
     lowpass = Lowpass.Lowpass()
     nmea2xy = nmea2xy.nmea2xy()
     
-    #pyion_position
+    #pylon_position
     A_pylon_X = -3575.364588034064
     A_pylon_Y = -36836.31611362912
     
@@ -315,7 +315,7 @@ class PositionMgmt(Sensor.Sensor):
             #print("update position")
             
             
-            temp = self.nmea2xy.getvalue()
+            temp = GPS2xy.GPS2xy.getvalue(self)
             if temp != None:
                 self.last_pos = temp
                 #---lowpass
