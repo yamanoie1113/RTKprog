@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 # coding:utf-8
+=======
+
+# coding: utf-8 
+#from multiprocessing import Process
+#from concurrent.futures import ProcessPoolExecutor
+#import multiprocessing
+>>>>>>> baba1c9ae2601aab786c769d6047e9d82c2adedc
 import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
@@ -51,6 +59,7 @@ class Mgmt:
             
             start_time = time.perf_counter()
             
+
             run_time=self.timejudge(start_program)
             if self.course_select != 3:
                 

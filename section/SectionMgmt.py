@@ -22,7 +22,7 @@ class SectionMgmt:
     counter=0
     test0=None
     section_set=[0,1,0,0,1,0]    #0が直線　1が曲線
-    section_set_Reiwa=[0,1,0,0,0,1,0,0,0]
+    section_set_Reiwa=[0,1,0,0,1,0]
     position=None
     PositionMgmt=None
     param = []
@@ -96,23 +96,8 @@ class SectionMgmt:
                         else:
                             
                             self.counter=0
-    '''
-    def circuit_run(self):
-        
-            state=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
-                                                    self.WalkeParam[self.counter],self.Pointer[self.counter],self.PositionMgmt)
-            
-            if state==True:
-                self.Walkerinstance[self.CURVE].init_state()
-                print("Curve_OK!_Next_Section")
-                self.counter+=1
-                    
-                if len(self.Pointer) >= self.counter+1:
-                    
-                    break
-            
-            return True
-    '''
+    
+
         
     def getWalker(self):
         
@@ -138,46 +123,7 @@ class SectionMgmt:
         
         
         
-    def excecRun_R(self):
-        
-        print("Walkerinstance:",self.Walkerinstance)
-        print("judgeinstance",self.Judgeinstance)
-        print("WalkerParam",self.WalkeParam)
-        print("座標",self.Pointer)
-        
-        state=False
-        
-        if self.section_set[self.counter]==0:
-        
-            state=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
-                                                    self.WalkeParam[self.counter],self.Pointer[self.counter],self.PositionMgmt)
-            
-            if state==True:
-                self.Walkerinstance[self.STRAIGHT].init_state()
-                print("Straight_OK!_Next_Section")
-                self.counter+=1
-                
-                if self.counter==8:
-                    self.counter=0
-                
-        else:
-            
-            state=self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
-                                                    self.WalkeParam[self.counter],self.Pointer[self.counter],self.PositionMgmt)
-            
-            if state==True:
-                self.Walkerinstance[self.CURVE].init_state()
-                print("Curve_OK!_Next_Section")
-                self.counter+=1
-                
-                if self.counter==8:
-                    self.counter=0
-        
-        
-        
-
     
-        
         
 
     def end(self):

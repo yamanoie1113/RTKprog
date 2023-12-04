@@ -1,32 +1,18 @@
-#from multiprocessing import get_start_method
-import sys
-import pathlib
+import logging
 
-current_dir = pathlib.Path(__file__).resolve().parent
-sys.path.append(str(current_dir) + '/../')
-from Sensors import LogMgmt
-
-class logtest():
-    def __init__(self):
-        # クラス変数
-        self.logfile = 'LOG_TEST.txt'
-
-        #GPSログの初期化
-        LogMgmt.clear(self.logfile)
-        LogMgmt.write(self.logfile,"LOG_testing...")
-
-    def logtester(self,text):
-        LogMgmt.write(self.logfile,text)
+logger = logging.getLogger('__name__')
 
 
 
+handler = logging.FileHandler(filename='logging_test.txt')
+handler.setLevel(logging.DEBUG)
 
-def main():
-    testclass = logtest()
-    i = 1
-    while True:
-        testclass.logtester(i)
-        i += 1
+#フォーマットを作成
+handler_format = logging.Formatter('%(asctime)s - %(name)s - %(threadNames)s - %(message)s')
+#作成したフォーマットをformmterに設定
+handler.setFormatter(handler_format)
 
-if __name__ == '__main__':
-    main()
+#loggerに追加
+logger.addHandler(handler)
+
+logger.debug("hello")

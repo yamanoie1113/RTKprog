@@ -1,10 +1,11 @@
+# coding: utf-8
 #from multiprocessing import get_start_method
 import sys
 import pathlib,time,threading
 
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from Sensors import Sensor,GPS2xy,LogMgmt,Lowpass
+from Sensors import Sensor,GPS2xy,LogMgmt,Lowpass,nmea2xy
 
 class PositionMgmt(Sensor.Sensor):
     #gps = GPS2xy()
@@ -17,7 +18,17 @@ class PositionMgmt(Sensor.Sensor):
     x_moves = 0.0
     y_moves = 0.0
     last_pos = 0.0
+
+    #インスタンス
     lowpass = Lowpass.Lowpass()
+    nmea2xy = nmea2xy.nmea2xy()
+    
+    #pylon_position
+    A_pylon_X = -3575.364588034064
+    A_pylon_Y = -36836.31611362912
+    
+    B_pylon_X = -3560.656324873728
+    B_pylon_Y = -36821.289400412934
 
 
 
@@ -61,19 +72,19 @@ class PositionMgmt(Sensor.Sensor):
         
     def PosMgmt_init(self):
         #print("PosMgmt_init")
-        with open(path, mode='r') as f:
-            self.angle = f.read()
         self.thread1 = threading.Thread(target=self.update)
         self.thread1.start()
+
+        self.nmea2xy.nmea_init()
         
         #print("origin_update")
         self.Origin_update()
-        self.origin = self.position
+        
         #print(self.origin)
     
         #x,yの増分 要検討
-        self.x_moves = 5.0
-        self.y_moves = 8.0
+        self.x_moves = 2.0
+        self.y_moves = 2.0
         
         
         """
@@ -86,10 +97,7 @@ class PositionMgmt(Sensor.Sensor):
         self.y_moves =  1.0
         #------for debug -------
         """
-        
 
-        
-    
     def Origin_update(self):
         temp = GPS2xy.GPS2xy.getvalue(self)
         print(None)
@@ -101,8 +109,14 @@ class PositionMgmt(Sensor.Sensor):
                 self.position = temp
                 i += 1
                 print("updated position:")
-        
-        
+            self.origin = self.position
+
+    #Posparam_conf用GET関数
+    def Conf_Param(self):
+        conf_pos = GPS2xy.GPS2xy.getvalue(self)
+
+        return conf_pos
+
 
     #値の取得
     def getvalue(self):
@@ -151,61 +165,30 @@ class PositionMgmt(Sensor.Sensor):
 
     def PosInit(self):        
         
-        #左上 A
-        x,y = A(-xm, ym)
-        self.Point[0][0] = self.origin[0] - self.x_moves
-        self.Point[0][1] = self.origin[1] + self.y_moves
+        #左sita A
+        self.Point[0][0] = -3563.9378317051733
+        self.Point[0][1] = -36817.67859515735
         
-        #右上 D
-        self.Point[1][0] = self.origin[0] + self.x_moves
-        self.Point[1][1] = self.origin[1] + self.y_moves
+        #右ue D
+        self.Point[1][0] = -3557.3500873989533
+        self.Point[1][1] = -36826.82967695915
         
         #真ん中 C
         self.Point[2][0] = self.origin[0]
         self.Point[2][1] = self.origin[1]
 
-        #左下 B
-        self.Point[3][0] = self.origin[0] - self.x_moves
-        self.Point[3][1] = self.origin[1] - self.y_moves
+        #migi下 B
+        self.Point[3][0] = -3575.7857532763014
+        self.Point[3][1] = -36837.55368490133
 
         #右下 E
-        self.Point[4][0] = self.origin[0] + self.x_moves
-        self.Point[4][1] = self.origin[1] - self.y_moves
+        self.Point[4][0] = -3563.4286332228694
+        self.Point[4][1] = -36830.95649754655
 
         #真ん中 C
         self.Point[5][0] = self.origin[0]
         self.Point[5][1] = self.origin[1]
 
-        
-
-        
-        
-        """
-
-        #左上 A
-        self.Point[0][0] = 70693.0
-        self.Point[0][1] = -171683.0
-
-        #左下 B
-        self.Point[1][0] = 70688.0
-        self.Point[1][1] = -171684.0
-
-        #真ん中 C
-        self.Point[2][0] = self.origin[0]
-        self.Point[2][1] = self.origin[1]
-
-        #右上 D
-        self.Point[3][0] = 70702.0
-        self.Point[3][1] = -171688.0
-
-        #右下 E
-        self.Point[4][0] = 70697.0
-        self.Point[4][1] = -171689.0
-
-        #真ん中 C
-        self.Point[5][0] = self.origin[0]
-        self.Point[5][1] = self.origin[1]
-        """
         
         #print("GOAL_UPDATED!!")
         
@@ -216,47 +199,51 @@ class PositionMgmt(Sensor.Sensor):
         #self.update()
 
         #中点を返す C:[0] G:[1]
-        mid_point = self.set_mid()
+        #mid_point = self.set_mid()
         #print("中点")
         #print(mid_point)
-
+        
 
 
         #左上 A
-        self.Point[0][0] = self.origin[0] - self.x_moves
-        self.Point[0][1] = self.origin[1] + self.y_moves
+        self.Point[0][0] = -3563.9378317051733
+        self.Point[0][1] = -36817.67859515735
 
         #左下 B
-        self.Point[1][0] = self.origin[0] - self.x_moves - 1    #中点Cを通るため1m寄せる
-        self.Point[1][1] = self.origin[1] - self.y_moves
+        self.Point[1][0] = -3557.3500873989533
+        self.Point[1][1] = -36826.82967695915    #中点Cを通るため1m寄せる
 
         #中点 C 
-        self.Point[2][0] = mid_point[0]
-        self.Point[2][1] = self.origin[1]
-
+        self.Point[2][0] = -3563.448034780053
+        self.Point[2][1] = -36822.51344973406
+        
+        """
         #左上 D 
-        self.Point[3][0] = mid_point[0] + 2     #中点C後の直線 2mスタート地点に寄せる
-        self.Point[3][1] = self.origin[1] + self.y_moves
-
+        self.Point[3][0] = mid_point[0]     #中点C後の直線 2mスタート地点に寄せる
+        self.Point[3][1] = self.B_pylon_Y + self.y_moves
+        """
+        
         #右上 E aaa
-        self.Point[4][0] = self.origin[0] + self.x_moves
-        self.Point[4][1] = self.origin[1] + self.y_moves
-
+        self.Point[3][0] = -3575.7857532763014
+        self.Point[3][1] = -36837.55368490133
+        
+        """
         #右下 F
         self.Point[5][0] = self.origin[0] + self.x_moves - 1 #中点Gを通るため1m寄せる
         self.Point[5][1] = self.origin[1] - self.y_moves
-
+        """
+        
         #中点 G
-        self.Point[6][0] = mid_point[1]
-        self.Point[6][1] = self.origin[1]
+        self.Point[4][0] = -3576.7161618403356
+        self.Point[4][1] = -36835.05268294634
 
         #右上 H
-        self.Point[7][0] = mid_point[0] - 2    #中点G後の直線 2mスタート地点に寄せる
-        self.Point[7][1] = self.origin[1] + self.y_moves
+        self.Point[5][0] = -3563.4286332228694   #中点G後の直線 2mスタート地点に寄せる
+        self.Point[5][1] = -36830.95649754655
 
         #原点 S
-        self.Point[8][0] = self.origin[0]
-        self.Point[8][1] = self.origin[1]
+        self.Point[6][0] = self.origin[0]
+        self.Point[6][1] = self.origin[1]
 
         #print("REIWA_UPDATED!!")
 
@@ -330,14 +317,14 @@ def main():
     while True:
         
         #実行速度の計算
-        #start_time = time.perf_counter()
+        start_time = time.perf_counter()
         pos = tesclass.getvalue()
         
         #print("now")
         print(pos)
         
         #print("実行時間")
-        #print(time.perf_counter() - start_time)
+        print(time.perf_counter() - start_time)
     
     
     #tesclass.update()

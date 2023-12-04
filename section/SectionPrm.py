@@ -68,9 +68,18 @@ class SectionPrm:
     def pointer_param_R(self):
 
         self.position.PosMgmt_init()
+<<<<<<< HEAD
+        self.pointset=self.position.REIWAinit()
+=======
         self.pointset=self.position.REIWA()
+>>>>>>> origin
 
         return self.pointset,self.position
+<<<<<<< HEAD
+    
+    
+=======
+>>>>>>> origin
 
 
     def walkerset_param(self,number):
