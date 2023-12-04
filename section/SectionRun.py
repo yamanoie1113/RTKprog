@@ -11,8 +11,7 @@ from Judgement import TimeJudge
 from Judgement import TurnAngleJudge
 from Sensors import PosInit
 import threading
-import time
-import concurrent.futures 
+
 
 class SectionRun:
 
@@ -30,22 +29,12 @@ class SectionRun:
     #pointer=None
 
     def __init__(self):
-        #print("aaaa")
-        mwalker = None
-        Walkeparam = None
-        pointer = None
-        #self.walker_thread=threading.Thread(target=self.exec_run, args=(mwalker,Walkeparam,pointer))
-        #self.judge_thread=threading.Thread(target=self.exec_judge)
         
-        
-
-        #self.postitionI.update()
-        
-
+        pass
+    
 
     def run(self,mwalker,mjudge,Walkeparam,pointer,PositionMgmt):#走法、判定、パラメータ、座標
 
-        
         '''#中身確認
         print("mjudgeのオブジェクト",mjudge)
         print("mwalkerのオブジェクト",mwalker)
@@ -53,70 +42,35 @@ class SectionRun:
         print("座標",pointer)
         '''
         walker_thread = threading.Thread(target=self.exec_run, args=(mwalker,Walkeparam,pointer,PositionMgmt))
-        #judge_thread = threading.Thread(target=self.exec_judge, args=(mjudge,pointer))
+        
         walker_thread.start()
-        #judge_thread.start()
-        #print("threadtest1")
-        statement=None
+        
+        statement=False
         statement=self.exec_judge(mjudge,pointer,PositionMgmt)
+        
+    
         #print("return",statement)
         return statement
         
-        #with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-            #print("threadtest2")
-            #walker_thread=executor.submit(target=self.exec_run,args=(mwalker,Walkeparam,poinrer))
-            #judge_thread=executor.submit(target=self.exec_judge,args=(mjudge,poinrer))
-            #executor.submit(self.exec_run,mwalker,Walkeparam,pointer)
-            #executor.submit(self.exec_judge,mjudge,pointer)
-            #judge_thread()
-        #judge_thread.join()  
-        #walker_thread.join()
-        
     def exec_run(self,mwalker,Walkeparam,pointer,PositionMgmt):
         
-        #print("exec_run_start")
         mwalker.set_run(Walkeparam,pointer,PositionMgmt)
-        #print("exec_run_END")
+        
 
     def exec_judge(self, mjudge,pointer,PositionMgmt):
+        
         #print("exec_judge_start")
-        counter=0
-        #tes=mjudge.judge(pointer)#距離判定
-        #print("判定中です")
-        #counter+=1
-        #print(counter)
-        #t=True
         tes=True
-        #while t:
+        
         tes=mjudge.judge(pointer,PositionMgmt)#距離判定
             
         if tes==False:
         
-                #print(tes)
-                #t=False
             print("判定しました")
                 #break
-        
-        #self.stop()
-        #time.sleep(1)
+                
         return not(tes)
         
-    def run2(self,mwalker,mjudge,Walkeparam,pointer):
-        
-        tes=True
-        t=True
-        print("SECTION_RUN_TEST_straight")
-        
-        mwalker.set_run(Walkeparam,pointer)
-        
-        while t:
-            tes=mjudge.judge(pointer)#距離判定
-            print("判定中です")
-            if tes==False:
-                t=False
-                #mwalker.set_run(self.STOP,pointer)
-                print("判定しました")
-                break
         
     def test_straight(self,mwalker,mjudge,Walkeparam,pointer):
         
@@ -189,8 +143,7 @@ class SectionRun:
 
         if judge==self.ANGLE:
             #オブジェクト生成
-            #後日コードを短く修正しておく
-            self.mJudge=DistanceJudge.DistanceJudge()
+            self.mJudge=DistanceJudge.DistanceJudge() #Turnanglejudgeを使用するときはここでインスタンス生成
 
             print("mjudghe")
 

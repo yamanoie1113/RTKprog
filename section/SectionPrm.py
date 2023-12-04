@@ -1,4 +1,5 @@
 # coding:utf-8
+import csv
 import sys
 import pathlib
 current_dir = pathlib.Path(__file__).resolve().parent
@@ -10,8 +11,10 @@ class SectionPrm:
     #クラス変数
     curve=0
     straight=1
+    parameter=None
     param=Param.Param()
     position=PMgmt.PositionMgmt()
+    
 
     def __init__(self):
         
@@ -21,60 +24,99 @@ class SectionPrm:
         pass
     
 
-    def pointer_param(self):
-        #print("param")
+    def pointer_param(self,number):
+        
         self.position.PosMgmt_init()
+        
+        if number==1:   #Normal_Course
+            
+            pass
+            #param_file=('C:\\Users\\nkhsh\\Documents\\GitHub\\RTKprog\\parameter\\Normal_Course.prm')
+            
+            
+        elif number==2: #REIWA_Course
+            
+            pass
+            #param_file=('C:\\Users\\nkhsh\\Documents\\GitHub\\RTKprog\\parameter\\REIWA_Course.prm')
+            
+        else:           #Circuit_Course
+            pass
+            #param_file=('C:\\Users\\nkhsh\\Documents\\GitHub\\RTKprog\\parameter\\Circuit_Course.prm')
+            
+        #self.parameter=self.param.pointer_set_param()]
+        '''
+        param=[]
+        with open(param_file, mode='r') as f:
+            # parameterファイルreaderの生成
+                reader = csv.reader(f)
+                reader_header=next(f)
+            # parameter readerからデータを取り出してループ
+        for prm in reader:
+            param.append([elem for elem in prm])
+        
+        for i in range(len(param)):
+            for j in range(len(param[i])-1):
+                param[i][j] = float(param[i][j])
+                print(param)
+        
+        return self.param
         self.pointset=self.position.PosInit()
-        #print(self.pointset)
-        #print("print_OK")
-        #print(self.pointset[0])
-
+        
         return self.pointset,self.position
+    '''
     
     def pointer_param_R(self):
 
         self.position.PosMgmt_init()
         self.pointset=self.position.REIWA()
 
-        #print(self.pointset[0])
-
         return self.pointset,self.position
 
 
-    def Walkerset_param(self,pointset):#msectionIdxは区間管理のget_paramから
+    def walkerset_param(self,number):
+        
+        if number==1:   #Normal_Course
+            param_file=('C:\\Users\\nkhsh\\Documents\\GitHub\\RTKprog\\parameter\\Normal_Course.prm')
+            
+            
+        elif number==2: #REIWA_Course
+            
+            param_file=('C:\\Users\\nkhsh\\Documents\\GitHub\\RTKprog\\parameter\\REIWA_Course.prm')
+            
+        else:           #Circuit_Course
+            
+            param_file=('C:\\Users\\nkhsh\\Documents\\GitHub\\RTKprog\\parameter\\Circuit_Course.prm')
+            
+        #self.parameter=self.param.pointer_set_param()]
+        
+        param=[]
+        with open(param_file, mode='r') as f:
+            # parameterファイルreaderの生成
+                reader = csv.reader(f)
+                reader_header=next(f)
+            # parameter readerからデータを取り出してループ
+        for prm in reader:
+            param.append([elem for elem in prm])
+        
+        for i in range(len(param)):
+            for j in range(len(param[i])-1):
+                param[i][j] = float(param[i][j])
+                print(param)
+        
+        return self.param
+        
+    
+    def walkerset_param_R(self):
+        
+        self.parameter=self.param.Reiwa_pointer_set_param()
+        
+        return self.parameter
+        
+    def walkerset_param_circuit(self):
+        
+        self.parameter=self.param.circuit_course_set_param()
 
-        
-        if pointset==0:
-            self.parameter1=self.param.Straight_set_param()
-            
-            return self.parameter1
-        
-        
-        
-            
-            
-        else:
-            self.parameter2=self.param.Curve_set_param()
-        
-            return self.parameter2
-        
-    
-    def walkerset_param_R(self,pointset):
-        
-        if pointset==0:
-            self.parameter1=self.param.Reiwa_Straight()
-            
-            return self.parameter1
-        
-            
-            
-        else:
-            self.parameter2=self.param.Reiwa_Curve()
-        
-            return self.parameter2
-        
-        
-    
+        return self.parameter
 
 def main():
     dd=SectionPrm()

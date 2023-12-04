@@ -1,45 +1,43 @@
-import concurrent
-import concurrent.futures
 
-class Calc:
-    def __init__(self, a):
-        self.a = a
+import csv
 
-    def calc(self, n):
-        return self.a + n
-
-class Process:
-    def __init__(self):
-        self.process_list = []
-        self.executor = concurrent.futures.ProcessPoolExecutor(max_workers=4)
-        # self.executor = concurrent.futures.ThreadPoolExecutor(max_workers=4)
-        self.calc = Calc(10)  # 処理を行うクラスのインスタンス
-        self.hoge = 3  # インスタンス変数
-
-    def _process_bad(self, n):
-        res = self.calc.calc(n) * self.hoge
-        return res
-
-    @staticmethod
-    def _process(calc, n, hoge):
-        res = calc.calc(n) * hoge
-        return res
-
-    def start_process(self, n):
-        # 実行部
-        # self.process_list.append(self.executor.submit(self._process_bad, n))  # NG
-        self.process_list.append(self.executor.submit(self._process, self.calc, n, self.hoge))  # OK
-
-    def get_result(self):
-    # 省略
+ary = [11,12] # 2番目の要素は存在しないよ
+#ary = [11]       # IndexError: list index out of range
+counter=1
 
 
+if len(ary) >= counter+1:
+    print('OK',len(ary))
+    
+else:
+    print('false')
+    
 
-
-
-if __name__ == "__main__":
-    process = Process()
-    for i in range(10):
-        process.start_process(i)
-    result = process.get_result()
-    print(result)
+while True:
+        print('<Corse select> 1:Normal_Course 2:REIWA_Course 3:Circuit_Course')
+        course_select = input('>> ')
+            
+        if course_select in ['1','2','3']:
+            print('OK',course_select)
+            break
+        
+        else:
+            print('Try agein')
+            
+param_file=('C:\\Users\\nkhsh\\Documents\\GitHub\\RTKprog\\parameter\\Normal_Course.prm')
+param=[]
+with open(param_file, mode='r') as f:
+    # parameterファイルreaderの生成
+    reader = csv.reader(f)
+    reader_header=next(f)
+    # parameter readerからデータを取り出してループ
+    for prm in reader:
+    # strからfloatにキャストして追加
+        param.append([elem for elem in prm])
+        
+for i in range(len(param)):
+    for j in range(len(param[i])-1):
+        param[i][j] = float(param[i][j])
+        
+if param[0][4]=='straight':       
+    print(param[1])
