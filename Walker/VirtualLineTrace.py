@@ -68,8 +68,7 @@ class VirtualLineTrace():
                 x3 = x
             else:
                 x3 = (y - intercept)/slope
-            '''
-            
+            '''           
             #x3 = y - self.starty - slope * (-1 * (self.startx)) / slpoe 
             distance = abs(self.slope * (x) - (y) + self.intercept) / math.sqrt(self.slope**2 + 1)
             #print(distance)

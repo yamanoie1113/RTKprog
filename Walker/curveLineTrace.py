@@ -46,20 +46,6 @@ class cuvreLineTrace:
         def __init__(self):
             
             pass
-            
-        
-        def set_first(self):
-            #print("test_value",self.test)
-            #print(self.param)
-            #print("x,y",x,y)
-            #print(self.goaly)            
-            self.tyusinx = (self.startx + self.goalx)/2
-            self.tyusiny = (self.starty + self.goaly)/2
-            print(self.tyusinx,"  ",self.tyusiny)
-            self.standard = (np.sqrt((self.tyusinx-self.goalx)**2 + (self.tyusiny-self.goaly)**2))
-            #print("standard",self.standard)
-            #print(self.goalx,self.goaly)
-            #print(x,y)
         
         def set_distance(self):
             self.param = self.PM.getvalue()
@@ -106,9 +92,11 @@ class cuvreLineTrace:
                 self.goaly = float(goaly[1])
                 self.startx = float(self.param[0])
                 self.starty = float(self.param[1])
-                cuvreLineTrace.set_first(self)
-                print("goalx,y",self.goalx,self.goaly)
-                print("1kaime")
+                self.tyusinx = (self.startx + self.goalx)/2
+                self.tyusiny = (self.starty + self.goaly)/2
+                self.standard = (np.sqrt((self.tyusinx-self.goalx)**2 + (self.tyusiny-self.goaly)**2))
+                #print("goalx,y",self.goalx,self.goaly)
+                #print("1kaime")
                 self.cancel = 1
                 self.exec_count += 1
             self.run()
