@@ -67,6 +67,8 @@ class SectionPrm:
 
     def walkerset_param(self,number):
         
+        #パラメータ取得
+        
         if number==1:   #Normal_Course
             param_file=('C:\\Users\\nkhsh\\Documents\\GitHub\\RTKprog\\parameter\\Normal_Course.prm')
             
