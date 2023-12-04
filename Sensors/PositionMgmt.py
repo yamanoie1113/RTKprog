@@ -86,9 +86,6 @@ class PositionMgmt(Sensor.Sensor):
         self.x_moves = 2.0
         self.y_moves = 2.0
         
-
-        
-        
         
         """
         #------for debug---------
@@ -100,10 +97,7 @@ class PositionMgmt(Sensor.Sensor):
         self.y_moves =  1.0
         #------for debug -------
         """
-        
 
-        
-    
     def Origin_update(self):
         temp = GPS2xy.GPS2xy.getvalue(self)
         print(None)
@@ -116,8 +110,13 @@ class PositionMgmt(Sensor.Sensor):
                 i += 1
                 print("updated position:")
             self.origin = self.position
-        
-        
+
+    #Posparam_conf用GET関数
+    def Conf_Param(self):
+        conf_pos = GPS2xy.GPS2xy.getvalue(self)
+
+        return conf_pos
+
 
     #値の取得
     def getvalue(self):

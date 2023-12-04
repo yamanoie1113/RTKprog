@@ -8,13 +8,12 @@ sys.path.append(str(current_dir) + '/../')
 dir = pathlib.Path(__file__).resolve().parent
 dir = (str(dir) + '/../Sensors/')
 
-class Pospram_conf():
+class Posparam_conf():
 
     array_counter= 0
     Max_array = 5
 
     GPS_getter = PositionMgmt.PositionMgmt()
-    GPS_getter.PosMgmt_init()
     
     position = None
 
@@ -40,7 +39,7 @@ class Pospram_conf():
     #パラメータファイルへの書き込み処理
     def Write_Param(self):
         print("WRITE")
-        pos = str(self.GPS_getter.getvalue())
+        pos = str(self.GPS_getter.Conf_Param())
         self.f.write(pos +"," "\n")
         print("setpos:" + pos)
 
@@ -54,7 +53,7 @@ class Pospram_conf():
 
 
 def main():
-    test = Pospram_conf()
+    test = Posparam_conf()
     test.GET_Pos()
 
 if __name__ == '__main__':
