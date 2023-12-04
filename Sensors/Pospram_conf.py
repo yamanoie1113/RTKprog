@@ -14,6 +14,7 @@ class Pospram_conf():
     Max_array = 5
 
     GPS_getter = PositionMgmt.PositionMgmt()
+    GPS_getter.PosMgmt_init()
     
     position = None
 
@@ -34,12 +35,14 @@ class Pospram_conf():
                 break
         
         self.f.close()
+        print("END")
         
     #パラメータファイルへの書き込み処理
     def Write_Param(self):
         print("WRITE")
         pos = str(self.GPS_getter.getvalue())
-        self.f.write(pos + "\n")
+        self.f.write(pos +"," "\n")
+        print("setpos:" + pos)
 
     #パラメータファイルの内容を消去する
     def clear(self):
