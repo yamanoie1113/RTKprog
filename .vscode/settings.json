@@ -1,0 +1,11 @@
+{
+    "cloudlatex.projectId": 754637,
+    "cloudlatex.enabled": true,
+    "cloudlatex.outDir": "./doc/resume",
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.outDir": "./doc/resume",
+    "[latex]": {
+      "editor.formatOnSave": false,
+    }
+  
+}
