@@ -41,6 +41,7 @@ class SectionRun:
         print("walkeparam",Walkeparam)
         print("座標",pointer)
         '''
+        
         walker_thread = threading.Thread(target=self.exec_run, args=(mwalker,Walkeparam,pointer,PositionMgmt))
         
         walker_thread.start()
