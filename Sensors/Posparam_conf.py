@@ -1,12 +1,12 @@
 # coding: utf-8
 import sys
-import pathlib
+import pathlib,csv
 import PositionMgmt
 
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 dir = pathlib.Path(__file__).resolve().parent
-dir = (str(dir) + '/../Sensors/')
+dir = (str(dir) + '/../parameter/')
 
 class Posparam_conf():
 
@@ -17,18 +17,50 @@ class Posparam_conf():
     
     position = None
 
-    paramfile = "PosPram.csv"
+    while True:
+        #パラメータファイルの種類を選択
+        print("設定するパラメータファイルの種類を選択")
+        print("八の字（Normal）はn、REIWAはr、Circuitはc、終了するにはqを入力して下さい")
+        
+        get_key = input()
+
+        if get_key == "n":
+            print("八の字コース")
+            paramfile = "Normal_Cource.prm"
+            break
+
+        elif get_key == "r":
+            print("REIWAポイントコース")
+            paramfile = "REIWA_Cource.prm"
+            break
+
+        elif get_key == "c":
+            print("サーキットコース")
+            paramfile = "Circuit_Cource.prm"
+            break
+
+        elif get_key == "q":
+            sys.exit()
+        
+
+
+    #paramfile = "PosPram.prm"
 
     #ENTERで設定する座標を確定,その他コマンド入力を受付
     def GET_Pos(self):
+        #prmファイルの初期化
         self.clear()
-        self.f = open(self.paramfile,"a")
+
+        self.f = open(dir + self.paramfile,"a")
         while True:
-            print("未入力ENTERで座標を確定,qで終了")
+            print("未入力ENTERで座標を確定,dでprmファイルを初期化、qで終了")
             get_key = input()
 
             if get_key == "":
                 self.Write_Param()
+            
+            if get_key == "d":
+                self.clear()
 
             elif get_key == "q":
                 break
@@ -36,16 +68,19 @@ class Posparam_conf():
         self.f.close()
         print("END")
         
-    #パラメータファイルへの書き込み処理
+    #prmファイルへの書き込み処理
     def Write_Param(self):
+
         print("WRITE")
-        pos = str(self.GPS_getter.Conf_Param())
-        self.f.write(pos +"," "\n")
-        print("setpos:" + pos)
+        pos = self.GPS_getter.Conf_Param()
+
+        self.f.write(str(pos[0]) + "," + str(pos[1]) + "\n")
+
+        print("setpos:" + str(pos))
 
     #パラメータファイルの内容を消去する
     def clear(self):
-        f = open(self.paramfile,"w")
+        f = open(dir + self.paramfile,"w")
         f.close()
 
 

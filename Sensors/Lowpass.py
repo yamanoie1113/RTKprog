@@ -7,8 +7,8 @@ class Lowpass():
     lastLPF_Y = 0.0   #LPF_Yの前回値
 
 
-    X_rate = 0.2  #X減衰率
-    Y_rate = 0.4  #Y減衰率
+    X_rate = 0.04  #X減衰率
+    Y_rate = 0.48  #Y減衰率
 
 
 

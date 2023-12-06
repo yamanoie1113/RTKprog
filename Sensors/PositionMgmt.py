@@ -39,11 +39,15 @@ class PositionMgmt(Sensor.Sensor):
 
     def __init__(self):
         pass
-        """
-        # クラス変数
-        #self.logfile = 'GPS_log.txt'
-
         
+        # クラス変数
+        self.logfile = 'GPS_log.txt'
+
+        #GPSログの初期化
+        LogMgmt.clear(self.logfile)
+        LogMgmt.write(self.logfile,"GPS_loading...")
+
+        """
         #初期値の登録
         
         
@@ -58,9 +62,7 @@ class PositionMgmt(Sensor.Sensor):
         #self.thread1.start()
         
 
-        #GPSログの初期化
-        #LogMgmt.clear(self.logfile)
-        #LogMgmt.write(self.logfile,"GPS_loading...")
+
 
         #print(self.origin)
 
@@ -105,10 +107,10 @@ class PositionMgmt(Sensor.Sensor):
             i = 0
             while i < 1:
                 self.last_pos = temp
-                #temp = self.lowpass.filtering(temp)
+                temp = self.lowpass.filtering(temp)
                 self.position = temp
                 i += 1
-                print("updated position:")
+                #print("updated position:")
             self.origin = self.position
 
     #Posparam_conf用GET関数
@@ -135,7 +137,7 @@ class PositionMgmt(Sensor.Sensor):
             #print(self.position)
 
             #logに書きこみ
-            #LogMgmt.write(self.logfile,self.position)
+            LogMgmt.write(self.logfile,self.position)
             #print("log_saved")
             #print("実行時間_GPSアリ")
             #print(time.perf_counter() - start_time)
