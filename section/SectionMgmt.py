@@ -77,7 +77,7 @@ class SectionMgmt:
         else:
             
             state=self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
-                                     self.WalkeParam[self.counter],self.Pointer[self.counter],self.PositionMgmt)
+                                    self.WalkeParam[self.counter],self.Pointer[self.counter],self.PositionMgmt)
             
             if state==True:
                 self.Walkerinstance[self.CURVE].init_state()
