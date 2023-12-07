@@ -45,15 +45,13 @@ class Mgmt:
                 pass
                 
         
-        #if self.select=='1':
+        if self.select=='1':
                 
-         #   pass
+            pass
         
-        #else:
+        else:
             
-         #   self.test()
-            
-             #   print('Try agein')
+            self.test()
         
         
         
@@ -61,13 +59,6 @@ class Mgmt:
         
         #コース判別
         while True:
-            
-            #print('performance or test?')
-            #self.select=input('>> ')
-            #if self.select in ['1','2']:
-            #    pass
-            #else:
-             #   print('Try agein')
             
             print('<Corse select> 1:Normal_Course 2:REIWA_Course 3:Circuit_Course')
             self.course_select = float(input('>> '))
@@ -166,14 +157,14 @@ class Mgmt:
             run_time=self.timejudge(start_program)
             
                 
-             if (run_time>=180): #.................走行時間の設定
+            if (run_time>=180): #.................走行時間の設定
                 state=False
                 break
                 
             self.flags=self.sectionMgmt.test()
                 
-            if self.flags==True
-            break
+            if self.flags==True:
+                break
 
                 #秒数の計算
             stop = time.perf_counter() - start_time
