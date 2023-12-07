@@ -24,7 +24,7 @@ while True:
         else:
             print('Try agein')
             
-param_file=('C:\\Users\\nkhsh\\Documents\\GitHub\\RTKprog\\parameter\\')
+param_file=('C:/Users/nkhsh/Documents/GitHub/RTKprog/parameter/PosPram.prm')
 param=[]
 with open(param_file, mode='r') as f:
     # parameterファイルreaderの生成
@@ -39,5 +39,5 @@ for i in range(len(param)):
     for j in range(len(param[i])-1):
         param[i][j] = float(param[i][j])
         
-if param[0][4]=='straight':       
-    print(param)
+#if param[0][4]=='straight':       
+print(param)

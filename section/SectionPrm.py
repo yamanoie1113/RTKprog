@@ -52,18 +52,18 @@ class SectionPrm:
                 reader = csv.reader(f)
                 reader_header=next(f)
             # parameter readerからデータを取り出してループ
-        for prm in reader:
-            param.append([elem for elem in prm])
+                for prm in reader:
+                    param.append([elem for elem in prm])
         
         for i in range(len(param)):
             for j in range(len(param[i])-1):
                 param[i][j] = float(param[i][j])
                 print(param)
         
-        return self.param
-        self.pointset=self.position.PosInit()
+        return self.param,self.position
+        #self.pointset=self.position.PosInit()
         
-        return self.pointset,self.position
+        #return self.pointset,self.position
     
 
     def walkerset_param(self,number):
@@ -89,9 +89,9 @@ class SectionPrm:
             # parameterファイルreaderの生成
                 reader = csv.reader(f)
                 reader_header=next(f)
-            # parameter readerからデータを取り出してループ
-        for prm in reader:
-            param.append([elem for elem in prm])
+                
+                for prm in reader:
+                        param.append([elem for elem in prm])
         
         for i in range(len(param)):
             for j in range(len(param[i])-1):
