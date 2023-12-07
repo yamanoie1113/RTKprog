@@ -24,7 +24,7 @@ while True:
         else:
             print('Try agein')
             
-param_file=('C:/Users/nkhsh/Documents/GitHub/RTKprog/parameter/PosPram.prm')
+param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Normal_Course.prm')
 param=[]
 with open(param_file, mode='r') as f:
     # parameterファイルreaderの生成

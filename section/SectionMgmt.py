@@ -39,10 +39,17 @@ class SectionMgmt:
         self.getWalker()#instaance
         self.getJudge()#判定
         
-        
+        print("走行のインスタンス",self.Walkerinstance)
+        print("判定のインスタンス",self.Judgeinstance)
+        print("走行のパラメータ",self.WalkeParam)
+        print("座標",self.Pointer)
         
     def Run(self):
         
+        #if param[0][4]=='straight':       
+        #print('aaaaaaaaaaaiiiuu',param[0][4])
+        
+        #print('testinggggggggggggggggggggggggggggg',self.WalkeParam[self.counter][4])
         print("走行のインスタンス",self.Walkerinstance)
         print("判定のインスタンス",self.Judgeinstance)
         print("走行のパラメータ",self.WalkeParam)
@@ -50,8 +57,7 @@ class SectionMgmt:
         #self.PositionMgmt=インスタンス
         
         #if self.number != 3:
-            
-        if self.WalkeParam[self.Pointer][4]=='straight':
+        if self.WalkeParam[self.counter][4]=='straight':
         
             state=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
                                                         self.WalkeParam[self.counter],self.Pointer[self.counter],self.PositionMgmt)
@@ -97,7 +103,7 @@ class SectionMgmt:
                             
                             self.counter=0
 
-    
+        
 
     def end(self):
         
@@ -126,12 +132,26 @@ class SectionMgmt:
         
         
         self.WalkeParam=self.sectionparam.walkerset_param(self.number) #parameter,pointer,positionMgmt
+        #print("param11111111111111111",self.WalkeParam)
         self.Pointer,self.PositionMgmt=self.sectionparam.pointer_param(self.number)
         
-        
-        
     
+    def test(self):
         
+        
+            state=self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
+                                                        self.WalkeParam[4],self.Pointer[4],self.PositionMgmt)
+                
+            if state==True: #goalしたかどうか
+                self.Walkerinstance[self.STRAIGHT].init_state()
+                print("Straight_OK!_Next_Section")
+                
+                return True
+            
+            else:
+                pass
+                
+                
 
     def end(self):
         
@@ -161,7 +181,8 @@ class SectionMgmt:
 def main():
     
     sectionMgmt=SectionMgmt()
-    sectionMgmt.run()
+    sectionMgmt.preparation(1)
+    #sectionMgmt.run()
     #sectionMgmt.execRun()
     #sectionMgmt.test1()
     #sectionMgmt.test2()

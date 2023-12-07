@@ -20,16 +20,46 @@ class Mgmt:
     
     sectionMgmt=SectionMgmt.SectionMgmt()
     judge=False
+    flags=False
 
     def __init__(self):
     
         print("プログラム開始")
-        self.sectionMgmt.preparation()#走行準備
+        #self.sectionMgmt.preparation()#走行準備
+        
+    def select(self):
+        
+        
+        while True:
+            
+            print('performance or test?')
+            print('1:performance,2:test')
+            self.select=input('>> ')
+            
+            if self.select in ['1','2']:
+                
+                break
+            
+            else:
+                
+        
+        #if self.select=='1':
+                
+         #   pass
+        
+        #else:
+            
+         #   self.test()
+            
+             #   print('Try agein')
+        
+        
         
     def preparation(self):
         
         #コース判別
         while True:
+            
             #print('performance or test?')
             #self.select=input('>> ')
             #if self.select in ['1','2']:
@@ -38,9 +68,9 @@ class Mgmt:
              #   print('Try agein')
             
             print('<Corse select> 1:Normal_Course 2:REIWA_Course 3:Circuit_Course')
-            self.course_select = input('>> ')
+            self.course_select = float(input('>> '))
                 
-            if self.course_select in ['1','2','3']:
+            if self.course_select in [1,2,3]:
                 print('OK')
                 break
             
@@ -118,7 +148,49 @@ class Mgmt:
             end_time = end_time - start_time
             #print("経過時間",end_time)
             return end_time
+        
+    def test(self):
+        
+        print('Test_Start')
 
+        state=True #ステートの設定
+
+        start_program = time.perf_counter()
+        while state:
+            
+            start_time = time.perf_counter()
+            
+
+            run_time=self.timejudge(start_program)
+            
+                
+             if (run_time>=180): #.................走行時間の設定
+                state=False
+                break
+                
+            self.flags=self.sectionMgmt.test()
+                
+            if self.flags==True
+            break
+
+                #秒数の計算
+            stop = time.perf_counter() - start_time
+            if stop <= 0.5:
+                    
+                    
+                stop = 0.5-stop
+                time.sleep(stop)
+                
+                    #print("counter",time.perf_counter()-start_time)
+            
+                
+        print("タイム: ",time.perf_counter()-start_time)  
+                
+        self.sectionMgmt.end()
+        #section.end()
+        print("終了")
+        
+        
 
         
 
