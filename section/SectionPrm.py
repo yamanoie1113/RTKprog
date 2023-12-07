@@ -49,11 +49,11 @@ class SectionPrm:
         param=[]
         with open(param_file, mode='r') as f:
             # parameterファイルreaderの生成
-                reader = csv.reader(f)
-                reader_header=next(f)
-            # parameter readerからデータを取り出してループ
-                for prm in reader:
-                    param.append([elem for elem in prm])
+            reader = csv.reader(f)
+            #reader_header=next(f)
+            
+            for prm in reader:
+                param.append([elem for elem in prm])
         
         for i in range(len(param)):
             for j in range(len(param[i])-1):
@@ -87,11 +87,11 @@ class SectionPrm:
         param=[]
         with open(param_file, mode='r') as f:
             # parameterファイルreaderの生成
-                reader = csv.reader(f)
-                reader_header=next(f)
+            reader = csv.reader(f)
+            reader_header=next(f)
                 
-                for prm in reader:
-                        param.append([elem for elem in prm])
+            for prm in reader:
+                    param.append([elem for elem in prm])
         
         for i in range(len(param)):
             for j in range(len(param[i])-1):
