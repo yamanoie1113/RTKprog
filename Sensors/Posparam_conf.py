@@ -26,17 +26,17 @@ class Posparam_conf():
 
         if get_key == "n":
             print("八の字コース")
-            paramfile = "Normal_Cource.prm"
+            paramfile = "Normal_Pos.prm"
             break
 
         elif get_key == "r":
             print("REIWAポイントコース")
-            paramfile = "REIWA_Cource.prm"
+            paramfile = "REIWA_Pos.prm"
             break
 
         elif get_key == "c":
             print("サーキットコース")
-            paramfile = "Circuit_Cource.prm"
+            paramfile = "Circuit_Pos.prm"
             break
 
         elif get_key == "q":

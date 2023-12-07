@@ -125,8 +125,8 @@ class SectionMgmt:
     def get_Param(self):
         
         
-        self.WalkeParam=self.sectionparam(self.number) #parameter,pointer,positionMgmt
-        self.Pointer,self.PositionMgmt=self.sectionparam.pointer_param()
+        self.WalkeParam=self.sectionparam.walkerset_param(self.number) #parameter,pointer,positionMgmt
+        self.Pointer,self.PositionMgmt=self.sectionparam.pointer_param(self.number)
         
         
         

@@ -30,12 +30,12 @@ class Mgmt:
         
         #コース判別
         while True:
-            print('performance or test?')
-            self.select=input('>> ')
-            if self.select in ['1','2']:
-                pass
-            else:
-                print('Try agein')
+            #print('performance or test?')
+            #self.select=input('>> ')
+            #if self.select in ['1','2']:
+            #    pass
+            #else:
+             #   print('Try agein')
             
             print('<Corse select> 1:Normal_Course 2:REIWA_Course 3:Circuit_Course')
             self.course_select = input('>> ')
