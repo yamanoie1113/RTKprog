@@ -82,6 +82,7 @@ class Posparam_conf():
     def clear(self):
         f = open(dir + self.paramfile,"w")
         f.close()
+        print(self.paramfile + " cleared")
 
 
 

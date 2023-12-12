@@ -60,6 +60,7 @@ class VirtualLineTrace():
             self.param = self.PM.getvalue()
             x = float(self.param[0])
             y = float(self.param[1])
+            #print("x",x,"y",y)
             
             #print(x,y)
             #print(self.goaly)

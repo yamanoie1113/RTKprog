@@ -17,6 +17,7 @@ class test5:
                     
                 if course_select in ['1','2','3']:
                     print('OK',course_select)
+                    print("aaaaaa")
                     break
                 
                 else:
