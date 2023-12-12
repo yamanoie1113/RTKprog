@@ -110,8 +110,16 @@ class Mgmt:
                 
 
                 self.judge=self.sectionMgmt.Run()
+                print("judge!!!")
                 if self.judge==True:
+                    print("True!")
+                    self.sectionMgmt.end()
                     break
+                else:
+                    print("False")
+                    #self.sectionMgmt.end()
+                    pass
+                    
                 
                 stop = time.perf_counter() - start_time
                 if stop <= 0.5:
@@ -126,7 +134,7 @@ class Mgmt:
                 
         print("タイム: ",time.perf_counter()-start_time)  
                 
-        self.sectionMgmt.end()
+#         self.sectionMgmt.end()
         #section.end()
         print("終了")
         
@@ -179,10 +187,16 @@ class Mgmt:
                     state=False
                     break
                     
-                self.flags=self.sectionMgmt.Run()
+                self.flags=self.sectionMgmt.test()
                     
                 if self.flags==True:
+                    print("True")
+                    self.sectionMgmt.end()
                     break
+                
+                else:
+                    pass
+                    #print("False")
 
                     #秒数の計算
                 stop = time.perf_counter() - start_time
@@ -195,9 +209,16 @@ class Mgmt:
                     #print("counter",time.perf_counter()-start_time)
             else:
 
-                self.judge=self.sectionMgmt.Run()
+                self.judge=self.sectionMgmt.test()
                 if self.judge==True:
+                    print(True)
+                    self.sectionMgmt.end()
                     break
+                
+                else:
+                    #print("False")
+                    pass
+                    
                 
                 stop = time.perf_counter() - start_time
                 if stop <= 0.5:
