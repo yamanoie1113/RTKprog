@@ -144,9 +144,9 @@ class SectionMgmt:
         self.Pointer,self.PositionMgmt=self.sectionparam.pointer_param(self.number)
         
     
-    def test_old(self):
+    def test(self):
         
-        
+            len=0
             if self.WalkeParam[self.counter][4]=='straight':
         
             state=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
@@ -157,17 +157,13 @@ class SectionMgmt:
                 print("Straight_OK!_Next_Section")
                 
                 
-                if len(self.Pointer) >= self.counter+1: #配列の長さを超えたか
+                if len >= self.counter+1: #配列の長さを超えたか
                         
                     self.counter+=1
                     
                 else:
-                        if  self.number==3: #Circuit or etc
-                                
-                            return True
-                            
-                        else:
-                            return True
+                    
+                        return True
                             
             else:
                 
@@ -185,16 +181,11 @@ class SectionMgmt:
                 print("Curve_OK!_Next_Section")
                 
                 
-                if len(self.Pointer) >= self.counter+1: #配列の要素があるか
+                if len >= self.counter+1: #配列の要素があるか
                         
                     self.counter+=1
                     
                 else:
-                        if  self.number==3: #Circuit or etc
-                                
-                            return True
-                            
-                        else:
                             
                             return True
             else:
