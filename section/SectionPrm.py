@@ -23,10 +23,15 @@ class SectionPrm:
 
         pass
     
+    def test(self):
+        
+        self.position.PosMgmt_init()
+    
 
     def pointer_param(self,number):
         
-        self.position.PosMgmt_init
+        self.position.PosMgmt_init()
+        print("init_OK")
         
         
         if number==1:   #Normal_Course
@@ -54,14 +59,13 @@ class SectionPrm:
 
             for prm in reader:
                 param.append([elem for elem in prm])
-        print("debbb",param)
+        #print("debbb",param)
         for i in range(len(param)):
             for j in range(len(param[i])):
                 
                 param[i][j] = float(param[i][j])
         
         #if param[0][4]=='straight':       
-        print(param)
         return param,self.position
         #self.pointset=self.position.PosInit()
         
@@ -120,7 +124,7 @@ class SectionPrm:
 
 def main():
     dd=SectionPrm()
-    dd.walkerset_param(1)
+    dd.test()
     
 
 

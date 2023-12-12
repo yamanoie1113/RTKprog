@@ -73,7 +73,7 @@ class PositionMgmt(Sensor.Sensor):
         """
         
     def PosMgmt_init(self):
-        #print("PosMgmt_init")
+        print("PosMgmt_init")
         self.thread1 = threading.Thread(target=self.update)
         self.thread1.start()
 
@@ -107,7 +107,7 @@ class PositionMgmt(Sensor.Sensor):
             i = 0
             while i < 1:
                 self.last_pos = temp
-                temp = self.lowpass.filtering(temp)
+                #temp = self.lowpass.filtering(temp)
                 self.position = temp
                 i += 1
                 #print("updated position:")
@@ -142,7 +142,7 @@ class PositionMgmt(Sensor.Sensor):
             #print("実行時間_GPSアリ")
             #print(time.perf_counter() - start_time)
             self.prev_position = self.position
-
+            #print(self.position)
             return self.position
 
         #GPSが取得出来ていなかった時の処理
@@ -323,7 +323,7 @@ class PositionMgmt(Sensor.Sensor):
                 #temp = self.lowpass.filtering(temp)
                 self.position = temp
                 #print("updated position:")
-                print(self.position)
+                #print(self.position)
 
             
             #else :

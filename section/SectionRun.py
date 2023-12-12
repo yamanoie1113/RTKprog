@@ -57,6 +57,7 @@ class SectionRun:
         
         mwalker.set_run(Walkeparam,pointer,PositionMgmt)
         
+        
 
     def exec_judge(self, mjudge,pointer,PositionMgmt):
         
@@ -153,7 +154,7 @@ class SectionRun:
     def stop(self):
         
             print("STOP!!!!!!!!!!!!!!!")
-            self.Motor.stop()
+            self.mWalker.stop()
             #mwalker.set_run(self.STOP,self.pointer)
     
             print("判定しました")

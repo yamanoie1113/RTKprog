@@ -39,10 +39,11 @@ class SectionMgmt:
         self.getWalker()#instaance
         self.getJudge()#判定
         
-        print("走行のインスタンス",self.Walkerinstance)
-        print("判定のインスタンス",self.Judgeinstance)
+        #print("走行のインスタンス",self.Walkerinstance)
+        #print("判定のインスタンス",self.Judgeinstance)
+        #print("positionMgmt",self.PositionMgmt)
         print("走行のパラメータ",self.WalkeParam)
-        print("座標",self.Pointer)
+        #print("座標",self.Pointer)
         
     def Run(self):
         
@@ -50,23 +51,20 @@ class SectionMgmt:
         #print('aaaaaaaaaaaiiiuu',param[0][4])
         
         #print('testinggggggggggggggggggggggggggggg',self.WalkeParam[self.counter][4])
-        print("走行のインスタンス",self.Walkerinstance)
-        print("判定のインスタンス",self.Judgeinstance)
-        print("走行のパラメータ",self.WalkeParam)
-        print("座標",self.Pointer)
         #self.PositionMgmt=インスタンス
         
         #if self.number != 3:
+        #print("SectionMgmt_start")
         if self.WalkeParam[self.counter][4]=='straight':
         
             state=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
                                                         self.WalkeParam[self.counter],self.Pointer[self.counter],self.PositionMgmt)
-                
+            #print("judge_time")
             if state==True: #goalしたかどうか
                 self.Walkerinstance[self.STRAIGHT].init_state()
                 print("Straight_OK!_Next_Section")
                 
-                    
+                 
                 if len(self.Pointer) >= self.counter+1: #配列の長さを超えたか
                         
                     self.counter+=1
@@ -79,6 +77,11 @@ class SectionMgmt:
                         else:
                             
                             self.counter=0
+            else:
+                
+                #print("S_not_goal")
+                
+                pass
                 
         else:
             
@@ -102,6 +105,11 @@ class SectionMgmt:
                         else:
                             
                             self.counter=0
+            else:
+                
+                #print("C_not_goal")
+                
+                pass
 
         
 
@@ -151,7 +159,56 @@ class SectionMgmt:
             else:
                 pass
                 
+    def test2(self):
+        
+        while True:
+        
+             if self.WalkeParam[self.counter][4]=='straight':
+            
+                print(self.WalkeParam[self.counter],self.Pointer[self.counter])
                 
+                print("Straight_OK!_Next_Section")
+                
+                print(self.Pointer)
+                    
+                print("a",len(self.Pointer))    
+                if len(self.Pointer) >= self.counter+1: #配列の長さを超えたか
+                            
+                        self.counter+=1
+                        
+                else:
+                        if  self.number==3: #Circuit or etc
+                                    
+                            return True
+                                
+                        else:
+                                
+                            break
+                
+                    
+                    #print("S_not_goal")
+                    
+                    
+             else:
+                
+                print(self.WalkeParam[self.counter],self.Pointer[self.counter])
+                
+                    
+                    
+                if len(self.Pointer) >= self.counter+1: #配列の要素があるか
+                            
+                        self.counter+=1
+                        
+                else:
+                            
+                    if  self.number==3: #Circuit or etc
+                                    
+                        return True
+                                
+                    else:
+                                
+                        break
+
 
     def end(self):
         

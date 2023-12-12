@@ -109,7 +109,7 @@ class Mgmt:
             else:
                 
 
-                self.judge=self.sectionMgmt.circuit_run()
+                self.judge=self.sectionMgmt.Run()
                 if self.judge==True:
                     break
                 
@@ -126,7 +126,7 @@ class Mgmt:
                 
         print("タイム: ",time.perf_counter()-start_time)  
                 
-        #self.sectionMgmt.end()
+        self.sectionMgmt.end()
         #section.end()
         print("終了")
         
@@ -144,7 +144,24 @@ class Mgmt:
         
     def test(self):
         
+        while True:
+            
+            print('<Corse select> 1:Normal_Course 2:REIWA_Course 3:Circuit_Course')
+            self.course_select = float(input('>> '))
+                
+            if self.course_select in [1,2,3]:
+                print('OK')
+                break
+            
+            else:
+                print('Try agein')
+        
+        
+        self.sectionMgmt.preparation(self.course_select)#走行準備
+        
         print('Test_Start')
+        
+        
 
         state=True #ステートの設定
 
@@ -161,7 +178,7 @@ class Mgmt:
                 state=False
                 break
                 
-            self.flags=self.sectionMgmt.test()
+            self.flags=self.sectionMgmt.Run()
                 
             if self.flags==True:
                 break
@@ -191,6 +208,7 @@ def main():
         
     mgmt=Mgmt()
     #mgmt.set_param()
+    mgmt.select()
     mgmt.preparation()
     mgmt.start()
         
