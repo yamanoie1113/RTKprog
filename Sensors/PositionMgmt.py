@@ -80,13 +80,13 @@ class PositionMgmt(Sensor.Sensor):
         self.nmea2xy.nmea_init()
         
         #print("origin_update")
-        self.Origin_update()
+        #self.Origin_update()
         
         #print(self.origin)
     
         #x,yの増分 要検討
-        self.x_moves = 4.0
-        self.y_moves = 6.0
+        #self.x_moves = 4.0
+        #self.y_moves = 6.0
         
         
         """
