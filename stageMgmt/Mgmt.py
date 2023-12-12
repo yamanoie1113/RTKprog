@@ -55,7 +55,7 @@ class Mgmt:
         
         
         
-    def preparation(self):
+    def setup(self):
         
         #コース判別
         while True:
@@ -246,7 +246,7 @@ def main():
     mgmt=Mgmt()
     #mgmt.set_param()
     mgmt.select()
-    mgmt.preparation()
+    mgmt.setup()
     mgmt.start()
         
         
