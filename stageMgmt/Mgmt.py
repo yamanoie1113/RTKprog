@@ -173,26 +173,42 @@ class Mgmt:
 
             run_time=self.timejudge(start_program)
             
+            if self.course_select != 3:
                 
-            if (run_time>=180): #.................走行時間の設定
-                state=False
-                break
-                
-            self.flags=self.sectionMgmt.Run()
-                
-            if self.flags==True:
-                break
+                if (run_time>=180): #.................走行時間の設定
+                    state=False
+                    break
+                    
+                self.flags=self.sectionMgmt.Run()
+                    
+                if self.flags==True:
+                    break
 
-                #秒数の計算
-            stop = time.perf_counter() - start_time
-            if stop <= 0.5:
+                    #秒数の計算
+                stop = time.perf_counter() - start_time
+                if stop <= 0.5:
+                        
+                        
+                    stop = 0.5-stop
+                    time.sleep(stop)
                     
-                    
-                stop = 0.5-stop
-                time.sleep(stop)
-                
                     #print("counter",time.perf_counter()-start_time)
-            
+            else:
+
+                self.judge=self.sectionMgmt.Run()
+                if self.judge==True:
+                    break
+                
+                stop = time.perf_counter() - start_time
+                if stop <= 0.5:
+                    
+                    #print("秒数",time.perf_counter()-start_time)
+                    stop = 0.5-stop
+                    time.sleep(stop)
+                
+                else:
+                    
+                    pass
                 
         print("タイム: ",time.perf_counter()-start_time)  
                 
