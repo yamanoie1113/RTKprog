@@ -57,3 +57,4 @@ def calcRadius(start_pos:tuple, goal_pos:tuple, param:float=1, curvature_gain:fl
     radius_squared = ((start_vec-circle_center_vec)**2).sum()
     return tuple(circle_center_vec), radius_squared
 
+    
