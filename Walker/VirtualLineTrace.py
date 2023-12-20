@@ -37,8 +37,6 @@ class VirtualLineTrace():
         p = 0
         i = 0
         d = 0
-        error_sum = 0
-        error_pre = 0
         bunp = 0
 
 
@@ -134,50 +132,8 @@ class VirtualLineTrace():
             #'''
 
         def set_param(self):
-
             #print("kite")
             self.param = self.PM.getvalue()
-
-
-        def fast_param(self,a,b,c):
-        
-            #PM = PositionMgmt.PositionMgmt()
-            #para = self.PM.getvalue(self)
-            self.param[c][0] = 500
-            self.param[c][1] = 500
-            x = self.param[c][0] #座標分け
-            y = self.param[c][1]
-            a = x+300 #中心点X
-            b = y #中心点Y
-
-            r = np.sqrt((a-x)**2 + (b-y)**2) #座標計算
-            #print('x:',x,'y:',y) 
-            return r,a,b
-
-        def PID(self,kp,ki,kd,theta_goal,theta_current,error_sum,error_pre):
-            
-            #pidが小さい時
-            '''
-            if theta_current < 1 and theta_current > 0:
-                theta_current = theta_current *100
-            elif theta_current > -1 and theta_current < 0:
-                theta_current = theta_current *10
-            '''
-            theta_current = theta_current*10
-            error = theta_goal - (theta_current)# 偏差（error）を計算            
-            error_sum += error*0.01 # 偏差の総和（積分）を計算
-            #ki = 0       		
-            error_diff = (error-error_pre)/0.01 # PI制御からの追加：1時刻前の偏差と現在の偏差の差分（微分）を計算    		
-            m = (kp * error) + (ki * error_sum) + (kd * error_diff) # 操作量を計算             
-            m = m/12
-            #print("m",m)
-            m = math.floor(m)
-            if m >= 100:
-                m = 90
-            elif m <= -100:
-                m = -90
-            #print("m",m)
-            return m, error_sum, error
         
         def init_state(self):
             self.cancel = 0
@@ -201,8 +157,6 @@ class VirtualLineTrace():
                 self.goaly = float(goaly[1])
                 self.startx = float(self.param[0])
                 self.starty = float(self.param[1])
-                self.error_sum = 0
-                self.error_pre = 0
                 VirtualLineTrace.set_bunp(self)
                 self.slope = (self.goaly - self.starty)/(self.goalx - self.startx)
                 self.intercept = self.starty - self.slope * self.startx
@@ -211,46 +165,12 @@ class VirtualLineTrace():
 
 
         def run(self):
-            try:
-                
+            try:                
                 VirtualLineTrace.set_distance(self)
-                self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
+                self.sv = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
                 self.MM.set_param(self.sp,self.sv)
                 self.MM.run()
-                '''
-                while True:
-                    start = time.perf_counter()
-                    VirtualLineTrace.set_distance(self)
-                    #print(self.save_saitan)
-                    #self.mPID.set_Kpid(self.param[2],self.param[3],self.param[4])
-                    self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
-                    #self.sv,self.error_sum,self.error_pre = VirtualLineTrace.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
-                    #print(self.turn)
-                    if self.turn == 'no':
-                        #print ('zennsin2')
-                        self.MM.set_param(self.sp,self.sv)
-                        #self.MM.set_param(self.sp,50)
-                    if self.turn == 'right':
-                        self.MM.set_param(self.sp,self.sv)
-                        #self.MM.set_param(self.sp,-50)
-                        #print ('zennsin')
-                    elif self.turn == 'left':
-                        #print ('cousin')
-                        self.MM.set_param(self.sp,self.sv)
-                        #self.MM.set_param(10,100)
-                    
-                    self.MM.run()
-                    if self.cancel == 2:
-                        break
-                    #c += 1
-                    #if c == 5:
-                    #    c = 2
-                    stop = time.perf_counter() - start
-                    if stop <= 0.5:
-                        stop = 0.5 - stop
-                        time.sleep(stop)
-                    #print("tyokusen",stop)
-                    '''
+            
             except KeyboardInterrupt:
                 print("complet")
 

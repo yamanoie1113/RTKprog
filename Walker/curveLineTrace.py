@@ -36,8 +36,6 @@ class cuvreLineTrace:
         sp = 0
         sv = 0
         cancel = 0
-        error_sum = 0
-        error_pre = 0
         p = 0
         i = 0
         d = 0
@@ -105,7 +103,7 @@ class cuvreLineTrace:
             try:
                 
                 cuvreLineTrace.set_distance(self)
-                self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
+                self.sv = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
                 if self.exec_count % 2 == 0:
                     self.sv *= -1
                 
