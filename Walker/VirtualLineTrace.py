@@ -38,6 +38,8 @@ class VirtualLineTrace():
         i = 0
         d = 0
         bunp = 0
+        error_sum = 0
+        error_pre = 0
 
 
         #test=0
@@ -167,7 +169,7 @@ class VirtualLineTrace():
         def run(self):
             try:                
                 VirtualLineTrace.set_distance(self)
-                self.sv = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
+                self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
                 self.MM.set_param(self.sp,self.sv)
                 self.MM.run()
             

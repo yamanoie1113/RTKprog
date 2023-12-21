@@ -111,7 +111,7 @@ class cuvreLineTrace:
                 
                 cuvreLineTrace.set_distance(self)
                 self.sv = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
-                value = "基準線:" + self.standard + "現在線:" + self.distance + "x:" + self.x + "y:" + self.y + "操作量" + self.sv
+                value = ["基準線:", self.standard, "現在線:", self.distance + "x:", self.x, "y:", self.y, "操作量", self.sv]
                 self.log.write("curve_log",value)
                 if self.exec_count % 2 == 0:
                     self.sv *= -1
