@@ -22,6 +22,7 @@ class PositionMgmt(Sensor.Sensor):
     #インスタンス
     lowpass = Lowpass.Lowpass()
     nmea2xy = nmea2xy.nmea2xy()
+    log_writer = LogMgmt.LogMgmt()
     
     #pylon_position
     A_pylon_X = -3575.364588034064
@@ -41,7 +42,7 @@ class PositionMgmt(Sensor.Sensor):
         pass
         
         # クラス変数
-        self.logfile = 'GPS_log.txt'
+        self.logfile = 'PMgmt_log.csv'
 
         #GPSログの初期化
         LogMgmt.clear(self.logfile)
@@ -137,7 +138,8 @@ class PositionMgmt(Sensor.Sensor):
             #print(self.position)
 
             #logに書きこみ
-            LogMgmt.write(self.logfile,self.position)
+            #self.log_writer.write(self.logfile,self.position)
+
             #print("log_saved")
             #print("実行時間_GPSアリ")
             #print(time.perf_counter() - start_time)
@@ -322,6 +324,10 @@ class PositionMgmt(Sensor.Sensor):
                 #---lowpass
                 #temp = self.lowpass.filtering(temp)
                 self.position = temp
+
+                #ログに書き込み
+                self.log_writer.write(self.logfile,self.position)
+
                 #print("updated position:")
                 #print(self.position)
 

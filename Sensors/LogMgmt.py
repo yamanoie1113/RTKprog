@@ -1,6 +1,7 @@
 import datetime
 import sys
 import pathlib
+import csv
 
 
 
@@ -27,7 +28,7 @@ def main():
     i = 0
 
     tester = LogMgmt()
-    
+
     while i<5:
         tester.write(filename,i)
         i+=1
