@@ -60,10 +60,10 @@ class Mgmt:
         #コース判別
         while True:
             
-            print('<Corse select> 1:Normal_Course 2:REIWA_Course 3:Circuit_Course')
+            print('<Corse select> 1:Normal_Course 2:REIWA_Course 3:Circuit_Course 4:test_S 5:test_C')
             self.course_select = float(input('>> '))
                 
-            if self.course_select in [1,2,3]:
+            if self.course_select in [1,2,3,4,5]:
                 print('OK')
                 break
             
@@ -245,7 +245,7 @@ def main():
         
     mgmt=Mgmt()
     #mgmt.set_param()
-    mgmt.select()
+    #mgmt.select()
     mgmt.setup()
     mgmt.start()
         
