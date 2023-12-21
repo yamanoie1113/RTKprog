@@ -20,7 +20,7 @@ class Posparam_conf():
     while True:
         #パラメータファイルの種類を選択
         print("設定するパラメータファイルの種類を選択")
-        print("八の字（Normal）はn、REIWAはr、Circuitはc、終了するにはqを入力して下さい")
+        print("八の字（Normal）はn、REIWAはr、Circuitはc、その他新規ファイルは o,終了するにはqを入力して下さい")
         
         get_key = input()
 
@@ -37,6 +37,11 @@ class Posparam_conf():
         elif get_key == "c":
             print("サーキットコース")
             paramfile = "Circuit_Pos.prm"
+            break
+        
+        elif get_key == "o":
+            print("新規ログファイル名を入力")
+            paramfile = input() + ".prm"
             break
 
         elif get_key == "q":

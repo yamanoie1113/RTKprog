@@ -7,8 +7,6 @@ from math import nan
 
 class PID:
 		
-        error_sum = 0
-        error_pre = 0
                 
         def __init__(self):
             pass
@@ -42,10 +40,9 @@ class PID:
                 m = -90
             #print("m",m)
             
-            error_pre = error
             
 
-            return m
+            return m,error_sum,error
 	
 def main():
     mPID=PID()

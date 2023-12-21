@@ -47,7 +47,7 @@ class SectionMgmt:
         
     def Run(self):
         
-        #if param[0][4]=='straight':       
+        #if param[0][5]=='straight':       
         #print('aaaaaaaaaaaiiiuu',param[0][4])
         
         #print('testinggggggggggggggggggggggggggggg',self.WalkeParam[self.counter][4])
@@ -70,7 +70,7 @@ class SectionMgmt:
                     self.counter+=1
                     
                 else:
-                        if  self.number==3: #Circuit or etc
+                        if  self.number==3 or 4 or 5 : #Circuit or etc
                                 
                             return True
                             
@@ -98,7 +98,7 @@ class SectionMgmt:
                     self.counter+=1
                     
                 else:
-                        if  self.number==3: #Circuit or etc
+                        if  self.number==3 or 4 or 5: #Circuit or etc
                                 
                             return True
                             
