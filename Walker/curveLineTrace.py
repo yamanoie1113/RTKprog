@@ -10,8 +10,10 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import MotorMgmt
 from Sensors import PositionMgmt
+from Sensors import LogMgmt
 from Walker import PID2
 from section import SectionRun
+
 from tkinter import W
 import numpy as np
 
@@ -40,6 +42,9 @@ class cuvreLineTrace:
         i = 0
         d = 0
         exec_count = 0
+        log = LogMgmt.LogMgmt()
+        x = 0
+        y = 0
 
         def __init__(self):
             
@@ -51,6 +56,8 @@ class cuvreLineTrace:
             #print(self.param)
             x = float(self.param[0])
             y = float(self.param[1])
+            self.x = x
+            self.y = y
             #print(x)
             #print(self.goaly)
             self.distance = (np.sqrt((self.tyusinx-x)**2 + (self.tyusiny-y)**2)) 
@@ -104,6 +111,8 @@ class cuvreLineTrace:
                 
                 cuvreLineTrace.set_distance(self)
                 self.sv = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
+                value = "基準線:" + self.standard + "現在線:" + self.distance + "x:" + self.x + "y:" + self.y + "操作量" + self.sv
+                self.log.write("curve_log",value)
                 if self.exec_count % 2 == 0:
                     self.sv *= -1
                 
