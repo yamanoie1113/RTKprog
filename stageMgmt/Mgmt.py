@@ -86,7 +86,7 @@ class Mgmt:
             
 
             run_time=self.timejudge(start_program)
-            if self.course_select != 3:
+            if self.course_select != 3 or 4 or 5:
                 
                 if (run_time>=180): #.................走行時間の設定
                     state=False
