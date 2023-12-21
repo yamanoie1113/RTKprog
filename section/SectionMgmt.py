@@ -70,7 +70,7 @@ class SectionMgmt:
                     self.counter+=1
                     
                 else:
-                        if  self.number==3: #Circuit or etc
+                        if  self.number==3 or 4 or 5 : #Circuit or etc
                                 
                             return True
                             
@@ -98,7 +98,7 @@ class SectionMgmt:
                     self.counter+=1
                     
                 else:
-                        if  self.number==3: #Circuit or etc
+                        if  self.number==3 or 4 or 5: #Circuit or etc
                                 
                             return True
                             

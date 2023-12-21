@@ -36,18 +36,27 @@ class SectionPrm:
         
         if number==1:   #Normal_Course
             
-            pass
+            
             param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Normal_Pos.prm')
             
             
         elif number==2: #REIWA_Course
             
-            pass
+            
             param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/REIWA_Pos.prm')
             
-        else:           #Circuit_Course
-            pass
+        elif number==3:           #Circuit_Course
+            
             param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Circuit_Pos.prm')
+            
+        elif number==4:
+            
+            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Test_Straight_Pos.prm')
+            
+        elif number==5:
+            
+            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Test_Curve_Pos.prm')
+            
             
         #self.parameter=self.param.pointer_set_param()]
         
@@ -85,10 +94,21 @@ class SectionPrm:
             
             param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/REIWA_Course.prm')
             
-        else:           #Circuit_Course
+        elif number==3:           #Circuit_Course
             
             param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Circuit_Course.prm')
             
+            
+        elif number==4:
+            
+            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Test_Straight.prm')
+            
+        elif number==5:
+            
+            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Test_Curve.prm')
+            
+        else:
+            pass
         #self.parameter=self.param.pointer_set_param()
         param=[]
         with open(param_file, mode='r') as f:
