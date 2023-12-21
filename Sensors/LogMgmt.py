@@ -10,6 +10,7 @@ class LogMgmt():
     dir = pathlib.Path(__file__).resolve().parent
     dir = (str(dir) + '/../LOG/')
 
+
     #ログの内容を消去する
     def clear(self,filename):
         f = open(self.dir + filename,"w")
@@ -17,21 +18,30 @@ class LogMgmt():
 
     def write(self,filename,param):
         now = datetime.datetime.now()
-        f = open(self.dir + filename + "__" + now.strftime('%Y%m%d_%H%M%S'),"a")
-        f.write(str(datetime.datetime.now()) + ':::')
-        f.write(str(param) + ',\n')
+        
+        with open(self.dir + filename + "__" + now.strftime('%Y%m%d_%H%M%S'),"a") as f:
+            writer = csv.writer(f)
+            writer.writerow(param)
+
+    #ログファイルの読み込み
+    def read(self):
+        pass
+        """
+        now = datetime.datetime.now()
+        with open(self.dir + filename + "__" + now.strftime('%Y%m%d_%H%M%S')) as f:
+            print(f.read())
+        """
+        
+
 
 
 def main():
     filename = "LogTest"
-    test_val = "testtttt"
     i = 0
-
+    param = [1,1]
     tester = LogMgmt()
-
-    while i<5:
-        tester.write(filename,i)
-        i+=1
+    tester.write(filename,param)
+    tester.write(filename,param)
 
 if __name__ == '__main__':
     main()
