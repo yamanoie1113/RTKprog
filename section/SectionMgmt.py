@@ -47,7 +47,7 @@ class SectionMgmt:
         
     def Run(self):
         
-        #if param[0][4]=='straight':       
+        #if param[0][5]=='straight':       
         #print('aaaaaaaaaaaiiiuu',param[0][4])
         
         #print('testinggggggggggggggggggggggggggggg',self.WalkeParam[self.counter][4])

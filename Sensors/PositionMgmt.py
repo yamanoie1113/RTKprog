@@ -39,10 +39,11 @@ class PositionMgmt(Sensor.Sensor):
     #pos_total: float
 
     def __init__(self):
-        pass
+        
         
         # クラス変数
         self.logfile = 'PMgmt_log'
+        self.log_writer.set_param(self.logfile)
 
         #GPSログの初期化
         #LogMgmt.clear(self.logfile)
@@ -103,7 +104,7 @@ class PositionMgmt(Sensor.Sensor):
 
     def Origin_update(self):
         temp = GPS2xy.GPS2xy.getvalue(self)
-        print(None)
+        
         if temp != None:
             i = 0
             while i < 1:
@@ -328,7 +329,7 @@ class PositionMgmt(Sensor.Sensor):
                 log_pos = [temp[0],temp[1]]
                 
                 #ログに書き込み
-                self.log_writer.write(self.logfile,log_pos)
+                self.log_writer.write(log_pos)
 
                 #print("updated position:")
                 #print(self.position)

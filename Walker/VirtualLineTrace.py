@@ -4,6 +4,7 @@ import sys
 import time
 import pathlib
 import math
+import time
 #from Walker.PID import PID
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
@@ -39,7 +40,7 @@ class VirtualLineTrace():
         i = 0
         d = 0
         bunp = 0
-        log = LogMgmt.LogMgmt("")
+        log = LogMgmt.LogMgmt()
         error_sum = 0
         error_pre = 0
         x = 0
@@ -169,7 +170,12 @@ class VirtualLineTrace():
                 self.goaly = float(goaly[1])
                 self.startx = float(self.param[0])
                 self.starty = float(self.param[1])
-                log.set_param("virtual_log")
+                while self.startx == 0:
+                    time.sleep(0.1)
+                    VirtualLineTrace.set_param(self)
+                    self.startx = float(self.param[0])
+                    self.starty = float(self.param[1])
+                self.log.set_param("virtual_log")
                 VirtualLineTrace.set_bunp(self)
                 self.slope = (self.goaly - self.starty)/(self.goalx - self.startx)
                 self.intercept = self.starty - self.slope * self.startx
@@ -181,7 +187,7 @@ class VirtualLineTrace():
             try:                
                 VirtualLineTrace.set_distance(self)
                 self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
-                value = ["基準線:", self.save_saitan, "x:", self.x, "y:", self.y, "操作量", self.sv]
+                value = ["基準線:", self.save_saitan,"startx:",self.startx, "starty:",self.starty,"goalx:",self.goalx, "goaly:",self.goaly, "x:", self.x, "y:", self.y, "操作量", self.sv]
                 self.log.write(value)
                 self.MM.set_param(self.sp,self.sv)
                 self.MM.run()

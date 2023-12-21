@@ -99,10 +99,15 @@ class cuvreLineTrace:
                 self.goaly = float(goaly[1])
                 self.startx = float(self.param[0])
                 self.starty = float(self.param[1])
+                while self.startx == 0:
+                    sleep(0.1)
+                    VirtualLineTrace.set_param(self)
+                    self.startx = float(self.param[0])
+                    self.starty = float(self.param[1])
                 self.tyusinx = (self.startx + self.goalx)/2
                 self.tyusiny = (self.starty + self.goaly)/2
                 self.standard = (np.sqrt((self.tyusinx-self.goalx)**2 + (self.tyusiny-self.goaly)**2))
-                log.set_param("curve_log")
+                self.log.set_param("curve_log")
                 #print("goalx,y",self.goalx,self.goaly)
                 #print("1kaime")
                 self.cancel = 1
@@ -114,7 +119,7 @@ class cuvreLineTrace:
                 
                 cuvreLineTrace.set_distance(self)
                 self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
-                value = ["基準線:", self.standard, "現在線:", self.distance, "x:", self.x, "y:", self.y, "操作量", self.sv]
+                value = ["基準線:", self.standard, "現在線:", self.distance, "starty:",self.starty,"goalx:",self.goalx, "goaly:",self.goaly, "x:", self.x, "y:", self.y, "操作量", self.sv]
                 self.log.write(value)
                 if self.exec_count % 2 == 0:
                     self.sv *= -1
