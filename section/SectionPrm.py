@@ -101,11 +101,11 @@ class SectionPrm:
             
         elif number==4:
             
-            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Test_S.prm')
+            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Test_Straight.prm')
             
         elif number==5:
             
-            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Test_C.prm')
+            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Test_Curve.prm')
             
         else:
             pass
