@@ -128,7 +128,7 @@ class DistanceJudge(Judge.Judge):
         """
 
         #2点間の距離計算
-        length = math.sqrt(( gx- sx)**2 + ( gy - sy)**2)
+        length = ( gx- sx)**2 + ( gy - sy)**2
         #self.mlength = math.sqrt(( self.goal_x- self.start_x)**2 + ( self.goal_y - self.start_y)**2)
 
         #ログファイルに書き込み
