@@ -9,6 +9,7 @@ current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import MotorMgmt
 from Sensors import PositionMgmt
+from Sensors import LogMgmt
 from Walker import PID2
 from tkinter import W
 import numpy as np
@@ -38,6 +39,13 @@ class VirtualLineTrace():
         i = 0
         d = 0
         bunp = 0
+        log = LogMgmt.LogMgmt("")
+        error_sum = 0
+        error_pre = 0
+        x = 0
+        y = 0
+        nx = 0
+        ny = 0
 
 
         #test=0
@@ -58,6 +66,8 @@ class VirtualLineTrace():
             self.param = self.PM.getvalue()
             x = float(self.param[0])
             y = float(self.param[1])
+            self.x = x
+            self.y = y
             #print("x",x,"y",y)
             
             #print(x,y)
@@ -78,6 +88,8 @@ class VirtualLineTrace():
             t = (-1*self.slope * x - (-1) * y - self.intercept) / (self.slope * self.slope + (-1) * (-1))
             nx = x + self.slope * t
             ny = y + (-1) * t
+            self.nx = nx
+            self.ny = ny
             #'''
             #tyokusen = np.sqrt((self.goalx - x)**2+(self.goaly - y)**2)
             #print(tyokusen)
@@ -157,6 +169,7 @@ class VirtualLineTrace():
                 self.goaly = float(goaly[1])
                 self.startx = float(self.param[0])
                 self.starty = float(self.param[1])
+                log.set_param("virtual_log")
                 VirtualLineTrace.set_bunp(self)
                 self.slope = (self.goaly - self.starty)/(self.goalx - self.startx)
                 self.intercept = self.starty - self.slope * self.startx
@@ -167,7 +180,9 @@ class VirtualLineTrace():
         def run(self):
             try:                
                 VirtualLineTrace.set_distance(self)
-                self.sv = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
+                self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
+                value = ["基準線:", self.save_saitan, "x:", self.x, "y:", self.y, "操作量", self.sv]
+                self.log.write(value)
                 self.MM.set_param(self.sp,self.sv)
                 self.MM.run()
             

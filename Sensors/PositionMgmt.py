@@ -45,8 +45,8 @@ class PositionMgmt(Sensor.Sensor):
         self.logfile = 'PMgmt_log'
 
         #GPSログの初期化
-        LogMgmt.clear(self.logfile)
-        LogMgmt.write(self.logfile,"GPS_loading...")
+        #LogMgmt.clear(self.logfile)
+        #LogMgmt.write(self.logfile,"GPS_loading...")
 
         """
         #初期値の登録
