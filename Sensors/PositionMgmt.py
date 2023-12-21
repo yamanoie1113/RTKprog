@@ -42,7 +42,7 @@ class PositionMgmt(Sensor.Sensor):
         pass
         
         # クラス変数
-        self.logfile = 'PMgmt_log.csv'
+        self.logfile = 'PMgmt_log'
 
         #GPSログの初期化
         LogMgmt.clear(self.logfile)
@@ -325,8 +325,10 @@ class PositionMgmt(Sensor.Sensor):
                 #temp = self.lowpass.filtering(temp)
                 self.position = temp
 
+                log_pos = [temp[0],temp[1]]
+                
                 #ログに書き込み
-                self.log_writer.write(self.logfile,self.position)
+                self.log_writer.write(self.logfile,log_pos)
 
                 #print("updated position:")
                 #print(self.position)
