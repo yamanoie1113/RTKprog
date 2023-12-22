@@ -23,6 +23,7 @@ class PositionMgmt(Sensor.Sensor):
     lowpass = Lowpass.Lowpass()
     nmea2xy = nmea2xy.nmea2xy()
     log_writer = LogMgmt.LogMgmt()
+    log_header = None
     
     #pylon_position
     A_pylon_X = -3575.364588034064
@@ -43,7 +44,8 @@ class PositionMgmt(Sensor.Sensor):
         
         # クラス変数
         self.logfile = 'PMgmt_log'
-        self.log_writer.set_param(self.logfile)
+        self.log_header = ['pos_x','pos_y']
+        self.log_writer.set_param(self.log_header,self.logfile)
 
         #GPSログの初期化
         #LogMgmt.clear(self.logfile)
