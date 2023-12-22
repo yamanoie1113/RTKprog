@@ -187,7 +187,7 @@ class VirtualLineTrace():
             try:                
                 VirtualLineTrace.set_distance(self)
                 self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
-                value = ["基準線:", self.save_saitan,"startx:",self.startx, "starty:",self.starty,"goalx:",self.goalx, "goaly:",self.goaly, "x:", self.x, "y:", self.y, "操作量", self.sv]
+                value = ["直線との距離:", self.save_saitan,"startx:",self.startx, "starty:",self.starty,"goalx:",self.goalx, "goaly:",self.goaly, "x:", self.x, "y:", self.y, "操作量", self.sv]
                 self.log.write(value)
                 self.MM.set_param(self.sp,self.sv)
                 self.MM.run()
