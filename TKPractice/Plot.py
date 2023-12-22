@@ -1,6 +1,7 @@
 # coding:utf-8
 import numpy as np
 import matplotlib.pyplot as plt
+import glob
 
 
 class Plot():
@@ -24,6 +25,12 @@ class Plot():
         plt.legend()
         plt.savefig(filename)
         plt.show()
+    
+
+    #ファイルの読み込み
+    def file_read(self):
+        file = glob.glob('/../LOG/*')
+        print(file)
 
 
 def main():
@@ -31,11 +38,13 @@ def main():
     filename = "test.png"
     testclass = Plot()
 
+    testclass.file_read()
+    """
     while i <5:
         testclass.add(i,i)
         i+=1
-    
     testclass.plot(filename)
+    """
 
 if __name__ == "__main__":
     main()
