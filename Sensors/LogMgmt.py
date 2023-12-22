@@ -22,9 +22,10 @@ class LogMgmt():
         self.log_file = self.dir + file
 
         with open(self.log_file,"a") as f:
-
+            
+            #header.insert(0,'timestamp')
             writer = csv.writer(f)
-            writer.writerow(['timestamp',header])
+            writer.writerow(header)
     
     #ログの内容を消去する
     def clear(self):
@@ -32,12 +33,14 @@ class LogMgmt():
         f.close()
 
     def write(self,param):
-        #now = datetime.datetime.now()
+        #now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        #param.insert(0,now)
+
         with open(self.log_file,"a") as f:
             writer = csv.writer(f)
-            now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
             
-            writer.writerow([now,param])
+            writer.writerow(param)
 
     #ログファイルの読み込み
     def read(self):
@@ -58,6 +61,8 @@ def main():
     
     param = [1,1]
     tester.set_param(header,filename)
+    tester.write(param)
+    tester.write(param)
     tester.write(param)
     tester.write(param)
 
