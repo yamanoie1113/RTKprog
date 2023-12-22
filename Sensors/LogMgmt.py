@@ -1,4 +1,5 @@
 import datetime
+import os
 import sys
 import pathlib
 import csv
@@ -6,17 +7,24 @@ import csv
 
 
 class LogMgmt():
-
+    now = datetime.datetime.now()
     dir = pathlib.Path(__file__).resolve().parent
-    dir = (str(dir) + '/../LOG/')
+    dir = (str(dir) + '/../LOG/') + now.strftime('%Y%m%d_%H%M%S') + '/'
+    os.mkdir(dir)
     log_file = None
     
     def _init__(self):
         pass
-        
-    def set_param(self,file):
-        now = datetime.datetime.now()
-        self.log_file = self.dir + file + "__" + now.strftime('%Y%m%d_%H%M%S')
+    
+    #ディレクトリとヘッダーの作成(list[]:str,str)
+    def set_param(self,header,file):
+
+        self.log_file = self.dir + file
+
+        with open(self.log_file,"a") as f:
+
+            writer = csv.writer(f)
+            writer.writerow(['timestamp',header])
     
     #ログの内容を消去する
     def clear(self):
@@ -27,7 +35,9 @@ class LogMgmt():
         #now = datetime.datetime.now()
         with open(self.log_file,"a") as f:
             writer = csv.writer(f)
-            writer.writerow(param)
+            now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            
+            writer.writerow([now,param])
 
     #ログファイルの読み込み
     def read(self):
@@ -41,11 +51,13 @@ class LogMgmt():
 
 def main():
     filename = "LogTest"
+    header = ['test_val1','test_val2']
     i = 0
     tester = LogMgmt()
+
     
     param = [1,1]
-    tester.set_param(filename)
+    tester.set_param(header,filename)
     tester.write(param)
     tester.write(param)
 
