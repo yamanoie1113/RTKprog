@@ -23,7 +23,7 @@ class LogMgmt():
 
         with open(self.log_file,"a") as f:
             
-            #header.insert(0,'timestamp')
+            header.insert(0,'timestamp')
             writer = csv.writer(f)
             writer.writerow(header)
     
@@ -33,8 +33,10 @@ class LogMgmt():
         f.close()
 
     def write(self,param):
-        #now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        #param.insert(0,now)
+
+        now = [datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')]
+        param = now + param
+        print(param)
 
         with open(self.log_file,"a") as f:
             writer = csv.writer(f)
