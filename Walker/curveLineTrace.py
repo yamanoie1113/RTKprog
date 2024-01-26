@@ -107,7 +107,8 @@ class cuvreLineTrace:
                 self.tyusinx = (self.startx + self.goalx)/2
                 self.tyusiny = (self.starty + self.goaly)/2
                 self.standard = (np.sqrt((self.tyusinx-self.goalx)**2 + (self.tyusiny-self.goaly)**2))
-                self.log.set_param("curve_log")
+                value = ["基準線:", "現在線:", "startx:","starty:","goalx:", "goaly:", "x:", "y:", "操作量"]
+                self.log.set_param("curve_log",value)
                 #print("goalx,y",self.goalx,self.goaly)
                 #print("1kaime")
                 self.cancel = 1
@@ -119,7 +120,7 @@ class cuvreLineTrace:
                 
                 cuvreLineTrace.set_distance(self)
                 self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
-                value = ["基準線:", self.standard, "現在線:", self.distance, "starty:",self.starty,"goalx:",self.goalx, "goaly:",self.goaly, "x:", self.x, "y:", self.y, "操作量", self.sv]
+                value = [self.standard, self.distance, self.startx,self.starty,self.goalx, self.goaly, self.x, self.y, self.sv]
                 self.log.write(value)
                 if self.exec_count % 2 == 0:
                     self.sv *= -1

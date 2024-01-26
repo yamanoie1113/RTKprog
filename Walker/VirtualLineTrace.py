@@ -175,7 +175,8 @@ class VirtualLineTrace():
                     VirtualLineTrace.set_param(self)
                     self.startx = float(self.param[0])
                     self.starty = float(self.param[1])
-                self.log.set_param("virtual_log")
+                value = ["直線との距離:", "startx:", "starty:","goalx:", "goaly:", "x:", "y:", "操作量","sp"]    
+                self.log.set_param("virtual_log",value)
                 VirtualLineTrace.set_bunp(self)
                 self.slope = (self.goaly - self.starty)/(self.goalx - self.startx)
                 self.intercept = self.starty - self.slope * self.startx
@@ -187,7 +188,7 @@ class VirtualLineTrace():
             try:                
                 VirtualLineTrace.set_distance(self)
                 self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
-                value = ["直線との距離:", self.save_saitan,"startx:",self.startx, "starty:",self.starty,"goalx:",self.goalx, "goaly:",self.goaly, "x:", self.x, "y:", self.y, "操作量", self.sv]
+                value = [self.save_saitan,self.startx,self.starty,self.goalx, self.goaly, self.x, self.y, self.sv,self.sp]
                 self.log.write(value)
                 self.MM.set_param(self.sp,self.sv)
                 self.MM.run()
