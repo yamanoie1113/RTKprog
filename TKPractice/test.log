@@ -1,4 +1,0 @@
-2023-05-10 14:23:47,846 - INFO:root - This is INFO message.
-2023-05-10 14:23:47,846 - WARNING:root - This is WARNING message.
-2023-05-10 14:23:47,846 - ERROR:root - This is ERROR message.
-2023-05-10 14:23:47,846 - CRITICAL:root - This is CRITICAL message.
