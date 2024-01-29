@@ -10,16 +10,17 @@ from Judgement import Judge
 
 from Sensors import LogMgmt,PositionMgmt as PMgmt
 
-class DisTester(Judge.Judge):
+class DisTester():
 
     distance = None
     PosClass = PMgmt.PositionMgmt()
     goal_pos = None
     pos = None
-    param_file = '/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Test_Straight_Pos.prm'
+    param_file = '../parameter/Test_Straight_Pos.prm'
 
     def __init__(self):
         self.PosClass.PosMgmt_init()
+        
 
     def set_target(self):
         with open(self.param_file, mode='r') as f:
@@ -27,9 +28,9 @@ class DisTester(Judge.Judge):
             reader = csv.reader(f)
             #reader_header=next(f)
 
+
             for prm in reader:
-                #self.goal_pos= prm
-                print(prm)
+                self.goal_pos= prm
 
         print(self.goal_pos)
 
@@ -37,6 +38,8 @@ class DisTester(Judge.Judge):
 
         cur_pos = self.get_pos()
         mdistance = self.calc_dist(cur_pos,goal_pos)
+
+        print(mdistance)
 
         
         if mdistance > 2.0 :
@@ -56,9 +59,15 @@ class DisTester(Judge.Judge):
 
 
 def main():
+    #print("Hello")
     test = DisTester()
     test.set_target()
 
+    while True:
+        tmp = test.judge()
+        if tmp == True:
+            break
 
-if __name__ == '__init__' :
+
+if __name__ == '__main__':
     main()
