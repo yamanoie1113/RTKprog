@@ -8,7 +8,6 @@ import time
 #from Walker.PID import PID
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from Sensors import MotorMgmt
 from Sensors import PositionMgmt
 from Sensors import LogMgmt
 from Walker import PID2
@@ -29,7 +28,6 @@ class VirtualLineTrace():
         slope = 0
         intercept = 0
         #save_saitan = 0
-        MM = MotorMgmt.MotorMgmt()
         PM = None
         mPID = PID2.PID()
         param = [[0 for i in range(2)] for j in range(5)]
@@ -192,16 +190,13 @@ class VirtualLineTrace():
                 value = [self.save_saitan,self.startx,self.starty,self.goalx, self.goaly, self.x, self.y, self.sv,self.sp]
                 #value = [self.sv]
                 self.log.write(value)
-                self.MM.set_param(self.sp,self.sv)
-                self.MM.run()
             
             except KeyboardInterrupt:
                 print("complet")
 
 
         def stop(self):
-            self.MM.set_param(0,0)
-            self.MM.run()
+            pass
             #self.MM.stop()
                 
 
