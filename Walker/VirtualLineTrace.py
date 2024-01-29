@@ -175,9 +175,9 @@ class VirtualLineTrace():
                     VirtualLineTrace.set_param(self)
                     self.startx = float(self.param[0])
                     self.starty = float(self.param[1])
-                value = ["直線との距離:", "startx:", "starty:","goalx:", "goaly:", "x:", "y:", "操作量","sp"]
-                #value = ["操作量"]    
-                self.log.set_param("virtual_log",value)
+                value = ["直線との距離:", "startx:", "starty:","goalx:", "goaly:", "x:", "y:", "操作量","sp"]    
+                #value = ["操作量"]
+                self.log.set_param(value,"virtual_log")
                 VirtualLineTrace.set_bunp(self)
                 self.slope = (self.goaly - self.starty)/(self.goalx - self.startx)
                 self.intercept = self.starty - self.slope * self.startx
@@ -192,7 +192,9 @@ class VirtualLineTrace():
                 value = [self.save_saitan,self.startx,self.starty,self.goalx, self.goaly, self.x, self.y, self.sv,self.sp]
                 #value = [self.sv]
                 self.log.write(value)
-                self.MM.set_param(self.sp,self.sv)
+                #self.sv = self.sv * -1
+                #self.MM.set_param(self.sp,self.sv)
+                self.MM.set_param(0,self.sv)
                 self.MM.run()
             
             except KeyboardInterrupt:
