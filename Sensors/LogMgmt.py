@@ -36,7 +36,7 @@ class LogMgmt():
 
         now = [datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')]
         param = now + param
-        print(param)
+        #print(param)
 
         with open(self.log_file,"a") as f:
             writer = csv.writer(f)

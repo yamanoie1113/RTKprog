@@ -16,7 +16,7 @@ class DisTester():
     PosClass = PMgmt.PositionMgmt()
     goal_pos = None
     pos = None
-    param_file = '../parameter/Test_Straight_Pos.prm'
+    param_file = '/Users/takak/OneDrive/ドキュメント/GitHub/RTKplog2/parameter/Test_Straight_Pos.prm'
 
     def __init__(self):
         self.PosClass.PosMgmt_init()
@@ -32,39 +32,46 @@ class DisTester():
             for prm in reader:
                 self.goal_pos= prm
 
-        print(self.goal_pos)
+        #print(self.goal_pos)
 
     def judge(self,goal_pos):
+        while True:
+            cur_pos = self.get_pos()
+            if cur_pos != None:
+                
 
-        cur_pos = self.get_pos()
+                break
         mdistance = self.calc_dist(cur_pos,goal_pos)
 
         print(mdistance)
+        #print(cur_pos)
 
         
-        if mdistance > 2.0 :
-            True
+        if mdistance < 2.0 :
+           return True
 
         else :
-            False
+           return False
 
-    def calc_dist(self,cur_pos=list,goal_pos=list):
+    def calc_dist(self,cur_pos,goal_pos):
         #2点間の距離計算
-        distance = ( goal_pos[0] - cur_pos[0])**2 + ( goal_pos[1] - cur_pos[1])**2
+        distance = math.sqrt(( float(goal_pos[0]) - cur_pos[0])**2 + ( float(goal_pos[1]) - cur_pos[1])**2)
 
         return distance
 
     def get_pos(self):
-        self.pos = self.PosClass.getvalue()
+        pos = self.PosClass.getvalue()
+        return pos
 
 
 def main():
-    #print("Hello")
     test = DisTester()
     test.set_target()
+    tmp = False
 
     while True:
-        tmp = test.judge()
+        tmp = test.judge(test.goal_pos)
+        #print(tmp)
         if tmp == True:
             break
 
