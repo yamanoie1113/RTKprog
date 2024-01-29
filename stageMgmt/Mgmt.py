@@ -134,7 +134,7 @@ class Mgmt:
                 
         print("タイム: ",time.perf_counter()-start_time)  
                 
-#         self.sectionMgmt.end()
+        self.sectionMgmt.end()
         #section.end()
         print("終了")
         

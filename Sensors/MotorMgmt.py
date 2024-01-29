@@ -3,18 +3,26 @@ from itertools import cycle
 from time import sleep
 import pigpio
 import time
+import sys
+import pathlib
+current_dir = pathlib.Path(__file__).resolve().parent
+sys.path.append(str(current_dir) + '/../')
+from Sensors import LogMgmt
+
 pi = pigpio.pi()
 
 class MotorMgmt():
 
     cycle = 0
     duty = 0
+    log = LogMgmt.LogMgmt()
 
 
     def __init__(self):
 
         #self.mMotor = MotorMgmt()
         self.pi = pigpio.pi()
+        #self.log.set_param("Motor_log")
         pass
 
         
@@ -40,6 +48,9 @@ class MotorMgmt():
                 sp = sp *-1
                 a2 = 80
                 self.duty = a2 + sp*0.38
+        #value = ["sp", sp,"sv:",sv, "duty:",self.duty,"cycle:",self.cycle]
+        #self.log.write(value)
+                
                 
 
 
