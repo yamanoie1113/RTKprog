@@ -97,7 +97,10 @@ class MotorTest():
         print('end')
 
 def main():
-    MotorTest.set_param(0,0)
+    sp = input("スピード: ")
+    sv = input("ステアリング: ")
+    MotorTest.set_param(sp,sv)
+    MotorTest.run
         
 if __name__ == '__main__':
     main()
