@@ -122,8 +122,8 @@ class cuvreLineTrace:
                 self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
                 value = [self.standard, self.distance, self.startx,self.starty,self.goalx, self.goaly, self.x, self.y, self.sv]
                 self.log.write(value)
-                if self.exec_count % 2 == 0:
-                    self.sv *= -1
+                #if self.exec_count % 2 == 0:
+                    #self.sv *= -1
                 
                 self.MM.set_param(self.sp,self.sv)
                 self.MM.run()
