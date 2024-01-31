@@ -116,7 +116,7 @@ class Mgmt:
                     self.sectionMgmt.end()
                     break
                 else:
-                    print("False")
+                    #print("False")
                     #self.sectionMgmt.end()
                     pass
                     
