@@ -12,7 +12,7 @@ from Sensors import LogMgmt
 pi = pigpio.pi()
 
 class MotorTest():
-
+    
     cycle = 0
     duty = 0
     log = LogMgmt.LogMgmt()
@@ -30,12 +30,12 @@ class MotorTest():
 
         
         if sv ==0:
-            svduty = 7.25
+            svduty = 7.105
         else:
             if sv > 0:
-                svduty = 7.25 + sv*0.0475
+                svduty = 7.105 + sv*0.0252
             else:
-                svduty = 8.25 + sv*0.0475
+                svduty = 7.105 + sv*0.02655
         self.cycle = int((svduty * 1000000 / 100))        
         
         if sp == 0:
@@ -97,10 +97,13 @@ class MotorTest():
         print('end')
 
 def main():
-    sp = input("スピード: ")
-    sv = input("ステアリング: ")
-    MotorTest.set_param(sp,sv)
-    MotorTest.run
+    tester = MotorTest()
+    #sp = input("スピード: ")
+    sp = 0
+    while True:
+        sv = input("ステアリング: ")
+        tester.set_param(int(sp),int(sv))
+        tester.run()
         
 if __name__ == '__main__':
     main()

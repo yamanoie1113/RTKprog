@@ -194,7 +194,7 @@ class VirtualLineTrace():
                 self.log.write(value)
                 #self.sv = self.sv * -1
                 #self.MM.set_param(self.sp,self.sv)
-                self.MM.set_param(0,self.sv)
+                self.MM.set_param(self.sp,self.sv)
                 self.MM.run()
             
             except KeyboardInterrupt:
