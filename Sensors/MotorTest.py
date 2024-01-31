@@ -30,21 +30,12 @@ class MotorTest():
 
         
         if sv ==0:
-<<<<<<< HEAD
             svduty = 7.105
         else:
             if sv > 0:
                 svduty = 7.105 + sv*0.0252
             else:
                 svduty = 7.105 + sv*0.02655
-=======
-            svduty = 6.825
-        else:
-            if sv > 0:
-                svduty += sv*0.028
-            else:
-                svduty += sv*0.02375
->>>>>>> 49571a7aa72fc9031df0f657e4e417e739e4e621
         self.cycle = int((svduty * 1000000 / 100))        
         
         if sp == 0:
