@@ -47,14 +47,7 @@ class SectionMgmt:
         
     def Run(self):
         
-        #if param[0][5]=='straight':       
-        #print('aaaaaaaaaaaiiiuu',param[0][4])
-        
-        #print('testinggggggggggggggggggggggggggggg',self.WalkeParam[self.counter][4])
-        #self.PositionMgmt=インスタンス
-        
-        #if self.number != 3:
-        #print("SectionMgmt_start")
+    
         if self.WalkeParam[self.counter][4]=='straight':
         
             state=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
@@ -65,7 +58,7 @@ class SectionMgmt:
                 print("Straight_OK!_Next_Section")
                 
                 
-                if len(self.Pointer) >= self.counter+1: #配列の長さを超えたか
+                if len(self.WalkeParam) != self.counter+1: #配列の長さを超えたか
                         
                     self.counter+=1
                     
