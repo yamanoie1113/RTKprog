@@ -11,7 +11,7 @@ from Sensors import LogMgmt
 
 pi = pigpio.pi()
 
-class MotorTest():
+class MotorMgmt():
     
     cycle = 0
     duty = 0
