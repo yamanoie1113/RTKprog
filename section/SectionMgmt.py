@@ -63,7 +63,7 @@ class SectionMgmt:
                     self.counter+=1
                     
                 else:
-                        if  self.number==3 or 4 or 5 : #Circuit or etc
+                        if  self.number != '1' or '2' : #Circuit or etc
                                 
                             return True
                             
@@ -86,12 +86,14 @@ class SectionMgmt:
                 print("Curve_OK!_Next_Section")
                 
                 
-                if len(self.Pointer) >= self.counter+1: #配列の要素があるか
+                if len(self.WalkeParam) != self.counter+1: #配列の要素があるか
                         
                     self.counter+=1
                     
                 else:
-                        if  self.number==3 or 4 or 5: #Circuit or etc
+                        if  self.number != 1 or 2 : #Circuit or etc
+                            
+                            self.end()
                                 
                             return True
                             
