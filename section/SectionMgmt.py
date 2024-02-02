@@ -91,7 +91,9 @@ class SectionMgmt:
                     self.counter+=1
                     
                 else:
-                        if  self.number != '1' or '2' : #Circuit or etc
+                        if  self.number != 1 or 2 : #Circuit or etc
+                            
+                            self.end()
                                 
                             return True
                             

@@ -55,6 +55,8 @@ class SectionPrm:
             
         elif number==5:
             
+            print("OK")
+            
             param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/test.prm')
             
             
