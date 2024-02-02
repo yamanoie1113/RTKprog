@@ -104,6 +104,9 @@ class cuvreLineTrace:
                     cuvreLineTrace.set_param(self)
                     self.startx = float(self.param[0])
                     self.starty = float(self.param[1])
+                sv = 50
+                self.MM.set_param(30,sv)
+                self.MM.run()
                 self.tyusinx = (self.startx + self.goalx)/2
                 self.tyusiny = (self.starty + self.goaly)/2
                 self.standard = (np.sqrt((self.tyusinx-self.goalx)**2 + (self.tyusiny-self.goaly)**2))
