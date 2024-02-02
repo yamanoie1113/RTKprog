@@ -5,6 +5,7 @@ import time
 import pathlib
 import math
 import time
+import csv
 #from Walker.PID import PID
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
@@ -15,7 +16,7 @@ from tkinter import W
 import numpy as np
 
 
-class VirtualLineTrace():
+class PIDLineTrace():
 
         goalx = 1000 #目標地点ｘ
         goaly = 1000 #目標地点ｙ
@@ -93,7 +94,7 @@ class VirtualLineTrace():
             #tyokusen = np.sqrt((self.goalx - x)**2+(self.goaly - y)**2)
             #print(tyokusen)
             #r = abs(slope * (x) + 1 * y) / np.sqrt(slope**2 + 1**2) #直線との最短距離
-            VirtualLineTrace.set_turn(self,distance,x,y,nx,ny)
+            PIDLineTrace.set_turn(self,distance,x,y,nx,ny)
             #print(self.goalx,self.goaly)
             #print(x,y)
 
@@ -121,7 +122,7 @@ class VirtualLineTrace():
                 self.turn = 'no'
             self.save_turn = self.turn
             self.saitan = distance
-            #VirtualLineTrace.set_saitan(self,distance)
+            #PIDLineTrace.set_saitan(self,distance)
             '''
             if 0 <= distance:
                 #print('distance',distance)
@@ -157,7 +158,7 @@ class VirtualLineTrace():
             self.p = paramlist[1]
             self.i = paramlist[2]
             self.d = paramlist[3]
-            VirtualLineTrace.set_param(self)
+            PIDLineTrace.set_param(self)
             #print("param")
             #print(self.param)            
             #print(self.goalx,self.goaly)
@@ -170,13 +171,13 @@ class VirtualLineTrace():
                 self.starty = float(self.param[1])
                 while self.startx == 0:
                     time.sleep(0.1)
-                    VirtualLineTrace.set_param(self)
+                    PIDLineTrace.set_param(self)
                     self.startx = float(self.param[0])
                     self.starty = float(self.param[1])
                 #value = ["直線との距離:", "startx:", "starty:","goalx:", "goaly:", "x:", "y:", "操作量","sp"]
                 value = ["操作量"]    
                 self.log.set_param(value,"virtual_log")
-                VirtualLineTrace.set_bunp(self)
+                PIDLineTrace.set_bunp(self)
                 self.slope = (self.goaly - self.starty)/(self.goalx - self.startx)
                 self.intercept = self.starty - self.slope * self.startx
                 self.cancel = 1                
@@ -185,10 +186,11 @@ class VirtualLineTrace():
 
         def run(self):
             try:                
-                VirtualLineTrace.set_distance(self)
+                PIDLineTrace.set_distance(self)
                 self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
                 #value = [self.save_saitan,self.startx,self.starty,self.goalx, self.goaly, self.x, self.y, self.sv,self.sp]
                 value = [self.sv]
+                print(self.sv,self.save_saitan)
                 self.log.write(value)
             
             except KeyboardInterrupt:
@@ -198,18 +200,30 @@ class VirtualLineTrace():
         def stop(self):
             pass
             #self.MM.stop()
-                
 
+
+def set_target():
+    param_file = '/Users/takak/OneDrive/ドキュメント/GitHub/RTKplog2/parameter/PIDTester.prm'
+    with open(param_file, mode='r') as f:
+    # parameterファイルreaderの生成
+        reader = csv.reader(f)
+        #reader_header=next(f)
+
+
+        for prm in reader:
+            goal_pos= prm
+
+        return goal_pos
+    
 def main():
-    #print (1)
-    pa=[0,0,0,0]
-    cuvre = VirtualLineTrace()
-    cuvre.stop()
-        
+    gps = PositionMgmt.PositionMgmt()
+    gps.PosMgmt_init()
+    param_list=[25,1,0.001,0]
+    goal_pos = set_target()
+    print(goal_pos)
+    test = PIDLineTrace()
+    while True:
+        test.set_run(param_list,goal_pos,gps)
+
 if __name__ == '__main__':
     main()
-
-
-
-
-
