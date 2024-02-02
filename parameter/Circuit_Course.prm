@@ -1,12 +1,12 @@
 lap:False
+35,10,0,1,straight
+25,5,0,1,straight_left
 25,10,0,1,straight
-25,10,0,1,straight
-25,10,0,1,straight
-25,10,0,1,straight
+25,10,0,1,straight_left
 25,10,0,1,straight
 20,1,5,1,curve_left
 25,10,0,1,straight
-25,10,0,1,straight
+25,10,0,1,straight_right
 25,10,0,1,straight
 20,1,5,1,curve_right
 25,10,0,1,straight
