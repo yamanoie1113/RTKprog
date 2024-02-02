@@ -49,7 +49,6 @@ class SectionRun:
         statement=False
         statement=self.exec_judge(mjudge,pointer,PositionMgmt)
         
-    
         #print("return",statement)
         return statement
         
@@ -71,8 +70,11 @@ class SectionRun:
             print("判定ました")
             #self.mWalker.stop()
                 #break
+            return True
                 
-        return not(tes)
+        else:
+            
+            return False
         
         
     def test_straight(self,mwalker,mjudge,Walkeparam,pointer):
