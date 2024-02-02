@@ -86,7 +86,7 @@ class SectionMgmt:
                 print("Curve_OK!_Next_Section")
                 
                 
-                if len(self.Pointer) >= self.counter+1: #配列の要素があるか
+                if len(self.WalkeParam) != self.counter+1: #配列の要素があるか
                         
                     self.counter+=1
                     

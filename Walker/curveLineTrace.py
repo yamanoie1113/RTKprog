@@ -87,20 +87,20 @@ class cuvreLineTrace:
                 g = -1
             else:
                 g = 1
-            sv = 50 * g
-            self.MM.set_param(30,sv)
-            self.MM.run()
+            sv = 70 * g
             #print(self.goalx)
             #print("curve_goal")
             #print(goaly)
             
             #print("param")
             #print(self.param)
-            #
+            # 
             #print(self.goalx,self.goaly)
             #print(self.startx,self.starty)
             #ループカウンタ           
             if self.cancel == 0:
+                self.MM.set_param(30,sv)
+                self.MM.run()
                 self.PM=Positionmgmt
                 cuvreLineTrace.set_param(self)
                 self.goalx = float(goaly[0])
@@ -116,7 +116,7 @@ class cuvreLineTrace:
                 self.tyusiny = (self.starty + self.goaly)/2
                 self.standard = (np.sqrt((self.tyusinx-self.goalx)**2 + (self.tyusiny-self.goaly)**2))
                 value = ["基準線:", "現在線:", "startx:","starty:","goalx:", "goaly:", "x:", "y:", "操作量"]
-                self.log.set_param("curve_log",value)
+                self.log.set_param(value,"curve_log")
                 #print("goalx,y",self.goalx,self.goaly)
                 #print("1kaime")
                 self.cancel = 1

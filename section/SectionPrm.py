@@ -51,11 +51,11 @@ class SectionPrm:
             
         elif number==4:
             
-            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Test_Straight_Pos.prm')
+            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/test.prm')
             
         elif number==5:
             
-            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Test_Curve_Pos.prm')
+            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/test.prm')
             
             
         #self.parameter=self.param.pointer_set_param()]

@@ -202,7 +202,7 @@ class VirtualLineTrace():
 
 
         def stop(self):
-            self.MM.set_param(0,0)
+            self.MM.set_param(-0,0)
             self.MM.run()
             #self.MM.stop()
                 
