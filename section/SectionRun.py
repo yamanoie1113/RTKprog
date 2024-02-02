@@ -69,7 +69,7 @@ class SectionRun:
         if tes==False:
         
             print("判定ました")
-            self.mWalker.stop()
+            #self.mWalker.stop()
                 #break
                 
         return not(tes)
