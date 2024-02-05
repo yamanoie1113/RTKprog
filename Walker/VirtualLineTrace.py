@@ -2,7 +2,7 @@
 import os
 import sys
 import time
-import pathlib
+i-+
 import math
 import time
 #from Walker.PID import PID
@@ -159,6 +159,13 @@ class VirtualLineTrace():
             self.p = paramlist[1]
             self.i = paramlist[2]
             self.d = paramlist[3]
+            g = paramlist[4]
+            if g == "straight_right":
+                g = -1
+                sv = 50 * g
+            if g == "straight_left":
+                g = 1
+                sv = 50 * g
             VirtualLineTrace.set_param(self)
             #print("param")
             #print(self.param)            
@@ -166,6 +173,9 @@ class VirtualLineTrace():
             #print(self.startx,self.starty)
             #ループカウンタ
             if self.cancel == 0:
+                if sv == 50 or sv == -50
+                    self.MM.set_param(self.sp,sv)
+                    self.MM.run()
                 self.goalx = float(goaly[0])
                 self.goaly = float(goaly[1])
                 self.startx = float(self.param[0])
