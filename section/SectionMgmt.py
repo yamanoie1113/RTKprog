@@ -47,7 +47,7 @@ class SectionMgmt:
         
     def Run(self):
         
-        print('state',self.WalkeParam[self.counter][4],'pointer',self.counter+1)
+        
     
         if self.WalkeParam[self.counter][4]=='straight' or 'straight_right' or 'straight_left' :
         
@@ -63,8 +63,12 @@ class SectionMgmt:
                         
                     self.counter+=1
                     
+                    print('state',self.WalkeParam[self.counter][4],'pointer',self.counter+1)
+                    
                 else:
                         if  self.number != 1 or 2 : #Circuit or etc
+                            
+                            self.end()
                                 
                             return True
                             
@@ -90,6 +94,8 @@ class SectionMgmt:
                 if len(self.WalkeParam) != self.counter+1: #配列の要素があるか
                         
                     self.counter+=1
+                    
+                    print('state',self.WalkeParam[self.counter][4],'pointer',self.counter+1)
                     
                 else:
                         if  self.number != 1 or 2 : #Circuit or etc
@@ -184,9 +190,9 @@ class SectionMgmt:
                     self.counter+=1
                     
                 else:
-                     self.sectionMgmt.end()
+                    self.sectionMgmt.end()
                             
-                     return True
+                    return True
             else:
                 
                 #print("C_not_goal")
