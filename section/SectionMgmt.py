@@ -45,6 +45,9 @@ class SectionMgmt:
         print("走行のパラメータ",self.WalkeParam)
         #print("座標",self.Pointer)
         
+        
+        print('state',self.WalkeParam[self.counter][4],'pointer',self.counter+1)
+        
     def Run(self):
         
         
