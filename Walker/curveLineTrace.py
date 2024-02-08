@@ -103,6 +103,7 @@ class cuvreLineTrace:
                 self.MM.set_param(30,sv)
                 self.MM.run()
                 self.PM=Positionmgmt
+                #初期座標取得
                 cuvreLineTrace.set_param(self)
                 self.goalx = float(goaly[0])
                 self.goaly = float(goaly[1])
@@ -130,9 +131,9 @@ class cuvreLineTrace:
 
         def run(self):
             try:
-                
+                #半径の取得
                 cuvreLineTrace.set_distance(self)
-                #PID使用
+                #PIDを使う
                 self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
                 value = [self.standard, self.distance, self.startx,self.starty,self.goalx, self.goaly, self.x, self.y, self.sv]
                 self.log.write(value)
