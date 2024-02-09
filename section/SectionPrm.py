@@ -144,7 +144,7 @@ class SectionPrm:
 
 def main():
     dd=SectionPrm()
-    dd.test()
+    dd.pointer_param(4)
     
 
 
