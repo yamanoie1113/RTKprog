@@ -45,17 +45,14 @@ class SectionMgmt:
         print("走行のパラメータ",self.WalkeParam)
         #print("座標",self.Pointer)
         
+        
+        print('state',self.WalkeParam[self.counter][4],'pointer',self.counter+1)
+        
     def Run(self):
         
-        #if param[0][5]=='straight':       
-        #print('aaaaaaaaaaaiiiuu',param[0][4])
         
-        #print('testinggggggggggggggggggggggggggggg',self.WalkeParam[self.counter][4])
-        #self.PositionMgmt=インスタンス
-        
-        #if self.number != 3:
-        #print("SectionMgmt_start")
-        if self.WalkeParam[self.counter][4]=='straight':
+    
+        if self.WalkeParam[self.counter][4]=='straight' or 'straight_right' or 'straight_left' :
         
             state=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
                                                         self.WalkeParam[self.counter],self.Pointer[self.counter],self.PositionMgmt)
@@ -65,12 +62,16 @@ class SectionMgmt:
                 print("Straight_OK!_Next_Section")
                 
                 
-                if len(self.Pointer) >= self.counter+1: #配列の長さを超えたか
+                if len(self.WalkeParam) != self.counter+1: #配列の長さを超えたか
                         
                     self.counter+=1
                     
+                    print('state',self.WalkeParam[self.counter][4],'pointer',self.counter+1)
+                    
                 else:
-                        if  self.number==3 or 4 or 5 : #Circuit or etc
+                        if  self.number != 1 or 2 : #Circuit or etc
+                            
+                            self.end()
                                 
                             return True
                             
@@ -93,12 +94,16 @@ class SectionMgmt:
                 print("Curve_OK!_Next_Section")
                 
                 
-                if len(self.Pointer) >= self.counter+1: #配列の要素があるか
+                if len(self.WalkeParam) != self.counter+1: #配列の要素があるか
                         
                     self.counter+=1
                     
+                    print('state',self.WalkeParam[self.counter][4],'pointer',self.counter+1)
+                    
                 else:
-                        if  self.number==3 or 4 or 5: #Circuit or etc
+                        if  self.number != 1 or 2 : #Circuit or etc
+                            
+                            self.end()
                                 
                             return True
                             
@@ -188,9 +193,9 @@ class SectionMgmt:
                     self.counter+=1
                     
                 else:
-                     self.sectionMgmt.end()
+                    self.sectionMgmt.end()
                             
-                     return True
+                    return True
             else:
                 
                 #print("C_not_goal")

@@ -62,6 +62,7 @@ class cuvreLineTrace:
             self.y = y
             #print(x)
             #print(self.goaly)
+            #半径算出
             self.distance = (np.sqrt((self.tyusinx-x)**2 + (self.tyusiny-y)**2)) 
             print("基準",self.standard)
             print("現在",self.distance)
@@ -82,23 +83,35 @@ class cuvreLineTrace:
             self.p = paramlist[1]
             self.i = paramlist[2]
             self.d = paramlist[3]
+            g = paramlist[4]
+            if g == "curve_right":
+                g = -1
+            else:
+                g = 1
+            sv = 70 * g
             #print(self.goalx)
             #print("curve_goal")
             #print(goaly)
             
             #print("param")
             #print(self.param)
-            #
+            # 
             #print(self.goalx,self.goaly)
             #print(self.startx,self.starty)
             #ループカウンタ           
             if self.cancel == 0:
+                self.MM.set_param(30,sv)
+                self.MM.run()
                 self.PM=Positionmgmt
+                #初期座標取得
                 cuvreLineTrace.set_param(self)
                 self.goalx = float(goaly[0])
                 self.goaly = float(goaly[1])
                 self.startx = float(self.param[0])
                 self.starty = float(self.param[1])
+                #初期ゲイン
+                self.MM.set_param(30,sv)
+                self.MM.run()
                 while self.startx == 0:
                     time.sleep(0.1)
                     cuvreLineTrace.set_param(self)
@@ -106,9 +119,10 @@ class cuvreLineTrace:
                     self.starty = float(self.param[1])
                 self.tyusinx = (self.startx + self.goalx)/2
                 self.tyusiny = (self.starty + self.goaly)/2
+                #初期半径
                 self.standard = (np.sqrt((self.tyusinx-self.goalx)**2 + (self.tyusiny-self.goaly)**2))
                 value = ["基準線:", "現在線:", "startx:","starty:","goalx:", "goaly:", "x:", "y:", "操作量"]
-                self.log.set_param("curve_log",value)
+                self.log.set_param(value,"curve_log")
                 #print("goalx,y",self.goalx,self.goaly)
                 #print("1kaime")
                 self.cancel = 1
@@ -117,13 +131,14 @@ class cuvreLineTrace:
 
         def run(self):
             try:
-                
+                #半径の取得
                 cuvreLineTrace.set_distance(self)
+                #PIDを使う
                 self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
                 value = [self.standard, self.distance, self.startx,self.starty,self.goalx, self.goaly, self.x, self.y, self.sv]
                 self.log.write(value)
-                if self.exec_count % 2 == 0:
-                    self.sv *= -1
+                #if self.exec_count % 2 == 0:
+                    #self.sv *= -1
                 
                 self.MM.set_param(self.sp,self.sv)
                 self.MM.run()
