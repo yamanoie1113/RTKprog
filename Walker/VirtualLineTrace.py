@@ -163,10 +163,10 @@ class VirtualLineTrace():
             sv = 0
             if g == "straight_right":
                 g = -1
-                sv = 50 * g
+                sv = 100 * g
             if g == "straight_left":
                 g = 1
-                sv = 50 * g
+                sv = 100 * g
             VirtualLineTrace.set_param(self)
             #print("param")
             #print(self.param)            
@@ -177,6 +177,7 @@ class VirtualLineTrace():
                 if sv == 100 or sv == -100:
                     self.MM.set_param(self.sp,sv)
                     self.MM.run()
+                    time.sleep(0.35)
                 self.goalx = float(goaly[0])
                 self.goaly = float(goaly[1])
                 self.startx = float(self.param[0])

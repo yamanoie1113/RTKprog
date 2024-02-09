@@ -79,12 +79,13 @@ class DistanceJudge(Judge.Judge):
 
         self.mlength = self.calc_dist(self.start_x,self.start_y,x,y)
         #誤差補正のために切り捨てているが、もっと良い方法があるかも
-        self.mlength = round(self.mlength)
+        #self.mlength = round(self.mlength)
+        print("to_goal:",self.mlength)
         
         #print("dis",self.mlength)
 
         #X、Y座標を取得し、その値が基準値をこえていたらtrueを返す。それ以外はfalse
-        if self.mlength <= 2.0:
+        if self.mlength <= 2.3:
             #LogMgmt.write(slf.judgelog,"reached")
             #print("AAAAAAAAA")
             #print(self.mlength)
