@@ -1,7 +1,7 @@
 # coding: utf-8
 #from multiprocessing import get_start_method
 import sys
-import pathlib,time,threading
+import pathlib,time,threading,csv
 
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
@@ -78,10 +78,22 @@ class PositionMgmt(Sensor.Sensor):
         
     def PosMgmt_init(self):
         print("PosMgmt_init")
+
+        #スレッド起動
         self.thread1 = threading.Thread(target=self.update)
         self.thread1.start()
 
         self.nmea2xy.nmea_init()
+
+        #相対座標設定（庭用）
+
+        #座標取得待ち
+        while self.position[0] == 0:
+            print(self.position)
+        print("END")
+
+        self.circuit_init()
+        
         
         #print("origin_update")
         #self.Origin_update()
@@ -122,6 +134,32 @@ class PositionMgmt(Sensor.Sensor):
         conf_pos = GPS2xy.GPS2xy.getvalue(self)
 
         return conf_pos
+    
+    #中庭用相対座標の算出
+    def circuit_init(self):
+
+        origin = self.position
+
+        diff_file = 'diff.csv'
+        export_file =str(current_dir) +  '/../parameter/Circuit_Pos.prm'
+
+        with open(diff_file) as f:
+            reader = csv.reader(f)
+
+
+            pos_diff = [row for row in reader]
+
+        with open(export_file,'w',newline="") as exf:
+            writer = csv.writer(exf)
+            for diff in pos_diff:
+               x = origin[0] + float(diff[0])
+               y = origin[1] + float(diff[1])
+
+               writer.writerow([x,y])
+
+
+
+
 
 
     #値の取得
@@ -353,17 +391,17 @@ def main():
     
     #tesclass.thread1.start()
 
-    while True:
+    # while True:
         
-        #実行速度の計算
-        start_time = time.perf_counter()
-        pos = tesclass.getvalue()
+    #     #実行速度の計算
+    #     start_time = time.perf_counter()
+    #     pos = tesclass.getvalue()
         
-        #print("now")
-        print(pos)
+    #     #print("now")
+    #     print(pos)
         
-        #print("実行時間")
-        print(time.perf_counter() - start_time)
+    #     #print("実行時間")
+    #     print(time.perf_counter() - start_time)
     
     
     #tesclass.update()
