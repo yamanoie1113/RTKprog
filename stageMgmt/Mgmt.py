@@ -88,7 +88,7 @@ class Mgmt:
             run_time=self.timejudge(start_program)
             if self.course_select == 1 or 2:
                 
-                if (run_time>=180): #.................走行時間の設定
+                if (run_time>=9999): #.................走行時間の設定
                     state=False
                     break
                 
@@ -252,4 +252,3 @@ def main():
         
 if __name__ == '__main__':
     main()
-

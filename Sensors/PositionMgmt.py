@@ -90,7 +90,7 @@ class PositionMgmt(Sensor.Sensor):
         #座標取得待ち
         while self.position[0] == 0:
             print(self.position)
-        print("END")
+        print("GET_GPS")
 
         self.circuit_init()
         
@@ -140,7 +140,7 @@ class PositionMgmt(Sensor.Sensor):
 
         origin = self.position
 
-        diff_file = 'diff.csv'
+        diff_file = '../Sensors/diff.csv'
         export_file =str(current_dir) +  '/../parameter/Circuit_Pos.prm'
 
         with open(diff_file) as f:

@@ -47,7 +47,7 @@ class SectionPrm:
             
         elif number==3:           #Circuit_Course
             
-            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Perfect_Circuit_Course_Pos.prm')
+            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Circuit_Pos.prm')
             
         elif number==4:
             
@@ -98,7 +98,7 @@ class SectionPrm:
             
         elif number==3:           #Circuit_Course
             
-            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Perfect_Circuit_Course.prm')
+            param_file=('/home/pi/Desktop/rtkprog_git/RTKprog/parameter/Circuit_Walk.prm')
             
             
         elif number==4:

@@ -167,6 +167,9 @@ class VirtualLineTrace():
             if g == "straight_left":
                 g = 1
                 sv = 100 * g
+            if g == "straight_leftt":
+                g = 1
+                sv = 100 * g
             VirtualLineTrace.set_param(self)
             #print("param")
             #print(self.param)            
@@ -174,10 +177,10 @@ class VirtualLineTrace():
             #print(self.startx,self.starty)
             #ループカウンタ
             if self.cancel == 0:
-                if sv == 100 or sv == -100:
+                if sv != 0:   
                     self.MM.set_param(self.sp,sv)
                     self.MM.run()
-                    time.sleep(0.35)
+                    time.sleep(0.9)
                 self.goalx = float(goaly[0])
                 self.goaly = float(goaly[1])
                 self.startx = float(self.param[0])
@@ -214,7 +217,7 @@ class VirtualLineTrace():
 
 
         def stop(self):
-            self.MM.set_param(-0,0)
+            self.MM.set_param(0,0)
             self.MM.run()
             #self.MM.stop()
                 

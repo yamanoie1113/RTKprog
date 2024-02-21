@@ -8,8 +8,7 @@ export = '../Sensors/diff.csv'
 
 with open(filename) as f:
     reader = csv.reader(f)
-    for row in reader:
-        pos = [row for row in reader]
+    pos = [row for row in reader]
 
 with open(export,'w',newline="") as exf:
     writer = csv.writer(exf)
@@ -30,3 +29,4 @@ with open(diff_file) as diff1:
     for row in reader:
         pos_diff = [row for row in reader]
 
+print("END")
