@@ -26,6 +26,7 @@ class SectionMgmt:
     position=None
     PositionMgmt=None
     param = []
+    end_flag = 0
     
     def __init__(self):
 
@@ -50,73 +51,81 @@ class SectionMgmt:
         
     def Run(self):
         
+        if self.end_flag != 0:
+            
+            pass
         
-    
-        if self.WalkeParam[self.counter][4]=='straight' or 'straight_right' or 'straight_left' :
-        
-            state=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
-                                                        self.WalkeParam[self.counter],self.Pointer[self.counter],self.PositionMgmt)
-            #print("judge_time")
-            if state==True: #goalしたかどうか
-                self.Walkerinstance[self.STRAIGHT].init_state()
-                print("Straight_OK!_Next_Section")
-                
-                
-                if len(self.WalkeParam) != self.counter+1: #配列の長さを超えたか
-                        
-                    self.counter+=1
-                    
-                    print('state',self.WalkeParam[self.counter][4],'pointer',self.counter+1)
-                    
-                else:
-                        if  self.number != 1 or 2 : #Circuit or etc
-                            
-                            self.end()
-                                
-                            return True
-                            
-                        else:
-                            
-                            self.counter=0
-            else:
-                
-                #print("S_not_goal")
-                
-                pass
-                
         else:
+    
+            if self.WalkeParam[self.counter][4]=='straight' or 'straight_right' or 'straight_left' :
             
-            state=self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
-                                    self.WalkeParam[self.counter],self.Pointer[self.counter],self.PositionMgmt)
-            
-            if state==True:
-                self.Walkerinstance[self.CURVE].init_state()
-                print("Curve_OK!_Next_Section")
-                
-                
-                if len(self.WalkeParam) != self.counter+1: #配列の要素があるか
+                state=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
+                                                            self.WalkeParam[self.counter],self.Pointer[self.counter],self.PositionMgmt)
+                #print("judge_time")
+                if state==True: #goalしたかどうか
+                    self.Walkerinstance[self.STRAIGHT].init_state()
+                    print("Straight_OK!_Next_Section")
+                    
+                    
+                    if len(self.WalkeParam) != self.counter+1: #配列の長さを超えたか
+                            
+                        self.counter+=1
                         
-                    self.counter+=1
-                    
-                    print('state',self.WalkeParam[self.counter][4],'pointer',self.counter+1)
-                    
-                else:
-                        if  self.number != 1 or 2 : #Circuit or etc
-                            
-                            self.end()
+                        print('state',self.WalkeParam[self.counter][4],'pointer',self.counter+1)
+                        
+                    else:
+                            if  self.number != 1 or 2 : #Circuit or etc
                                 
-                            return True
-                            
-                        else:
-                            
-                            self.counter=0
+                                self.end_flag = 1
+                                
+                                self.end()
+                                    
+                                return True
+                                
+                            else:
+                                
+                                self.counter=0
+                else:
+                    
+                    #print("S_not_goal")
+                    
+                    pass
+                    
             else:
                 
-                #print("C_not_goal")
+                state=self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
+                                        self.WalkeParam[self.counter],self.Pointer[self.counter],self.PositionMgmt)
                 
-                pass
+                if state==True:
+                    self.Walkerinstance[self.CURVE].init_state()
+                    print("Curve_OK!_Next_Section")
+                    
+                    
+                    if len(self.WalkeParam) != self.counter+1: #配列の要素があるか
+                            
+                        self.counter+=1
+                        
+                        print('state',self.WalkeParam[self.counter][4],'pointer',self.counter+1)
+                        
+                    else:
+                            if  self.number != 1 or 2 : #Circuit or etc
+                                
+                                self.end_flag = 1
+                                
+                                self.end()
+                                    
+                                return True
+                                
+                            else:
+                                
+                                self.counter=0
+                else:
+                    
+                    #print("C_not_goal")
+                    
+                    pass
 
-        
+            
 
     def end(self):
         
