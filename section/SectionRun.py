@@ -35,12 +35,12 @@ class SectionRun:
 
     def run(self,mwalker,mjudge,Walkeparam,pointer,PositionMgmt):#走法、判定、パラメータ、座標
 
-        '''#中身確認
-        print("mjudgeのオブジェクト",mjudge)
-        print("mwalkerのオブジェクト",mwalker)
-        print("walkeparam",Walkeparam)
-        print("座標",pointer)
-        '''
+        #中身確認
+        #print("mjudgeのオブジェクト",mjudge)
+        #print("mwalkerのオブジェクト",mwalker)
+        #print("walkeparam",Walkeparam)
+        #print("座標",pointer)
+        
         
         walker_thread = threading.Thread(target=self.exec_run, args=(mwalker,Walkeparam,pointer,PositionMgmt))
         

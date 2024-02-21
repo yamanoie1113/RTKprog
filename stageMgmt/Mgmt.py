@@ -237,10 +237,7 @@ class Mgmt:
         #section.end()
         print("終了")
         
-        
-
-        
-
+    
 def main():
         
     mgmt=Mgmt()

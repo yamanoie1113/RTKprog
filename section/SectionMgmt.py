@@ -51,14 +51,19 @@ class SectionMgmt:
         
     def Run(self):
         
+        print(self.Walkerinstance[0])
+        print(self.Walkerinstance[1])
+        print(self.WalkeParam)
         if self.end_flag != 0:
             
             pass
         
         else:
-    
-            if self.WalkeParam[self.counter][4]=='straight' or 'straight_right' or 'straight_left' :
             
+            print('parameter',self.WalkeParam[self.counter][4])
+    
+            if self.WalkeParam[self.counter][4] != 'curve_left' or 'curve_right' :
+                print('straight_mode')
                 state=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
                                                             self.WalkeParam[self.counter],self.Pointer[self.counter],self.PositionMgmt)
                 #print("judge_time")
@@ -92,6 +97,8 @@ class SectionMgmt:
                     pass
                     
             else:
+                
+                print('curve_mode')
                 
                 state=self.sectionrun.run(self.Walkerinstance[self.CURVE],self.Judgeinstance[self.CURVE],
                                         self.WalkeParam[self.counter],self.Pointer[self.counter],self.PositionMgmt)
