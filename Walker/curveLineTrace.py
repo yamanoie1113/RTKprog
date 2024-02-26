@@ -100,6 +100,8 @@ class cuvreLineTrace:
             #print(self.startx,self.starty)
             #ループカウンタ           
             if self.cancel == 0:
+                self.MM.set_param(30,sv)
+                self.MM.run()
                 self.PM=Positionmgmt
                 #初期座標取得
                 cuvreLineTrace.set_param(self)
@@ -108,9 +110,8 @@ class cuvreLineTrace:
                 self.startx = float(self.param[0])
                 self.starty = float(self.param[1])
                 #初期ゲイン
-                self.MM.set_param(sp,100)
+                self.MM.set_param(30,sv)
                 self.MM.run()
-                time.sleep(0.9)
                 while self.startx == 0:
                     time.sleep(0.1)
                     cuvreLineTrace.set_param(self)
@@ -130,7 +131,6 @@ class cuvreLineTrace:
 
         def run(self):
             try:
-                print(9)
                 #半径の取得
                 cuvreLineTrace.set_distance(self)
                 #PIDを使う
@@ -142,7 +142,6 @@ class cuvreLineTrace:
                 
                 self.MM.set_param(self.sp,self.sv)
                 self.MM.run()
-                
                 
             except KeyboardInterrupt:
                 print("complet")
