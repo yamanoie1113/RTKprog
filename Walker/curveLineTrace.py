@@ -112,21 +112,8 @@ class cuvreLineTrace:
                 self.starty = float(self.param[1])
                 
                 #初期ゲイン
-<<<<<<< HEAD
-                if g == "curve_right":
-                    g = -1
-                    sv = 100 * g
-                if g == "curve_left":
-                    g = 1
-                    sv = 100 * g
-                self.MM.set_param(self.sp,sv)
-                self.MM.run()
-                time.sleep(0.6)
-                self.count = 0
-=======
                 self.MM.set_param(30,sv)
                 self.MM.run()
->>>>>>> cdb1cfc6eaa9c0e3cefdd7bdfb1d6e8cee920368
                 while self.startx == 0:
                     time.sleep(0.1)
                     cuvreLineTrace.set_param(self)
@@ -146,10 +133,6 @@ class cuvreLineTrace:
 
         def run(self):
             try:
-<<<<<<< HEAD
-                #print(9)
-=======
->>>>>>> cdb1cfc6eaa9c0e3cefdd7bdfb1d6e8cee920368
                 #半径の取得
                 cuvreLineTrace.set_distance(self)
                 #PIDを使う
