@@ -1,60 +1,141 @@
+# coding:utf-8
+import os
 import sys
+import time
 import pathlib
-import numpy as np
 import math
+import threading
+#from Walker.PID import PID
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
 from Sensors import MotorMgmt
+from Sensors import PositionMgmt
+from Sensors import LogMgmt
 from Walker import PID2
+from section import SectionRun
 
-def calcRadius(start_pos:tuple, goal_pos:tuple, param:float=1, curvature_gain:float=0.4) -> (tuple, float):
-    '''
-    2点間の座標を円弧を描きながら走行する際の円の中心座標及びその半径を返す.
-    　パラメータを半開区開(0,1]の範囲で設定する,このときパラメータが0に近づけば曲線は直線に近づき,1に近づけば半円に近づく.
+from tkinter import W
+import numpy as np
 
-    Parameters
-    ----------
-    start_pos : tuple
-        スタート位置の座標
-    goal_tpos : tuple
-        ゴール位置の座標
-    param : froat
-        走行する円弧の設定パラメータ
-    curvature_gain float
-        パラメータの変化の度合いを調整するための定数
-    
-    Returns
-    -------
-    circle_central_pos : tuple
-        円の中心座標
-    radius_squared : froat
-        円の半径の二乗
-    '''
 
-    if type(start_pos)!=tuple or type(goal_pos)!=tuple:
-        raise TypeError('座標がタプルではありません.')
+class cuvreLineTrace:
 
-    # tupleをndarrayに変換
-    start_vec = np.array(start_pos)
-    goal_vec = np.array(goal_pos)
+        MM = MotorMgmt.MotorMgmt()
+        PM = None
+        goalx = 1000 #目標地点ｘ
+        goaly = 1000 #目標地点ｙ
+        startx = 0 #開始地点ｘ
+        starty = 0 #開始地点ｙ
+        turn = 'no'
+        save_turn = 'no'
+        tyusinx = 0
+        tyusiny = 0
+        standard = 0
+        distance = 0 
+        save_saitan = 0
+        mPID = PID2.PID()
+        param = [[0 for i in range(2)] for j in range(5)]
+        sp = 0
+        sv = 0
+        cancel = 0
+        p = 0
+        i = 0
+        d = 0
+        exec_count = 0
+        log = LogMgmt.LogMgmt()
+        x = 0
+        y = 0
+        error_sum = 0
+        error_pre = 0
 
-    # パラメータ調整
-    if not (0<param and param<=1):
-        raise ValueError('パラメータが不正な値です.')
-    
-    param = math.tan((math.pi*(param-1))/2) * curvature_gain
+        def __init__(self):
+            
+            pass
+        
 
-    # start-goal間の法線ベクトル
-    n_vec = np.dot((goal_vec-start_vec), np.array([[0,-1],[1,0]]))
+        def set_param(self):
 
-    # start-goal間の中点ベクトル
-    middle_vec = (start_vec + goal_vec)/2
+            self.param = self.PM.getvalue()
+        
+        def init_state(self):
+            self.cancel = 0
+        
+        def set_run(self,paramlist,goaly,Positionmgmt):
+            
+            self.sp = paramlist[0]
+            self.sv = 0
+            self.p = paramlist[1]
+            self.i = paramlist[2]
+            self.d = paramlist[3]
+            g = paramlist[4]
+            if g == "curve_right":
+                g = -1
+            else:
+                g = 1
+            sv = 70 * g
+            #print(self.goalx)
+            #print("curve_goal")
+            #print(goaly)
+            
+            #print("param")
+            #print(self.param)
+            # 
+            #print(self.goalx,self.goaly)
+            #print(self.startx,self.starty)
+            #ループカウンタ           
+            if self.cancel == 0:
+                self.MM.set_param(30,sv)
+                self.MM.run()
+                self.PM=Positionmgmt
+                #初期座標取得
+                cuvreLineTrace.set_param(self)
+                self.goalx = float(goaly[0])
+                self.goaly = float(goaly[1])
+                self.startx = float(self.param[0])
+                self.starty = float(self.param[1])
+                #初期ゲイン
+                self.MM.set_param(30,sv)
+                self.MM.run()
+                while self.startx == 0:
+                    time.sleep(0.1)
+                    cuvreLineTrace.set_param(self)
+                    self.startx = float(self.param[0])
+                    self.starty = float(self.param[1])
+                #print("goalx,y",self.goalx,self.goaly)
+                #print("1kaime")
+                self.cancel = 1
+                self.exec_count += 1
+            self.run()
 
-    # 円の中心ベクトル
-    circle_center_vec = middle_vec + n_vec*param
-    
-    # 円の半径の二乗のスカラー
-    radius_squared = ((start_vec-circle_center_vec)**2).sum()
-    return tuple(circle_center_vec), radius_squared
+        def run(self):
+            try:
+                #半径の取得
+                cuvreLineTrace.set_distance(self)
+                #PIDを使う
+                self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
+                #if self.exec_count % 2 == 0:
+                    #self.sv *= -1
+                
+                self.MM.set_param(self.sp,self.sv)
+                self.MM.run()
+                
+            except KeyboardInterrupt:
+                print("complet")
 
-    
+
+        def stop(self):
+            self.MM.set_param(0,0)
+            self.MM.run()
+            #self.MM.stop()
+                
+
+def main():
+    #print (1)
+    cuvre = cuvreLineTrace()
+    cuvre.stop()
+        
+if __name__ == '__main__':
+    main()
+
+
+
