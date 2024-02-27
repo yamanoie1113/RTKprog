@@ -202,7 +202,7 @@ class VirtualLineTrace():
 
         def run(self):
             try:
-                print(0)
+                #print(0)
                 VirtualLineTrace.set_distance(self)
                 self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,0,self.save_saitan,self.error_sum,self.error_pre)
                 value = [self.save_saitan,self.startx,self.starty,self.goalx, self.goaly, self.x, self.y, self.sv,self.sp]

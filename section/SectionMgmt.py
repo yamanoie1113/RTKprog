@@ -51,18 +51,22 @@ class SectionMgmt:
         
     def Run(self):
         
-        print(self.Walkerinstance[0])
-        print(self.Walkerinstance[1])
-        print(self.WalkeParam)
+        #print(self.Walkerinstance[0])
+        #print(self.Walkerinstance[1])
+        #print(self.WalkeParam)
         if self.end_flag != 0:
             
-            pass
+            self.end()
+            
+            return True
         
         else:
             
             print('parameter',self.WalkeParam[self.counter][4])
+            
+            parameter=self.WalkeParam[self.counter][4]
     
-            if self.WalkeParam[self.counter][4] in 'straight' :
+            if parameter == 'straight' or 'straight_left' or 'straight_right'  :
                 print('straight_mode')
                 state=self.sectionrun.run(self.Walkerinstance[self.STRAIGHT],self.Judgeinstance[self.STRAIGHT],
                                                             self.WalkeParam[self.counter],self.Pointer[self.counter],self.PositionMgmt)
@@ -84,8 +88,9 @@ class SectionMgmt:
                                 self.end_flag = 1
                                 
                                 self.end()
-                                    
+                                
                                 return True
+                                    
                                 
                             else:
                                 
