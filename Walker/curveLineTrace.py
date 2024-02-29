@@ -64,8 +64,8 @@ class cuvreLineTrace:
             #print(self.goaly)
             #半径算出
             self.distance = (np.sqrt((self.tyusinx-x)**2 + (self.tyusiny-y)**2)) 
-            print("基準",self.standard)
-            print("現在",self.distance)
+            #print("基準",self.standard)
+            #print("現在",self.distance)
             #print(self.goalx,self.goaly)
             #print(x,y)
 
@@ -84,7 +84,7 @@ class cuvreLineTrace:
             self.i = paramlist[2]
             self.d = paramlist[3]
             g = paramlist[4]
-            print(999999)
+            #print(999999)
             if g == "curve_right":
                 g = -1
             else:

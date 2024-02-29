@@ -92,7 +92,7 @@ class Mgmt:
                     state=False
                     break
                 
-                self.sectionMgmt.Run()
+                self.sectionMgmt.run()
 
                 #秒数の計算
                 stop = time.perf_counter() - start_time

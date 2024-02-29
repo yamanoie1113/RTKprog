@@ -167,7 +167,10 @@ class VirtualLineTrace():
             if g == "straight_left":
                 g = 1
                 sv = 100 * g
-            if g == "straight_leftt":
+            if self.sp == 16:
+                g = 1
+                sv = 60 * g
+            if self.sp == 21:
                 g = 1
                 sv = 100 * g
             VirtualLineTrace.set_param(self)

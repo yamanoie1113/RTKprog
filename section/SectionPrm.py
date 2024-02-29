@@ -113,7 +113,7 @@ class SectionPrm:
             pass
         #self.parameter=self.param.pointer_set_param()
         param=[]
-        with open(param_file, mode='r') as f:
+        with open(param_file,encoding='utf-8', mode='r') as f:
             # parameterファイルreaderの生成
             reader = csv.reader(f)
             reader_header=next(f)
@@ -126,8 +126,6 @@ class SectionPrm:
             for j in range(len(param[i])-1):
                 param[i][j] = float(param[i][j])
                 
-        if param[0][4]=='straight':       
-            print(param[0][4])
 
         return param
         
