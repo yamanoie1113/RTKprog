@@ -156,10 +156,11 @@ class VirtualLineTrace():
             self.PM=Positionmgmt
             self.sp = paramlist[0]
             self.sv = 0
-            self.p = paramlist[1]
-            self.i = paramlist[2]
-            self.d = paramlist[3]
-            g = paramlist[4]
+            pid = paramlist[1]
+            self.p = pid[0]
+            self.i = pid[1]
+            self.d = pid[2]
+            g = paramlist[2]
             sv = 0
             if g == "straight_right":
                 g = -1
