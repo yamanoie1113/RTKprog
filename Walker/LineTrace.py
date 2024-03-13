@@ -12,13 +12,15 @@ from Sensors import MotorMgmt
 from Sensors import PositionMgmt
 from Sensors import LogMgmt
 from Walker import PID2
+from Walker import StraightLineTrace
+from Walker import curveLineTrace
 from section import SectionRun
 
 from tkinter import W
 import numpy as np
 
 
-class cuvreLineTrace:
+class LineTrace:
 
         MM = MotorMgmt.MotorMgmt()
         PM = None
@@ -34,6 +36,8 @@ class cuvreLineTrace:
         distance = 0 
         save_saitan = 0
         mPID = PID2.PID()
+        straight = StraightLineTrace.StraightLineTrace()
+        curve = curveLineTrace.cuvreLineTrace()
         param = [[0 for i in range(2)] for j in range(5)]
         sp = 0
         sv = 0
@@ -45,8 +49,6 @@ class cuvreLineTrace:
         log = LogMgmt.LogMgmt()
         x = 0
         y = 0
-        error_sum = 0
-        error_pre = 0
 
         def __init__(self):
             
@@ -62,17 +64,25 @@ class cuvreLineTrace:
         
         def set_run(self,paramlist,goaly,Positionmgmt):
             
+            self.PM=Positionmgmt
             self.sp = paramlist[0]
             self.sv = 0
-            self.p = paramlist[1]
-            self.i = paramlist[2]
-            self.d = paramlist[3]
-            g = paramlist[4]
-            if g == "curve_right":
-                g = -1
-            else:
-                g = 1
-            sv = 70 * g
+            pid = paramlist[1]
+            self.p = pid[0]
+            self.i = pid[1]
+            self.d = pid[2]
+            goaly = paramlist[2]
+            self.select = paramlist[3]
+
+            sv = 0
+            if self.select == "straight_right":
+                sv = -100
+            if self.select == "straightt_left":
+                sv = 100
+            if self.select == "curve_right":
+                sv = -70
+            if self.select == "curve_left":
+                sv = 70
             #print(self.goalx)
             #print("curve_goal")
             #print(goaly)
@@ -88,7 +98,7 @@ class cuvreLineTrace:
                 self.MM.run()
                 self.PM=Positionmgmt
                 #初期座標取得
-                cuvreLineTrace.set_param(self)
+                LineTrace.set_param(self)
                 self.goalx = float(goaly[0])
                 self.goaly = float(goaly[1])
                 self.startx = float(self.param[0])
@@ -98,11 +108,17 @@ class cuvreLineTrace:
                 self.MM.run()
                 while self.startx == 0:
                     time.sleep(0.1)
-                    cuvreLineTrace.set_param(self)
+                    LineTrace.set_param(self)
                     self.startx = float(self.param[0])
                     self.starty = float(self.param[1])
+                self.tyusinx = (self.startx + self.goalx)/2
+                self.tyusiny = (self.starty + self.goaly)/2
                 #print("goalx,y",self.goalx,self.goaly)
                 #print("1kaime")
+                #初期半径
+                self.standard = (np.sqrt((self.tyusinx-self.goalx)**2 + (self.tyusiny-self.goaly)**2))
+                self.slope = (self.goaly - self.starty)/(self.goalx - self.startx)
+                self.intercept = self.starty - self.slope * self.startx
                 self.cancel = 1
                 self.exec_count += 1
             self.run()
@@ -110,9 +126,16 @@ class cuvreLineTrace:
         def run(self):
             try:
                 #半径の取得
-                cuvreLineTrace.set_distance(self)
-                #PIDを使う
-                self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
+                self.param = self.PM.getvalue()
+                if self.select == "straight_right" or self.select == "straight_left":
+                    distance = self.straight.set_distance(self.param,self.slope,self.intercept)
+                    #PIDを使う
+                    self.sv= self.mPID.PID(self.p,self.i,self.d,0,distance)
+                if self.select == "curve_right" or self.select == "curve_left":
+                    distance = self.curve.set_distance(self.param,self.tyusinx,self.starty)
+                    #PIDを使う
+                    self.sv= self.mPID.PID(self.p,self.i,self.d,self.standard,distance)
+                
                 #if self.exec_count % 2 == 0:
                     #self.sv *= -1
                 
