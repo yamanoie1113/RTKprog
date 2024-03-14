@@ -6,12 +6,14 @@ from math import nan
 
 
 class PID:
-		
-                
+
+        error_sum = 0
+        error_pre = 0
+
         def __init__(self):
             pass
 		
-        def PID(self,kp,ki,kd,theta_goal,theta_current,error_sum,error_pre):
+        def PID(self,kp,ki,kd,theta_goal,theta_current):
             
             #pidが小さい時
             '''
@@ -26,14 +28,14 @@ class PID:
             error = theta_goal - theta_current# 偏差（error）を計算
             
             #error_sum += error*0.5 # 偏差の総和（積分）を計算
-            error_sum += error # 偏差の総和（積分）を計算
+            self.error_sum += error # 偏差の総和（積分）を計算
             #ki = 0
     
     		
             #error_diff = (error-error_pre) /0.1 # PI制御からの追加：1時刻前の偏差と現在の偏差の差分（微分）を計算
-            error_diff = (error-error_pre) # PI制御からの追加：1時刻前の偏差と現在の偏差の差分（微分）を計算
+            error_diff = (error-self.error_pre) # PI制御からの追加：1時刻前の偏差と現在の偏差の差分（微分）を計算
     		
-            m = (kp * error) + (ki * error_sum) + (kd * error_diff) # 操作量を計算
+            m = (kp * error) + (ki * self.error_sum) + (kd * error_diff) # 操作量を計算
             
             #print("m",m)
             m = math.floor(m)
@@ -42,10 +44,11 @@ class PID:
             elif m <= -100:
                 m = -90
             #print("m",m)
+            self.error_pre = error
             
             
 
-            return m,error_sum,error
+            return m
 	
 def main():
     mPID=PID()

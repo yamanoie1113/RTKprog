@@ -8,158 +8,30 @@ import threading
 #from Walker.PID import PID
 current_dir = pathlib.Path(__file__).resolve().parent
 sys.path.append(str(current_dir) + '/../')
-from Sensors import MotorMgmt
-from Sensors import PositionMgmt
-from Sensors import LogMgmt
-from Walker import PID2
-from section import SectionRun
 
-from tkinter import W
 import numpy as np
 
 
 class cuvreLineTrace:
 
-        MM = MotorMgmt.MotorMgmt()
-        PM = None
-        goalx = 1000 #目標地点ｘ
-        goaly = 1000 #目標地点ｙ
-        startx = 0 #開始地点ｘ
-        starty = 0 #開始地点ｙ
-        turn = 'no'
-        save_turn = 'no'
-        tyusinx = 0
-        tyusiny = 0
-        standard = 0
-        distance = 0 
-        save_saitan = 0
-        mPID = PID2.PID()
-        param = [[0 for i in range(2)] for j in range(5)]
-        sp = 0
-        sv = 0
-        cancel = 0
-        p = 0
-        i = 0
-        d = 0
-        exec_count = 0
-        log = LogMgmt.LogMgmt()
-        x = 0
-        y = 0
-        error_sum = 0
-        error_pre = 0
-
         def __init__(self):
             
             pass
         
-        def set_distance(self):
-            self.param = self.PM.getvalue()
+        def set_distance(self,param,tyusinx,tyusiny):
             #print("test_value",self.test)
             #print(self.param)
-            x = float(self.param[0])
-            y = float(self.param[1])
-            self.x = x
-            self.y = y
+            x = float(param[0])
+            y = float(param[1])
             #print(x)
             #print(self.goaly)
             #半径算出
-            self.distance = (np.sqrt((self.tyusinx-x)**2 + (self.tyusiny-y)**2)) 
+            distance = (np.sqrt((tyusinx-x)**2 + (tyusiny-y)**2)) 
             #print("基準",self.standard)
             #print("現在",self.distance)
             #print(self.goalx,self.goaly)
             #print(x,y)
-
-        def set_param(self):
-
-            self.param = self.PM.getvalue()
-        
-        def init_state(self):
-            self.cancel = 0
-        
-        def set_run(self,paramlist,goaly,Positionmgmt):
-            
-            self.sp = paramlist[0]
-            self.sv = 0
-            self.p = paramlist[1]
-            self.i = paramlist[2]
-            self.d = paramlist[3]
-            g = paramlist[4]
-            #print(999999)
-            if g == "curve_right":
-                g = -1
-            else:
-                g = 1
-            sv = 70 * g
-            #print(self.goalx)
-            #print("curve_goal")
-            #print(goaly)
-            
-            #print("param")
-            #print(self.param)
-            # 
-            #print(self.goalx,self.goaly)
-            #print(self.startx,self.starty)
-            #ループカウンタ           
-            if self.cancel == 0:
-                self.MM.set_param(30,sv)
-                self.MM.run()
-                self.PM=Positionmgmt
-                #初期座標取得
-                cuvreLineTrace.set_param(self)
-                self.goalx = float(goaly[0])
-                self.goaly = float(goaly[1])
-                self.startx = float(self.param[0])
-                self.starty = float(self.param[1])
-                
-                #初期ゲイン
-                self.MM.set_param(30,sv)
-                self.MM.run()
-                while self.startx == 0:
-                    time.sleep(0.1)
-                    cuvreLineTrace.set_param(self)
-                    self.startx = float(self.param[0])
-                    self.starty = float(self.param[1])
-                self.tyusinx = (self.startx + self.goalx)/2
-                self.tyusiny = (self.starty + self.goaly)/2
-                #初期半径
-                self.standard = (np.sqrt((self.tyusinx-self.goalx)**2 + (self.tyusiny-self.goaly)**2))
-                value = ["基準線:", "現在線:", "x:", "y:", "","操作量"]
-                self.log.set_param(value,"curve_log")
-                #print("goalx,y",self.goalx,self.goaly)
-                #print("1kaime")
-                self.cancel = 1
-                self.exec_count += 1
-            self.run()
-
-        def run(self):
-            try:
-                #半径の取得
-                cuvreLineTrace.set_distance(self)
-                #PIDを使う
-                self.sv,self.error_sum,self.error_pre = self.mPID.PID(self.p,self.i,self.d,self.standard,self.distance,self.error_sum,self.error_pre)
-                
-                
-                #if self.exec_count % 2 == 0:
-                self.sv *= -1
-        
-                '''if self.sv <= 100 and self.sv >= 0:
-                    self.sv = 100
-                if self.sv <= 0 and self.sv >= -100:    
-                    self.sv = -100
-                self.count +=1'''
-                value = [self.standard, self.distance, self.x, self.y, self.sv]
-                self.log.write(value)
-                self.MM.set_param(self.sp,self.sv)
-                self.MM.run()
-                
-            except KeyboardInterrupt:
-                print("complet")
-
-
-        def stop(self):
-            self.MM.set_param(0,0)
-            self.MM.run()
-            #self.MM.stop()
+            return distance
                 
 
 def main():
